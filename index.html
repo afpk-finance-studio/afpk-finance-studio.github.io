@@ -1267,6 +1267,25 @@ body{margin:0}
 .mk-alert .mk-rows b{font-size:13px;color:#3182f6;font-weight:700}
 .mk-alert .mk-rows b.f{color:#f04452}
 
+/* v18: clearly visible sky-to-deep-blue gradients */
+html:not(.dark) .meter i,html:not(.dark) .meter i.good,html:not(.dark) .meter i.warn{background:linear-gradient(90deg,#8fe3ff,#3182f6 55%,#1b4fd1)!important}
+html:not(.dark) .meter i.bad{background:linear-gradient(90deg,#ffb6c6,#f04452 60%,#d21f3c)!important}
+#ovGoals .meter i{background:linear-gradient(90deg,#8fe3ff,#3182f6 55%,#1b4fd1)!important}
+html:not(.dark){--green:#1b64da;--green-soft:#e6f4ff;--orange:#4f5bd5;--orange-soft:#eef0ff;--red:#e5354f;--red-soft:#fff0f2}
+html:not(.dark) .pill{border-radius:99px;padding:4px 11px;letter-spacing:-.01em}
+html:not(.dark) .pill.good{background:linear-gradient(135deg,#dcf5ff,#d2e5ff);color:#1b64da;box-shadow:inset 0 0 0 1px rgba(49,130,246,.16)}
+html:not(.dark) .pill.info{background:linear-gradient(135deg,#e6f8ff,#dceaff);color:#1b64da;box-shadow:inset 0 0 0 1px rgba(49,130,246,.12)}
+html:not(.dark) .pill.warn{background:linear-gradient(135deg,#eef0ff,#e1e3ff);color:#4f5bd5;box-shadow:inset 0 0 0 1px rgba(79,91,213,.16)}
+html:not(.dark) .pill.bad{background:linear-gradient(135deg,#fff2f5,#ffe1e7);color:#e5354f;box-shadow:inset 0 0 0 1px rgba(229,53,79,.14)}
+html:not(.dark) .pill.mute{background:#f2f4f6;color:#6b7684}
+html:not(.dark) .callout{background:linear-gradient(135deg,#f0f9ff,#e8f1ff)}
+html:not(.dark) .callout.good{background:linear-gradient(135deg,#e8f7ff,#e0ecff)}
+html:not(.dark) .callout.warn{background:linear-gradient(135deg,#f3f4ff,#e9ebff)}
+html:not(.dark) .callout.bad{background:linear-gradient(135deg,#fff5f7,#ffeaee)}
+.mk-live,.mk-chip{color:#1b64da!important;border-color:rgba(49,130,246,.3)!important}
+.mk-live:before,.mk-chip:before{background:#3182f6!important}
+.mk-rows b{color:#3182f6}.mk-rows b.f{color:#4f5bd5}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -1337,7 +1356,7 @@ body{margin:0}
     </div>
     <div class="hx-vis" id="hxVis" aria-hidden="true">
       <div class="hx-stage" id="hxStage">
-        <div class="hx-device"><div class="hx-bar"><i></i><i></i><i></i><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>afpk-finance-studio.github.io</span></div><div class="hx-screen"><img src="assets/hero-screen-v17.jpg" alt="" onerror="this.outerHTML='&lt;div class=&quot;ph&quot;&gt;&lt;/div&gt;'"></div></div>
+        <div class="hx-device"><div class="hx-bar"><i></i><i></i><i></i><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>afpk-finance-studio.github.io</span></div><div class="hx-screen"><img src="assets/hero-screen-v18.jpg" alt="" onerror="this.outerHTML='&lt;div class=&quot;ph&quot;&gt;&lt;/div&gt;'"></div></div>
         <div class="fchip f1"><span class="fi">₩</span><div><small>월 저축</small><b id="fc1"></b></div></div>
         <div class="fchip f2"><span class="fi">◎</span><div><small>비상예비자금</small><b id="fc2"></b></div></div>
         <div class="fchip f3"><span class="fi">↗</span><div><small>6년 후 금융자산</small><b id="fc3"></b></div></div>
@@ -1834,14 +1853,17 @@ function tcCfg(id,cfg){const cv=document.getElementById(id);if(!tcOn(cv))return;
 const mixW=(h,a)=>{h=String(h).replace("#","");if(!/^[0-9a-f]{6}$/i.test(h))return h;const v=parseInt(h,16),f=x=>Math.round(x+(255-x)*a);return `rgb(${f(v>>16&255)},${f(v>>8&255)},${f(v&255)})`};
 const mixK=(h,a)=>{h=String(h).replace("#","");if(!/^[0-9a-f]{6}$/i.test(h))return h;const v=parseInt(h,16),f=x=>Math.round(x*(1-a));return `rgb(${f(v>>16&255)},${f(v>>8&255)},${f(v&255)})`};
 const PAL2={"#3182f6":"#6aa8ff","#a9d0ff":"#d6e8ff","#1c4fcf":"#4a7fe8","#62a6ff":"#9cc8ff","#d1d6db":"#eceef1","#333d4b":"#6b7684","#4d9bff":"#86bcff","#74b9ff":"#b0d8ff","#5ea5ff":"#97c5ff","#7fb3ff":"#b5d3ff","#1a46c4":"#4a74dd","#0f3fa8":"#3a64c4","#cdced6":"#eeeef3","#2d2d35":"#6a6a78","#15c39a":"#9be86a"};const p2=cl=>PAL2[String(cl).toLowerCase()]||mixW(cl,.35);
-const segFill=cols=>ctx=>{const cl=TC(cols[ctx.dataIndex%cols.length],ctx.chart.canvas),ar=ctx.chart.chartArea;if(!ar)return cl;const g=ctx.chart.ctx.createLinearGradient(ar.left,ar.bottom,ar.right,ar.top);g.addColorStop(0,toA(mixK(cl,.06),.92));g.addColorStop(.55,toA(cl,.8));g.addColorStop(1,toA(p2(cl),.62));return g};
-const barFill=cl=>{const f=ctx=>{const c=TC(cl,ctx.chart.canvas);return grad(toA(p2(c),.6),toA(c,.9))(ctx)};f._c=cl;return f};
+const segFill=cols=>ctx=>{const cl=TC(cols[ctx.dataIndex%cols.length],ctx.chart.canvas),ar=ctx.chart.chartArea;if(!ar)return cl;const g=ctx.chart.ctx.createLinearGradient(ar.left,ar.bottom,ar.right,ar.top);g.addColorStop(0,toA(deepE(cl),.95));g.addColorStop(.5,toA(cl,.85));g.addColorStop(1,toA(litE(cl),.75));return g};
+const barFill=cl=>{const f=ctx=>{const c=TC(cl,ctx.chart.canvas);return grad(toA(litE(c),.8),toA(deepE(c),.95))(ctx)};f._c=cl;return f};
 const toA=(c,a)=>{c=String(c).trim();if(c[0]==="#")return hexA(c,a);const m=c.match(/rgba?\(([^)]+)\)/);if(!m)return c;const p=m[1].split(",").slice(0,3).join(",");return `rgba(${p},${a})`};
 const XH={id:"xh",afterDatasetsDraw(ch){if(ch.config.type!=="line"||!ch.tooltip)return;const a=ch.tooltip.getActiveElements();if(!a||!a.length)return;const x=a[0].element.x,ar=ch.chartArea,c=ch.ctx;c.save();c.setLineDash([4,4]);c.lineWidth=1.5;c.strokeStyle="rgba(49,130,246,.6)";c.beginPath();c.moveTo(x,ar.top);c.lineTo(x,ar.bottom);c.stroke();c.restore()}};
+const rgbOf=c=>{c=String(c).trim();if(c[0]==="#"){let h=c.slice(1);if(h.length===3)h=h.split("").map(x=>x+x).join("");const v=parseInt(h,16);return [v>>16&255,v>>8&255,v&255]}const m=c.match(/rgba?\(([^)]+)\)/);return m?m[1].split(",").slice(0,3).map(Number):[128,128,128]};
+const litE=c=>{const [r,g,b]=rgbOf(c),gr=Math.max(r,g,b)-Math.min(r,g,b)<30,t=gr?[255,255,255]:[143,227,255],a=gr?.6:.62;return `rgb(${[r,g,b].map((x,i)=>Math.round(x+(t[i]-x)*a)).join(",")})`};
+const deepE=c=>{const [r,g,b]=rgbOf(c),gr=Math.max(r,g,b)-Math.min(r,g,b)<30;if(gr)return `rgb(${[r,g,b].map(x=>Math.round(x*.86)).join(",")})`;return `rgb(${Math.round(r*.62)},${Math.round(g*.66)},${Math.round(b*.92)})`};
 const hexA=(h,a)=>{h=String(h).replace("#","");if(h.length===3)h=h.split("").map(x=>x+x).join("");const v=parseInt(h,16);return `rgba(${v>>16&255},${v>>8&255},${v&255},${a})`};
 const lum=h=>{h=String(h).replace("#","");if(!/^[0-9a-f]{6}$/i.test(h))return 0;const v=parseInt(h,16);return ((v>>16&255)*.299+(v>>8&255)*.587+(v&255)*.114)/255};
 function grad(a,b,horiz){return Object.assign(ctx=>{const ch=ctx.chart,ar=ch.chartArea;a=TC(a,ch.canvas);b=TC(b,ch.canvas);if(!ar)return a;const g=horiz?ch.ctx.createLinearGradient(ar.left,0,ar.right,0):ch.ctx.createLinearGradient(0,ar.top,0,ar.bottom);g.addColorStop(0,a);g.addColorStop(1,b);return g},{_c:a})}
-const GRAY=["#dedee6","rgba(222,222,230,.18)"],VIO=["#74b9ff","#3182f6"];
+const GRAY=["#dedee6","rgba(222,222,230,.18)"],VIO=["#8fe3ff","#1b4fd1"];
 const GLOW={id:"glow",beforeDatasetDraw(ch,a){if(ch.config.type!=="line")return;const c=ch.ctx;c.save();c.shadowColor="rgba(49,130,246,.35)";c.shadowBlur=14;c.shadowOffsetY=6},afterDatasetDraw(ch){if(ch.config.type!=="line")return;ch.ctx.restore()}};
 const NUMS={id:"nums",afterDatasetsDraw(ch){const ds=ch.data.datasets[0];if(!ds)return;const tot=ds.data.reduce((a,b)=>a+(+b||0),0);if(!tot)return;const m=ch.getDatasetMeta(0),c=ch.ctx;c.save();c.font="700 11px "+css("--font");c.textAlign="center";c.textBaseline="middle";
   m.data.forEach((el,i)=>{if(!ch.getDataVisibility(i)||(ds.data[i]||0)/tot<.05)return;const p=el.tooltipPosition();const base=ds._base||ds.backgroundColor,bg=Array.isArray(base)?base[i]:"#000";c.fillStyle=lum(bg)>.68?"#2a2a36":"#ffffff";c.fillText(String(i+1),p.x,p.y)});c.restore()}};
@@ -1975,12 +1997,12 @@ function update(){
   donut("cCash",cfData.map(x=>x[1]),cfData.map(x=>x[0]),cfCol,{text:fmt(cfT)+"만",sub:"월 소득"},ctx=>{const t=ctx.dataset.data.reduce((a,b)=>a+b,0);return ` ${ctx.label}: ${won(ctx.parsed)} (${pct(t?ctx.parsed/t*100:0)})`},"legCash",cfData.map(x=>[x[1],fmt(x[0],x[0]%1?1:0)+"만",pct(cfT?x[0]/cfT*100:0)]));
   chart("cBS",{type:"bar",data:{labels:["자산","부채 + 순자산"],datasets:[
     {label:"유동성",data:[c.A.liquid,0],backgroundColor:col[0],stack:"s"},{label:"안정 투자",data:[c.A.safe,0],backgroundColor:col[1],stack:"s"},{label:"고위험 투자",data:[c.A.risk,0],backgroundColor:col[2],stack:"s"},{label:"노후",data:[c.A.retire,0],backgroundColor:col[3],stack:"s"},{label:"사용 자산",data:[c.A.use,0],backgroundColor:col[4],stack:"s"},
-    {label:"부채",data:[0,c.debtBal],backgroundColor:"#f25f73",stack:"s"},{label:"순자산",data:[0,Math.max(0,c.net)],backgroundColor:"#4d9bff",stack:"s"}].map(d=>Object.assign(d,{backgroundColor:d.label==="부채"?Object.assign(grad("rgba(255,150,170,.55)","rgba(240,68,82,.85)"),{_c:"#f25f73"}):barFill(d.backgroundColor),hoverBackgroundColor:d.label==="부채"?"rgba(240,68,82,.9)":d.backgroundColor,borderRadius:{topLeft:10,topRight:10,bottomLeft:10,bottomRight:10},borderSkipped:false,maxBarThickness:72,borderColor:"#fff",borderWidth:2}))},
+    {label:"부채",data:[0,c.debtBal],backgroundColor:"#f25f73",stack:"s"},{label:"순자산",data:[0,Math.max(0,c.net)],backgroundColor:"#3182f6",stack:"s"}].map(d=>Object.assign(d,{backgroundColor:d.label==="부채"?Object.assign(grad("rgba(255,182,198,.8)","rgba(226,40,66,.95)"),{_c:"#f25f73"}):barFill(d.backgroundColor),hoverBackgroundColor:d.label==="부채"?"rgba(240,68,82,.9)":d.backgroundColor,borderRadius:{topLeft:10,topRight:10,bottomLeft:10,bottomRight:10},borderSkipped:false,maxBarThickness:72,borderColor:"#fff",borderWidth:2}))},
     options:baseOpts({interaction:{mode:"nearest",intersect:true},plugins:Object.assign(baseOpts().plugins,{legend:{display:false}}),scales:Object.assign(baseOpts().scales,{x:Object.assign(baseOpts().scales.x,{stacked:true}),y:Object.assign(baseOpts().scales.y,{stacked:true})})})});
-  {const sw=(c2,t)=>`<span><i style="background:${c2}"></i>${t}</span>`;$("#legBS").innerHTML=`<div>${sw(col[0],"유동성")+sw(col[1],"안정 투자")+sw(col[2],"고위험 투자")+sw(col[3],"노후")+sw(col[4],"사용 자산")}</div><div>${sw("linear-gradient(180deg,#ff96aa,#f04452)","부채")+sw("#4d9bff","순자산")}</div>`}
+  {const sw=(c2,t)=>`<span><i style="background:${/gradient/.test(c2)?c2:`linear-gradient(180deg,${litE(c2)},${deepE(c2)})`}"></i>${t}</span>`;$("#legBS").innerHTML=`<div>${sw(col[0],"유동성")+sw(col[1],"안정 투자")+sw(col[2],"고위험 투자")+sw(col[3],"노후")+sw(col[4],"사용 자산")}</div><div>${sw("linear-gradient(180deg,#ffb6c6,#e22842)","부채")+sw(`linear-gradient(180deg,${litE("#4d9bff")},${deepE("#4d9bff")})`,"순자산")}</div>`}
   $("#gapTable").innerHTML=`<thead><tr><th>목표</th><th class="r">현재</th><th class="r">목표</th><th class="r">차이</th><th>판정</th></tr></thead><tbody>${S.goals.map(g=>{const now=srcNow(g,c),amt=n(g.amt),r=amt>0?now/amt*100:null;const s=r==null?"mute":r>=100?"good":r>=50?"warn":"bad";return `<tr><td>${esc(g.name)}<br><span style="font-size:12px;color:var(--ink-3)">${esc(g.term)} · ${mlabel(n(g.months))}</span></td><td class="r">${fmt(now)}</td><td class="r">${amt?fmt(amt):"지속"}</td><td class="r">${amt?fmt(Math.max(0,amt-now)):"-"}</td><td><span class="pill ${s}">${r==null?"적립":fmt(r,0)+"%"}</span></td></tr>`}).join("")}</tbody>`;
   const gg=S.goals.filter(g=>n(g.amt)>0);
-  chart("cGoal",{type:"bar",data:{labels:gg.map(g=>g.name),datasets:[{label:"현재 준비율",data:gg.map(g=>Math.min(150,srcNow(g,c)/n(g.amt)*100)),backgroundColor:"#e5e8eb",hoverBackgroundColor:"#d1d6db",borderRadius:99,maxBarThickness:16},{label:"목표 시점 예상",data:gg.map(g=>Math.min(150,srcAt(g,c,P,n(g.months))/n(g.amt)*100)),backgroundColor:grad("#a9d0ff","#3182f6",true),borderRadius:99,maxBarThickness:16}]},
+  chart("cGoal",{type:"bar",data:{labels:gg.map(g=>g.name),datasets:[{label:"현재 준비율",data:gg.map(g=>Math.min(150,srcNow(g,c)/n(g.amt)*100)),backgroundColor:"#e5e8eb",hoverBackgroundColor:"#d1d6db",borderRadius:99,maxBarThickness:16},{label:"목표 시점 예상",data:gg.map(g=>Math.min(150,srcAt(g,c,P,n(g.months))/n(g.amt)*100)),backgroundColor:grad("#8fe3ff","#1b4fd1",true),borderRadius:99,maxBarThickness:16}]},
     options:baseOpts({indexAxis:"y",plugins:Object.assign(baseOpts().plugins,{tooltip:Object.assign({},baseOpts().plugins.tooltip,{callbacks:{label:ctx=>` ${ctx.dataset.label}: ${pct(ctx.parsed.x,0)}`}})}),scales:{x:{min:0,max:150,grid:{color:css("--line")},border:{display:false},ticks:{stepSize:25,color:css("--ink-2"),callback:v=>v+"%"}},y:{grid:{display:false},ticks:{color:css("--ink-2"),font:{family:css("--font"),size:12}}}}})});
   renderDiag(c);
 
@@ -2005,7 +2027,7 @@ function update(){
   donut("cHomeB",c.buckets.map(b=>b.name),c.buckets.map(b=>b.pmt),bc,{text:fmt(c.bucketSum,0)+"만",sub:"월 저축"},ctx=>{const b=c.buckets[ctx.dataIndex];return ` ${b.name}: 월 ${fmt(b.pmt,1)}만 원`},"legHomeB",c.buckets.map(b=>[b.name,fmt(b.pmt,b.pmt%1?1:0)+"만",(b.product||"")+" · "+pct(c.bucketSum?b.pmt/c.bucketSum*100:0,0)]));
   // projection chart
   const labels=[...Array(horizon+1).keys()].map(m=>m===0?"현재":m%12===0?(m/12)+"년":m+"개월");
-  const ds=[{label:"기존 투자자산",data:P.rest.slice(0,horizon+1),backgroundColor:grad(hexA(css("--c5"),.45),hexA(css("--c5"),.08)),borderColor:css("--c5"),fill:"origin",stack:"a"}].concat(P.series.map((s,i)=>({label:s.name,data:s.arr.slice(0,horizon+1),backgroundColor:grad(hexA(col[i%6],.32),hexA(col[i%6],.03)),borderColor:hexA(col[i%6],.9),fill:"-1",stack:"a"})));
+  const ds=[{label:"기존 투자자산",data:P.rest.slice(0,horizon+1),backgroundColor:grad(hexA(css("--c5"),.45),hexA(css("--c5"),.08)),borderColor:css("--c5"),fill:"origin",stack:"a"}].concat(P.series.map((s,i)=>({label:s.name,data:s.arr.slice(0,horizon+1),backgroundColor:grad(toA(deepE(col[i%6]),.42),toA(litE(col[i%6]),.05)),borderColor:grad(litE(col[i%6]),deepE(col[i%6]),true),fill:"-1",stack:"a"})));
   ds.forEach(d=>Object.assign(d,{pointRadius:0,pointHoverRadius:0,borderWidth:2,tension:.3}));
   gg.filter(g=>!((g.src||[]).length===1&&g.src[0]==="cash")&&n(g.months)<=horizon).forEach((g,i)=>ds.push({label:"목표 · "+g.name,data:labels.map((_,m)=>m===n(g.months)?n(g.amt):null),type:"line",borderColor:css("--ink"),backgroundColor:"#ffffff",pointRadius:labels.map((_,m)=>m===n(g.months)?7:0),pointHoverRadius:7,pointBorderWidth:3,pointBorderColor:srcAt(g,c,P,n(g.months))>=n(g.amt)?"#3182f6":"#f25f73",showLine:false,stack:"g"+i}));
   chart("cProj",{type:"line",data:{labels,datasets:ds},options:baseOpts({scales:Object.assign(baseOpts().scales,{x:Object.assign(baseOpts().scales.x,{ticks:Object.assign(baseOpts().scales.x.ticks,{autoSkip:false,maxRotation:0,callback:(v,i)=>i%12===0?labels[i]:""})}),y:Object.assign(baseOpts().scales.y,{stacked:true})}),plugins:Object.assign(baseOpts().plugins,{tooltip:Object.assign({},baseOpts().plugins.tooltip,{filter:it=>it.raw!=null,callbacks:{label:ctx=>` ${ctx.dataset.label}: ${won(ctx.parsed.y)}`,footer:items=>{const t=items.filter(i=>!/^목표/.test(i.dataset.label)).reduce((a,i)=>a+i.parsed.y,0);return "합계 "+won(t)}}})})})});
@@ -2044,7 +2066,7 @@ function renderJourney(c){
   const atG=line[Math.min(n(g.months),H)];
   box.innerHTML=`<div><span>${mlabel(n(g.months))} 후 예상</span><b>${won(atG)}</b></div><div><span>목표 도달</span><b style="color:var(--${reach>=0&&reach<=n(g.months)?"green":"red"})">${reach<0?"기간 내 미달":mlabel(reach)}</b></div><div><span>목표</span><b>${won(n(g.amt))}</b></div>`;
   const labels=[...Array(H+1).keys()].map(m=>m===0?"현재":m+"개월");
-  chart("cJourney",{type:"line",data:{labels,datasets:[{label:"예상 적립액",data:line,borderColor:grad("#3182f6","#74b9ff",true),backgroundColor:grad("rgba(49,130,246,.26)","rgba(116,185,255,0)"),fill:true,tension:.35,pointRadius:labels.map((_,m)=>m===reach?6:0),pointBackgroundColor:"#ffffff",pointBorderColor:"#3182f6",pointBorderWidth:3,pointHoverRadius:5,borderWidth:2.5},{label:"목표 "+g.name,data:labels.map(()=>n(g.amt)),borderColor:css("--blue"),borderDash:[6,6],pointRadius:0,borderWidth:1.5,fill:false}]},plugins:[GLOW],
+  chart("cJourney",{type:"line",data:{labels,datasets:[{label:"예상 적립액",data:line,borderColor:grad("#1b4fd1","#8fe3ff",true),backgroundColor:grad("rgba(49,130,246,.26)","rgba(116,185,255,0)"),fill:true,tension:.35,pointRadius:labels.map((_,m)=>m===reach?6:0),pointBackgroundColor:"#ffffff",pointBorderColor:"#3182f6",pointBorderWidth:3,pointHoverRadius:5,borderWidth:2.5},{label:"목표 "+g.name,data:labels.map(()=>n(g.amt)),borderColor:css("--blue"),borderDash:[6,6],pointRadius:0,borderWidth:1.5,fill:false}]},plugins:[GLOW],
     options:baseOpts({scales:Object.assign(baseOpts().scales,{x:Object.assign(baseOpts().scales.x,{ticks:Object.assign(baseOpts().scales.x.ticks,{autoSkip:false,maxRotation:0,callback:(v,i)=>i%12===0?labels[i].replace("개월","")+(i?"개월":""):""})})})})});
 }
 function renderCompleteness(c){
