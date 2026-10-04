@@ -1460,6 +1460,8 @@ html.bk .top{background:rgba(255,255,255,.94)}
 [hidden]{display:none!important}
 .rep-chart.bs{height:300px}
 #report .cv-foot span{font-size:12.5px!important;color:#333}#report .cv-foot small{font-size:11px!important;margin-bottom:0}
+@media screen{#report .rep-cover{aspect-ratio:210/297;min-height:0!important;height:auto;overflow:hidden}#report .rep-cover .cv-rule1{margin-top:12%}#report .rep-cover .cv-foot{margin-top:auto;margin-bottom:6%}}
+#v-home .mq-row.r .mq-track span{font-size:clamp(18px,1.8vw,24px)}@media (max-width:720px){#v-home .mq-row.r .mq-track span{font-size:16px}}
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -1590,7 +1592,7 @@ html.bk .top{background:rgba(255,255,255,.94)}
     </div>
   </section>
   <section class="wv-sec" aria-labelledby="wvTitle">
-    <div class="feat-head"><span class="feat-eye">GOAL MAP</span><h2 id="wvTitle">목표마다 얼마나 높은지,<br>한 장의 지도로</h2><p>봉우리 하나가 재무목표 하나입니다. 목표 금액이 클수록 높게 솟고, 몇 초마다 다음 목표를 비춥니다.</p></div>
+    <div class="feat-head"><span class="feat-eye">GOAL MAP</span><h2 id="wvTitle">목표마다 얼마나 높은지,<br>한 장의 지도로</h2><p>봉우리 하나가 재무목표 하나입니다. 목표 금액이 클수록 높게 솟고, 커서나 손가락을 가져가면 가까운 목표를 비춥니다.</p></div>
     <div class="wv-meta"><span id="wvClock"></span><span class="wv-mid">재무목표<i></i><b id="wvCnt"></b></span><span class="wv-src">Data : 소득 | 지출 | 자산 | 부채</span></div>
     <div class="wv-box" id="wvBox"><canvas id="wvCv" aria-hidden="true"></canvas></div>
   </section>
@@ -2529,19 +2531,24 @@ addEventListener("scroll",()=>requestAnimationFrame(()=>{hxScroll();const d=docu
   (function walk(n){[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();[...c.nodeValue].forEach(ch=>{const s=document.createElement("span");s.className="c";s.textContent=ch;f.appendChild(s);cs.push(s)});c.replaceWith(f)}})})(el);
   let last=-1;function fill(){if(curView!=="home")return;const r=el.getBoundingClientRect(),vh=innerHeight;const p=Math.max(0,Math.min(1,(vh*.82-r.top)/(r.height+vh*.3)));const k=Math.round(p*cs.length);if(k===last)return;last=k;cs.forEach((c,i)=>{c.classList.toggle("on",i<k);c.classList.toggle("cur",i===k-1&&k<cs.length)})}
   addEventListener("scroll",()=>requestAnimationFrame(fill),{passive:true});addEventListener("resize",fill);window.__sayFill=()=>{last=-1;fill()};setTimeout(fill,50)})();
-(function(){const cv=$("#wvCv"),box=$("#wvBox");if(!cv||!cv.getContext)return;const ctx=cv.getContext("2d");let W=0,H=0,on=false,raf=0,mx=-9;const t0=performance.now();
+(function(){const cv=$("#wvCv"),box=$("#wvBox");if(!cv||!cv.getContext)return;const ctx=cv.getContext("2d");let W=0,H=0,on=false,raf=0,mx=-9,mz=.78,px=-1,py=-1,hov=-1,hold=0;const t0=performance.now();
   const RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const SP=[[-.3,.5],[.1,.32],[.3,.62],[-.08,.72],[-.4,.28],[.42,.3]];
   function size(){const r=cv.getBoundingClientRect(),d=Math.min(2,devicePixelRatio||1);W=r.width;H=r.height;cv.width=W*d;cv.height=H*d;ctx.setTransform(d,0,0,d,0,0)}
   function draw(now){raf=0;if(!W)size();if(!W)return;const t=RM?0:(now-t0)/1000;ctx.clearRect(0,0,W,H);
-    const G=(window.__wvG||[]).slice(0,6),mA=Math.max(1,...G.map(g=>g.amt)),hi=G.length?Math.floor(t/3.2)%G.length:-1,mob=W<600;
+    const G=(window.__wvG||[]).slice(0,6),mA=Math.max(1,...G.map(g=>g.amt)),auto=G.length?Math.floor(t/3.2)%G.length:-1,mob=W<600;
     const P=G.map((g,i)=>({u:SP[i][0],z:SP[i][1],h:.8+1.5*Math.sqrt(g.amt/mA),i,g}));
     const cols=mob?44:86,rows=mob?24:34,top=H*.3,bot=H*1.02;
     const Y=z=>top+(bot-top)*Math.pow(z,1.7),SPR=z=>W*(.7+.95*z),AMP=z=>(mob?12:18)+(mob?44:66)*z;
-    const hAt=(u,z)=>{let h=Math.sin(u*8+t*.5+z*4)*.32+Math.cos(u*3.3-z*6+t*.35)*.42;for(const p of P)h+=Math.exp(-(((u-p.u)**2)/.007+((z-p.z)**2)/.022))*p.h;if(mx>-5)h+=Math.exp(-(((u-mx)**2)/.012+((z-.78)**2)/.06))*.9;return h};
+    if(px>=0){mz=Math.min(1,Math.max(0,Math.pow(Math.max(0,(py-top)/(bot-top)),1/1.7)));mx=(px-W/2)/SPR(mz)}
+    const hAt0=(u,z)=>{let h=Math.sin(u*8+t*.5+z*4)*.32+Math.cos(u*3.3-z*6+t*.35)*.42;for(const p of P)h+=Math.exp(-(((u-p.u)**2)/.007+((z-p.z)**2)/.022))*p.h;return h};
+    if(px>=0&&P.length){let best=-1,bd=1e9;for(const p of P){const x=W/2+p.u*SPR(p.z),y=Y(p.z)-hAt0(p.u,p.z)*AMP(p.z),d=(x-px)**2+((y-py)*1.4)**2;if(d<bd){bd=d;best=p.i}}hov=best;hold=now}
+    const hi=hov>=0&&now-hold<2600?hov:auto;
+    const near=(u,z)=>px>=0?Math.exp(-(((u-mx)**2)/.006+((z-mz)**2)/.012)):0;
+    const hAt=(u,z)=>{let h=hAt0(u,z);if(px>=0){const d=Math.sqrt(((u-mx)*3)**2+((z-mz)*2)**2);h+=near(u,z)*1.1+Math.exp(-d*2.2)*Math.sin(d*22-t*6)*.22}return h};
     for(let r=0;r<rows;r++){const z=r/(rows-1),y0=Y(z),sp=SPR(z),am=AMP(z),a=.16+.62*z,rad=.5+1.4*z;
       for(let c=0;c<cols;c++){const u=c/(cols-1)-.5,h=hAt(u,z);let w=0;const p=P[hi];if(p)w=Math.exp(-(((u-p.u)**2)/.007+((z-p.z)**2)/.022));
-        ctx.fillStyle=w>.12?`rgba(${Math.round(49+80*w)},${Math.round(130+60*w)},255,${Math.min(1,a+.4*w).toFixed(3)})`:`rgba(205,206,220,${a.toFixed(3)})`;
+        const q=near(u,z);if(q>w)w=Math.min(1,q*.9);ctx.fillStyle=w>.12?`rgba(${Math.round(49+80*w)},${Math.round(130+60*w)},255,${Math.min(1,a+.4*w).toFixed(3)})`:`rgba(205,206,220,${a.toFixed(3)})`;
         ctx.beginPath();ctx.arc(W/2+u*sp,y0-h*am,rad*(1+w*.5),0,6.283);ctx.fill()}}
     ctx.font=`600 ${mob?12:13.5}px ${css("--font")}`;ctx.textAlign="center";
     for(const p of P){const x=W/2+p.u*SPR(p.z),y=Y(p.z)-hAt(p.u,p.z)*AMP(p.z),on2=p.i===hi;let L=on2?(mob?48:70):(mob?30:44);if(on2)L=Math.min(L,Math.max(14,y-(mob?40:50)));
@@ -2549,7 +2556,7 @@ addEventListener("scroll",()=>requestAnimationFrame(()=>{hxScroll();const d=docu
       ctx.beginPath();ctx.arc(x,y-L,on2?5:3.5,0,6.283);if(on2){ctx.fillStyle="#74b9ff";ctx.fill()}else{ctx.fillStyle="#000";ctx.fill();ctx.strokeStyle="rgba(255,255,255,.45)";ctx.stroke()}
       if(on2){ctx.fillStyle="#8ec5ff";ctx.fillText(p.g.name,x,y-L-(mob?24:28));ctx.fillStyle="rgba(255,255,255,.72)";ctx.font=`500 ${mob?11:12.5}px ${css("--font")}`;ctx.fillText(Math.round(p.g.amt).toLocaleString()+"만 원",x,y-L-(mob?10:12));ctx.font=`600 ${mob?12:13.5}px ${css("--font")}`}}
     if(on&&!RM)raf=requestAnimationFrame(draw)}
-  box.addEventListener("pointermove",e=>{const r=cv.getBoundingClientRect();mx=(e.clientX-r.left)/r.width-.5});box.addEventListener("pointerleave",()=>{mx=-9});
+  const pm=e=>{const r=cv.getBoundingClientRect();px=e.clientX-r.left;py=e.clientY-r.top;if(RM&&!raf)raf=requestAnimationFrame(draw)};box.addEventListener("pointermove",pm);box.addEventListener("pointerdown",pm);box.addEventListener("pointerleave",()=>{px=-1;py=-1});box.addEventListener("pointerup",e=>{if(e.pointerType!=="mouse"){px=-1;py=-1}});
   addEventListener("resize",()=>{size();if(!raf)raf=requestAnimationFrame(draw)});
   const ck=$("#wvClock");const tick=()=>{if(!ck||!on)return;const d=new Date(),z=v=>String(v).padStart(2,"0");ck.textContent=`${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일 ${z(d.getHours())}:${z(d.getMinutes())}:${z(d.getSeconds())}`};setInterval(tick,1000);
   if("IntersectionObserver" in window)new IntersectionObserver(es=>{on=es[0].isIntersecting&&!document.hidden;tick();if(on&&!raf){size();raf=requestAnimationFrame(draw)}}).observe(box);else{on=true}
