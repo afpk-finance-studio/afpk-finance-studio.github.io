@@ -1294,6 +1294,21 @@ html.dark #ovGoals .pill{background:rgba(116,185,255,.14);color:#a9d0ff;border:1
 html.dark #ovGoals .meter{background:rgba(255,255,255,.08)}
 html.dark .mk-alert .mk-rows>div{background:#f5f7fa}
 
+/* v20: hero breathing room + a hint of violet */
+#v-home .hx{gap:68px;padding-top:104px}
+#v-home .hx-copy{gap:26px;max-width:880px}
+#v-home .hx h1{font-size:clamp(34px,4.7vw,62px);letter-spacing:-.035em;line-height:1.2}
+#v-home .hx h1 em{background:linear-gradient(90deg,#ffffff 0%,#b9d4ff 38%,#c7b6ff 78%,#e0c6ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#v-home .hx p{line-height:1.78;max-width:56ch}
+#v-home .hx .btns{gap:12px;margin-top:12px}
+#v-home .hx-mini{margin-top:30px}
+#v-home .hx-mini div{padding:0 36px}
+#v-home .hx-pill{border-color:rgba(190,170,255,.28);background:linear-gradient(90deg,rgba(116,185,255,.10),rgba(160,120,255,.12))}
+#v-home .hx:before{background:radial-gradient(closest-side,rgba(150,120,255,.26),rgba(77,155,255,.10) 60%,transparent);top:-24%}
+#v-home .hx:after{background:radial-gradient(closest-side,rgba(49,130,246,.62),rgba(130,95,255,.30) 52%,transparent)}
+#v-home .hx-device{box-shadow:0 0 0 6px rgba(255,255,255,.04),-80px -10px 120px -20px rgba(130,95,255,.35),60px -10px 120px -10px rgba(80,150,248,.42),0 50px 100px -30px rgba(0,0,0,.9)}
+@media (max-width:720px){#v-home .hx{gap:40px;padding-top:56px}#v-home .hx-copy{gap:20px}#v-home .hx h1{font-size:31px;line-height:1.26}#v-home .hx-mini{margin-top:14px}#v-home .hx-mini div{padding:0 4px}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
