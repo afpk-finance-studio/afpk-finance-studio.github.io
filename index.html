@@ -1323,6 +1323,21 @@ html:not(.dark) .callout.bad{background:linear-gradient(135deg,#fff5f7,#ffeaee)}
 @media print{.sl{opacity:1!important;transform:none!important}.mq{display:none}}
 @media (max-width:720px){.mq-track span{font-size:13.5px;padding:10px 16px}}
 
+/* v25: statement + marquee join the black hero band; marquee is plain moving text */
+#v-home .say-sec,#v-home .mq{background:#000;box-shadow:0 0 0 100vmax #000;clip-path:inset(-44px -100vmax 0 -32px)}
+#v-home .say-sec{margin-top:0;padding:120px 0 96px}
+#v-home .say{color:#fff}
+#v-home .say .c{color:rgba(255,255,255,.16)}#v-home .say .c.on{color:#fff}
+#v-home .say .c.cur:after{background:linear-gradient(#8fe3ff,#7b6cff)}
+#v-home .say-grid{background:linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 14% 0/1px 100% no-repeat,linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 86% 0/1px 100% no-repeat,linear-gradient(90deg,rgba(255,255,255,.09),rgba(255,255,255,.09)) 0 22%/100% 1px no-repeat,linear-gradient(90deg,rgba(255,255,255,.09),rgba(255,255,255,.09)) 0 78%/100% 1px no-repeat}
+#v-home .mq{-webkit-mask:none;mask:none;gap:22px;padding:8px 0 110px;position:relative}
+#v-home .mq-row{-webkit-mask:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
+#v-home .mq-track{gap:72px;padding-right:72px}
+#v-home .mq-track span,#v-home .mq-row.r .mq-track span{background:none;box-shadow:none;padding:0;border-radius:0;gap:14px;font-size:clamp(22px,2.3vw,32px);font-weight:700;letter-spacing:-.02em;color:rgba(255,255,255,.88)}
+#v-home .mq-row.r .mq-track span{color:transparent;background:linear-gradient(90deg,#b9d4ff,#c7b6ff);-webkit-background-clip:text;background-clip:text}
+#v-home .mq-track i{width:8px;height:8px;opacity:.9}
+@media (max-width:900px){#v-home .say-sec,#v-home .mq{clip-path:inset(-44px -100vmax 0)}#v-home .say-sec{padding:84px 0 70px}#v-home .mq{padding-bottom:72px;gap:16px}#v-home .mq-track{gap:36px;padding-right:36px}#v-home .mq-track span{font-size:19px}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -1401,7 +1416,7 @@ html:not(.dark) .callout.bad{background:linear-gradient(135deg,#fff5f7,#ffeaee)}
     </div>
   </div>
   <section class="say-sec" aria-label="소개"><div class="say-grid" aria-hidden="true"></div><p class="say" id="say">흩어진 숫자를 한 번만 넣으면<br>진단부터 설계, 실행과 점검까지<br>한 흐름으로 이어집니다</p></section>
-  <section class="mq" aria-hidden="true"><div class="mq-row"><div class="mq-track"><span><i></i>재무비율 4종 자동 진단</span><span><i></i>비상예비자금 3~6개월</span><span><i></i>4-Bucket 월 적립</span><span><i></i>안정안 · 균형안 · 가속안</span><span><i></i>연금저축 세액공제 16.5%</span><span><i></i>주택청약 소득공제 40%</span><span><i></i>중개형 ISA 비과세</span><span><i></i>재무비율 4종 자동 진단</span><span><i></i>비상예비자금 3~6개월</span><span><i></i>4-Bucket 월 적립</span><span><i></i>안정안 · 균형안 · 가속안</span><span><i></i>연금저축 세액공제 16.5%</span><span><i></i>주택청약 소득공제 40%</span><span><i></i>중개형 ISA 비과세</span></div></div><div class="mq-row r"><div class="mq-track"><span><i></i>청년도약계좌</span><span><i></i>날짜별 실행 캘린더</span><span><i></i>휴대폰 캘린더 내보내기</span><span><i></i>점검 트리거 7개</span><span><i></i>A4 보고서 PDF</span><span><i></i>산출 근거 · 관련 법령</span><span><i></i>AI 코치</span><span><i></i>청년도약계좌</span><span><i></i>날짜별 실행 캘린더</span><span><i></i>휴대폰 캘린더 내보내기</span><span><i></i>점검 트리거 7개</span><span><i></i>A4 보고서 PDF</span><span><i></i>산출 근거 · 관련 법령</span><span><i></i>AI 코치</span></div></div></section>
+  <section class="mq" aria-hidden="true"><div class="mq-row"><div class="mq-track"><span><i></i>1단계 고객과의 관계 정립</span><span><i></i>2단계 재무목표 · 자료 수집</span><span><i></i>3단계 재무상태 분석 · 평가</span><span><i></i>4단계 재무설계안 수립 · 제시</span><span><i></i>5단계 재무설계안 실행</span><span><i></i>6단계 점검 · 리밸런싱</span><span><i></i>1단계 고객과의 관계 정립</span><span><i></i>2단계 재무목표 · 자료 수집</span><span><i></i>3단계 재무상태 분석 · 평가</span><span><i></i>4단계 재무설계안 수립 · 제시</span><span><i></i>5단계 재무설계안 실행</span><span><i></i>6단계 점검 · 리밸런싱</span></div></div><div class="mq-row r"><div class="mq-track"><span><i></i>판단 근거 · 관련 법령</span><span><i></i>단계별 고객 실행 과제</span><span><i></i>안정안 · 균형안 · 가속안</span><span><i></i>AI 활용 프롬프트</span><span><i></i>날짜별 실행 캘린더</span><span><i></i>6단계 재무설계 보고서</span><span><i></i>판단 근거 · 관련 법령</span><span><i></i>단계별 고객 실행 과제</span><span><i></i>안정안 · 균형안 · 가속안</span><span><i></i>AI 활용 프롬프트</span><span><i></i>날짜별 실행 캘린더</span><span><i></i>6단계 재무설계 보고서</span></div></div></section>
   <section class="feat-sec" aria-labelledby="featTitle">
     <div class="feat-head">
       <span class="feat-eye">FEATURES</span>
