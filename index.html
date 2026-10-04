@@ -962,7 +962,6 @@ html.dark .fv-cal i.c{background:#fff}
 .sc b i{font-style:normal;font-size:13px;color:#8a8a94;margin-left:2px}
 .sc span{font-size:12px;color:#8a8a94}
 .sc em{font-style:normal;font-size:11.5px;color:#6e6e78;margin-top:4px}
-.sc .bar{height:96px;border-radius:10px;background:#0e0e12;display:flex;align-items:flex-end;overflow:hidden;margin:10px 0 6px}
 .sc .bar i{display:block;width:100%;height:var(--h);border-radius:10px 10px 0 0;background:linear-gradient(#3a3a44,#22222a);transform-origin:bottom;transform:scaleY(.08);transition:transform 1.2s cubic-bezier(.16,1,.3,1) .25s}
 .sc.on .bar i{background:linear-gradient(#74b9ff,#3182f6)}
 .fp.shown .sc .bar i{transform:none}
@@ -1016,7 +1015,6 @@ html.dark .fv-cal i.c{background:#fff}
 }
 @container main (max-width:460px){
   .mk-stack{height:290px}.mk-big{font-size:32px}.mk-hero{width:92%;padding:18px}.mk-back{width:94%}
-  .mk-scen{gap:8px}.sc{padding:12px 10px;border-radius:14px}.sc b{font-size:20px}.sc .bar{height:70px}
   .mk-bk{flex-direction:column;align-items:stretch}.mk-bk .fv-donut{align-self:center;width:130px;height:130px}
   .mk-doc{transform:scale(.82);transform-origin:center top;height:300px}
 }
@@ -1048,7 +1046,6 @@ html.dark .fv-cal i.c{background:#fff}
 .fp-go{margin-top:20px}
 .mk-stack{height:270px}
 .mk-doc{height:300px;width:260px}
-.sc .bar{height:70px}
 .mk-bk .fv-donut{width:130px;height:130px}
 .fp.rvp{opacity:0;transform:translateY(90px) scale(.95);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1.2s cubic-bezier(.16,1,.3,1),border-color .3s}
 .fp.rvp.shown{opacity:1;transform:none}
@@ -1191,7 +1188,6 @@ html:not(.dark){--bg:#f2f4f6;--side:#ffffff;--card:#fff;--card-2:#f9fafb;--fill:
 .sc{background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.9);color:#191f28;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 20px 40px -28px rgba(30,60,130,.35)}
 .sc.on{border-color:rgba(49,130,246,.45);box-shadow:0 24px 50px -20px rgba(49,130,246,.45)}
 .sc small{color:#4e5968}.sc b i,.sc span{color:#8b95a1}.sc em{color:#b0b8c1}
-.sc .bar{background:#f2f4f6}.sc .bar i{background:linear-gradient(#d1d6db,#e5e8eb)}
 .sc.on .bar i{background:linear-gradient(#74b9ff,#3182f6)}
 .mk-leg>div{border-top-color:#eef0f3}.mk-leg small{color:#8b95a1}
 .mk-calgrid s{color:#8b95a1}.mk-calgrid u{background:#f2f4f6;color:#4e5968}.mk-calgrid u.t{color:#fff}.mk-calgrid u.p{color:#191f28}
@@ -1444,8 +1440,6 @@ html.bk .top{background:rgba(255,255,255,.94)}
 .bz-law,.bz-law:nth-child(-n+2){grid-column:auto!important}
 .bz-law{min-height:0;padding:20px 18px 18px;gap:4px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0) 60%),#141417;border:1px solid rgba(255,255,255,.08)}
 .bz-law:hover{transform:translateY(-6px);border-color:rgba(150,110,255,.85);box-shadow:0 0 0 1px rgba(150,110,255,.35),0 18px 50px -12px rgba(123,77,255,.55)}
-.bz-law .bar{display:block;height:46px;border-radius:12px;margin-bottom:14px;background:linear-gradient(180deg,#3a3a42,#232329);transition:background .4s}
-.bz-law:hover .bar{background:linear-gradient(180deg,#ff6fa5,#7b4dff)}
 .bz-law small{font-size:12.5px;color:#b8b9c6;font-weight:600}
 .bz-law b{font-size:15px;font-weight:600;color:#9a9ba8;margin-top:2px}
 .bz-law em{font-size:24px;-webkit-text-fill-color:#fff;color:#fff;background:none}
@@ -1454,8 +1448,6 @@ html.bk .top{background:rgba(255,255,255,.94)}
 @media (max-width:1180px){.bz-laws{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
 @media (max-width:720px){.bz-laws{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 .bz-laws:not(:hover) .bz-law:nth-child(2){border-color:rgba(150,110,255,.85);box-shadow:0 0 0 1px rgba(150,110,255,.35),0 18px 50px -12px rgba(123,77,255,.55)}
-.bz-laws:not(:hover) .bz-law:nth-child(2) .bar{background:linear-gradient(180deg,#ff6fa5,#7b4dff)}
-@media (max-width:560px){.bz-laws{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -16px;padding:4px 16px 18px;scrollbar-width:none}.bz-laws::-webkit-scrollbar{display:none}.bz-law{flex:0 0 66%;scroll-snap-align:start;padding:16px 16px 16px}.bz-law .bar{height:38px;margin-bottom:10px}.bz-law:hover{transform:none}}
 
 /* v33: rebalancing scenario detail, prose only */
 .evx{align-items:stretch}
@@ -1822,7 +1814,7 @@ html.bk .top{background:rgba(255,255,255,.94)}
 <!-- BASIS -->
 <section class="view" id="v-basis">
   <div class="bz-head"><span class="bz-eye">근거</span><h1>산출 근거와<br>관련 법령</h1><p>화면의 모든 숫자가 어떤 식과 기준으로 나왔는지 밝힙니다. 카드를 누르면 기관 사이트와 법령 원문으로 바로 이동합니다.</p></div>
-  <div class="bz-sec"><h2>관련 법령</h2><p class="bz-sub">조문을 누르면 국가법령정보센터의 현행 원문이 새 창으로 열립니다.</p><div class="bz-laws"><a class="bz-law" href="https://www.law.go.kr/법령/조세특례제한법/제91조의18" target="_blank" rel="noopener"><span class="bar"></span><small>중개형 ISA</small><b>조세특례제한법</b><em>제91조의18</em><p>순이익 200만 원(서민형 400만 원)까지 비과세, 초과분은 9.9% 분리과세</p><span class="go">원문 보기 <i>↗</i></span></a><a class="bz-law" href="https://www.law.go.kr/법령/소득세법/제59조의3" target="_blank" rel="noopener"><span class="bar"></span><small>연금저축 세액공제</small><b>소득세법</b><em>제59조의3</em><p>연 600만 원 한도, 총급여 5,500만 원 이하 16.5%, 초과 13.2%</p><span class="go">원문 보기 <i>↗</i></span></a><a class="bz-law" href="https://www.law.go.kr/법령/조세특례제한법/제91조의22" target="_blank" rel="noopener"><span class="bar"></span><small>청년도약계좌</small><b>조세특례제한법</b><em>제91조의22</em><p>5년 유지 시 이자소득 비과세와 소득 구간별 정부기여금</p><span class="go">원문 보기 <i>↗</i></span></a><a class="bz-law" href="https://www.law.go.kr/법령/조세특례제한법/제87조" target="_blank" rel="noopener"><span class="bar"></span><small>주택청약 소득공제</small><b>조세특례제한법</b><em>제87조</em><p>총급여 7,000만 원 이하 무주택 세대주, 연 300만 원 한도 40%</p><span class="go">원문 보기 <i>↗</i></span></a><a class="bz-law" href="https://www.law.go.kr/법령/소득세법/제129조" target="_blank" rel="noopener"><span class="bar"></span><small>이자소득세</small><b>소득세법</b><em>제129조</em><p>일반 예적금 이자 15.4% (원천징수 14% + 지방소득세)</p><span class="go">원문 보기 <i>↗</i></span></a></div></div>
+  <div class="bz-sec"><h2>관련 법령</h2><p class="bz-sub">조문을 누르면 국가법령정보센터의 현행 원문이 새 창으로 열립니다.</p><div class="bz-laws"><a class="bz-law" href="https://www.law.go.kr/법령/조세특례제한법/제91조의18" target="_blank" rel="noopener"><small>중개형 ISA</small><b>조세특례제한법</b><em>제91조의18</em><p>순이익 200만 원(서민형 400만 원)까지 비과세, 초과분은 9.9% 분리과세</p><span class="go">원문 보기 <i>↗</i></span></a><a class="bz-law" href="https://www.law.go.kr/법령/소득세법/제59조의3" target="_blank" rel="noopener"><small>연금저축 세액공제</small><b>소득세법</b><em>제59조의3</em><p>연 600만 원 한도, 총급여 5,500만 원 이하 16.5%, 초과 13.2%</p><span class="go">원문 보기 <i>↗</i></span></a><a class="bz-law" href="https://www.law.go.kr/법령/조세특례제한법/제91조의22" target="_blank" rel="noopener"><small>청년도약계좌</small><b>조세특례제한법</b><em>제91조의22</em><p>5년 유지 시 이자소득 비과세와 소득 구간별 정부기여금</p><span class="go">원문 보기 <i>↗</i></span></a><a class="bz-law" href="https://www.law.go.kr/법령/조세특례제한법/제87조" target="_blank" rel="noopener"><small>주택청약 소득공제</small><b>조세특례제한법</b><em>제87조</em><p>총급여 7,000만 원 이하 무주택 세대주, 연 300만 원 한도 40%</p><span class="go">원문 보기 <i>↗</i></span></a><a class="bz-law" href="https://www.law.go.kr/법령/소득세법/제129조" target="_blank" rel="noopener"><small>이자소득세</small><b>소득세법</b><em>제129조</em><p>일반 예적금 이자 15.4% (원천징수 14% + 지방소득세)</p><span class="go">원문 보기 <i>↗</i></span></a></div></div>
   <div class="bz-mq" aria-hidden="true"><div class="bz-track"><span>Markowitz · Portfolio Selection (1952)</span><span>Kahneman &amp; Tversky · Prospect Theory (1979)</span><span>Thaler · Mental Accounting Matters (1999)</span><span>Thaler &amp; Sunstein · Nudge (2008)</span><span>한국은행 ECOS</span><span>금융투자협회</span><span>서민금융진흥원</span><span>국가법령정보센터</span><span>Markowitz · Portfolio Selection (1952)</span><span>Kahneman &amp; Tversky · Prospect Theory (1979)</span><span>Thaler · Mental Accounting Matters (1999)</span><span>Thaler &amp; Sunstein · Nudge (2008)</span><span>한국은행 ECOS</span><span>금융투자협회</span><span>서민금융진흥원</span><span>국가법령정보센터</span></div></div>
   <div class="bz-sec"><h2>자주 묻는 질문</h2><p class="bz-sub">계산식과 가정에 대해 자주 묻는 질문을 모았습니다.</p><div class="bz-qs"><details class="bz-q" open><summary><span>1. 재무비율 네 가지는 어떻게 계산하나요?</span><i></i></summary><div class="bz-a"><div class="bz-f"><b>비상예비자금 충당률</b><code>유동성 자산 ÷ 월 총지출 (개월)</code><small>권장 3~6개월 · 3개월 미만 위험</small></div><div class="bz-f"><b>저축성향률</b><code>월 저축·투자액 ÷ 월 세후 근로소득 × 100</code><small>미혼 사회초년생 50% 이상 권장 · 30% 미만 위험</small></div><div class="bz-f"><b>부채부담률</b><code>월 부채 상환액 ÷ 월 세후 근로소득 × 100</code><small>20% 이하 안전 · 30% 초과 위험</small></div><div class="bz-f"><b>고위험 자산 비중</b><code>고위험 자산 ÷ 총 투자자산 × 100</code><small>30% 이하 적정 · 50% 초과 위험 · 총 투자자산은 안정·고위험·노후 자산의 합</small></div></div></details><details class="bz-q"><summary><span>2. 미래가치는 어떤 식으로 계산하나요?</span><i></i></summary><div class="bz-a"><div class="bz-f"><b>적립식 복리 (매월 말 납입)</b><code>FV = PMT × [(1 + r)ⁿ − 1] ÷ r</code></div><div class="bz-f"><b>거치금 복리</b><code>FV = PV × (1 + r)ⁿ</code><small>r = 연 기대수익률 ÷ 12, n = 개월 수. 성장 경로는 매월 잔액 × (1 + r) + 납입액으로 반복 계산합니다.</small></div><div class="bz-f"><b>검증 예시 · 중개형 ISA</b><code>31 × [(1 + 0.07/12)³⁶ − 1] ÷ (0.07/12) ≈ 1,239만 원</code></div></div></details><details class="bz-q"><summary><span>3. 기대수익률은 어떻게 정했나요?</span><i></i></summary><div class="bz-a"><p>청년도약계좌 5.5%는 기본금리 4.5%에 정부기여금과 비과세를 연환산했습니다. ISA 7.0%는 S&amp;P500 과거 30년 연평균 9.8%에서 보수적으로 2.8%p를 뺐습니다. 연금저축 6.0%는 글로벌 주식 60%·채권 40%의 장기 평균, 청약 4.5%는 청년 우대금리 가정입니다. 모두 보장 수익이 아닙니다.</p></div></details><details class="bz-q"><summary><span>4. 안정안 · 균형안 · 가속안은 무엇이 다른가요?</span><i></i></summary><div class="bz-a"><div class="tbl-wrap"><table><thead><tr><th>구분</th><th class="r">안정안</th><th class="r">균형안</th><th class="r">가속안</th></tr></thead><tbody><tr><td>지출 절감 폭 (균형안 대비)</td><td class="r">60%</td><td class="r">100%</td><td class="r">135%</td></tr><tr><td>성장형 계좌(ISA·연금) 기대수익률</td><td class="r">−1%p</td><td class="r">기준</td><td class="r">+1%p</td></tr><tr><td>절감액 차이의 배분</td><td class="r" colspan="3">성장형 계좌(ISA)에 더하거나 뺌</td></tr><tr><td>상대적 변동성</td><td class="r">낮음</td><td class="r">중간</td><td class="r">높음</td></tr></tbody></table></div></div></details><details class="bz-q"><summary><span>5. 세법과 제도는 언제 기준인가요?</span><i></i></summary><div class="bz-a"><p>2026년 현행 기준입니다. 세법과 정책상품 요건은 자주 바뀌므로 실제 가입 전 금융기관과 국세청 안내로 다시 확인해야 합니다. 위 법령 카드를 누르면 언제나 최신 원문을 볼 수 있습니다.</p></div></details><details class="bz-q"><summary><span>6. 어떤 이론과 문헌을 참고했나요?</span><i></i></summary><div class="bz-a"><ul class="bz-refs"><li><b>Markowitz, H. (1952). Portfolio Selection.</b> 분산투자와 효율적 투자선</li><li><b>Kahneman, D. &amp; Tversky, A. (1979). Prospect Theory.</b> 손실회피와 매몰비용 오류</li><li><b>Thaler, R. H. (1999). Mental Accounting Matters.</b> 심리적 회계와 소액 지출 누수</li><li><b>Thaler, R. H. &amp; Sunstein, C. R. (2008). Nudge.</b> 선저축 자동화 넛지</li></ul></div></details></div></div>
 </section>
