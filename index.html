@@ -8,160 +8,180 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <script src="chart.umd.min.js"></script>
 <style>
-/* Layout: Apple-style. Frosted top bar with step navigation (desktop) / bottom tab bar (mobile); one centered 1080px column; grouped inset cards on a soft gray ground. */
+/* Layout: light finance dashboard. Fixed left sidebar (client switcher, quick tools, 6-step menu) + white canvas; big-number summaries with plain-language deltas; hairline-bordered cards; violet brand with teal accents. Mobile: top bar + bottom tab bar. Single light theme by design. */
 :root{
-  --bg:#f5f5f7; --card:#ffffff; --card-2:#f5f5f7; --fill:#e8e8ed; --line:rgba(0,0,0,.08);
-  --ink:#1d1d1f; --ink-2:#6e6e73; --ink-3:#86868b;
-  --blue:#0071e3; --blue-soft:#e8f1fc; --blue-ink:#ffffff;
-  --green:#28a745; --green-soft:#e6f6ea; --orange:#e08600; --orange-soft:#fdf1df; --red:#e0352b; --red-soft:#fde8e7;
-  --c1:#0071e3; --c2:#34c759; --c3:#ff9f0a; --c4:#af52de; --c5:#8e8e93; --c6:#ff375f;
-  --glass:rgba(245,245,247,.78);
-  --shadow:0 2px 6px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.06);
-  --shadow-h:0 4px 10px rgba(0,0,0,.06),0 16px 40px rgba(0,0,0,.10);
-  --font:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"SF Pro Display","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
-  --r:20px; --r-sm:14px;
+  color-scheme:light;
+  --bg:#ffffff; --side:#fafafc; --card:#ffffff; --card-2:#f6f6f9; --fill:#eeeef3; --line:#ebebf0; --line-2:#dcdce4;
+  --ink:#17171f; --ink-2:#5c5d6e; --ink-3:#9898a9;
+  --blue:#6b46fe; --blue-2:#5233e6; --blue-soft:#f2eeff; --blue-ink:#ffffff;
+  --teal:#14b3a3; --teal-soft:#e6f8f5;
+  --green:#119a4f; --green-soft:#e7f6ed; --orange:#d97f00; --orange-soft:#fff3e0; --red:#e0464c; --red-soft:#fdecec;
+  --c1:#6b46fe; --c2:#14b3a3; --c3:#f2a33a; --c4:#3d8bfd; --c5:#b3b3c4; --c6:#ef5a83;
+  --grad:linear-gradient(100deg,#20c7b4 0%,#6b46fe 55%,#b04bff 100%);
+  --shadow:0 1px 2px rgba(20,20,40,.04);
+  --shadow-h:0 2px 4px rgba(20,20,40,.04),0 12px 32px rgba(40,30,110,.08);
+  --font:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
+  --r:18px; --r-sm:12px; --side-w:252px;
 }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --bg:#000000; --card:#1c1c1e; --card-2:#2c2c2e; --fill:#3a3a3c; --line:rgba(255,255,255,.1);
-  --ink:#f5f5f7; --ink-2:#a1a1a6; --ink-3:#8e8e93;
-  --blue:#2997ff; --blue-soft:#0d2a4a; --blue-ink:#ffffff;
-  --green:#30d158; --green-soft:#0f3019; --orange:#ff9f0a; --orange-soft:#3a2706; --red:#ff453a; --red-soft:#3d1210;
-  --c1:#2997ff; --c2:#30d158; --c3:#ff9f0a; --c4:#bf5af2; --c5:#8e8e93; --c6:#ff375f;
-  --glass:rgba(22,22,23,.78); --shadow:0 0 0 1px rgba(255,255,255,.06); --shadow-h:0 0 0 1px rgba(255,255,255,.14),0 16px 40px rgba(0,0,0,.5);
-  color-scheme:dark }}
-:root[data-theme="dark"]{
-  --bg:#000000; --card:#1c1c1e; --card-2:#2c2c2e; --fill:#3a3a3c; --line:rgba(255,255,255,.1);
-  --ink:#f5f5f7; --ink-2:#a1a1a6; --ink-3:#8e8e93;
-  --blue:#2997ff; --blue-soft:#0d2a4a; --blue-ink:#ffffff;
-  --green:#30d158; --green-soft:#0f3019; --orange:#ff9f0a; --orange-soft:#3a2706; --red:#ff453a; --red-soft:#3d1210;
-  --c1:#2997ff; --c2:#30d158; --c3:#ff9f0a; --c4:#bf5af2; --c5:#8e8e93; --c6:#ff375f;
-  --glass:rgba(22,22,23,.78); --shadow:0 0 0 1px rgba(255,255,255,.06); --shadow-h:0 0 0 1px rgba(255,255,255,.14),0 16px 40px rgba(0,0,0,.5);
-  color-scheme:dark }
 *{box-sizing:border-box}
 html,body{background:var(--bg)}
-body{color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.55;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
-h1,h2,h3,h4{margin:0;line-height:1.25;text-wrap:balance;letter-spacing:-.025em}
+body{color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.55;letter-spacing:-.012em;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;line-height:1.3;text-wrap:balance;letter-spacing:-.025em}
 p{margin:0}
 button,input,select{font:inherit;color:inherit}
 button{cursor:pointer;-webkit-tap-highlight-color:transparent}
-:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:8px}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:8px}
 .num{font-variant-numeric:tabular-nums}
 
-/* top bar */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--glass);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
-.top-in{max-width:1120px;margin:0 auto;padding:0 20px;height:52px;display:flex;align-items:center;gap:18px}
-.logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px;letter-spacing:-.02em;white-space:nowrap;text-decoration:none;color:var(--ink)}
-.logo i{width:24px;height:24px;border-radius:7px;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-style:normal;font-size:12px;font-weight:800}
-.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;justify-content:center}
-.tabs::-webkit-scrollbar{display:none}
-.tabs a{white-space:nowrap;font-size:13px;color:var(--ink-2);text-decoration:none;padding:6px 11px;border-radius:999px;transition:background .15s,color .15s}
-.tabs a:hover{color:var(--ink);background:var(--fill)}
-.tabs a.on{color:var(--ink);background:var(--card);box-shadow:var(--shadow);font-weight:600}
-.tools{display:flex;gap:6px}
-.icon-btn{width:34px;height:34px;border-radius:50%;border:none;background:transparent;color:var(--ink-2);display:grid;place-items:center}
-.icon-btn:hover{background:var(--fill);color:var(--ink)}
-.icon-btn svg{width:18px;height:18px}
+/* sidebar */
+.side{position:fixed;left:0;top:0;bottom:0;width:var(--side-w);z-index:30;background:var(--side);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:calc(18px + env(safe-area-inset-top,0px)) 14px 16px;overflow-y:auto}
+.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:20px;letter-spacing:-.04em;text-decoration:none;color:var(--ink);padding:2px 6px 14px}
+.logo .mark{width:26px;height:26px;border-radius:50%;background:var(--grad);position:relative;flex:none}
+.logo .mark:after{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--side)}
+.logo em{font-style:normal;color:var(--ink-3);font-weight:600}
+.client{display:flex;gap:6px;margin-bottom:12px}
+.client a{flex:1;min-width:0;display:flex;align-items:center;justify-content:space-between;gap:6px;border:1px solid var(--line-2);border-radius:10px;background:var(--card);padding:8px 10px;text-decoration:none;color:var(--ink);font-size:14px;font-weight:600}
+.client a span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.client a svg,.client button svg{width:14px;height:14px;flex:none;color:var(--ink-3)}
+.client button{width:38px;border:1px solid var(--line-2);border-radius:10px;background:var(--card);display:grid;place-items:center}
+.client button:hover,.client a:hover{border-color:var(--blue)}
+.qtools{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;padding:6px 0 14px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.qtools button{border:none;background:none;border-radius:10px;padding:7px 2px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11.5px;color:var(--ink-2)}
+.qtools button:hover{background:var(--fill);color:var(--ink)}
+.qtools svg{width:20px;height:20px}
+.navsec{font-size:12px;font-weight:600;color:var(--ink-3);padding:10px 8px 6px;display:flex;align-items:center;gap:6px}
+.navsec svg{width:14px;height:14px}
+.snav{display:flex;flex-direction:column;gap:1px}
+.snav a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:9px;text-decoration:none;color:var(--ink-2);font-size:14.5px;font-weight:500;transition:background .12s,color .12s}
+.snav a i{font-style:normal;width:22px;height:22px;border-radius:7px;background:var(--fill);color:var(--ink-3);display:grid;place-items:center;font-size:11.5px;font-weight:700;flex:none;transition:.12s}
+.snav a:hover{background:var(--fill);color:var(--ink)}
+.snav a.on{background:var(--card);color:var(--ink);font-weight:700;box-shadow:0 0 0 1px var(--line-2)}
+.snav a.on i{background:var(--blue);color:#fff}
+.snav a small{margin-left:auto;font-size:11px;font-weight:700;color:var(--blue);background:var(--blue-soft);padding:1px 7px;border-radius:99px}
+.side-foot{margin-top:auto;padding:14px 8px 0;font-size:11.5px;color:var(--ink-3);line-height:1.55}
 
-/* bottom tab bar (mobile) */
+/* mobile top bar + bottom tabs */
+.top{display:none}
 .btab{display:none}
-@media (max-width:820px){
-  .tabs{display:none}
-  .top-in{justify-content:space-between}
-  .btab{display:grid;grid-template-columns:repeat(8,1fr);position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--glass);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px))}
-  .btab a{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;color:var(--ink-3);text-decoration:none;padding:4px 0}
-  .btab a b{font-size:15px;font-weight:700;line-height:1.2}
+@media (max-width:900px){
+  .side{display:none}
+  .top{display:flex;position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(255,255,255,.86);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid var(--line);height:54px;align-items:center;justify-content:space-between;padding:0 12px 0 16px}
+  .top .logo{padding:0;font-size:18px}
+  .top .logo .mark:after{background:#fff}
+  .btab{display:grid;grid-template-columns:repeat(8,1fr);position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);border-top:1px solid var(--line);padding:6px 2px calc(6px + env(safe-area-inset-bottom,0px))}
+  .btab a{display:flex;flex-direction:column;align-items:center;gap:1px;font-size:10px;color:var(--ink-3);text-decoration:none;padding:3px 0}
+  .btab a b{font-size:15px;font-weight:700;line-height:1.3}
   .btab a.on{color:var(--blue)}
 }
+.tools{display:flex;gap:2px}
+.icon-btn{width:38px;height:38px;border-radius:10px;border:none;background:transparent;color:var(--ink-2);display:grid;place-items:center}
+.icon-btn:hover{background:var(--fill);color:var(--ink)}
+.icon-btn svg{width:20px;height:20px}
 
-main{max-width:1120px;margin:0 auto;padding:28px 20px 110px}
-@media (max-width:820px){main{padding:18px 16px 120px}}
+main{margin-left:var(--side-w);padding:32px 36px 110px;max-width:calc(1240px + var(--side-w))}
+@media (max-width:900px){main{margin-left:0;padding:20px 16px 120px}}
 .view{display:none;flex-direction:column;gap:20px}
-.view.on{display:flex;animation:fade .35s ease}
-@keyframes fade{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
+.view.on{display:flex;animation:fade .3s ease}
+@keyframes fade{from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.view.on{animation:none}*{transition:none!important}}
 
 /* section header */
-.vhead{display:flex;flex-direction:column;gap:6px;padding:8px 4px 4px}
-.vhead .eyebrow{font-size:13px;font-weight:600;color:var(--blue)}
-.vhead h1{font-size:clamp(28px,4.4vw,44px);font-weight:700}
-.vhead p{font-size:clamp(15px,1.6vw,18px);color:var(--ink-2);max-width:62ch}
-.steprow{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap}
+.vhead{display:flex;flex-direction:column;gap:8px;padding:2px 2px 4px}
+.vhead .eyebrow{align-self:flex-start;font-size:12px;font-weight:700;color:var(--blue);background:var(--blue-soft);padding:3px 10px;border-radius:99px;letter-spacing:.01em}
+.vhead h1{font-size:clamp(24px,2.6vw,30px);font-weight:800}
+.vhead p{font-size:15px;color:var(--ink-2);max-width:70ch}
+
+/* big-number summary (dashboard header) */
+.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line);border-radius:var(--r);background:var(--card)}
+.summary>div{padding:22px 24px;min-width:0;border-left:1px solid var(--line);position:relative;transition:background .15s}
+.summary>div:first-child{border-left:none}
+.summary>div:hover{background:var(--card-2)}
+.summary .lab{font-size:13.5px;color:var(--ink-2);font-weight:500;display:flex;align-items:center;gap:6px}
+.summary .big{font-size:clamp(26px,3vw,34px);font-weight:800;letter-spacing:-.035em;font-variant-numeric:tabular-nums;margin-top:4px;white-space:nowrap}
+.summary .big small{font-size:.55em;font-weight:700;margin-left:2px}
+.summary .delta{font-size:13.5px;color:var(--ink-2);margin-top:4px}
+.up{color:var(--green);font-weight:700}.down{color:var(--red);font-weight:700}
+@media (max-width:760px){.summary{grid-template-columns:minmax(0,1fr)}.summary>div{border-left:none;border-top:1px solid var(--line);padding:18px}.summary>div:first-child{border-top:none}}
 
 /* cards */
-.card{background:var(--card);border-radius:var(--r);padding:24px;box-shadow:var(--shadow);min-width:0}
-.card.hover{transition:transform .2s ease,box-shadow .2s ease}
-.card.hover:hover{transform:translateY(-2px);box-shadow:var(--shadow-h)}
-.ch{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:16px}
-.ch h3{font-size:19px;font-weight:700}
-.ch .sub{font-size:13px;color:var(--ink-2);margin-top:3px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;min-width:0;transition:border-color .18s,box-shadow .18s}
+.card.hover{transition:transform .18s ease,box-shadow .18s ease,border-color .18s}
+.card.hover:hover{transform:translateY(-2px);box-shadow:var(--shadow-h);border-color:var(--line-2)}
+.card.glow{border:1.5px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,var(--grad) border-box}
+.ch{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.ch h3{font-size:18px;font-weight:700;display:flex;align-items:center;gap:10px}
+.ch h3 .ico{width:32px;height:32px;border-radius:9px;background:var(--card-2);border:1px solid var(--line);display:grid;place-items:center;flex:none}
+.ch h3 .ico svg{width:17px;height:17px;color:var(--ink-2)}
+.ch .sub{font-size:13px;color:var(--ink-3);margin-top:3px}
 .grid{display:grid;gap:16px}
 .g2{grid-template-columns:repeat(2,minmax(0,1fr))}
 .g3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .g4{grid-template-columns:repeat(4,minmax(0,1fr))}
-.g6{grid-template-columns:repeat(6,minmax(0,1fr))}
 .span2{grid-column:span 2}
-@media (max-width:1000px){.g6{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:1100px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:820px){.g3,.g2{grid-template-columns:minmax(0,1fr)}.span2{grid-column:auto}}
-@media (max-width:520px){.g6{grid-template-columns:repeat(2,minmax(0,1fr))}.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* hero */
-.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px}
-@media (max-width:900px){.hero{grid-template-columns:minmax(0,1fr)}}
-.persona{display:flex;flex-direction:column;gap:18px;background:linear-gradient(160deg,var(--card) 55%,var(--blue-soft));}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:16px}
+@media (max-width:1000px){.hero{grid-template-columns:minmax(0,1fr)}}
+.persona{display:flex;flex-direction:column;gap:16px}
 .pid{display:flex;gap:14px;align-items:center}
-.avatar{width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-size:22px;font-weight:700;flex:none}
-.pid h2{font-size:22px}
-.pid p{color:var(--ink-2);font-size:14px}
-.quote{font-size:clamp(18px,2vw,22px);font-weight:600;letter-spacing:-.03em;line-height:1.4}
-.quote small{display:block;font-size:13px;font-weight:500;color:var(--ink-3);margin-top:6px;letter-spacing:0}
+.avatar{width:52px;height:52px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center;font-size:20px;font-weight:800;flex:none}
+.pid h2{font-size:20px}
+.pid p{color:var(--ink-2);font-size:13.5px}
+.quote{font-size:17px;font-weight:600;letter-spacing:-.025em;line-height:1.5;padding:14px 16px;background:var(--card-2);border-radius:var(--r-sm)}
+.quote small{display:block;font-size:12px;font-weight:500;color:var(--ink-3);margin-top:6px;letter-spacing:0}
 .tags{display:flex;gap:6px;flex-wrap:wrap}
 .tag{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--fill);color:var(--ink-2)}
 .tag.blue{background:var(--blue-soft);color:var(--blue)}
 
 /* KPI tiles with tooltip */
-.kpi{position:relative;background:var(--card);border-radius:var(--r-sm);padding:16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:4px;min-width:0;transition:transform .2s,box-shadow .2s;outline:none}
-.kpi:hover,.kpi:focus-visible{transform:translateY(-2px);box-shadow:var(--shadow-h)}
-.kpi .k{font-size:12.5px;color:var(--ink-2);display:flex;justify-content:space-between;gap:6px;align-items:center}
-.kpi .v{font-size:clamp(20px,2.2vw,26px);font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums;white-space:nowrap}
-.kpi .v small{font-size:13px;font-weight:600;color:var(--ink-3);margin-left:2px}
-.kpi .d{font-size:12px;color:var(--ink-3)}
-.tip{position:absolute;left:12px;right:12px;top:calc(100% + 8px);z-index:20;background:var(--ink);color:var(--bg);font-size:12.5px;line-height:1.5;padding:10px 12px;border-radius:12px;opacity:0;visibility:hidden;transform:translateY(-4px);transition:.15s;pointer-events:none}
-.tip:before{content:"";position:absolute;top:-5px;left:20px;width:10px;height:10px;background:var(--ink);transform:rotate(45deg)}
+.kgrid{display:grid;gap:12px;grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:1200px){.kgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi{position:relative;z-index:1;background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px;display:flex;flex-direction:column;gap:4px;min-width:0;transition:transform .18s,box-shadow .18s,border-color .18s;outline:none}
+.kpi:hover,.kpi:focus-visible,.kpi:focus-within{z-index:25;transform:translateY(-2px);box-shadow:var(--shadow-h);border-color:var(--line-2)}
+.kpi .k{font-size:13px;color:var(--ink-2);display:flex;justify-content:space-between;gap:6px;align-items:center;min-height:24px}
+.kpi .v{font-size:clamp(22px,2.1vw,27px);font-weight:800;letter-spacing:-.035em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.kpi .v small{font-size:13px;font-weight:700;color:var(--ink-3);margin-left:2px}
+.kpi .d{font-size:12.5px;color:var(--ink-3)}
+.tip{position:absolute;left:10px;right:10px;top:calc(100% + 8px);z-index:40;background:#1b1b24;color:#f4f4f8;font-size:12.5px;line-height:1.5;padding:10px 12px;border-radius:10px;opacity:0;visibility:hidden;transform:translateY(-4px);transition:.15s;pointer-events:none;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.tip:before{content:"";position:absolute;top:-5px;left:20px;width:10px;height:10px;background:#1b1b24;transform:rotate(45deg)}
 .kpi:hover .tip,.kpi:focus .tip,.kpi:focus-within .tip{opacity:1;visibility:visible;transform:none}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--ink-3);flex:none}
 .dot.good{background:var(--green)}.dot.warn{background:var(--orange)}.dot.bad{background:var(--red)}
-.pill{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:7px;font-size:12px;font-weight:700;white-space:nowrap}
 .pill.good{background:var(--green-soft);color:var(--green)}.pill.warn{background:var(--orange-soft);color:var(--orange)}.pill.bad{background:var(--red-soft);color:var(--red)}.pill.info{background:var(--blue-soft);color:var(--blue)}.pill.mute{background:var(--fill);color:var(--ink-2)}
-.meter{height:8px;border-radius:99px;background:var(--fill);overflow:hidden}
+.meter{height:6px;border-radius:99px;background:var(--fill);overflow:hidden}
 .meter i{display:block;height:100%;border-radius:99px;background:var(--blue);transition:width .4s ease}
 .meter i.good{background:var(--green)}.meter i.warn{background:var(--orange)}.meter i.bad{background:var(--red)}
 
 /* buttons */
-.btn{border:none;border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600;background:var(--fill);color:var(--ink);display:inline-flex;align-items:center;gap:6px;transition:filter .15s,transform .1s;text-decoration:none;white-space:nowrap}
-.btn:hover{filter:brightness(.96)}
+.btn{border:1px solid var(--line-2);border-radius:10px;padding:8px 14px;font-size:14px;font-weight:600;background:var(--card);color:var(--ink);display:inline-flex;align-items:center;gap:6px;transition:border-color .15s,background .15s,transform .1s;text-decoration:none;white-space:nowrap}
+.btn:hover{border-color:var(--ink-3);background:var(--card-2)}
 .btn:active{transform:scale(.98)}
-.btn.primary{background:var(--blue);color:var(--blue-ink)}
-.btn.sm{padding:6px 12px;font-size:13px}
-.btn.link{background:none;color:var(--blue);padding:6px 4px}
+.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.btn.primary:hover{background:var(--blue-2);border-color:var(--blue-2)}
+.btn.dark{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.sm{padding:6px 11px;font-size:13px;border-radius:8px}
+.btn.link{background:none;border:none;color:var(--blue);padding:6px 4px}
 .btns{display:flex;gap:8px;flex-wrap:wrap}
 
 /* segmented */
-.seg{display:inline-flex;background:var(--fill);border-radius:10px;padding:2px;gap:2px}
-.seg button{border:none;background:none;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;color:var(--ink-2)}
-.seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12);font-weight:600}
+.seg{display:inline-flex;background:var(--fill);border-radius:9px;padding:3px;gap:2px}
+.seg button{border:none;background:none;padding:5px 13px;border-radius:7px;font-size:13px;font-weight:500;color:var(--ink-2)}
+.seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.1);font-weight:700}
 
-/* grouped list rows (iOS settings style) */
+/* list rows */
 .list{display:flex;flex-direction:column;background:var(--card-2);border-radius:var(--r-sm);overflow:hidden}
-.card .list{background:var(--card-2)}
-.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:11px 14px;border-top:1px solid var(--line);min-height:48px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 14px;border-top:1px solid var(--line);min-height:46px}
 .row:first-child{border-top:none}
 .row .lbl{font-size:14px;min-width:0}
 .row .lbl small{display:block;font-size:12px;color:var(--ink-3)}
-.row .val{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+.row .val{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;text-align:right}
 .row.edit{grid-template-columns:minmax(0,1fr) 120px 30px}
-.row.edit3{grid-template-columns:minmax(0,1fr) 80px 110px 30px}
-.row.total{background:transparent}
-.row.total .lbl,.row.total .val{font-weight:700}
+.row.edit3{grid-template-columns:minmax(0,1fr) 92px 110px 30px}
+.row.total .lbl,.row.total .val{font-weight:800}
 .row.head{min-height:34px;padding-block:8px;font-size:12px;color:var(--ink-3);font-weight:600}
 .row>*{min-width:0}.unitwrap{min-width:0}
 .row.mrow{grid-template-columns:minmax(0,1fr) 70px 110px 76px}
@@ -172,34 +192,32 @@ main{max-width:1120px;margin:0 auto;padding:28px 20px 110px}
   .row.head{display:none}
   .row.edit{grid-template-columns:minmax(0,1fr) 110px 28px}
   .card{padding:18px}
-  .goalcard .nums{grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
 @media (max-width:560px){.tbl-wrap table{min-width:480px}}
-.kgrid{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}
 .goalcard .field .in{background:var(--card)}
-.goalcard .top2.bk{grid-template-columns:14px minmax(0,1fr) minmax(0,1.6fr) 30px}
-@media (max-width:560px){.goalcard .top2.bk{grid-template-columns:14px minmax(0,1fr) 30px}.goalcard .top2.bk>:nth-child(3){grid-column:1/-1;order:5}}
-.in{width:100%;border:1px solid transparent;background:var(--card);border-radius:10px;padding:8px 10px;font-size:14px;min-width:0;transition:border-color .15s,box-shadow .15s}
-.list .in{background:var(--card)}
-.in:hover{border-color:var(--line)}
-.in:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px var(--blue-soft)}
+.goalcard .top2.bk{grid-template-columns:12px minmax(0,1fr) minmax(0,1.6fr) 30px}
+.goalcard .nums.bk4{grid-template-columns:minmax(0,.8fr) minmax(0,.8fr) minmax(0,1.5fr) minmax(0,.9fr)}
+@media (max-width:640px){.goalcard .top2.bk{grid-template-columns:12px minmax(0,1fr) 30px}.goalcard .top2.bk>:nth-child(3){grid-column:1/-1;order:5}.goalcard .nums,.goalcard .nums.bk4{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+.in{width:100%;border:1px solid var(--line-2);background:var(--card);border-radius:9px;padding:7px 10px;font-size:14px;min-width:0;transition:border-color .15s,box-shadow .15s}
+.list .in{border-color:transparent}
+.list .in:hover{border-color:var(--line-2)}
+.in:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
 .in.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
-.in.ghost{background:transparent;padding-left:0;font-weight:500}
+.in.ghost{background:transparent;border-color:transparent;padding-left:0;font-weight:600}
+.in.ghost:hover{border-color:var(--line-2);padding-left:10px;background:var(--card)}
 .in.ghost:focus{background:var(--card);padding-left:10px}
 .unitwrap{position:relative}
 .unitwrap .in{padding-right:30px}
 .unitwrap span{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--ink-3);pointer-events:none}
-.del{border:none;background:none;color:var(--ink-3);width:28px;height:28px;border-radius:50%;font-size:17px;line-height:1}
+.del{border:none;background:none;color:var(--ink-3);width:28px;height:28px;border-radius:8px;font-size:17px;line-height:1}
 .del:hover{background:var(--red-soft);color:var(--red)}
-.fieldgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.fieldgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
 .field{display:flex;flex-direction:column;gap:6px;min-width:0}
-.field label{font-size:12.5px;color:var(--ink-2);font-weight:500}
-.field .in{background:var(--card-2)}
-.field .in:focus{background:var(--card)}
-select.in{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink-3) 50%),linear-gradient(135deg,var(--ink-3) 50%,transparent 50%);background-position:calc(100% - 15px) 52%,calc(100% - 10px) 52%;background-size:5px 5px;background-repeat:no-repeat;padding-right:26px}
-.addrow{border:none;background:none;color:var(--blue);font-weight:600;font-size:14px;padding:12px 14px;text-align:left;border-top:1px solid var(--line)}
+.field label{font-size:12.5px;color:var(--ink-2);font-weight:600}
+select.in{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink-3) 50%),linear-gradient(135deg,var(--ink-3) 50%,transparent 50%);background-position:calc(100% - 15px) 52%,calc(100% - 10px) 52%;background-size:5px 5px;background-repeat:no-repeat;padding-right:26px;text-overflow:ellipsis}
+.addrow{border:none;background:none;color:var(--blue);font-weight:700;font-size:14px;padding:12px 14px;text-align:left;border-top:1px solid var(--line)}
 .addrow:hover{background:var(--fill)}
-.sublabel{font-size:12.5px;font-weight:600;color:var(--ink-3);padding:0 4px 8px;text-transform:none}
+.sublabel{font-size:12.5px;font-weight:700;color:var(--ink-3);padding:0 4px 8px}
 
 /* misc */
 .note{font-size:13.5px;color:var(--ink-2);background:var(--card-2);border-radius:var(--r-sm);padding:12px 14px}
@@ -211,60 +229,109 @@ select.in{appearance:none;-webkit-appearance:none;background-image:linear-gradie
 .item:first-child{border-top:none;padding-top:2px}
 .item b{display:block;font-size:15px}
 .item p{font-size:13.5px;color:var(--ink-2);margin-top:2px}
-.num-badge{width:28px;height:28px;border-radius:50%;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-size:13px;font-weight:700}
+.num-badge{width:26px;height:26px;border-radius:8px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-size:12.5px;font-weight:800}
 .chart-box{position:relative;width:100%;min-width:0}
 .chart-box canvas{max-width:100%}
-.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--ink-2);margin-top:12px}
-.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
 .tbl-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:14px}
 th{font-size:12px;font-weight:600;color:var(--ink-3);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
-td{padding:10px;border-bottom:1px solid var(--line);vertical-align:middle}
+td{padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr:last-child td{border-bottom:none}
 td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
 tbody tr{transition:background .12s}
 tbody tr:hover{background:var(--card-2)}
-.check{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:12px;align-items:start;padding:13px 0;border-top:1px solid var(--line);cursor:pointer}
+.check{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:12px;align-items:start;padding:12px 8px;border-top:1px solid var(--line);cursor:pointer;border-radius:8px;transition:background .12s}
 .check:first-child{border-top:none}
-.check input{appearance:none;-webkit-appearance:none;width:22px;height:22px;border-radius:50%;border:2px solid var(--ink-3);margin:0;display:grid;place-items:center;cursor:pointer;transition:.15s}
+.check:hover,.check.hl{background:var(--card-2)}
+.check input{appearance:none;-webkit-appearance:none;width:20px;height:20px;border-radius:6px;border:1.5px solid var(--ink-3);margin:1px 0 0;display:grid;place-items:center;cursor:pointer;transition:.15s;background:var(--card)}
 .check input:checked{background:var(--blue);border-color:var(--blue)}
-.check input:checked:after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.check input:checked:after{content:"";width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
 .check span{font-size:14.5px}
 .check.done span{color:var(--ink-3);text-decoration:line-through}
-.check .when{font-size:12px;color:var(--ink-3);white-space:nowrap}
+.check .when{font-size:12px;color:var(--ink-3);white-space:nowrap;text-decoration:none!important;text-align:right}
+.check .when b{display:block;color:var(--blue);font-size:12.5px}
+.check.done .when b{color:var(--ink-3)}
 
 /* scenario cards */
-.scen{border:2px solid transparent;cursor:pointer;text-align:left;width:100%;font:inherit;color:inherit;position:relative}
-.scen.on{border-color:var(--blue)}
-.scen h4{font-size:19px;font-weight:700}
+.scen{text-align:left;width:100%;font:inherit;color:inherit;position:relative;cursor:pointer}
+.scen.on{border:1.5px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,var(--grad) border-box}
+.scen h4{font-size:19px;font-weight:800}
 .scen p{font-size:13.5px;color:var(--ink-2);margin-top:4px;min-height:40px}
-.scen .rows{margin-top:14px;display:flex;flex-direction:column;gap:7px}
+.scen .rows{margin-top:14px;display:flex;flex-direction:column;gap:8px}
 .scen .rows div{display:flex;justify-content:space-between;gap:8px;font-size:13.5px}
 .scen .rows span{color:var(--ink-2)}
 .scen .rows b{font-variant-numeric:tabular-nums}
-.scen .badge{position:absolute;top:16px;right:16px}
+.scen .badge{position:absolute;top:18px;right:18px}
 
 /* slider */
 input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent}
-input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:99px;background:linear-gradient(90deg,var(--blue) var(--p,50%),var(--fill) var(--p,50%))}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.3),0 0 0 .5px rgba(0,0,0,.06);margin-top:-10px}
+input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:99px;background:linear-gradient(90deg,var(--teal),var(--blue) var(--p,50%),var(--fill) var(--p,50%))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid var(--blue);box-shadow:0 2px 6px rgba(80,50,200,.3);margin-top:-9px}
 input[type=range]::-moz-range-track{height:6px;border-radius:99px;background:var(--fill)}
 input[type=range]::-moz-range-progress{height:6px;border-radius:99px;background:var(--blue)}
-input[type=range]::-moz-range-thumb{width:26px;height:26px;border:none;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border:2px solid var(--blue);border-radius:50%;background:#fff}
 .bigstat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 20px}
 .bigstat div{display:flex;flex-direction:column}
 .bigstat span{font-size:12.5px;color:var(--ink-2)}
-.bigstat b{font-size:clamp(22px,2.6vw,30px);font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.bigstat b{font-size:clamp(18px,1.7vw,23px);font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+
+/* custom chart legend (numbered) */
+.donutwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:center}
+@media (max-width:560px){.donutwrap{grid-template-columns:minmax(0,1fr)}}
+.nleg{display:flex;flex-direction:column;gap:2px}
+.nleg button{display:grid;grid-template-columns:20px minmax(0,1fr) auto;gap:10px;align-items:center;border:none;background:none;text-align:left;padding:8px 8px;border-radius:9px;font-size:14px;color:var(--ink-2);transition:background .12s,color .12s}
+.nleg button:hover,.nleg button.on{background:var(--card-2);color:var(--ink)}
+.nleg button i{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:800;color:#fff}
+.nleg button b{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:700}
+.nleg button small{display:block;font-size:12px;color:var(--ink-3)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--ink-2);margin-top:12px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:0}
 
 /* flow */
-.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;position:relative}
-.node{background:var(--card-2);border-radius:var(--r-sm);padding:16px;min-width:0;transition:transform .2s}
-.node:hover{transform:translateY(-2px)}
-.node .when{font-size:12px;font-weight:600;color:var(--blue)}
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.node{background:var(--card-2);border-radius:var(--r-sm);padding:16px;min-width:0;transition:transform .18s,box-shadow .18s;position:relative}
+.node:hover{transform:translateY(-2px);box-shadow:var(--shadow-h);background:var(--card)}
+.node .when{font-size:12px;font-weight:700;color:var(--blue)}
 .node b{display:block;font-size:15px;margin-top:4px}
-.node .amt{font-size:24px;font-weight:700;letter-spacing:-.03em;margin-top:4px;font-variant-numeric:tabular-nums}
+.node .amt{font-size:24px;font-weight:800;letter-spacing:-.03em;margin-top:4px;font-variant-numeric:tabular-nums}
 .node ul{margin:8px 0 0;padding-left:16px;font-size:13px;color:var(--ink-2)}
-@media (max-width:900px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:1000px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:480px){.flow{grid-template-columns:minmax(0,1fr)}}
+
+/* calendar */
+.calhead{display:flex;align-items:center;gap:6px}
+.calhead b{font-size:16px;min-width:104px;text-align:center;font-variant-numeric:tabular-nums}
+.calhead .icon-btn{width:32px;height:32px;border:1px solid var(--line-2);font-size:16px}
+.calgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line);border-radius:10px;overflow:hidden}
+.calgrid .dow{font-size:12px;font-weight:600;color:var(--ink-3);text-align:center;padding:7px 0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--card-2)}
+.calgrid .dow:first-child{color:var(--red)}
+.cday{min-height:88px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:6px;display:flex;flex-direction:column;gap:3px;background:var(--card);text-align:left;border-top:none;border-left:none;font:inherit;color:inherit;cursor:pointer;min-width:0;transition:background .12s}
+.cday:hover{background:var(--card-2)}
+.cday.out{background:#fcfcfd;color:var(--ink-3)}
+.cday.out .dn{opacity:.5}
+.cday .dn{font-size:12.5px;font-weight:600;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.cday.today .dn{background:var(--ink);color:#fff}
+.cday.sel{box-shadow:inset 0 0 0 2px var(--blue)}
+.cday.sun .dn{color:var(--red)}
+.cday.today.sun .dn{color:#fff}
+.ev{font-size:11px;line-height:1.3;padding:2px 5px;border-radius:5px;overflow:hidden;font-weight:600;letter-spacing:-.03em;word-break:keep-all;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.ev.task{background:var(--blue-soft);color:var(--blue-2)}
+.ev.task.done{background:var(--fill);color:var(--ink-3);text-decoration:line-through}
+.ev.pay{background:var(--teal-soft);color:#0b7f73}
+.ev.review{background:var(--orange-soft);color:#a65f00}
+.ev.goal{background:var(--green-soft);color:var(--green)}
+.ev.more{background:none;color:var(--ink-3);padding-left:2px}
+.cdots{display:none;gap:3px;flex-wrap:wrap}
+.cdots i{width:6px;height:6px;border-radius:50%}
+@media (max-width:640px){.cday{min-height:52px;padding:4px;align-items:center}.cday .ev{display:none}.cdots{display:flex}.calhead b{min-width:90px;font-size:15px}}
+.calday{margin-top:14px}
+.calday h4{font-size:15px;margin-bottom:6px}
+.cal-ev{display:grid;grid-template-columns:4px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 4px;border-top:1px solid var(--line)}
+.cal-ev:first-of-type{border-top:none}
+.cal-ev>i{align-self:stretch;border-radius:4px}
+.cal-ev b{font-size:14px;display:block}
+.cal-ev p{font-size:12.5px;color:var(--ink-3)}
+.cal-ev input{width:20px;height:20px;accent-color:var(--blue)}
 
 /* triggers & events */
 .trig{display:grid;grid-template-columns:120px minmax(0,1fr) minmax(0,1.2fr) 70px;gap:14px;align-items:start;padding:14px;border-radius:var(--r-sm);transition:background .15s}
@@ -275,8 +342,8 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border:none;border-ra
 .trig .c{font-size:13.5px;color:var(--ink-2)}
 .trig .a{font-size:13.5px}
 @media (max-width:760px){.trig{grid-template-columns:minmax(0,1fr) auto}.trig .c,.trig .a{grid-column:1/-1}}
-.event{text-align:left;border:2px solid transparent;font:inherit;color:inherit;cursor:pointer}
-.event.on{border-color:var(--blue)}
+.event{text-align:left;font:inherit;color:inherit;cursor:pointer}
+.event.on{border:1.5px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,var(--grad) border-box}
 .event .sign{font-size:12px;font-weight:700}
 .event h4{font-size:16px;margin-top:6px}
 .event p{font-size:13px;color:var(--ink-2);margin-top:2px}
@@ -288,59 +355,121 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border:none;border-ra
 .fstack .sub{font-size:12.5px;color:var(--ink-3);margin-top:4px}
 
 /* drawer + modal */
-.fab{position:fixed;right:20px;bottom:24px;z-index:35;border:none;border-radius:999px;background:var(--ink);color:var(--bg);padding:12px 18px;font-weight:700;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.25);display:flex;gap:8px;align-items:center;transition:transform .15s}
+.fab{position:fixed;right:24px;bottom:24px;z-index:35;border:none;border-radius:999px;background:var(--ink);color:#fff;padding:12px 18px;font-weight:700;font-size:14px;box-shadow:0 10px 30px rgba(40,30,110,.25);display:flex;gap:8px;align-items:center;transition:transform .15s}
+.fab span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:16px}
 .fab:hover{transform:translateY(-2px)}
-@media (max-width:820px){.fab{bottom:calc(78px + env(safe-area-inset-bottom,0px));right:14px;padding:10px 14px}}
-.drawer{position:fixed;right:16px;bottom:84px;z-index:40;width:min(380px,calc(100vw - 32px));max-height:min(70vh,560px);overflow:auto;background:var(--card);border-radius:var(--r);box-shadow:0 20px 60px rgba(0,0,0,.3);padding:20px;transform:translateY(12px) scale(.98);opacity:0;visibility:hidden;transition:.2s}
+@media (max-width:900px){.fab{bottom:calc(78px + env(safe-area-inset-bottom,0px));right:14px;padding:10px 14px}}
+.drawer{position:fixed;right:20px;bottom:84px;z-index:40;width:min(380px,calc(100vw - 32px));max-height:min(70vh,560px);overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 24px 60px rgba(30,20,90,.2);padding:20px;transform:translateY(12px) scale(.98);opacity:0;visibility:hidden;transition:.2s}
 .drawer.on{transform:none;opacity:1;visibility:visible}
-@media (max-width:820px){.drawer{bottom:calc(132px + env(safe-area-inset-bottom,0px));right:16px}}
+@media (max-width:900px){.drawer{bottom:calc(132px + env(safe-area-inset-bottom,0px));right:16px}}
 .drawer h3{font-size:17px}
-.modal-bg{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.4);display:none;align-items:center;justify-content:center;padding:16px}
+.modal-bg{position:fixed;inset:0;z-index:50;background:rgba(20,18,40,.4);display:none;align-items:center;justify-content:center;padding:16px}
 .modal-bg.on{display:flex}
-.modal{background:var(--card);border-radius:var(--r);width:min(720px,100%);max-height:86vh;overflow:auto;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
-.prompt{width:100%;min-height:240px;border:none;border-radius:var(--r-sm);background:var(--card-2);padding:14px;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12.5px;line-height:1.6;resize:vertical;color:var(--ink)}
-.toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(10px);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-size:13.5px;font-weight:600;opacity:0;pointer-events:none;transition:.2s;z-index:60}
+.modal{background:var(--card);border-radius:var(--r);width:min(720px,100%);max-height:86vh;overflow:auto;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.3)}
+.prompt{width:100%;min-height:240px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--card-2);padding:14px;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12.5px;line-height:1.6;resize:vertical;color:var(--ink)}
+.toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(10px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:13.5px;font-weight:600;opacity:0;pointer-events:none;transition:.2s;z-index:60}
 .toast.on{opacity:1;transform:translateX(-50%)}
 .chips{display:flex;gap:6px;flex-wrap:wrap}
-.chipbtn{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 11px;font-size:12.5px;color:var(--ink-2)}
+.chipbtn{border:1px solid var(--line-2);background:var(--card);border-radius:8px;padding:5px 10px;font-size:12.5px;color:var(--ink-2);font-weight:500}
+.chipbtn:hover{border-color:var(--blue)}
 .chipbtn.on{background:var(--blue);border-color:var(--blue);color:#fff}
-.goalcard{background:var(--card-2);border-radius:var(--r-sm);padding:14px;display:flex;flex-direction:column;gap:10px}
+.goalcard{background:var(--card-2);border-radius:var(--r-sm);padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .goalcard .top2{display:grid;grid-template-columns:90px minmax(0,1fr) 30px;gap:8px;align-items:center}
 .goalcard .nums{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#autoRules .item:nth-child(2){border-top:none;padding-top:2px}
+@media (max-width:820px){#autoRules .item:nth-child(2){border-top:1px solid var(--line);padding-top:14px}#execGrid{grid-template-columns:minmax(0,1fr)!important}}
 .foot{font-size:12px;color:var(--ink-3);text-align:center;padding:24px 8px 0;line-height:1.6}
 
+/* report (screen preview = paper pages) */
+.rep-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.paper{background:#fff;border:1px solid var(--line);border-radius:6px;box-shadow:0 2px 12px rgba(30,20,90,.06);padding:44px 48px;max-width:860px;width:100%;margin:0 auto;color:#1a1a24;font-size:13.5px}
+@media (max-width:700px){.paper{padding:24px 18px}}
+.paper+.paper{margin-top:18px}
+.paper h2{font-size:22px;font-weight:800;padding-bottom:10px;border-bottom:2px solid #1a1a24;margin-bottom:16px;display:flex;align-items:baseline;gap:10px}
+.paper h2 span{font-size:13px;font-weight:700;color:var(--blue)}
+.paper h3{font-size:15px;font-weight:800;margin:18px 0 8px}
+.paper p{line-height:1.7}
+.paper table{font-size:12.5px}
+.paper th{background:#f5f5f8;color:#555}
+.paper td,.paper th{padding:7px 9px}
+.paper .tbl-wrap table{min-width:0}
+.rep-cover{display:flex;flex-direction:column;gap:18px}
+.rep-cover .brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:14px;color:var(--ink-2)}
+.rep-cover h1{font-size:34px;font-weight:800;letter-spacing:-.04em;line-height:1.2}
+.rep-cover .meta{color:var(--ink-2);font-size:14px}
+.rgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.rgrid>div{border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0}
+.rgrid span{display:block;font-size:11.5px;color:var(--ink-3)}
+.rgrid b{display:block;font-size:17px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.rgrid small{display:block;font-size:11.5px;color:var(--ink-2)}
+@media (max-width:640px){.rgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.todo{border:1.5px solid var(--blue);border-radius:12px;padding:14px 16px;margin-top:16px;background:#faf8ff;break-inside:avoid}
+.todo h4{font-size:14px;color:var(--blue-2);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.todo ol{margin:0;padding-left:20px}
+.todo li{padding:3px 0;line-height:1.6}
+.todo li small{color:var(--ink-3)}
+.rep-sum{background:#17171f;color:#fff;border-radius:12px;padding:16px 18px;line-height:1.75;font-size:14px}
+.rep-sum b{color:#c9b8ff}
+.rep-chart{position:relative;height:240px;margin:6px 0}
+.rep-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:640px){.rep-2{grid-template-columns:minmax(0,1fr)}}
+.rep-foot{margin-top:18px;padding-top:10px;border-top:1px solid var(--line);font-size:11px;color:var(--ink-3);line-height:1.6}
+.sign{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:22px}
+.sign div{border-top:1px solid #999;padding-top:6px;font-size:12px;color:var(--ink-2)}
+
 @media print{
-  .top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.btns,.addrow,.del{display:none!important}
-  body,html{background:#fff}
-  main{padding:0;max-width:none}
-  .view{display:flex!important;break-before:page;animation:none}
-  .view:first-of-type{break-before:auto}
-  .card,.kpi{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
-  .in{border:none;padding:0;background:none!important}
+  @page{size:A4;margin:14mm 12mm}
+  .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
+  html,body{background:#fff}
+  main{margin:0;padding:0;max-width:none}
+  .view{display:none!important}
+  #v-report{display:block!important;animation:none}
+  .paper{border:none;box-shadow:none;padding:0;max-width:none;break-after:page}
+  .paper:last-child{break-after:auto}
+  .paper+.paper{margin-top:0}
+  .todo,.rgrid>div,table,tr{break-inside:avoid}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style>
 </head>
 <body>
 
 
+<aside class="side" aria-label="메뉴">
+  <a class="logo" href="#home"><span class="mark"></span>plan6<em>.studio</em></a>
+  <div class="client">
+    <a href="#s2" title="고객 정보 수정"><span id="sideClient">김민준 · 28세</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></a>
+    <button type="button" id="btnBlank2" title="새 고객 (빈 양식)" aria-label="새 고객"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+  </div>
+  <div class="qtools">
+    <button type="button" id="btnPrompt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>프롬프트</button>
+    <button type="button" id="btnPrint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>보고서</button>
+    <button type="button" id="btnExample"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0115.5-6.3L21 8M21 3v5h-5M21 12a9 9 0 01-15.5 6.3L3 16M3 21v-5h5"/></svg>예시</button>
+    <button type="button" id="btnExport"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>저장</button>
+  </div>
+  <div class="navsec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h6"/></svg>재무설계 6단계</div>
+  <nav class="snav" id="tabs" aria-label="재무설계 단계">
+    <a href="#home" data-v="home"><i>⌂</i>개요</a>
+    <a href="#s1" data-v="s1"><i>1</i>관계 정립</a>
+    <a href="#s2" data-v="s2"><i>2</i>목표·자료 수집</a>
+    <a href="#s3" data-v="s3"><i>3</i>분석·평가</a>
+    <a href="#s4" data-v="s4"><i>4</i>설계안 수립</a>
+    <a href="#s5" data-v="s5"><i>5</i>실행·캘린더</a>
+    <a href="#s6" data-v="s6"><i>6</i>점검·리밸런싱</a>
+  </nav>
+  <div class="navsec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>결과물</div>
+  <nav class="snav" aria-label="결과물">
+    <a href="#report" data-v="report"><i>R</i>재무설계 보고서<small>PDF</small></a>
+    <a href="#basis" data-v="basis"><i>§</i>산출 근거·법령</a>
+  </nav>
+  <p class="side-foot">입력값은 이 브라우저에만 저장됩니다. 금액 단위는 만 원입니다.</p>
+</aside>
+
 <header class="top">
-  <div class="top-in">
-    <a class="logo" href="#home"><i>P6</i>PLAN6</a>
-    <nav class="tabs" id="tabs" aria-label="재무설계 단계">
-      <a href="#home" data-v="home">개요</a>
-      <a href="#s1" data-v="s1">1 관계 정립</a>
-      <a href="#s2" data-v="s2">2 자료 수집</a>
-      <a href="#s3" data-v="s3">3 분석·평가</a>
-      <a href="#s4" data-v="s4">4 설계안</a>
-      <a href="#s5" data-v="s5">5 실행</a>
-      <a href="#s6" data-v="s6">6 점검</a>
-      <a href="#basis" data-v="basis">근거</a>
-    </nav>
-    <div class="tools">
-      <button class="icon-btn" id="btnPrompt" type="button" title="AI 프롬프트" aria-label="AI 프롬프트"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></button>
-      <button class="icon-btn" id="btnPrint" type="button" title="보고서 인쇄·PDF" aria-label="보고서 인쇄"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></button>
-      <button class="icon-btn" id="btnTheme" type="button" title="다크 모드" aria-label="화면 테마 전환"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg></button>
-    </div>
+  <a class="logo" href="#home"><span class="mark"></span>plan6<em>.studio</em></a>
+  <div class="tools">
+    <button class="icon-btn" id="mPrompt" type="button" aria-label="AI 프롬프트"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/></svg></button>
+    <a class="icon-btn" href="#basis" aria-label="산출 근거"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg></a>
   </div>
 </header>
 
@@ -348,15 +477,15 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border:none;border-ra
 <!-- HOME -->
 <section class="view" id="v-home">
   <div class="vhead">
-    <div class="eyebrow" id="modeLabel">가상 고객 예시 · 숫자를 바꾸면 모든 화면이 다시 계산됩니다</div>
-    <h1>재무설계 6단계를,<br>한 화면에서 끝까지.</h1>
-    <p>고객 정보를 넣으면 진단, 설계안 비교, 실행 자동화, 점검까지 이어집니다. 계산은 규칙으로 투명하게, 최종 판단은 사람이 합니다.</p>
+    <div class="eyebrow" id="modeLabel">가상 고객 예시</div>
+    <h1 id="homeTitle">김민준님의 재무 현황</h1>
+    <p>숫자를 바꾸면 진단, 설계안, 실행 캘린더, 보고서까지 모두 다시 계산됩니다. 계산은 공개된 규칙으로, 최종 판단은 사람이 합니다.</p>
   </div>
+  <div class="summary" id="summary"></div>
   <div class="btns">
     <a class="btn primary" href="#s2">내 정보로 시작하기</a>
-    <button class="btn" type="button" id="btnExample">예시 고객 불러오기</button>
     <button class="btn" type="button" id="btnBlank">빈 양식</button>
-    <button class="btn" type="button" id="btnExport">데이터 저장(JSON)</button>
+    <a class="btn" href="#report">보고서 미리보기</a>
   </div>
   <div class="hero">
     <div class="card persona">
@@ -367,11 +496,11 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border:none;border-ra
     <div class="kgrid" id="heroKpis"></div>
   </div>
 
-  <div class="card">
-    <div class="ch"><div><h3>목표 시뮬레이터</h3><p class="sub" id="gjSub">월 적립액을 움직이면 목표 도달 시점이 바로 바뀝니다</p></div><select class="in" id="gjGoal" style="width:auto;background:var(--card-2)" aria-label="시뮬레이션 목표"></select></div>
+  <div class="card glow">
+    <div class="ch"><div><h3>목표 시뮬레이터</h3><p class="sub" id="gjSub">월 적립액을 움직이면 목표 도달 시점이 바로 바뀝니다</p></div><select class="in" id="gjGoal" style="width:auto" aria-label="시뮬레이션 목표"></select></div>
     <div class="grid g3" style="align-items:center">
       <div class="span2" style="display:flex;flex-direction:column;gap:10px">
-        <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:13px;color:var(--ink-2)">이 목표에 쓰는 월 적립액</span><b id="gjVal" style="font-size:22px;font-variant-numeric:tabular-nums"></b></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:13px;color:var(--ink-2)">이 목표에 쓰는 월 적립액</span><b id="gjVal" style="font-size:24px;font-variant-numeric:tabular-nums;letter-spacing:-.03em"></b></div>
         <input type="range" id="gjRange" min="0" max="250" step="1" aria-label="월 적립액">
         <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink-3)"><span>0</span><button class="btn link sm" id="gjReset" type="button">설계안 기준으로 되돌리기</button><span id="gjMax">250만</span></div>
       </div>
@@ -381,8 +510,13 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border:none;border-ra
   </div>
 
   <div class="grid g2">
+    <div class="card"><div class="ch"><div><h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>연도별 금융자산 전망</h3><p class="sub">막대에 마우스를 올리면 금액이 나옵니다</p></div></div><div class="chart-box" style="height:260px"><canvas id="cYear"></canvas></div></div>
+    <div class="card"><div class="ch"><div><h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6.4 6.4"/></svg></span>월 저축 배분</h3><p class="sub">목록에 마우스를 올리면 해당 조각이 강조됩니다</p></div></div><div class="donutwrap"><div class="chart-box" style="height:220px"><canvas id="cHomeB"></canvas></div><div class="nleg" id="legHomeB"></div></div></div>
+  </div>
+
+  <div class="grid g2">
     <div class="card"><div class="ch"><div><h3>재무목표 달성 전망</h3><p class="sub">선택한 설계안을 실행할 때 목표 시점의 예상 재원</p></div><a class="btn sm" href="#s4">설계안</a></div><div class="items" id="ovGoals"></div></div>
-    <div class="card"><div class="ch"><div><h3>지금 먼저 할 일</h3><p class="sub">진단 결과에서 우선순위가 높은 순서</p></div><a class="btn sm" href="#s3">진단</a></div><div class="items" id="ovActions"></div></div>
+    <div class="card"><div class="ch"><div><h3>지금 먼저 할 일</h3><p class="sub">진단 결과에서 우선순위가 높은 순서</p></div><a class="btn sm" href="#s5">캘린더</a></div><div class="items" id="ovActions"></div></div>
   </div>
 
   <div class="card">
@@ -487,8 +621,8 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border:none;border-ra
   <div class="vhead"><div class="eyebrow">3단계</div><h1>재무상태 분석과 평가</h1><p>현재 위치와 목표 사이의 거리를 숫자와 그래프로 확인하고, 4단계에서 무엇을 바꿀지 찾습니다.</p></div>
   <div class="grid g4" id="ratioKpis" style="gap:12px"></div>
   <div class="grid g2">
-    <div class="card"><div class="ch"><div><h3>소득은 어디로 가고 있나</h3><p class="sub">세후 소득 대비 비중 · 조각에 마우스를 올려 보세요</p></div><div class="seg" id="cfSeg"><button type="button" data-k="now" class="on">현재</button><button type="button" data-k="plan">설계안</button></div></div><div class="chart-box" style="height:280px"><canvas id="cCash"></canvas></div></div>
-    <div class="card"><div class="ch"><div><h3>자산부채 구조</h3><p class="sub">자산 = 부채 + 순자산</p></div></div><div class="chart-box" style="height:280px"><canvas id="cBS"></canvas></div></div>
+    <div class="card"><div class="ch"><div><h3>소득은 어디로 가고 있나</h3><p class="sub">세후 소득 대비 비중 · 조각에 마우스를 올려 보세요</p></div><div class="seg" id="cfSeg"><button type="button" data-k="now" class="on">현재</button><button type="button" data-k="plan">설계안</button></div></div><div class="donutwrap"><div class="chart-box" style="height:250px"><canvas id="cCash"></canvas></div><div class="nleg" id="legCash"></div></div></div>
+    <div class="card"><div class="ch"><div><h3>자산부채 구조</h3><p class="sub">자산 = 부채 + 순자산 · 막대 조각에 마우스를 올려 보세요</p></div></div><div class="chart-box" style="height:300px"><canvas id="cBS"></canvas></div></div>
   </div>
   <div class="grid g2">
     <div class="card"><div class="ch"><div><h3>목표 갭 분석</h3><p class="sub">현재 준비액과 목표 금액의 차이</p></div></div><div class="tbl-wrap"><table id="gapTable"></table></div></div>
@@ -521,7 +655,7 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border:none;border-ra
     <div class="ch"><div><h3>4-Bucket 월 적립 배분</h3><p class="sub">목적별 계좌 · 연결 자산을 고르면 그 잔액에서 이어서 적립합니다</p></div><button class="btn sm" type="button" id="addBucket">+ 계좌 추가</button></div>
     <div class="grid g3" style="align-items:start">
       <div class="span2" id="bucketList" style="display:flex;flex-direction:column;gap:10px;min-width:0"></div>
-      <div><div class="chart-box" style="height:220px"><canvas id="cBucket"></canvas></div><div id="bucketNote" style="margin-top:12px"></div></div>
+      <div style="min-width:0"><div class="chart-box" style="height:220px"><canvas id="cBucket"></canvas></div><div id="bucketNote" style="margin-top:12px"></div></div>
     </div>
   </div>
   <div class="card">
@@ -538,18 +672,27 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border:none;border-ra
   </div>
 </section>
 
+
 <!-- STEP 5 -->
 <section class="view" id="v-s5">
-  <div class="vhead"><div class="eyebrow">5단계</div><h1>재무설계안 실행</h1><p>의지에 기대지 않도록 급여일 다음 날 돈이 자동으로 나뉘는 구조를 만듭니다. 먼저 저축하고, 남은 돈으로 생활합니다.</p></div>
+  <div class="vhead"><div class="eyebrow">5단계</div><h1>재무설계안 실행</h1><p>의지에 기대지 않도록 급여일 다음 날 돈이 자동으로 나뉘는 구조를 만들고, 해야 할 일을 날짜에 올립니다. 먼저 저축하고, 남은 돈으로 생활합니다.</p></div>
   <div class="card">
     <div class="ch"><div><h3>자동화 현금흐름망</h3><p class="sub">선택한 설계안의 금액이 그대로 반영됩니다</p></div>
-      <div style="display:flex;gap:10px"><div class="field" style="width:96px"><label for="payday">급여일</label><input class="in n" id="payday" type="number" min="1" max="31"></div><div class="field" style="width:96px"><label for="moveday">이체일</label><input class="in n" id="moveday" type="number" min="1" max="31"></div></div></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><div class="field" style="width:150px"><label for="startday">실행 시작일</label><input class="in" id="startday" type="date"></div><div class="field" style="width:86px"><label for="payday">급여일</label><input class="in n" id="payday" type="number" min="1" max="31"></div><div class="field" style="width:86px"><label for="moveday">이체일</label><input class="in n" id="moveday" type="number" min="1" max="31"></div></div></div>
     <div class="flow" id="flow"></div>
   </div>
-  <div class="grid g2">
-    <div class="card"><div class="ch"><div><h3>실행 체크리스트</h3><p class="sub">완료한 항목을 누르세요 · 이 브라우저에 저장됩니다</p></div><span class="pill info" id="execPill"></span></div><div class="meter" style="margin-bottom:6px"><i id="execBar"></i></div><div id="execList"></div></div>
-    <div class="card"><div class="ch"><div><h3>AI가 실행을 돕는 방식</h3><p class="sub">자동화하되 중요한 결정은 사람이 승인합니다</p></div></div><div class="items" id="autoRules"></div></div>
+  <div class="grid" style="grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);align-items:start" id="execGrid">
+    <div class="card"><div class="ch"><div><h3>실행 체크리스트</h3><p class="sub">완료한 항목을 누르세요 · 날짜는 캘린더와 연결됩니다</p></div><span class="pill info" id="execPill"></span></div><div class="meter" style="margin-bottom:6px"><i id="execBar"></i></div><div id="execList"></div></div>
+    <div class="card">
+      <div class="ch"><div><h3>실행 캘린더</h3><p class="sub">할 일·자동이체·점검 일정 · 날짜를 눌러 보세요</p></div>
+        <div class="calhead"><button class="icon-btn" id="calPrev" type="button" aria-label="이전 달">‹</button><b id="calTitle"></b><button class="icon-btn" id="calNext" type="button" aria-label="다음 달">›</button><button class="btn sm" id="calToday" type="button">오늘</button></div></div>
+      <div class="calgrid" id="calGrid"></div>
+      <div class="legend"><span><i style="background:var(--blue)"></i>실행 할 일</span><span><i style="background:var(--teal)"></i>급여·자동이체</span><span><i style="background:var(--orange)"></i>점검</span><span><i style="background:var(--green)"></i>목표·완납</span></div>
+      <div class="calday" id="calDay"></div>
+      <div class="btns" style="margin-top:12px"><button class="btn sm" type="button" id="btnIcs">휴대폰 캘린더에 추가 (.ics)</button></div>
+    </div>
   </div>
+  <div class="card"><div class="ch"><div><h3>AI가 실행을 돕는 방식</h3><p class="sub">자동화하되 중요한 결정은 사람이 승인합니다</p></div></div><div class="grid g2" id="autoRules" style="gap:0 24px"></div></div>
 </section>
 
 <!-- STEP 6 -->
@@ -609,11 +752,19 @@ input[type=range]::-moz-range-thumb{width:26px;height:26px;border:none;border-ra
     <div class="row"><span class="lbl">한국은행 ECOS, 서민금융진흥원, S&amp;P Dow Jones Indices, 금융투자협회, 국가법령정보센터</span></div>
   </div></div>
 </section>
+<!-- REPORT -->
+<section class="view" id="v-report">
+  <div class="rep-bar noprint">
+    <div class="vhead" style="padding:0"><div class="eyebrow">결과물</div><h1>재무설계 보고서</h1><p>6단계로 나누어 고객이 무엇을 왜, 언제 해야 하는지 정리했습니다. 입력을 바꾸면 보고서도 바로 바뀝니다.</p></div>
+    <div class="btns"><button class="btn primary" type="button" id="doPrint">PDF 저장 · 인쇄</button><a class="btn" href="#s2">값 수정</a></div>
+  </div>
+  <div id="report"></div>
+</section>
 <p class="foot">가상 고객 데이터로 구성된 교육·사례 연구용 도구입니다. 특정 금융상품을 권유하지 않으며 기대수익률은 보장 수익이 아닙니다.<br>입력값은 이 브라우저에만 저장되며 서버로 전송되지 않습니다. 금액 단위는 만 원입니다.</p>
 </main>
 
 <nav class="btab" id="btab" aria-label="단계 이동">
-  <a href="#home" data-v="home"><b>⌂</b>개요</a><a href="#s1" data-v="s1"><b>1</b>관계</a><a href="#s2" data-v="s2"><b>2</b>자료</a><a href="#s3" data-v="s3"><b>3</b>분석</a><a href="#s4" data-v="s4"><b>4</b>설계안</a><a href="#s5" data-v="s5"><b>5</b>실행</a><a href="#s6" data-v="s6"><b>6</b>점검</a><a href="#basis" data-v="basis"><b>§</b>근거</a>
+  <a href="#home" data-v="home"><b>⌂</b>개요</a><a href="#s1" data-v="s1"><b>1</b>관계</a><a href="#s2" data-v="s2"><b>2</b>자료</a><a href="#s3" data-v="s3"><b>3</b>분석</a><a href="#s4" data-v="s4"><b>4</b>설계안</a><a href="#s5" data-v="s5"><b>5</b>실행</a><a href="#s6" data-v="s6"><b>6</b>점검</a><a href="#report" data-v="report"><b>R</b>보고서</a>
 </nav>
 
 <button class="fab" id="fab" type="button" aria-expanded="false" aria-controls="drawer"><span>✦</span>AI 코치</button>
@@ -668,7 +819,7 @@ function example(){return {
     {id:"b2",name:"절세성장",product:"중개형 ISA (S&P500·배당성장 ETF)",pmt:31,rate:7,link:"",months:""},
     {id:"b3",name:"노후·세액공제",product:"연금저축펀드 (글로벌 자산배분 ETF)",pmt:20,rate:6,link:"",months:""},
     {id:"b4",name:"주거기반",product:"주택청약종합저축",pmt:10,rate:4.5,link:"",months:""}],
-  exec:{payday:25,moveday:26},
+  exec:{payday:25,moveday:26,start:""},
   mon:{actIncome:310,actFixed:114,actVar:95,actSave:131,cma:1000,isaDev:4,drop:0,raise:0,elapsed:0,yearend:"false",housing:"false"},
   checks:{},consent:{},gj:null,gjGoal:"g2",event:null
 };}
@@ -751,11 +902,24 @@ function chart(id,cfg){if(typeof Chart==="undefined"){const el=document.getEleme
   delete pending[id];charts[id]=new Chart(cv,cfg)}
 const pending={};
 function flushCharts(){requestAnimationFrame(()=>{Object.keys(pending).forEach(id=>{const cv=document.getElementById(id);if(cv&&cv.offsetParent)chart(id,pending[id])});Object.values(charts).forEach(ch=>{if(ch.canvas.offsetParent)ch.resize()})})}
-function baseOpts(extra){const ink2=css("--ink-2"),line=css("--line");return Object.assign({responsive:true,maintainAspectRatio:false,animation:{duration:450},interaction:{mode:"index",intersect:false},
-  plugins:{legend:{position:"bottom",labels:{color:ink2,usePointStyle:true,pointStyle:"rectRounded",boxWidth:10,padding:14,font:{family:css("--font"),size:12}}},
-  tooltip:{backgroundColor:css("--ink"),titleColor:css("--bg"),bodyColor:css("--bg"),footerColor:css("--bg"),padding:12,cornerRadius:12,titleFont:{family:css("--font"),weight:"600"},bodyFont:{family:css("--font")},displayColors:true,boxPadding:4,
+function baseOpts(extra){const ink3=css("--ink-3"),line=css("--line"),F=css("--font");return Object.assign({responsive:true,maintainAspectRatio:false,animation:{duration:450},interaction:{mode:"index",intersect:false},
+  plugins:{legend:{position:"bottom",labels:{color:css("--ink-2"),usePointStyle:true,pointStyle:"circle",boxWidth:8,boxHeight:8,padding:16,font:{family:F,size:12}}},
+  tooltip:{backgroundColor:"#1b1b24",titleColor:"#ffffff",bodyColor:"#e6e6ee",footerColor:"#c9b8ff",padding:{x:12,y:10},cornerRadius:8,caretSize:5,titleFont:{family:F,weight:"700",size:12.5},bodyFont:{family:F,size:12.5},footerFont:{family:F,weight:"700",size:12.5},displayColors:true,usePointStyle:true,boxWidth:8,boxHeight:8,boxPadding:5,
     callbacks:{label:ctx=>` ${ctx.dataset.label||ctx.label}: ${won(ctx.parsed.y!=null?ctx.parsed.y:ctx.parsed)}`}}},
-  scales:{x:{grid:{display:false},ticks:{color:ink2,font:{family:css("--font"),size:11}},border:{color:line}},y:{grid:{color:line},border:{display:false},ticks:{color:ink2,font:{family:css("--font"),size:11},callback:v=>v>=10000?fmt(v/10000,1)+"억":fmt(v)}}}},extra||{})}
+  scales:{x:{grid:{display:false},ticks:{color:ink3,font:{family:F,size:11}},border:{display:false}},y:{grid:{color:line},border:{display:false,dash:[4,4]},ticks:{color:ink3,font:{family:F,size:11},padding:8,callback:v=>v>=10000?fmt(v/10000,1)+"억":fmt(v)}}}},extra||{})}
+const hexA=(h,a)=>{h=String(h).replace("#","");if(h.length===3)h=h.split("").map(x=>x+x).join("");const v=parseInt(h,16);return `rgba(${v>>16&255},${v>>8&255},${v&255},${a})`};
+const lum=h=>{h=String(h).replace("#","");if(!/^[0-9a-f]{6}$/i.test(h))return 0;const v=parseInt(h,16);return ((v>>16&255)*.299+(v>>8&255)*.587+(v&255)*.114)/255};
+function grad(a,b,horiz){return ctx=>{const ch=ctx.chart,ar=ch.chartArea;if(!ar)return a;const g=horiz?ch.ctx.createLinearGradient(ar.left,0,ar.right,0):ch.ctx.createLinearGradient(0,ar.top,0,ar.bottom);g.addColorStop(0,a);g.addColorStop(1,b);return g}}
+const GRAY=["#d6d6e2","rgba(214,214,226,.18)"],VIO=["#6b46fe","rgba(176,75,255,.22)"];
+const NUMS={id:"nums",afterDatasetsDraw(ch){const ds=ch.data.datasets[0];if(!ds)return;const tot=ds.data.reduce((a,b)=>a+(+b||0),0);if(!tot)return;const m=ch.getDatasetMeta(0),c=ch.ctx;c.save();c.font="700 11px "+css("--font");c.textAlign="center";c.textBaseline="middle";
+  m.data.forEach((el,i)=>{if(!ch.getDataVisibility(i)||(ds.data[i]||0)/tot<.05)return;const p=el.tooltipPosition();const bg=Array.isArray(ds.backgroundColor)?ds.backgroundColor[i]:"#000";c.fillStyle=lum(bg)>.68?"#2a2a36":"#ffffff";c.fillText(String(i+1),p.x,p.y)});c.restore()}};
+const CENTER={id:"center",afterDraw(ch,a,o){if(!o||!o.text)return;const el=ch.getDatasetMeta(0).data[0];if(!el)return;const c=ch.ctx;c.save();c.textAlign="center";c.textBaseline="middle";c.fillStyle=css("--ink");c.font="800 19px "+css("--font");c.fillText(o.text,el.x,el.y-8);c.fillStyle=css("--ink-3");c.font="500 12px "+css("--font");c.fillText(o.sub||"",el.x,el.y+13);c.restore()}};
+function donut(id,labels,data,colors,center,tipFn,legId,legItems){
+  chart(id,{type:"doughnut",data:{labels,datasets:[{data,backgroundColor:colors,borderColor:"#ffffff",borderWidth:2,hoverOffset:10,spacing:0}]},plugins:[NUMS,CENTER],
+    options:baseOpts({interaction:{mode:"nearest",intersect:true},cutout:"58%",layout:{padding:10},scales:{},onHover:(e,els)=>{if(legId)document.querySelectorAll("#"+legId+" button").forEach((b,i)=>b.classList.toggle("on",!!els[0]&&els[0].index===i))},
+      plugins:Object.assign(baseOpts().plugins,{legend:{display:false},center,tooltip:Object.assign({},baseOpts().plugins.tooltip,{callbacks:{label:tipFn}})})})});
+  if(legId)$("#"+legId).innerHTML=legItems.map((x,i)=>`<button type="button" data-leg="${id}" data-i="${i}"><i style="background:${colors[i]};color:${lum(colors[i])>.68?"#2a2a36":"#fff"}">${i+1}</i><span>${esc(x[0])}<small>${x[2]||""}</small></span><b>${x[1]}</b></button>`).join("")}
+function legHover(btn,on){const ch=charts[btn.dataset.leg];if(!ch)return;const i=+btn.dataset.i;if(on){const el=ch.getDatasetMeta(0).data[i];if(!el)return;ch.setActiveElements([{datasetIndex:0,index:i}]);ch.tooltip.setActiveElements([{datasetIndex:0,index:i}],el.tooltipPosition())}else{ch.setActiveElements([]);ch.tooltip.setActiveElements([],{x:0,y:0})}ch.update()}
 const COLORS=()=>["--c1","--c2","--c3","--c4","--c5","--c6"].map(css);
 
 /* ---------- static input rendering ---------- */
@@ -782,8 +946,8 @@ function renderInputs(){
   const assetOpts=S.assets.filter(a=>a.type!=="liquid"&&a.type!=="use").map(a=>[a.id,a.name]);
   $("#sellList").innerHTML=(S.sells.map((s,i)=>`<div class="row edit">${si(`sells.${i}.asset`,s.asset,assetOpts.length?assetOpts:[["","투자 자산 없음"]],"정리할 자산")}${ni(`sells.${i}.amt`,s.amt,"정리 금액")}<button class="del" type="button" data-del="sells.${i}" aria-label="삭제">×</button></div>`).join(""))+`<div class="row edit" style="grid-template-columns:minmax(0,1fr) 120px 30px"><span class="lbl">남은 투자자산 기대수익률</span>${ni("restRate",S.restRate,"기대수익률","%")}<span></span></div><button class="addrow" type="button" id="addSell">+ 정리할 자산 추가</button>`;
   const linkOpts=[["","없음"]].concat(S.assets.filter(a=>["safe","risk","retire"].includes(a.type)).map(a=>[a.id,a.name]));
-  $("#bucketList").innerHTML=S.buckets.map((b,i)=>`<div class="goalcard"><div class="top2 bk"><i style="width:12px;height:12px;border-radius:4px;background:var(--c${i%6+1})"></i>${ti(`buckets.${i}.name`,b.name,"바구니","ghost")}${ti(`buckets.${i}.product`,b.product,"상품")}<button class="del" type="button" data-del="buckets.${i}" aria-label="삭제">×</button></div><div class="nums" style="grid-template-columns:repeat(4,minmax(0,1fr))">${fld("월 적립 (균형안)",ni(`buckets.${i}.pmt`,b.pmt,"월 적립"))}${fld("기대수익률",ni(`buckets.${i}.rate`,b.rate,"수익률","%"))}${fld("연결 자산",si(`buckets.${i}.link`,b.link,linkOpts,"연결 자산"))}${fld("남은 납입",ni(`buckets.${i}.months`,b.months,"남은 납입","개월"))}</div></div>`).join("");
-  $("#payday").value=S.exec.payday;$("#moveday").value=S.exec.moveday;
+  $("#bucketList").innerHTML=S.buckets.map((b,i)=>`<div class="goalcard"><div class="top2 bk"><i style="width:12px;height:12px;border-radius:4px;background:var(--c${i%6+1})"></i>${ti(`buckets.${i}.name`,b.name,"바구니","ghost")}${ti(`buckets.${i}.product`,b.product,"상품")}<button class="del" type="button" data-del="buckets.${i}" aria-label="삭제">×</button></div><div class="nums bk4">${fld("월 적립 (균형안)",ni(`buckets.${i}.pmt`,b.pmt,"월 적립"))}${fld("기대수익률",ni(`buckets.${i}.rate`,b.rate,"수익률","%"))}${fld("연결 자산",si(`buckets.${i}.link`,b.link,linkOpts,"연결 자산"))}${fld("남은 납입",ni(`buckets.${i}.months`,b.months,"남은 납입","개월"))}</div></div>`).join("");
+  $("#payday").value=S.exec.payday;$("#moveday").value=S.exec.moveday;$("#startday").value=S.exec.start||ymd(new Date());
   const m=S.mon,r2="grid-template-columns:minmax(0,1fr) 120px";
   $("#monthList").innerHTML=`<div class="row head mrow"><span>항목</span><span style="text-align:right">계획</span><span style="text-align:right">실제</span><span style="text-align:right">판정</span></div>`+[["actIncome","세후 소득"],["actFixed","고정지출"],["actVar","변동지출"],["actSave","저축·투자"]].map(([k,l])=>`<div class="row mrow"><span class="lbl">${l}<small data-o="md-${k}"></small></span><span class="val" data-o="mp-${k}"></span>${ni("mon."+k,m[k],l)}<span style="text-align:right" data-o="ms-${k}"></span></div>`).join("");
   $("#monList").innerHTML=[["cma","비상예비자금 잔액","만"],["isaDev","ISA 주식 비중 이탈","%p"],["drop","주가지수 전고점 대비 하락","%"],["raise","월 실수령액 증가율","%"],["elapsed","설계안 실행 후 경과","개월"]].map(([k,l,u])=>`<div class="row" style="${r2}"><span class="lbl">${l}</span>${ni("mon."+k,m[k],l,u)}</div>`).join("")+`<div class="row" style="${r2}"><span class="lbl">연말정산 환급금 수령</span>${si("mon.yearend",m.yearend,[["false","아니오"],["true","예"]],"연말정산")}</div><div class="row" style="${r2}"><span class="lbl">전세 만기·청약 당첨</span>${si("mon.housing",m.housing,[["false","아니오"],["true","예"]],"주거 이벤트")}</div>`;
@@ -792,7 +956,9 @@ function renderInputs(){
   if(!gopts.find(g=>g.id===S.gjGoal)&&gopts[0])S.gjGoal=gopts[0].id;
   renderConsent();
 }
-function renderConsent(){const items=[["d","가상 고객 데이터를 분석과 시뮬레이션에 활용하는 데 동의"],["r","기대수익률은 가정값이며 수익 보장이 아님을 확인"],["h","중요한 의사결정은 사람이 검토한 뒤 확정"],["p","재무 정보는 재무설계 목적 외에 사용하지 않음"],["c","정기 점검 주기(분기·연간)와 재설계 조건에 합의"]];
+const CONSENT=[["d","가상 고객 데이터를 분석과 시뮬레이션에 활용하는 데 동의"],["r","기대수익률은 가정값이며 수익 보장이 아님을 확인"],["h","중요한 의사결정은 사람이 검토한 뒤 확정"],["p","재무 정보는 재무설계 목적 외에 사용하지 않음"],["c","정기 점검 주기(분기·연간)와 재설계 조건에 합의"]];
+let lastIssues=[],lastBeh=[],lastTax=[];
+function renderConsent(){const items=CONSENT;
   $("#consentList").innerHTML=items.map(([k,t])=>`<label class="check${S.consent[k]?" done":""}"><input type="checkbox" data-con="${k}"${S.consent[k]?" checked":""}><span>${t}</span><span class="when"></span></label>`).join("");
   const d=items.filter(([k])=>S.consent[k]).length;$("#consentPill").className="pill "+(d===items.length?"good":"info");$("#consentPill").textContent=`${d} / ${items.length} 확인`}
 
@@ -803,7 +969,15 @@ function kpi(k,v,unit,sub,status,tip){return `<div class="kpi" tabindex="0"><div
 function update(){
   const c=calc(),p=S.profile;
   const H=Math.max(120,...S.goals.map(g=>n(g.months)));const P=project(c,H);
-  $("#modeLabel").textContent=S.mode==="example"?"가상 고객 예시 · 숫자를 바꾸면 모든 화면이 다시 계산됩니다":"직접 입력한 고객 · 숫자를 바꾸면 모든 화면이 다시 계산됩니다";
+  $("#modeLabel").textContent=S.mode==="example"?"가상 고객 예시":"직접 입력한 고객";
+  $("#homeTitle").textContent=`${p.name||"고객"}님의 재무 현황`;
+  $("#sideClient").textContent=`${p.name||"고객"}${p.age?" · "+p.age+"세":""}`;
+  const finNow=c.A.liquid+c.A.safe+c.A.risk+c.A.retire;
+  const finAt=m=>c.buckets.reduce((t,b,i)=>t+P.series[i].arr[m],0)+P.rest[m]+c.B.liquid;
+  const P72tot=finAt(72),dS=c.bucketSum-c.saveNow;
+  $("#summary").innerHTML=`<div><div class="lab">설계안 실행 시 월 저축</div><div class="big">${fmt(c.bucketSum)}<small>만 원</small></div><div class="delta">${c.saveNow>0&&dS>0?`지금보다 <span class="up">${fmt(dS)}만 원 (${pct(dS/c.saveNow*100,0)})</span> 더 모아요`:dS>0?`매월 <span class="up">${fmt(dS)}만 원</span>을 새로 모아요`:`현재 월 저축 ${fmt(c.saveNow)}만 원`}</div></div>
+  <div><div class="lab">비상예비자금</div><div class="big">${fmt(c.rNow.em,1)}<small>개월</small></div><div class="delta">${c.rAfter.em>c.rNow.em?`실행 후 <span class="up">${fmt(c.rAfter.em,1)}개월</span>로 늘어나요 · 권장 3~6개월`:`권장 3~6개월`}</div></div>
+  <div><div class="lab">6년 후 예상 금융자산</div><div class="big">${won(P72tot).replace(" 원","")}<small>원</small></div><div class="delta">현재 ${won(finNow)}에서 <span class="${P72tot>=finNow?"up":"down"}">${P72tot>=finNow?"+":"−"}${won(Math.abs(P72tot-finNow))}</span></div></div>`;
   // hero
   $("#pAvatar").textContent=(p.name||"?").slice(0,1);
   $("#pName").textContent=`${p.name||"고객"}${p.age?" · 만 "+p.age+"세":""}`;
@@ -842,35 +1016,42 @@ function update(){
   $("#ratioKpis").innerHTML=rk("비상예비자금 충당률","em",c.rNow.em,c.rAfter.em,"개월",1,"권장 3~6개월",`유동성 자산 ${fmt(c.A.liquid)} ÷ 월 총지출 ${fmt(c.exNow)}`)+rk("저축성향률","save",c.rNow.save,c.rAfter.save,"%",2,"권장 50% 이상",`월 저축 ${fmt(c.saveNow)} ÷ 세후소득 ${fmt(c.sal)} × 100`)+rk("부채부담률","debt",c.rNow.debt,c.rAfter.debt,"%",2,"안전 20% 이하",`월 상환 ${fmt(c.debtPay)} ÷ 세후소득 ${fmt(c.sal)} × 100`)+rk("고위험 자산 비중","risk",c.rNow.risk,c.rAfter.risk,"%",2,"권장 30% 이하",`고위험 ${fmt(c.A.risk)} ÷ 투자자산 ${fmt(c.A.safe+c.A.risk+c.A.retire)} × 100`);
   const col=COLORS();
   const cfData=cfMode==="now"?[[c.fixNow,"고정지출"],[c.varNow,"변동지출"],[c.saveNow,"저축·투자"],[Math.max(0,c.sal+c.bonus-c.exNow-c.saveNow),"미배분"]]:[[c.fixPlan,"고정지출"],[c.varPlan,"변동지출"],[c.bucketSum,"저축·투자"],[Math.max(0,c.sal+c.bonus-c.exPlan-c.bucketSum),"미배분"]];
-  chart("cCash",{type:"doughnut",data:{labels:cfData.map(x=>x[1]),datasets:[{data:cfData.map(x=>x[0]),backgroundColor:[col[2],col[5],col[0],col[4]],borderWidth:0,hoverOffset:10}]},options:baseOpts({interaction:{mode:"nearest",intersect:true},cutout:"64%",scales:{},plugins:Object.assign(baseOpts().plugins,{tooltip:Object.assign({},baseOpts().plugins.tooltip,{callbacks:{label:ctx=>{const t=ctx.dataset.data.reduce((a,b)=>a+b,0);return ` ${ctx.label}: ${won(ctx.parsed)} (${pct(t?ctx.parsed/t*100:0)})`}}})})})});
+  const cfCol=["#3b3b4f","#a3a3b8",css("--blue"),"#e2e2ea"],cfT=cfData.reduce((a,x)=>a+x[0],0);
+  donut("cCash",cfData.map(x=>x[1]),cfData.map(x=>x[0]),cfCol,{text:fmt(cfT)+"만",sub:"월 소득"},ctx=>{const t=ctx.dataset.data.reduce((a,b)=>a+b,0);return ` ${ctx.label}: ${won(ctx.parsed)} (${pct(t?ctx.parsed/t*100:0)})`},"legCash",cfData.map(x=>[x[1],fmt(x[0],x[0]%1?1:0)+"만",pct(cfT?x[0]/cfT*100:0)]));
   chart("cBS",{type:"bar",data:{labels:["자산","부채 + 순자산"],datasets:[
     {label:"유동성",data:[c.A.liquid,0],backgroundColor:col[0],stack:"s"},{label:"안정 투자",data:[c.A.safe,0],backgroundColor:col[1],stack:"s"},{label:"고위험 투자",data:[c.A.risk,0],backgroundColor:col[2],stack:"s"},{label:"노후",data:[c.A.retire,0],backgroundColor:col[3],stack:"s"},{label:"사용 자산",data:[c.A.use,0],backgroundColor:col[4],stack:"s"},
-    {label:"부채",data:[0,c.debtBal],backgroundColor:col[5],stack:"s"},{label:"순자산",data:[0,Math.max(0,c.net)],backgroundColor:css("--ink-3"),stack:"s"}].map(d=>Object.assign(d,{borderRadius:6,borderSkipped:false,maxBarThickness:90}))},
+    {label:"부채",data:[0,c.debtBal],backgroundColor:col[5],stack:"s"},{label:"순자산",data:[0,Math.max(0,c.net)],backgroundColor:css("--ink-3"),stack:"s"}].map(d=>Object.assign(d,{borderRadius:4,borderSkipped:false,maxBarThickness:84,borderColor:"#ffffff",borderWidth:{top:1.5}}))},
     options:baseOpts({interaction:{mode:"nearest",intersect:true},scales:Object.assign(baseOpts().scales,{x:Object.assign(baseOpts().scales.x,{stacked:true}),y:Object.assign(baseOpts().scales.y,{stacked:true})})})});
   $("#gapTable").innerHTML=`<thead><tr><th>목표</th><th class="r">현재</th><th class="r">목표</th><th class="r">차이</th><th>판정</th></tr></thead><tbody>${S.goals.map(g=>{const now=srcNow(g,c),amt=n(g.amt),r=amt>0?now/amt*100:null;const s=r==null?"mute":r>=100?"good":r>=50?"warn":"bad";return `<tr><td>${esc(g.name)}<br><span style="font-size:12px;color:var(--ink-3)">${esc(g.term)} · ${mlabel(n(g.months))}</span></td><td class="r">${fmt(now)}</td><td class="r">${amt?fmt(amt):"지속"}</td><td class="r">${amt?fmt(Math.max(0,amt-now)):"-"}</td><td><span class="pill ${s}">${r==null?"적립":fmt(r,0)+"%"}</span></td></tr>`}).join("")}</tbody>`;
   const gg=S.goals.filter(g=>n(g.amt)>0);
-  chart("cGoal",{type:"bar",data:{labels:gg.map(g=>g.name),datasets:[{label:"현재 준비율",data:gg.map(g=>Math.min(150,srcNow(g,c)/n(g.amt)*100)),backgroundColor:css("--ink-3"),borderRadius:6,maxBarThickness:22},{label:"목표 시점 예상",data:gg.map(g=>Math.min(150,srcAt(g,c,P,n(g.months))/n(g.amt)*100)),backgroundColor:col[0],borderRadius:6,maxBarThickness:22}]},
+  chart("cGoal",{type:"bar",data:{labels:gg.map(g=>g.name),datasets:[{label:"현재 준비율",data:gg.map(g=>Math.min(150,srcNow(g,c)/n(g.amt)*100)),backgroundColor:"#d6d6e2",hoverBackgroundColor:"#b9b9ca",borderRadius:6,maxBarThickness:20},{label:"목표 시점 예상",data:gg.map(g=>Math.min(150,srcAt(g,c,P,n(g.months))/n(g.amt)*100)),backgroundColor:grad("#20c7b4","#6b46fe",true),borderRadius:6,maxBarThickness:20}]},
     options:baseOpts({indexAxis:"y",plugins:Object.assign(baseOpts().plugins,{tooltip:Object.assign({},baseOpts().plugins.tooltip,{callbacks:{label:ctx=>` ${ctx.dataset.label}: ${pct(ctx.parsed.x,0)}`}})}),scales:{x:{max:150,grid:{color:css("--line")},border:{display:false},ticks:{color:css("--ink-2"),callback:v=>v+"%"}},y:{grid:{display:false},ticks:{color:css("--ink-2"),font:{family:css("--font"),size:12}}}}})});
   renderDiag(c);
 
   // step4
   $("#scenCards").innerHTML=Object.keys(SCEN).map(k=>{const cc=calc(k),PP=project(cc,H);const g2=S.goals.find(g=>g.id===S.gjGoal)||gg[0];const rm=g2?reachMonth(g2,cc,PP):null;const glong=gg[gg.length-1];
     return `<button type="button" class="card hover scen${k===c.sk?" on":""}" data-scen="${k}">${k==="balanced"?'<span class="pill info badge">보고서 제안안</span>':k===c.sk?'<span class="pill good badge">선택됨</span>':""}<h4>${SCEN[k].name}</h4><p>${SCEN[k].desc}</p><div class="rows"><div><span>월 저축 재원</span><b>${won(cc.bucketSum)}</b></div><div><span>저축성향률</span><b>${pct(cc.rAfter.save,1)}</b></div><div><span>${g2?esc(g2.name)+" 도달":"목표 도달"}</span><b>${mlabel(rm)}</b></div><div><span>${glong?esc(glong.name):"장기 목표"}</span><b>${glong?fmt(srcAt(glong,cc,PP,n(glong.months))/n(glong.amt)*100,0)+"%":"-"}</b></div><div><span>상대적 변동성</span><b>${SCEN[k].vol}</b></div></div></button>`}).join("");
-  const P72tot=c.buckets.reduce((t,b,i)=>t+P.series[i].arr[72],0)+P.rest[72]+c.B.liquid;
   $("#planKpis").innerHTML=kpi("월 지출 절감",fmt(cut),"만",`${fmt(c.exNow)} → ${fmt(c.exPlan)}만 원`,null,"현재 총지출과 선택한 안의 목표 지출의 차이입니다.")+kpi("월 저축 재원",fmt(c.bucketSum),"만",`저축성향률 ${pct(c.rNow.save,1)} → ${pct(c.rAfter.save,1)}`,null,"세후소득 + 비정기 수입 − 목표 지출. 이 금액을 4개 계좌에 나눕니다.")+kpi("비상예비자금",fmt(c.B.liquid),"만",`${fmt(c.rNow.em,1)} → ${fmt(c.rAfter.em,1)}개월분`,null,"기존 유동성 자산 + 정리한 투자자산 금액입니다.")+kpi("6년 후 금융자산",fmt(P72tot),"만","4개 계좌 + 잔여 투자 + 비상금",null,"보증금 같은 사용 자산은 빼고 계산한 6년 뒤 예상 금융자산입니다.");
   S.expenses.forEach(e=>{const d=c.planAmt(e)-n(e.amt);o("d-"+e.id,d===0?"":`<span style="color:var(--${d<0?"green":"red"})">${d>0?"+":"−"}${fmt(Math.abs(d),1)}</span>`)});
   $("#cutPill").textContent=cut>0?`월 ${fmt(cut,1)}만 원 절감`:"절감 없음";
   $("#capNote").innerHTML=`저축 재원 = 세후소득 ${fmt(c.sal)} + 비정기 ${fmt(c.bonus)} − 목표 지출 ${fmt(c.exPlan,1)} = <b>${fmt(c.capacity,1)}만 원</b>${c.sk!=="balanced"?` · ${SCEN[c.sk].name}은 균형안과의 차이를 ISA 적립액에 반영합니다.`:""}`;
   const emGoal=S.goals.find(g=>(g.src||[]).length===1&&g.src[0]==="cash");
   $("#sellNote").innerHTML=`<div class="callout ${emGoal&&c.B.liquid<n(emGoal.amt)?"warn":"good"}">유동성 ${fmt(c.A.liquid)} + 정리 ${fmt(c.sellTotal)} = 비상예비자금 <b>${fmt(c.B.liquid)}만 원</b>, ${fmt(c.rAfter.em,1)}개월분.${emGoal?(c.B.liquid>=n(emGoal.amt)?` “${esc(emGoal.name)}” 목표를 달성합니다.`:` 목표까지 ${fmt(n(emGoal.amt)-c.B.liquid)}만 원 부족합니다.`):""} 남은 투자자산 ${fmt(c.restAmt)}만 원.</div>`;
-  chart("cBucket",{type:"doughnut",data:{labels:c.buckets.map(b=>b.name),datasets:[{data:c.buckets.map(b=>b.pmt),backgroundColor:c.buckets.map((b,i)=>col[i%6]),borderWidth:0,hoverOffset:8}]},options:baseOpts({interaction:{mode:"nearest",intersect:true},cutout:"62%",scales:{},plugins:Object.assign(baseOpts().plugins,{legend:{display:false},tooltip:Object.assign({},baseOpts().plugins.tooltip,{callbacks:{label:ctx=>{const b=c.buckets[ctx.dataIndex];return ` ${b.name}: 월 ${fmt(b.pmt,1)}만 · 연 ${fmt(b.rate,1)}%`}}})})})});
+  donut("cBucket",c.buckets.map(b=>b.name),c.buckets.map(b=>b.pmt),c.buckets.map((b,i)=>col[i%6]),{text:fmt(c.bucketSum,0)+"만",sub:"월 적립"},ctx=>{const b=c.buckets[ctx.dataIndex];return ` ${b.name}: 월 ${fmt(b.pmt,1)}만 · 연 ${fmt(b.rate,1)}%`});
   const capB=c.capacity-c.bucketSum,wr=c.bucketSum?c.buckets.reduce((t,b)=>t+b.pmt*b.rate,0)/c.bucketSum:0;
   $("#bucketNote").innerHTML=`<div class="list">${c.buckets.map((b,i)=>`<div class="row"><span class="lbl"><i style="display:inline-block;width:9px;height:9px;border-radius:3px;background:var(--c${i%6+1});margin-right:6px"></i>${esc(b.name)}</span><span class="val">${fmt(b.pmt,1)}만</span></div>`).join("")}<div class="row total"><span class="lbl">합계 · 가중 ${fmt(wr,2)}%</span><span class="val">${fmt(c.bucketSum,1)}만</span></div></div>`+(Math.abs(capB)>.05?`<div class="callout ${capB>0?"warn":"bad"}" style="margin-top:10px">${capB>0?`저축 재원보다 ${fmt(capB,1)}만 원 적게 배분했습니다.`:`저축 재원보다 ${fmt(-capB,1)}만 원 많이 배분했습니다.`}</div>`:"");
+  // home: yearly assets + savings split
+  const YN=6,yl=[...Array(YN+1).keys()].map(k=>k?k+"년":"현재"),yv=yl.map((_,k)=>k?finAt(k*12):finNow);
+  const hi=Math.min(YN,Math.max(1,Math.round(n((S.goals.find(g=>g.id===S.gjGoal)||{months:36}).months)/12)));
+  chart("cYear",{type:"bar",data:{labels:yl,datasets:[{label:"금융자산",data:yv,backgroundColor:ctx=>ctx.dataIndex===hi?grad(VIO[0],VIO[1])(ctx):grad(GRAY[0],GRAY[1])(ctx),hoverBackgroundColor:ctx=>grad(VIO[0],VIO[1])(ctx),borderRadius:{topLeft:8,topRight:8},borderSkipped:false,maxBarThickness:46}]},
+    options:baseOpts({plugins:Object.assign(baseOpts().plugins,{legend:{display:false},tooltip:Object.assign({},baseOpts().plugins.tooltip,{displayColors:false,callbacks:{title:it=>it[0].label==="현재"?"현재":it[0].label+" 후",label:ctx=>won(ctx.parsed.y),afterLabel:ctx=>ctx.dataIndex?`현재 대비 +${won(ctx.parsed.y-finNow)}`:""}})})})});
+  const bc=c.buckets.map((b,i)=>col[i%6]);
+  donut("cHomeB",c.buckets.map(b=>b.name),c.buckets.map(b=>b.pmt),bc,{text:fmt(c.bucketSum,0)+"만",sub:"월 저축"},ctx=>{const b=c.buckets[ctx.dataIndex];return ` ${b.name}: 월 ${fmt(b.pmt,1)}만 원`},"legHomeB",c.buckets.map(b=>[b.name,fmt(b.pmt,b.pmt%1?1:0)+"만",(b.product||"")+" · "+pct(c.bucketSum?b.pmt/c.bucketSum*100:0,0)]));
   // projection chart
   const labels=[...Array(horizon+1).keys()].map(m=>m===0?"현재":m%12===0?(m/12)+"년":m+"개월");
-  const ds=[{label:"기존 투자자산",data:P.rest.slice(0,horizon+1),backgroundColor:css("--c5")+"66",borderColor:css("--c5"),fill:"origin",stack:"a"}].concat(P.series.map((s,i)=>({label:s.name,data:s.arr.slice(0,horizon+1),backgroundColor:col[i%6]+"66",borderColor:col[i%6],fill:"-1",stack:"a"})));
+  const ds=[{label:"기존 투자자산",data:P.rest.slice(0,horizon+1),backgroundColor:grad(hexA(css("--c5"),.45),hexA(css("--c5"),.08)),borderColor:css("--c5"),fill:"origin",stack:"a"}].concat(P.series.map((s,i)=>({label:s.name,data:s.arr.slice(0,horizon+1),backgroundColor:grad(hexA(col[i%6],.42),hexA(col[i%6],.06)),borderColor:col[i%6],fill:"-1",stack:"a"})));
   ds.forEach(d=>Object.assign(d,{pointRadius:0,pointHoverRadius:5,borderWidth:2,tension:.25}));
-  gg.filter(g=>!((g.src||[]).length===1&&g.src[0]==="cash")&&n(g.months)<=horizon).forEach((g,i)=>ds.push({label:"목표 · "+g.name,data:labels.map((_,m)=>m===n(g.months)?n(g.amt):null),type:"line",borderColor:css("--ink"),backgroundColor:css("--card"),pointRadius:labels.map((_,m)=>m===n(g.months)?7:0),pointHoverRadius:9,pointBorderWidth:3,pointBorderColor:srcAt(g,c,P,n(g.months))>=n(g.amt)?css("--green"):css("--red"),showLine:false,stack:"g"+i}));
+  gg.filter(g=>!((g.src||[]).length===1&&g.src[0]==="cash")&&n(g.months)<=horizon).forEach((g,i)=>ds.push({label:"목표 · "+g.name,data:labels.map((_,m)=>m===n(g.months)?n(g.amt):null),type:"line",borderColor:css("--ink"),backgroundColor:"#ffffff",pointRadius:labels.map((_,m)=>m===n(g.months)?7:0),pointHoverRadius:9,pointBorderWidth:3,pointBorderColor:srcAt(g,c,P,n(g.months))>=n(g.amt)?css("--green"):css("--red"),showLine:false,stack:"g"+i}));
   chart("cProj",{type:"line",data:{labels,datasets:ds},options:baseOpts({scales:Object.assign(baseOpts().scales,{x:Object.assign(baseOpts().scales.x,{ticks:Object.assign(baseOpts().scales.x.ticks,{autoSkip:false,maxRotation:0,callback:(v,i)=>i%12===0?labels[i]:""})}),y:Object.assign(baseOpts().scales.y,{stacked:true})}),plugins:Object.assign(baseOpts().plugins,{tooltip:Object.assign({},baseOpts().plugins.tooltip,{filter:it=>it.raw!=null,callbacks:{label:ctx=>` ${ctx.dataset.label}: ${won(ctx.parsed.y)}`,footer:items=>{const t=items.filter(i=>!/^목표/.test(i.dataset.label)).reduce((a,i)=>a+i.parsed.y,0);return "합계 "+won(t)}}})})})});
   $("#goalCheck").innerHTML=`<thead><tr><th>목표</th><th class="r">목표</th><th class="r">예상</th><th class="r">도달</th><th>달성</th></tr></thead><tbody>${gRows.map(x=>`<tr><td>${esc(x.g.name)}<br><span style="font-size:12px;color:var(--ink-3)">${esc(x.g.term)} · ${mlabel(n(x.g.months))}</span></td><td class="r">${x.amt?fmt(x.amt):"지속"}</td><td class="r">${fmt(x.v)}</td><td class="r">${mlabel(x.reach)}</td><td>${x.r==null?'<span class="pill info">적립</span>':`<span class="pill ${x.s}">${fmt(x.r,0)}%</span>`}</td></tr>`).join("")}</tbody>`;
   const t=tax(c),tx=[];
@@ -878,7 +1059,7 @@ function update(){
   if(t.hasHous)tx.push(["주택청약 소득공제",t.housOk?`연 ${fmt(t.housYear)}만 원의 40% = <b>${fmt(t.housDed,1)}만 원</b> 소득공제`:"총급여 7,000만 원 이하 무주택 세대주 요건 미충족"]);
   if(t.hasIsa)tx.push(["중개형 ISA",`연 ${fmt(t.isaYear,1)}만 원 적립 · 순이익 200만 원 비과세, 초과 9.9% 분리과세 · 만기 후 연금 이전 시 10%(최대 300만 원) 추가 공제`]);
   tx.push(["청년도약계좌","5년 유지 시 이자 비과세와 정부기여금 · 신규 가입 종료로 기존 가입 가정"]);
-  $("#taxBox").innerHTML=tx.map(([a,b])=>`<div class="item"><span class="pill good">혜택</span><div><b>${a}</b><p>${b}</p></div></div>`).join("");
+  lastTax=tx;$("#taxBox").innerHTML=tx.map(([a,b])=>`<div class="item"><span class="pill good">혜택</span><div><b>${a}</b><p>${b}</p></div></div>`).join("");
   const loan=S.debts[0],ms=[[0,"비상예비자금 완성",`${fmt(c.B.liquid)}만 원 확보, ${fmt(c.rAfter.em,1)}개월분`]];
   if(loan&&n(loan.months))ms.push([n(loan.months),`${loan.name} 완납`,`월 ${fmt(n(loan.pay))}만 원을 연금계좌로 전환`]);
   c.buckets.forEach(b=>{if(b.months!==""&&n(b.months))ms.push([n(b.months),`${b.product} 납입 완료`,`이후 만기까지 복리 운용`])});
@@ -888,7 +1069,7 @@ function update(){
   const ba=(l,a,b,u,k,d)=>`<tr><td>${l}</td><td class="r">${fmt(a,d)}${u}</td><td>${k?`<span class="pill ${st(k,a)}">${SL[st(k,a)]}</span>`:""}</td><td class="r"><b>${fmt(b,d)}${u}</b></td><td>${k?`<span class="pill ${st(k,b)}">${SL[st(k,b)]}</span>`:""}</td></tr>`;
   $("#beforeAfter").innerHTML=`<thead><tr><th>지표</th><th class="r">현재</th><th></th><th class="r">실행 후</th><th></th></tr></thead><tbody>${ba("월 총지출",c.exNow,c.exPlan,"만","",0)}${ba("월 저축",c.saveNow,c.bucketSum,"만","",0)}${ba("비상예비자금",c.rNow.em,c.rAfter.em,"개월","em",1)}${ba("저축성향률",c.rNow.save,c.rAfter.save,"%","save",1)}${ba("부채부담률",c.rNow.debt,c.rAfter.debt,"%","debt",1)}${ba("고위험 비중",c.rNow.risk,c.rAfter.risk,"%","risk",1)}</tbody>`;
 
-  renderFlow(c);renderExec(c);renderMonitor(c);renderEvents(c);
+  renderFlow(c);renderExec(c);renderCal(c);renderMonitor(c);renderEvents(c);renderReport(c,P,gRows,acts);
   $("#aiPrompt").value=buildPrompt(c);
   renderCoach(c);
 }
@@ -907,7 +1088,7 @@ function renderJourney(c){
   const atG=line[Math.min(n(g.months),H)];
   box.innerHTML=`<div><span>${mlabel(n(g.months))} 후 예상</span><b>${won(atG)}</b></div><div><span>목표 도달</span><b style="color:var(--${reach>=0&&reach<=n(g.months)?"green":"red"})">${reach<0?"기간 내 미달":mlabel(reach)}</b></div><div><span>목표</span><b>${won(n(g.amt))}</b></div>`;
   const labels=[...Array(H+1).keys()].map(m=>m===0?"현재":m+"개월");
-  chart("cJourney",{type:"line",data:{labels,datasets:[{label:"예상 적립액",data:line,borderColor:css("--blue"),backgroundColor:css("--blue")+"22",fill:true,tension:.3,pointRadius:labels.map((_,m)=>m===reach?6:0),pointBackgroundColor:css("--blue"),pointHoverRadius:5,borderWidth:2.5},{label:"목표 "+g.name,data:labels.map(()=>n(g.amt)),borderColor:css("--ink-3"),borderDash:[6,6],pointRadius:0,borderWidth:1.5,fill:false}]},
+  chart("cJourney",{type:"line",data:{labels,datasets:[{label:"예상 적립액",data:line,borderColor:css("--teal"),backgroundColor:grad(hexA(css("--teal"),.28),hexA(css("--teal"),0)),fill:true,tension:.35,pointRadius:labels.map((_,m)=>m===reach?6:0),pointBackgroundColor:"#ffffff",pointBorderColor:css("--blue"),pointBorderWidth:3,pointHoverRadius:5,borderWidth:2.5},{label:"목표 "+g.name,data:labels.map(()=>n(g.amt)),borderColor:css("--blue"),borderDash:[6,6],pointRadius:0,borderWidth:1.5,fill:false}]},
     options:baseOpts({scales:Object.assign(baseOpts().scales,{x:Object.assign(baseOpts().scales.x,{ticks:Object.assign(baseOpts().scales.x.ticks,{autoSkip:false,maxRotation:0,callback:(v,i)=>i%12===0?labels[i].replace("개월","")+(i?"개월":""):""})})})})});
 }
 function renderCompleteness(c){
@@ -919,7 +1100,7 @@ function renderCompleteness(c){
   if(c.unalloc>.001)issues.push(["warn","용도 미확인 금액",`매월 ${fmt(c.unalloc)}만 원의 쓰임이 확인되지 않습니다. 고객에게 추가 질문이 필요합니다.`]);
   const loanExp=S.expenses.find(e=>/대출/.test(e.name));if(c.debtPay&&loanExp&&Math.abs(n(loanExp.amt)-c.debtPay)>.001)issues.push(["warn","부채 상환액 불일치",`현금흐름의 ${esc(loanExp.name)} ${fmt(n(loanExp.amt))}만 원과 부채표 월 상환 ${fmt(c.debtPay)}만 원이 다릅니다.`]);
   if(!issues.length)issues.push(["good","필수 항목이 모두 입력되었습니다","소득과 지출·저축의 합도 일치합니다."]);
-  $("#compList").innerHTML=issues.map(([s,a,b])=>`<div class="item"><span class="dot ${s}" style="margin-top:7px"></span><div><b>${a}</b><p>${b}</p></div></div>`).join("");
+  lastIssues=issues;$("#compList").innerHTML=issues.map(([s,a,b])=>`<div class="item"><span class="dot ${s}" style="margin-top:7px"></span><div><b>${a}</b><p>${b}</p></div></div>`).join("");
 }
 function renderDiag(c){
   const vs=c.sal?c.varNow/c.sal*100:0;const top=S.expenses.filter(e=>e.group!=="fixed").sort((a,b)=>n(b.amt)-n(a.amt))[0];const it=[];
@@ -927,7 +1108,7 @@ function renderDiag(c){
   it.push(c.rNow.risk>50?["bad","FOMO와 매몰비용 오류",`투자자산의 ${pct(c.rNow.risk,2)}가 고위험 자산입니다. 손실 자산을 본전까지 기다리며 방치하면 분산 기회를 놓칩니다.`]:c.rNow.risk>30?["warn","고위험 자산 쏠림",`고위험 비중 ${pct(c.rNow.risk,2)}. 목표 기한과 맞는지 점검이 필요합니다.`]:["good","분산된 투자자산",`고위험 비중 ${pct(c.rNow.risk,2)}.`]);
   it.push(c.rNow.em<3?["bad","유동성 갭 위험",`비상예비자금 ${fmt(c.rNow.em,1)}개월분. 비상지출이 생기면 손실 중인 투자자산을 강제로 팔아야 합니다.`]:["good","유동성 확보",`비상예비자금 ${fmt(c.rNow.em,1)}개월분.`]);
   if(c.rNow.save<50)it.push([c.rNow.save<30?"bad":"warn","선저축 습관 부족",`저축성향률 ${pct(c.rNow.save,2)}. 쓰고 남은 돈을 저축하는 순서를 바꿔야 합니다.`]);
-  $("#behDiag").innerHTML=it.map(([s,a,b])=>`<div class="item"><span class="pill ${s}">${SL[s]}</span><div><b>${a}</b><p>${b}</p></div></div>`).join("");
+  lastBeh=it;$("#behDiag").innerHTML=it.map(([s,a,b])=>`<div class="item"><span class="pill ${s}">${SL[s]}</span><div><b>${a}</b><p>${b}</p></div></div>`).join("");
   const ai=[];
   if(c.rNow.em<3)ai.push(["비상예비자금을 먼저 채웁니다",`근거: ${fmt(c.rNow.em,1)}개월 < 권장 3개월. 고위험 자산 ${fmt(c.sellTotal)}만 원 정리로 ${fmt(c.rAfter.em,1)}개월까지 올라갑니다.`]);
   if(c.exNow>c.exPlan)ai.push(["변동지출에 상한을 둡니다",`근거: 변동지출 ${fmt(c.varNow)} → ${fmt(c.varPlan,1)}만 원으로 줄이면 저축성향률이 ${pct(c.rNow.save,1)} → ${pct(c.rAfter.save,1)}가 됩니다.`]);
@@ -942,14 +1123,59 @@ function renderFlow(c){
   <div class="node"><div class="when">${S.exec.moveday}일 · 3순위</div><b>변동비 체크카드</b><div class="amt">${fmt(c.varPlan,1)}만</div><ul><li>월 한도 ${fmt(c.varPlan,1)}만 원</li><li>주간 예산 약 ${fmt(c.varPlan/4.3,1)}만 원</li><li>비정기 수입 달에 조정</li></ul></div>`;
   $("#autoRules").innerHTML=[["월간 배분 규칙 생성",`${c.buckets.filter(b=>b.pmt>0).length}개 계좌 자동이체 초안 (${fmt(c.bucketSum,1)}만 원)`,"초안"],["목표 달성 시 재배분","비상예비자금 목표를 채운 뒤 초과분은 ISA로 이동","규칙"],["비정기 수입 사용 규칙",`성과급 월 ${fmt(c.bonus)}만 원 상당은 저축 재원에 포함해 생활비로 새지 않게 관리`,"규칙"],["이상 징후 알림","변동지출이 계획을 10% 넘거나 소득이 줄면 6단계에서 재설계 요청","알림"]].map(([a,b,s],i)=>`<div class="item"><span class="num-badge">${i+1}</span><div><b>${a} <span class="pill mute" style="margin-left:4px">${s}</span></b><p>${b}</p></div></div>`).join("");
 }
-function execItems(c){const it=[];S.sells.forEach(s=>{const a=S.assets.find(x=>x.id===s.asset);if(a&&n(s.amt)>0)it.push(["sell-"+s.id,`${a.name} ${fmt(n(s.amt))}만 원 정리 후 비상예비자금 계좌로 이체`,"1주차"])});
-  it.push(["cma","비상예비자금을 CMA·파킹통장에 분리 보관","1주차"]);
-  S.expenses.filter(e=>c.planAmt(e)<n(e.amt)).forEach(e=>it.push(["cut-"+e.id,`${e.name} ${fmt(n(e.amt))} → ${fmt(c.planAmt(e),1)}만 원${e.note?" · "+e.note:""}`,"1개월"]));
-  c.buckets.filter(b=>b.pmt>0).forEach(b=>it.push(["b-"+b.id,`${b.product} 매월 ${S.exec.moveday}일 ${fmt(b.pmt,1)}만 원 자동이체`,"1개월"]));
-  it.push(["acct","급여·고정비·변동비 통장 분리, 체크카드 한도 설정","1개월"],["review","3개월 후 첫 점검 · 6단계 월간 점검판 작성","3개월"]);return it}
+function startDate(){const v=S.exec&&S.exec.start;let d=v?new Date(v+"T00:00:00"):new Date();if(isNaN(d))d=new Date();d.setHours(0,0,0,0);return d}
+const addD=(d,k)=>{const x=new Date(d);x.setDate(x.getDate()+k);return x};
+const addM=(d,k,day)=>{const x=new Date(d.getFullYear(),d.getMonth()+k,1);const last=new Date(x.getFullYear(),x.getMonth()+1,0).getDate();x.setDate(Math.min(day!=null?day:d.getDate(),last));return x};
+const nextDay=(d,day)=>{let x=addM(d,0,day);if(x<d)x=addM(d,1,day);return x};
+const DOW="일월화수목금토";
+const dstr=d=>`${d.getMonth()+1}.${d.getDate()} (${DOW[d.getDay()]})`;
+const dlong=d=>`${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일 (${DOW[d.getDay()]})`;
+const ymd=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+function execItems(c){const st0=startDate();const it=[];let k=0;
+  S.sells.forEach(s=>{const a=S.assets.find(x=>x.id===s.asset);if(a&&n(s.amt)>0)it.push(["sell-"+s.id,`${a.name} ${fmt(n(s.amt))}만 원 정리 후 비상예비자금 계좌로 이체`,"1주차",addD(st0,k++)])});
+  it.push(["cma","비상예비자금을 CMA·파킹통장에 분리 보관","1주차",addD(st0,k++)]);
+  it.push(["acct","급여·고정비·변동비 통장 분리, 체크카드 한도 설정","1주차",addD(st0,k++)]);
+  let j=0;c.buckets.filter(b=>b.pmt>0).forEach(b=>it.push(["b-"+b.id,`${b.product||b.name} 매월 ${S.exec.moveday}일 ${fmt(b.pmt,1)}만 원 자동이체 등록`,"1주차",addD(st0,Math.min(6,k+(j++>1?1:0)))]));
+  let q=7;S.expenses.filter(e=>c.planAmt(e)<n(e.amt)).forEach(e=>it.push(["cut-"+e.id,`${e.name} ${fmt(n(e.amt))} → ${fmt(c.planAmt(e),1)}만 원${e.note?" · "+e.note:""}`,"1개월",addD(st0,q++)]));
+  it.push(["review","3개월 후 첫 점검 · 6단계 월간 점검판 작성","3개월",addM(st0,3)]);return it}
 function renderExec(c){const it=execItems(c),d=it.filter(x=>S.checks[x[0]]).length;
-  $("#execList").innerHTML=it.map(([k,t,w])=>`<label class="check${S.checks[k]?" done":""}"><input type="checkbox" data-chk="${k}"${S.checks[k]?" checked":""}><span>${esc(t)}</span><span class="when">${w}</span></label>`).join("");
+  $("#execList").innerHTML=it.map(([k,t,w,dt])=>`<label class="check${S.checks[k]?" done":""}" data-date="${ymd(dt)}"><input type="checkbox" data-chk="${k}"${S.checks[k]?" checked":""}><span>${esc(t)}</span><span class="when"><b>${dstr(dt)}</b>${w}</span></label>`).join("");
   $("#execPill").className="pill "+(d===it.length?"good":"info");$("#execPill").textContent=`${d} / ${it.length}`;$("#execBar").style.width=(d/it.length*100)+"%"}
+let calY=null,calM=null,calSel=null;
+function calEvents(c,y,mo){const st0=startDate(),E=[];const inM=d=>d.getFullYear()===y&&d.getMonth()===mo;
+  const short=k=>{if(/^sell-/.test(k)){const x=S.sells.find(y=>"sell-"+y.id===k),a=x&&S.assets.find(z=>z.id===x.asset);return (a?a.name.split(/[ ·(]/)[0]:"자산")+" 정리"}if(k==="cma")return "비상금 분리";if(k==="acct")return "통장 분리";if(k==="review")return "첫 점검";if(/^b-/.test(k)){const b=c.buckets.find(y=>"b-"+y.id===k);return (b?b.name:"계좌")+" 이체등록"}if(/^cut-/.test(k)){const e=S.expenses.find(y=>"cut-"+y.id===k);return (e?e.name.split(/[ ·]/)[0]:"지출")+" 절감"}return "할 일"};
+  execItems(c).forEach(([k,t,w,d])=>{if(inM(d))E.push({d,kind:"task",t,ch:short(k),sub:w+" 실행 과제",chk:k})});
+  const first=new Date(y,mo,1),stM=new Date(st0.getFullYear(),st0.getMonth(),1);
+  if(first>=stM){const mi=(y-st0.getFullYear())*12+mo-st0.getMonth();
+    const pd=addM(first,0,n(S.exec.payday)||25),md=addM(first,0,n(S.exec.moveday)||26);
+    if(pd>=st0&&c.sal)E.push({d:pd,kind:"pay",ch:`급여 ${fmt(c.sal)}만`,t:`급여 ${fmt(c.sal)}만 원 입금`,sub:"급여 통장 · 세후 근로소득"});
+    if(md>=st0&&c.bucketSum>0)E.push({d:md,kind:"pay",ch:`저축 ${fmt(c.bucketSum)}만`,t:`선저축 자동이체 ${fmt(c.bucketSum,1)}만 원`,sub:c.buckets.filter(b=>b.pmt>0).map(b=>`${b.name} ${fmt(b.pmt,1)}만`).join(" · ")});
+    if(mi>3&&mi%3===0)E.push({d:addM(first,0,st0.getDate()),kind:"review",t:mi%12===0?"연간 전면 재점검":"분기 점검",sub:mi%12===0?"소득·목표·투자성향 변화를 반영해 설계안을 다시 세웁니다":"ISA 비중 이탈과 리밸런싱 트리거를 확인하고 점검판을 작성합니다"});
+    if(mo===1){const t=tax(c);if(t.pensCredit>0)E.push({d:addM(first,0,28),kind:"review",t:"연말정산 환급금 재투자",sub:`연금저축 환급 약 ${fmt(t.pensCredit,1)}만 원을 ISA에 일시 투자`})}}
+  const P=project(c,Math.max(120,...S.goals.map(g=>n(g.months))));
+  S.debts.forEach(dbt=>{if(n(dbt.months)>0){const d=addM(st0,n(dbt.months));if(inM(d))E.push({d,kind:"goal",t:`${dbt.name} 완납`,sub:`월 ${fmt(n(dbt.pay))}만 원을 연금계좌로 전환`})}});
+  c.buckets.forEach(b=>{if(b.months!==""&&n(b.months)>0){const d=addM(st0,n(b.months));if(inM(d))E.push({d,kind:"goal",t:`${b.product||b.name} 납입 완료`,sub:"이후 만기까지 복리 운용"})}});
+  S.goals.forEach(g=>{const r=reachMonth(g,c,P);if(r!=null&&r!==Infinity&&r>0){const d=addM(st0,r);if(inM(d))E.push({d,kind:"goal",t:`목표 달성 · ${g.name}`,sub:`목표 ${won(n(g.amt))} 도달 예상`})}
+    if(n(g.amt)>0&&n(g.months)>0){const d=addM(st0,n(g.months));if(inM(d)&&(r===Infinity||r>n(g.months)))E.push({d,kind:"review",t:`목표 기한 · ${g.name}`,sub:`예상 ${won(srcAt(g,c,P,n(g.months)))} / 목표 ${won(n(g.amt))}`})}});
+  return E.sort((a,b)=>a.d-b.d||(a.kind==="task"?-1:1))}
+const KC={task:"var(--blue)",pay:"var(--teal)",review:"var(--orange)",goal:"var(--green)"};
+function renderCal(c){if(calY==null){const t=new Date(),st0=startDate();const base=st0>t?st0:t;calY=base.getFullYear();calM=base.getMonth()}
+  $("#calTitle").textContent=`${calY}년 ${calM+1}월`;
+  const E=calEvents(c,calY,calM),by={};E.forEach(e=>{const k=ymd(e.d);(by[k]=by[k]||[]).push(e)});
+  const first=new Date(calY,calM,1),days=new Date(calY,calM+1,0).getDate(),lead=first.getDay(),cells=Math.ceil((lead+days)/7)*7,today=ymd(new Date());
+  if(!calSel||calSel.slice(0,7)!==ymd(first).slice(0,7))calSel=today.slice(0,7)===ymd(first).slice(0,7)?today:(E[0]?ymd(E[0].d):ymd(first));
+  let h=[..."일월화수목금토"].map(x=>`<div class="dow">${x}</div>`).join("");
+  for(let i=0;i<cells;i++){const d=new Date(calY,calM,1-lead+i),k=ymd(d),out=d.getMonth()!==calM,ev=out?[]:(by[k]||[]);
+    h+=`<button type="button" class="cday${out?" out":""}${k===today?" today":""}${k===calSel&&!out?" sel":""}${d.getDay()===0?" sun":""}" data-day="${k}"${out?" tabindex=\"-1\"":""} aria-label="${dlong(d)} 일정 ${ev.length}건"><span class="dn">${d.getDate()}</span>${ev.slice(0,2).map(e=>`<span class="ev ${e.kind}${e.chk&&S.checks[e.chk]?" done":""}" title="${esc(e.t)}">${esc(e.ch||e.t)}</span>`).join("")}${ev.length>2?`<span class="ev more">+${ev.length-2}건</span>`:""}<span class="cdots">${ev.map(e=>`<i style="background:${KC[e.kind]}"></i>`).join("")}</span></button>`}
+  $("#calGrid").innerHTML=h;
+  const sel=new Date(calSel+"T00:00:00"),se=by[calSel]||[];
+  $("#calDay").innerHTML=`<h4>${dlong(sel)}</h4>`+(se.length?se.map(e=>`<label class="cal-ev"><i style="background:${KC[e.kind]}"></i><span><b>${esc(e.t)}</b><p>${esc(e.sub||"")}</p></span>${e.chk?`<input type="checkbox" data-chk="${e.chk}"${S.checks[e.chk]?" checked":""} aria-label="완료">`:""}</label>`).join(""):`<p class="note">이 날은 예정된 일정이 없습니다.</p>`)}
+function icsText(c){const st0=startDate(),D=d=>ymd(d).replace(/-/g,""),L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//plan6.studio//KO","CALSCALE:GREGORIAN","X-WR-CALNAME:재무설계 실행 일정"];let i=0;const q=t=>String(t).replace(/[\\,;]/g,m=>"\\"+m);
+  const add=(d,t,desc,rr)=>{L.push("BEGIN:VEVENT","UID:p6-"+(i++)+"-"+D(d)+"@plan6.studio","DTSTAMP:"+D(new Date())+"T000000Z","DTSTART;VALUE=DATE:"+D(d),"DTEND;VALUE=DATE:"+D(addD(d,1)),"SUMMARY:"+q(t),"DESCRIPTION:"+q(desc||""));if(rr)L.push(rr);L.push("END:VEVENT")};
+  execItems(c).forEach(([k,t,w,d])=>add(d,t,w+" 실행 과제"));
+  if(c.bucketSum>0)add(nextDay(st0,n(S.exec.moveday)||26),`선저축 자동이체 ${fmt(c.bucketSum,1)}만 원`,c.buckets.filter(b=>b.pmt>0).map(b=>`${b.name} ${fmt(b.pmt,1)}만`).join(", "),"RRULE:FREQ=MONTHLY;COUNT=36");
+  add(addM(st0,6),"분기 재무 점검","ISA 비중 이탈·트리거 확인, 월간 점검판 작성","RRULE:FREQ=MONTHLY;INTERVAL=3;COUNT=12");
+  L.push("END:VCALENDAR");return L.join("\r\n")}
 function triggers(c){const m=S.mon,em=c.B.liquid,isa=c.buckets.find(b=>/ISA/i.test(b.product)),pens=c.buckets.find(b=>/연금/.test(b.product+b.name)),t=tax(c),loan=S.debts[0],refill=em*.7,ra=c.sal*n(m.raise)/100;
   return [
     {n:"자산 이탈",cy:"분기",c:"ISA 주식 ETF 비중이 목표 대비 ±10%p 이상 이탈",a:"신규 납입금을 비중이 줄어든 자산에 집중 투입",f:Math.abs(n(m.isaDev))>=10},
@@ -991,8 +1217,81 @@ ${S.expenses.map(e=>`- ${e.name}: ${fmt(n(e.amt))} → ${fmt(c.planAmt(e),1)}만
 [선택한 안] ${SCEN[c.sk].name}
 [월 적립] ${c.buckets.map(b=>`${b.name}(${b.product}) ${fmt(b.pmt,1)}만 원 · 연 ${fmt(b.rate,1)}%`).join("; ")}
 [재무목표] ${S.goals.map(g=>`${g.term} ${g.name} ${n(g.amt)?fmt(n(g.amt))+"만 원":"지속"} / ${g.months}개월`).join("; ")}`}
+function renderReport(c,P,gRows,acts){
+  const p=S.profile,sc=SCEN[c.sk],t=tax(c),today=new Date(),st0=startDate(),it=execItems(c),T=triggers(c),EV=events(c),nm=esc(p.name||"고객");
+  const finNow=c.A.liquid+c.A.safe+c.A.risk+c.A.retire,finAt=m=>c.buckets.reduce((x,b,i)=>x+P.series[i].arr[m],0)+P.rest[m]+c.B.liquid,P72=finAt(72);
+  const tbl=(head,rows,rc)=>`<div class="tbl-wrap"><table><thead><tr>${head.map((h,i)=>`<th${rc&&rc.includes(i)?' class="r"':""}>${h}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((x,i)=>`<td${rc&&rc.includes(i)?' class="r"':""}>${x==null?"":x}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  const todo=(title,items)=>items.length?`<div class="todo"><h4>✓ ${title}</h4><ol>${items.map(x=>`<li>${x}</li>`).join("")}</ol></div>`:"";
+  const page=(no,title,body)=>`<article class="paper"><h2><span>${no}단계</span>${title}</h2>${body}<div class="rep-foot">${nm}님 재무설계 보고서 · ${no} / 6 · ${ymd(today)} 작성 · 금액 단위 만 원</div></article>`;
+  const stt=(k,v)=>`<span class="pill ${st(k,v)}">${SL[st(k,v)]}</span>`;
+  const RN={em:"비상예비자금",save:"저축성향률",debt:"부채부담률",risk:"고위험 자산 비중"};
+  const weak=["em","save","debt","risk"].filter(k=>st(k,c.rNow[k])==="bad");
+  const srcName=g=>(g.src||[]).map(k=>k==="cash"?"비상예비자금":k==="rest"?"기존 투자자산":((S.buckets.find(b=>b.id===k)||{}).name||"")).filter(Boolean).join(", ")||"-";
+  const cuts=S.expenses.filter(e=>c.planAmt(e)<n(e.amt));
+  const cover=`<article class="paper rep-cover"><div class="brand"><span style="width:18px;height:18px;border-radius:50%;background:var(--grad);display:inline-block"></span>plan6.studio · 개인 재무설계 보고서</div>
+    <h1>${nm}님의<br>재무설계 보고서</h1>
+    <p class="meta">${[p.age?"만 "+p.age+"세":"",p.job,p.household].filter(Boolean).map(esc).join(" · ")}<br>작성일 ${dlong(today)} · 적용 설계안 <b>${sc.name}</b> · 표준 재무설계 6단계 절차에 따름</p>
+    <div class="rgrid"><div><span>월 저축</span><b>${fmt(c.saveNow)} → ${fmt(c.bucketSum)}만</b><small>설계안 실행 시</small></div><div><span>비상예비자금</span><b>${fmt(c.rNow.em,1)} → ${fmt(c.rAfter.em,1)}개월</b><small>권장 3~6개월</small></div><div><span>저축성향률</span><b>${pct(c.rNow.save,1)} → ${pct(c.rAfter.save,1)}</b><small>권장 50% 이상</small></div><div><span>6년 후 금융자산</span><b>${won(P72).replace(" 원","")}</b><small>현재 ${won(finNow).replace(" 원","")}</small></div></div>
+    <div class="rep-sum"><b>진단</b> ${weak.length?`${weak.map(k=>RN[k]).join(", ")} 지표가 위험 구간입니다.`:"주요 재무비율이 위험 구간을 벗어나 있습니다."}${p.concern?` 고객의 고민은 “${esc(p.concern)}”입니다.`:""}<br><b>처방</b> ${acts.map(([s,a],i)=>`${"①②③④⑤⑥"[i]} ${a}`).join("  ")||"값을 입력하면 처방이 표시됩니다."}<br><b>기대 효과</b> 매월 ${fmt(c.bucketSum)}만 원을 목적별 계좌에 먼저 저축해, 6년 뒤 금융자산 약 ${won(P72)}을 만듭니다.</div>
+    <h3>보고서 구성</h3>${tbl(["단계","내용","핵심 결과"],[["1","관계 정립","서비스 범위 · 역할 · 합의 사항"],["2","목표 설정 · 자료 수집",`재무목표 ${S.goals.length}개 · 월 세후소득 ${fmt(c.sal)}만 원`],["3","분석 · 평가",`위험 지표 ${weak.length}개 · 순자산 ${fmt(c.net)}만 원`],["4","설계안 수립 · 제시",`${sc.name} · 월 ${fmt(c.bucketSum)}만 원 목적별 적립`],["5","실행",`실행 과제 ${it.length}건 · ${dstr(st0)} 시작`],["6","점검 · 리밸런싱",`트리거 ${T.length}개 · 분기 점검`]])}
+    ${todo("가장 먼저 할 일",it.slice(0,3).map(x=>`<b>${dstr(x[3])}</b> ${esc(x[1])}`))}</article>`;
+  const p1=page(1,"고객과의 관계 정립",`<p>재무설계는 목표와 책임의 범위를 먼저 합의하는 데서 시작합니다. 이 보고서는 AI 도구가 계산과 정리를 돕고, 최종 판단은 고객과 재무설계사가 내리는 방식으로 작성했습니다.</p>
+    <h3>서비스 범위</h3>${tbl(["구분","내용"],[["포함","종합 재무상태 진단 (현금흐름표 · 자산부채표 · 재무비율)"],["포함","지출 구조 개선과 저축 여력 확보"],["포함","단기 · 중기 · 장기 목표별 4-Bucket 포트폴리오"],["포함","ISA · 연금저축 · 청년 정책상품 세제 혜택 연계"],["제외","개별 주식 · 암호화폐 단기 매매 종목 추천"],["제외","금융상품 판매 · 가입 대행, 세무 신고 대리"]])}
+    <h3>역할 분담</h3>${tbl(["주체","맡는 일"],[["AI 도구","입력 누락 · 모순 점검, 재무비율 계산, 시나리오 3안 생성, 트리거 판정"],["재무설계사","세법 · 정책 요건 검증, 행동재무학적 해석, 설계안 설명과 최종 검토"],["고객","목표 우선순위 결정, 설계안 선택, 실행과 정기 점검"]])}
+    <h3>합의 사항</h3>${tbl(["확인","내용"],CONSENT.map(([k,x])=>[S.consent[k]?"☑":"☐",x]))}
+    ${todo("고객이 확인할 것",CONSENT.filter(([k])=>!S.consent[k]).map(([k,x])=>x).concat(["합의한 내용을 확인하고 마지막 장에 서명합니다."]))}`);
+  const prof=[["이름 (가명)",p.name],["만 나이",p.age?p.age+"세":""],["직업 · 경력",p.job],["가구 구성",p.household],["거주 형태",p.housing],["투자 성향",p.risk],["라이프사이클",p.stage],["연봉 (총급여)",n(p.annual)?fmt(n(p.annual))+"만 원":""],["무주택 세대주",p.homeless],["현재 저축",S.saving.note||""]];
+  const pr=[];for(let i=0;i<prof.length;i+=2)pr.push([prof[i][0],esc(prof[i][1]),prof[i+1]?prof[i+1][0]:"",prof[i+1]?esc(prof[i+1][1]):""]);
+  const p2=page(2,"재무목표 설정과 자료 수집",`<h3>고객 프로필</h3>${tbl(["항목","내용","항목","내용"],pr)}
+    <h3>재무목표 (우선순위 순)</h3>${tbl(["구분","목표","금액","기한","재원"],S.goals.map(g=>[esc(g.term),esc(g.name),n(g.amt)?fmt(n(g.amt)):"지속 적립",mlabel(n(g.months)),esc(srcName(g))]),[2])}
+    <div class="rep-2"><div><h3>월 현금흐름</h3>${tbl(["항목","금액","소득 대비"],[["<b>세후 근로소득</b>",`<b>${fmt(c.sal)}</b>`,""]].concat(S.expenses.map(e=>[esc(e.name),fmt(n(e.amt)),pct(c.sal?n(e.amt)/c.sal*100:0,1)]),[["현재 저축 · 투자",fmt(c.saveNow),pct(c.sal?c.saveNow/c.sal*100:0,1)]]),[1,2])}</div>
+    <div><h3>자산과 부채</h3>${tbl(["항목","구분","금액"],S.assets.map(a=>[esc(a.name),TYPES[a.type]||"",fmt(n(a.amt))]).concat(S.debts.map(d=>[esc(d.name),"부채","−"+fmt(n(d.bal))]),[["<b>순자산</b>","",`<b>${fmt(c.net)}</b>`]]),[2])}</div></div>
+    ${todo("고객이 준비할 것",lastIssues.filter(x=>x[0]!=="good").map(x=>`<b>${x[1]}</b> · ${x[2]}`).concat(["최근 3개월 카드 · 계좌 내역으로 변동지출 금액을 다시 확인합니다.","목표 금액이나 기한이 바뀌면 2단계 값을 고칩니다. 모든 결과가 다시 계산됩니다."]))}`);
+  const habits=cuts.filter(e=>e.note).slice(0,3).map(e=>`<b>${esc(e.name)}</b> ${fmt(n(e.amt))} → ${fmt(c.planAmt(e),1)}만 원 · ${esc(e.note)}`);
+  if(c.rNow.em<3)habits.push("갑작스러운 지출은 투자자산을 팔지 않고 비상예비자금 계좌에서만 꺼냅니다.");
+  if(c.rNow.risk>50)habits.push("손실 중인 자산은 ‘본전’이 아니라 목표 기한과 위험 감내 수준을 기준으로 판단합니다.");
+  if(c.rNow.save<50)habits.push("쓰고 남은 돈을 저축하지 않고, 급여일 다음 날 저축을 먼저 뗍니다.");
+  const p3=page(3,"재무상태 분석과 평가",`<h3>재무비율 진단</h3>${tbl(["지표","현재","판정","기준","실행 후","판정"],[["비상예비자금 충당률",fmt(c.rNow.em,1)+"개월",stt("em",c.rNow.em),"3~6개월",fmt(c.rAfter.em,1)+"개월",stt("em",c.rAfter.em)],["저축성향률",pct(c.rNow.save,2),stt("save",c.rNow.save),"50% 이상",pct(c.rAfter.save,2),stt("save",c.rAfter.save)],["부채부담률",pct(c.rNow.debt,2),stt("debt",c.rNow.debt),"20% 이하",pct(c.rAfter.debt,2),stt("debt",c.rAfter.debt)],["고위험 자산 비중",pct(c.rNow.risk,2),stt("risk",c.rNow.risk),"30% 이하",pct(c.rAfter.risk,2),stt("risk",c.rAfter.risk)]],[1,4])}
+    <div class="rep-2"><div><h3>소득은 어디로 가나 (현재)</h3><div class="rep-chart"><canvas id="rCash"></canvas></div></div><div><h3>자산부채 구조</h3><div class="rep-chart"><canvas id="rBS"></canvas></div></div></div>
+    <h3>목표 갭</h3>${tbl(["목표","현재 준비","목표 금액","부족액","준비율"],S.goals.map(g=>{const now=srcNow(g,c),amt=n(g.amt);return [esc(g.name),fmt(now),amt?fmt(amt):"지속",amt?fmt(Math.max(0,amt-now)):"-",amt?pct(now/amt*100,0):"-"]}),[1,2,3,4])}
+    <h3>원인 진단 (행동재무학)</h3><ul style="margin:0;padding-left:18px">${lastBeh.map(([s,a,b])=>`<li style="padding:3px 0"><b>${a}</b> · ${b}</li>`).join("")}</ul>
+    ${todo("고객이 바꿀 습관",habits)}`);
+  const g2=S.goals.find(g=>g.id===S.gjGoal)||S.goals.find(g=>n(g.amt)>0);
+  const scRows=Object.keys(SCEN).map(k=>{const cc=calc(k),PP=project(cc,P.rest.length-1);const b=k===c.sk;return [`${b?"<b>":""}${SCEN[k].name}${b?" · 선택</b>":""}`,fmt(cc.exPlan,0),fmt(cc.bucketSum,0),pct(cc.rAfter.save,1),g2?mlabel(reachMonth(g2,cc,PP)):"-",SCEN[k].vol]});
+  const p4=page(4,"재무설계안 수립과 제시",`<p>같은 자료로 세 가지 안을 만들어 비교했고, <b>${sc.name}</b>을 적용했습니다. ${sc.desc}</p>
+    ${tbl(["설계안","월 지출","월 저축","저축성향률",(g2?esc(g2.name):"목표")+" 도달","변동성"],scRows,[1,2,3,4])}
+    <h3>① 지출 구조 개선 · 월 ${fmt(c.exNow-c.exPlan,1)}만 원 절감</h3>${cuts.length?tbl(["항목","현재","목표","실행 방법"],cuts.map(e=>[esc(e.name),fmt(n(e.amt)),fmt(c.planAmt(e),1),esc(e.note||"")]),[1,2]):"<p>줄일 항목이 없습니다.</p>"}
+    <h3>② 자산 재배치</h3><p>${S.sells.map(x=>{const a=S.assets.find(y=>y.id===x.asset);return a&&n(x.amt)>0?`${esc(a.name)} ${fmt(n(x.amt))}만 원`:""}).filter(Boolean).join(", ")||"정리할 자산 없음"} 정리 → 비상예비자금 <b>${fmt(c.B.liquid)}만 원</b> (${fmt(c.rAfter.em,1)}개월분) 확보, 남은 투자자산 ${fmt(c.restAmt)}만 원.</p>
+    <h3>③ 목적별 월 적립 (4-Bucket) · ${fmt(c.bucketSum,1)}만 원</h3>${tbl(["계좌","상품","월 적립","기대수익률","연결 목표"],c.buckets.map(b=>[esc(b.name),esc(b.product),fmt(b.pmt,1),pct(b.rate,1),S.goals.filter(g=>(g.src||[]).includes(b.id)).map(g=>esc(g.name)).join(", ")||"-"]),[2,3])}
+    <h3>자산 성장 경로 (6년)</h3><div class="rep-chart" style="height:250px"><canvas id="rProj"></canvas></div>
+    <h3>목표 달성 검증</h3>${tbl(["목표","목표 금액","기한 시점 예상","도달 시점","달성률"],gRows.map(x=>[esc(x.g.name),x.amt?fmt(x.amt):"지속",fmt(x.v),mlabel(x.reach),x.r==null?"적립":pct(x.r,0)]),[1,2,3,4])}
+    <h3>세제 혜택</h3><ul style="margin:0;padding-left:18px">${lastTax.map(([a,b])=>`<li style="padding:3px 0"><b>${a}</b> · ${b}</li>`).join("")}</ul>
+    ${todo("고객이 결정 · 확인할 것",[`${sc.name}을 최종 선택할지 확인합니다. 다른 안을 고르면 모든 수치가 다시 계산됩니다.`,"상품 가입 전 금융기관 약관과 가입 요건(소득 · 무주택 · 연령)을 확인합니다.",t.hasPens?`연금저축은 연 600만 원 한도 안에서 납입해 세액공제 약 ${fmt(t.pensCredit,1)}만 원을 받습니다.`:"","기대수익률은 과거 평균에 근거한 가정이며 손실 가능성이 있음을 이해합니다."].filter(Boolean))}`);
+  const mrows=[0,1,2].map(k=>{const d=addM(st0,k,1);const E=calEvents(c,d.getFullYear(),d.getMonth());return [`${d.getFullYear()}년 ${d.getMonth()+1}월`,E.slice(0,5).map(e=>`${dstr(e.d)} ${esc(e.t)}`).join("<br>")+(E.length>5?`<br><small>외 ${E.length-5}건</small>`:"")]});
+  const p5=page(5,"재무설계안 실행",`<p>급여일 다음 날 저축이 먼저 빠져나가도록 자동이체를 걸어, 남은 돈으로 생활하는 구조를 만듭니다. 실행 시작일은 <b>${dlong(st0)}</b>입니다.</p>
+    <h3>매월 돈의 흐름</h3>${tbl(["날짜","통장 · 계좌","금액","내용"],[[`매월 ${S.exec.payday}일`,"급여 통장",fmt(c.sal),"세후 근로소득 입금"]].concat(c.buckets.filter(b=>b.pmt>0).map(b=>[`매월 ${S.exec.moveday}일`,esc(b.product||b.name),fmt(b.pmt,1),"선저축 자동이체"]),[[`매월 ${S.exec.moveday}일`,"고정비 통장",fmt(c.fixPlan,1),"주거비 · 통신 · 보험 · 대출 상환"],[`매월 ${S.exec.moveday}일`,"변동비 체크카드",fmt(c.varPlan,1),`월 한도 · 주간 약 ${fmt(c.varPlan/4.3,1)}만 원`]]),[2])}
+    <h3>실행 일정표</h3>${tbl(["날짜","할 일","구분","완료"],it.map(x=>[dstr(x[3]),esc(x[1]),x[2],S.checks[x[0]]?"☑":"☐"]))}
+    <h3>첫 3개월 일정</h3>${tbl(["월","주요 일정"],mrows)}
+    ${todo("고객이 할 일 (날짜 순)",it.filter(x=>!S.checks[x[0]]).slice(0,6).map(x=>`<b>${dstr(x[3])}</b> ${esc(x[1])}`))}`);
+  const p6=page(6,"점검과 리밸런싱",`<p>계획과 실제가 달라지는 순간을 미리 정해 두고, 그때 무엇을 할지 약속합니다.</p>
+    <h3>점검 주기</h3>${tbl(["주기","언제","무엇을"],[["월간",`매월 ${S.exec.payday}일 급여 입금 후`,"월간 점검판에 실제 소득 · 지출 · 저축을 적고 계획과 비교"],["분기",`${dstr(addM(st0,3))}부터 3개월마다`,"ISA 주식 비중 이탈 확인, 리밸런싱 트리거 판정"],["연간","매년 2월 연말정산 후","환급금 재투자, 소득 · 목표 · 투자성향 변화를 반영해 설계안 재수립"]])}
+    <h3>트리거 기반 리밸런싱</h3>${tbl(["트리거","조건","대응","현재"],T.map(x=>[`<b>${x.n}</b><br><small>${x.cy}</small>`,x.c,x.a,x.f?'<span class="pill warn">발생</span>':'<span class="pill mute">대기</span>']))}
+    <h3>상황이 달라지면</h3>${tbl(["상황","영향","다시 볼 단계"],Object.values(EV).map(e=>{const d=e.d();return [`${e.t} · ${e.s}`,d.impact[0],d.back.map(b=>b+"단계").join(", ")]}))}
+    ${todo("고객이 지킬 약속",[`매월 ${S.exec.payday}일 급여가 들어오면 점검판에 실제 금액을 적습니다.`,`변동지출이 계획(${fmt(c.varPlan,1)}만 원)보다 10% 넘게 많으면 다음 달 체크카드 한도를 낮춥니다.`,`비상예비자금이 ${fmt(c.B.liquid*.7)}만 원 아래로 줄면 ISA 매수를 멈추고 먼저 채웁니다.`,"이직 · 이사 · 결혼 같은 변화가 생기면 2단계 자료를 고치고 설계안을 다시 고릅니다."])}
+    <div class="sign"><div>고객 확인 · 서명</div><div>재무설계사 확인 · 서명</div></div>
+    <p class="rep-foot" style="border:none">본 보고서는 가상 고객 데이터를 바탕으로 한 교육 · 사례 연구 자료입니다. 특정 금융상품을 권유하지 않으며, 기대수익률은 보장 수익이 아닙니다. 세법 · 제도는 2026년 현행 기준이며 실제 가입 전 금융기관과 국세청 안내로 다시 확인해야 합니다.</p>`);
+  ["rCash","rBS","rProj"].forEach(id=>{if(charts[id]){charts[id].destroy();delete charts[id]}delete pending[id]});
+  $("#report").innerHTML=cover+p1+p2+p3+p4+p5+p6;
+  const col=COLORS(),NA={animation:false};
+  const cf=[[c.fixNow,"고정지출"],[c.varNow,"변동지출"],[c.saveNow,"저축·투자"],[Math.max(0,c.sal+c.bonus-c.exNow-c.saveNow),"미배분"]];
+  chart("rCash",{type:"doughnut",data:{labels:cf.map(x=>x[1]),datasets:[{data:cf.map(x=>x[0]),backgroundColor:["#3b3b4f","#a3a3b8",css("--blue"),"#e2e2ea"],borderColor:"#fff",borderWidth:2}]},plugins:[NUMS],options:baseOpts(Object.assign({},NA,{cutout:"55%",scales:{},plugins:Object.assign(baseOpts().plugins,{legend:{position:"right",labels:Object.assign({},baseOpts().plugins.legend.labels,{generateLabels:ch=>ch.data.labels.map((l,i)=>({text:`${i+1}. ${l} ${fmt(ch.data.datasets[0].data[i])}`,fillStyle:ch.data.datasets[0].backgroundColor[i],strokeStyle:"#fff",pointStyle:"circle",index:i}))})}})}))});
+  chart("rBS",{type:"bar",data:{labels:["자산","부채 + 순자산"],datasets:[["유동성",[c.A.liquid,0],col[0]],["안정 투자",[c.A.safe,0],col[1]],["고위험 투자",[c.A.risk,0],col[2]],["노후",[c.A.retire,0],col[3]],["사용 자산",[c.A.use,0],col[4]],["부채",[0,c.debtBal],col[5]],["순자산",[0,Math.max(0,c.net)],"#9a9aab"]].map(([l,d,cl])=>({label:l,data:d,backgroundColor:cl,stack:"s",borderRadius:3,maxBarThickness:70}))},options:baseOpts(Object.assign({},NA,{plugins:Object.assign(baseOpts().plugins,{legend:{position:"right",labels:baseOpts().plugins.legend.labels}}),scales:Object.assign(baseOpts().scales,{x:Object.assign(baseOpts().scales.x,{stacked:true}),y:Object.assign(baseOpts().scales.y,{stacked:true})})}))});
+  const yl=[...Array(73).keys()],yds=[{label:"기존 투자자산",data:P.rest.slice(0,73),backgroundColor:hexA(css("--c5"),.4),borderColor:css("--c5"),fill:"origin",stack:"a"}].concat(P.series.map((x,i)=>({label:x.name,data:x.arr.slice(0,73),backgroundColor:hexA(col[i%6],.35),borderColor:col[i%6],fill:"-1",stack:"a"})));
+  yds.forEach(d=>Object.assign(d,{pointRadius:0,borderWidth:1.5,tension:.25}));
+  chart("rProj",{type:"line",data:{labels:yl.map(m=>m?m+"개월":"현재"),datasets:yds},options:baseOpts(Object.assign({},NA,{scales:Object.assign(baseOpts().scales,{x:Object.assign(baseOpts().scales.x,{ticks:Object.assign(baseOpts().scales.x.ticks,{autoSkip:false,maxRotation:0,callback:(v,i)=>i%12===0?(i?i/12+"년":"현재"):""})}),y:Object.assign(baseOpts().scales.y,{stacked:true})})}))});
+}
 let curView="home";
-function renderCoach(c){c=c||calc();const P=project(c,120);const T={home:"개요",s1:"1단계 관계 정립",s2:"2단계 자료 수집",s3:"3단계 분석",s4:"4단계 설계안",s5:"5단계 실행",s6:"6단계 점검",basis:"산출 근거"};
+function renderCoach(c){c=c||calc();const P=project(c,120);const T={report:"보고서",home:"개요",s1:"1단계 관계 정립",s2:"2단계 자료 수집",s3:"3단계 분석",s4:"4단계 설계안",s5:"5단계 실행",s6:"6단계 점검",basis:"산출 근거"};
   const g=S.goals.find(x=>x.id===S.gjGoal);const L={
   home:[["가장 큰 위험",c.rNow.em<3?`비상예비자금 ${fmt(c.rNow.em,1)}개월분으로 유동성이 부족합니다.`:`저축성향률 ${pct(c.rNow.save,1)}입니다.`],["설계안 효과",`${SCEN[c.sk].name} 실행 시 월 저축이 ${fmt(c.saveNow)} → ${fmt(c.bucketSum,1)}만 원으로 늘어납니다.`],["목표",g?`${g.name}은 ${mlabel(reachMonth(g,c,P))}에 도달할 것으로 예상됩니다.`:"목표를 입력하세요."]],
   s1:[["왜 먼저 합의하나","기대수익률은 가정값입니다. 고객이 이를 이해해야 4단계의 시나리오 선택이 의미를 가집니다."],["범위","개별 종목 추천을 제외해 FOMO형 투자 습관을 강화하지 않도록 했습니다."]],
@@ -1001,7 +1300,8 @@ function renderCoach(c){c=c||calc();const P=project(c,120);const T={home:"개요
   s4:[["선택 이유",`${SCEN[c.sk].name}: 저축성향률 ${pct(c.rAfter.save,1)}, 변동성 ${SCEN[c.sk].vol}.`],["검증",`ISA 31만 원 × 36개월 × 연 7%의 미래가치는 약 1,239만 원으로 보고서 수치와 같습니다.`],["세제",`연금저축 환급 ${fmt(tax(c).pensCredit,1)}만 원을 매년 ISA에 재투자합니다.`]],
   s5:[["자동화 이유","선저축 자동이체는 넛지 이론에 근거해 의지와 관계없이 저축이 먼저 일어나게 합니다."],["체크카드 한도",`변동비 월 ${fmt(c.varPlan,1)}만 원, 주간 약 ${fmt(c.varPlan/4.3,1)}만 원으로 관리합니다.`]],
   s6:[["트리거",`지금 대응이 필요한 항목은 ${triggers(c).filter(x=>x.f).length}건입니다.`],["재설계 원칙","변화가 생기면 해당 입력을 다시 수집하고 4단계에서 고객이 우선순위를 다시 고릅니다."]],
-  basis:[["투명성","모든 수치는 화면에 공개된 산식으로 재현할 수 있습니다."]]};
+  basis:[["투명성","모든 수치는 화면에 공개된 산식으로 재현할 수 있습니다."]],
+  report:[["구성","표지 요약과 6단계 각 장 끝에 ‘고객이 할 일’을 넣었습니다."],["출력","PDF 저장 · 인쇄 버튼을 누르면 A4 기준으로 장마다 나뉘어 저장됩니다."]]};
   $("#drTitle").textContent="AI 코치 · "+T[curView];$("#drBody").innerHTML=(L[curView]||[]).map(([a,b],i)=>`<div class="item"><span class="num-badge">${i+1}</span><div><b>${a}</b><p>${b}</p></div></div>`).join("")}
 
 /* ---------- events ---------- */
@@ -1009,6 +1309,7 @@ function setPath(p,v){const k=p.split(".");let x=S;for(let i=0;i<k.length-1;i++)
 let tmr;
 document.addEventListener("input",e=>{const el=e.target;
   if(el.id==="gjRange"){S.gj=+el.value;save();renderJourney(calc());return}
+  if(el.id==="startday"){S.exec.start=el.value;calY=null;calSel=null;save();update();return}
   if(el.id==="payday"||el.id==="moveday"){S.exec[el.id]=parseInt(el.value)||1;save();update();return}
   if(!el.dataset.p)return;let v=el.value;if(el.type==="number")v=el.value===""?"":parseFloat(el.value);setPath(el.dataset.p,v);
   if(/^buckets\.\d+\.pmt|^goals/.test(el.dataset.p))S.gj=null;
@@ -1024,6 +1325,7 @@ document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)r
   if(b.dataset.src!=null){const g=S.goals[+b.dataset.src],set=new Set(g.src||[]);set.has(b.dataset.v)?set.delete(b.dataset.v):set.add(b.dataset.v);g.src=[...set];S.gj=null;save();renderInputs();update();return}
   if(b.dataset.scen){S.scenario=b.dataset.scen;S.gj=null;save();update();toast(SCEN[S.scenario].name+"으로 다시 계산했습니다");return}
   if(b.dataset.ev){S.event=S.event===b.dataset.ev?null:b.dataset.ev;save();renderEvents(calc());return}
+  if(b.dataset.day){if(b.classList.contains("out")){const d=new Date(b.dataset.day+"T00:00:00");calY=d.getFullYear();calM=d.getMonth()}calSel=b.dataset.day;renderCal(calc());return}
   if(b.dataset.h){horizon=+b.dataset.h;b.parentElement.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));update();return}
   if(b.dataset.k){cfMode=b.dataset.k;b.parentElement.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));update();return}
   const id=b.id;
@@ -1033,30 +1335,35 @@ document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)r
   else if(id==="addSell"){const a=S.assets.find(x=>x.type!=="liquid"&&x.type!=="use");if(!a){toast("2단계에서 투자 자산을 먼저 추가하세요");return}S.sells.push({id:uid(),asset:a.id,amt:0})}
   else if(id==="addBucket")S.buckets.push({id:uid(),name:"새 계좌",product:"",pmt:0,rate:3,link:"",months:""});
   else if(id==="btnExample"){S=example();toast("예시 고객을 불러왔습니다")}
-  else if(id==="btnBlank"){S=blank();toast("빈 양식입니다. 2단계에서 입력하세요");location.hash="s2"}
+  else if(id==="calPrev"||id==="calNext"){calM+=id==="calNext"?1:-1;if(calM<0){calM=11;calY--}if(calM>11){calM=0;calY++}calSel=null;renderCal(calc());return}
+  else if(id==="calToday"){const t=new Date();calY=t.getFullYear();calM=t.getMonth();calSel=ymd(t);renderCal(calc());return}
+  else if(id==="doPrint"){flushCharts();setTimeout(()=>{try{window.print()}catch(e){toast("이 화면에서는 인쇄가 막혀 있습니다")}},300);return}
+  else if(id==="btnIcs"){try{const blob=new Blob([icsText(calc())],{type:"text/calendar"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="plan6-schedule.ics";document.body.appendChild(a);a.click();a.remove();toast("캘린더 파일을 저장했습니다")}catch(err){toast("이 환경에서는 파일 저장이 막혀 있습니다")}return}
+  else if(id==="btnBlank"||id==="btnBlank2"){S=blank();toast("빈 양식입니다. 2단계에서 입력하세요");location.hash="s2"}
   else if(id==="gjReset"){S.gj=null;save();renderJourney(calc());return}
   else if(id==="btnExport"){try{const blob=new Blob([JSON.stringify(S,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="plan6-data.json";document.body.appendChild(a);a.click();a.remove();toast("파일로 저장했습니다")}catch(err){toast("이 환경에서는 파일 저장이 막혀 있습니다")}return}
-  else if(id==="btnPrint"){document.querySelectorAll(".view").forEach(v=>v.classList.add("on"));flushCharts();setTimeout(()=>{try{window.print()}catch(e){}route()},600);return}
+  else if(id==="btnPrint"){location.hash="report";return}
   else if(id==="btnTheme"){const r=document.documentElement,cur=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");r.setAttribute("data-theme",cur==="dark"?"light":"dark");Object.values(charts).forEach(ch=>ch.destroy());for(const k in charts)delete charts[k];update();flushCharts();return}
   else if(id==="fab"){const d=$("#drawer");d.classList.toggle("on");b.setAttribute("aria-expanded",d.classList.contains("on"));renderCoach();return}
   else if(id==="drClose"){$("#drawer").classList.remove("on");return}
-  else if(id==="btnPrompt"||id==="drPrompt"){$("#aiPrompt").value=buildPrompt(calc());$("#modal").classList.add("on");return}
+  else if(id==="btnPrompt"||id==="drPrompt"||id==="mPrompt"){$("#aiPrompt").value=buildPrompt(calc());$("#modal").classList.add("on");return}
   else if(id==="mClose"){$("#modal").classList.remove("on");return}
   else if(id==="copyPrompt"){const ta=$("#aiPrompt");const ok=()=>toast("복사했습니다");const fb=()=>{ta.select();toast("선택했습니다. Ctrl+C로 복사하세요")};navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(ta.value).then(ok,fb):fb();return}
   else return;
   save();renderInputs();update()});
+document.addEventListener("mouseover",e=>{const b=e.target.closest("[data-leg]");if(b&&!b.contains(e.relatedTarget))legHover(b,true)});
+document.addEventListener("mouseout",e=>{const b=e.target.closest("[data-leg]");if(b&&!b.contains(e.relatedTarget))legHover(b,false)});
+document.addEventListener("focusin",e=>{const b=e.target.closest("[data-leg]");if(b)legHover(b,true)});
 $("#modal").addEventListener("click",e=>{if(e.target.id==="modal")e.currentTarget.classList.remove("on")});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){$("#modal").classList.remove("on");$("#drawer").classList.remove("on")}});
 
-const VIEWS=["home","s1","s2","s3","s4","s5","s6","basis"];
+const VIEWS=["home","s1","s2","s3","s4","s5","s6","basis","report"];
 function route(){let v=(location.hash||"").slice(1);if(!VIEWS.includes(v))v="home";const changed=v!==curView;curView=v;
   document.querySelectorAll(".view").forEach(x=>x.classList.toggle("on",x.id==="v-"+v));
   document.querySelectorAll("[data-v]").forEach(a=>a.classList.toggle("on",a.dataset.v===v));
-  const t=document.querySelector("#tabs a.on");if(t&&t.scrollIntoView)t.scrollIntoView({block:"nearest",inline:"center"});
   if(changed)window.scrollTo(0,0);
   flushCharts();renderCoach()}
 window.addEventListener("hashchange",route);
-window.addEventListener("afterprint",route);
 renderInputs();update();route();
 })();
 </script>
