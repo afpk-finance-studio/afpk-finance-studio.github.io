@@ -1961,7 +1961,7 @@ const featIO="IntersectionObserver" in window?new IntersectionObserver(es=>es.fo
 document.querySelectorAll(".feats>.feat").forEach((el,k)=>{if(!featIO)return;el.classList.add("rv","rvf");el.style.setProperty("--d",(k%2)*110+"ms");featIO.observe(el)});
 /* custom cursor (overview only, pointer devices) */
 const FINE=matchMedia("(hover:hover) and (pointer:fine)").matches&&!matchMedia("(prefers-reduced-motion: reduce)").matches;
-if(FINE){const dot=document.createElement("div"),ring=document.createElement("div");dot.className="cur-dot";ring.className="cur-ring";document.body.append(dot,ring);
+if(false){const dot=document.createElement("div"),ring=document.createElement("div");dot.className="cur-dot";ring.className="cur-ring";document.body.append(dot,ring);
   let tx=-100,ty=-100,rx=-100,ry=-100,vis=false;
   document.addEventListener("pointermove",e=>{tx=e.clientX;ty=e.clientY;if(!vis){vis=true;rx=tx;ry=ty}dot.style.transform=`translate(${tx}px,${ty}px)`;
     const t=e.target.closest&&e.target.closest("input,textarea,select"),h=e.target.closest&&e.target.closest("a,button,[data-go],.feat,label,.kpi,[data-leg]");
