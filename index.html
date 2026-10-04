@@ -758,6 +758,77 @@ input[type=range]::-moz-range-thumb{border-color:#6a3cff}
 .fchip.f3{left:9%;top:66%}
 @media (max-width:600px){.fchip .fi{width:26px;height:26px;font-size:12px;border-radius:8px}.fchip b{font-size:13px}.hx-bar{height:24px}.hx-bar span{display:none}.hx-bar i{width:7px;height:7px}.hx-phone{border-radius:20px;padding:4px}.hx-phone img{border-radius:16px}.hx-phone .island{top:8px;height:8px}}
 
+/* ===== v8: feature bento (Clobe-style) — every tile links to its screen ===== */
+.feat-sec{display:flex;flex-direction:column;gap:22px;padding:28px 0 8px}
+.feat-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+.feat-eye{font-size:12px;font-weight:800;letter-spacing:.16em;background:var(--acc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.feat-head h2{font-size:clamp(26px,3.2vw,40px);font-weight:800;letter-spacing:-.045em}
+.feat-head p{color:var(--ink-2);font-size:15.5px;max-width:52ch}
+.feats{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.feat{position:relative;display:flex;flex-direction:column;gap:6px;min-width:0;padding:22px 22px 18px;border-radius:22px;background:#fff;border:1px solid var(--line);text-decoration:none;color:var(--ink);overflow:hidden;isolation:isolate;box-shadow:0 1px 2px rgba(0,0,0,.03),0 10px 28px -20px rgba(0,0,0,.14);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,border-color .35s}
+.feat.w2{grid-column:span 2}
+.feat:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(420px circle at var(--mx,80%) var(--my,0%),rgba(106,60,255,.10),transparent 55%);opacity:0;transition:opacity .35s}
+.feat:hover,.feat:focus-visible{transform:translateY(-4px);border-color:transparent;box-shadow:0 0 0 1.5px rgba(106,60,255,.45),0 24px 50px -24px rgba(106,60,255,.45)}
+.feat.rv.shown:hover{transform:translateY(-4px)}
+.feat:hover:before{opacity:1}
+.fstep{font-size:12px;font-weight:700;color:var(--ink-3)}
+.feat h3{font-size:19px;font-weight:800;letter-spacing:-.03em}
+.feat p{font-size:13.5px;color:var(--ink-2);line-height:1.55;max-width:46ch}
+.fgo{margin-top:auto;padding-top:14px;font-size:13.5px;font-weight:700;color:var(--ink);display:inline-flex;gap:4px;transition:gap .25s}
+.feat:hover .fgo{background:var(--acc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fv{margin-top:12px}
+.feat.dark{background:#0b0b0c;color:#fff;border-color:#0b0b0c}
+.feat.dark:after{content:"";position:absolute;right:-20%;bottom:-60%;width:80%;height:120%;z-index:-1;background:radial-gradient(closest-side,rgba(106,60,255,.55),rgba(255,111,165,.18) 60%,transparent)}
+.feat.dark p,.feat.dark .fstep{color:rgba(255,255,255,.6)}
+.feat.dark .fgo{color:#fff}
+/* mini visuals */
+.fv-ratio{display:flex;flex-direction:column;gap:9px}
+.fv-ratio div{display:grid;grid-template-columns:86px minmax(0,1fr) 62px;gap:10px;align-items:center;font-size:12px;color:var(--ink-2)}
+.fv-ratio i{height:8px;border-radius:99px;background:var(--fill);position:relative;overflow:hidden}
+.fv-ratio i:after{content:"";position:absolute;left:0;top:0;bottom:0;width:0;border-radius:99px;background:linear-gradient(90deg,#6a3cff,var(--c));transition:width 1.2s cubic-bezier(.16,1,.3,1) .2s}
+.rv.shown .fv-ratio i:after,.fv-ratio i.go:after{width:var(--w)}
+.fv-ratio b{text-align:right;color:var(--ink);font-variant-numeric:tabular-nums}
+.fv-check{display:flex;flex-direction:column;gap:7px}
+.fv-check i{height:14px;border-radius:7px;background:var(--fill);position:relative;padding-left:22px}
+.fv-check i:before{content:"";position:absolute;left:0;top:0;width:14px;height:14px;border-radius:5px;border:1.5px solid var(--line-2);background:#fff}
+.fv-check i.on:before{border:none;background:linear-gradient(135deg,#6a3cff,#ff6fa5)}
+.fv-check i:nth-child(1){width:92%}.fv-check i:nth-child(2){width:76%}.fv-check i:nth-child(3){width:58%}
+.fv-ring{width:78px;height:78px;border-radius:50%;background:conic-gradient(#6a3cff,#ff6fa5 calc(var(--pc,100)*1%),var(--fill) 0);display:grid;place-items:center;position:relative}
+.fv-ring:before{content:"";position:absolute;inset:9px;border-radius:50%;background:#fff}
+.fv-ring span{position:relative;font-size:15px;font-weight:800;font-variant-numeric:tabular-nums}
+.fv-scen{display:flex;align-items:flex-end;gap:8px;height:70px}
+.fv-scen i{flex:1;height:var(--h);border-radius:8px 8px 3px 3px;background:linear-gradient(#e7e7ec,#f4f4f7);transform-origin:bottom;transform:scaleY(.2);transition:transform 1s cubic-bezier(.16,1,.3,1) .2s}
+.fv-scen i.on{background:linear-gradient(#ff7ab8,#6a3cff)}
+.rv.shown .fv-scen i{transform:none}
+.fv-donut{width:78px;height:78px;border-radius:50%;background:conic-gradient(#6a3cff 0 53%,#b25cff 0 77%,#ff6fa5 0 92%,#3e7bff 0);display:grid;place-items:center;position:relative}
+.fv-donut:before{content:"";position:absolute;inset:16px;border-radius:50%;background:#fff}
+.fv-donut span{position:relative;font-size:12.5px;font-weight:800}
+.fv-cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;max-width:330px}
+.fv-cal i{aspect-ratio:1.6/1;border-radius:7px;background:var(--card-2);border:1px solid var(--line)}
+.fv-cal i.a{background:linear-gradient(135deg,#6a3cff,#b25cff);border:none}
+.fv-cal i.b{background:linear-gradient(135deg,#ff6fa5,#ffb37a);border:none}
+.fv-cal i.c{background:#0b0b0c;border:none}
+.fv-trig{display:flex;flex-direction:column;gap:6px}
+.fv-trig div{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--ink-2);padding:8px 10px;border-radius:10px;background:var(--card-2)}
+.fv-trig i{width:8px;height:8px;border-radius:50%;background:var(--line-2);flex:none}
+.fv-trig b{margin-left:auto;font-size:11.5px;color:var(--ink-3)}
+.fv-trig .on{background:#fff4e6;color:var(--ink)}
+.fv-trig .on i{background:#ff8a00;box-shadow:0 0 0 4px rgba(255,138,0,.18)}
+.fv-trig .on b{color:#c26a00}
+.fv-doc{position:relative;height:84px}
+.fv-doc i{position:absolute;bottom:0;width:120px;height:80px;border-radius:8px;background:#fff;box-shadow:0 10px 24px -10px rgba(0,0,0,.6);transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.fv-doc i:after{content:"";position:absolute;left:12px;right:12px;top:14px;height:40px;background:repeating-linear-gradient(#e6e6ea 0 4px,transparent 4px 10px)}
+.fv-doc i:nth-child(1){left:0;transform:rotate(-8deg)}
+.fv-doc i:nth-child(2){left:40px;transform:rotate(-1deg)}
+.fv-doc i:nth-child(3){left:80px;transform:rotate(6deg);background:linear-gradient(135deg,#fff,#f3edff)}
+.feat:hover .fv-doc i:nth-child(1){transform:rotate(-14deg) translateX(-8px)}
+.feat:hover .fv-doc i:nth-child(3){transform:rotate(12deg) translateX(10px)}
+.feat-more{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 18px}
+.feat-more a,.feat-more button{border:none;background:none;padding:6px 2px;font-size:14px;font-weight:600;color:var(--ink-2);text-decoration:none}
+.feat-more a:hover,.feat-more button:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+@container main (max-width:1040px){.feats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@container main (max-width:560px){.feats{gap:10px}.feat{padding:16px 16px 14px;border-radius:18px}.feat h3{font-size:16.5px}.feat p{font-size:12.5px}.feat-sec{padding-top:16px}.fv-ratio div{grid-template-columns:72px minmax(0,1fr) 54px}.fv-ring,.fv-donut{width:66px;height:66px}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -836,6 +907,36 @@ input[type=range]::-moz-range-thumb{border-color:#6a3cff}
       </div>
     </div>
   </div>
+  <section class="feat-sec" aria-labelledby="featTitle">
+    <div class="feat-head">
+      <span class="feat-eye">FEATURES</span>
+      <h2 id="featTitle">재무설계 6단계, 필요한 기능을 한 곳에</h2>
+      <p>상담 합의부터 보고서까지 이어지는 기능들입니다. 카드를 누르면 해당 화면으로 바로 이동합니다.</p>
+    </div>
+    <div class="grid feats">
+      <a class="feat w2" href="#s3"><span class="fstep">3단계 · 분석·평가</span><h3>재무비율 자동 진단</h3><p>비상예비자금, 저축성향, 부채부담, 고위험 비중을 기준과 비교해 적정·위험을 바로 판정합니다.</p>
+        <div class="fv fv-ratio" aria-hidden="true"><div><span>비상예비자금</span><i style="--w:24%;--c:#ff6fa5"></i><b id="ftEm"></b></div><div><span>저축성향률</span><i style="--w:39%;--c:#b25cff"></i><b id="ftSave"></b></div><div><span>부채부담률</span><i style="--w:16%;--c:#3e7bff"></i><b id="ftDebt"></b></div></div><span class="fgo">진단 보기 →</span></a>
+      <a class="feat" href="#s1"><span class="fstep">1단계 · 관계 정립</span><h3>상담 합의 체크</h3><p>범위·역할·책임을 고객과 함께 확인합니다.</p>
+        <div class="fv fv-check" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></div><span class="fgo">합의하기 →</span></a>
+      <a class="feat" href="#s2"><span class="fstep">2단계 · 자료 수집</span><h3>입력 자동 점검</h3><p>빠진 값과 숫자 모순을 실시간으로 잡아냅니다.</p>
+        <div class="fv fv-ring" aria-hidden="true"><span id="ftComp">100%</span></div><span class="fgo">입력하기 →</span></a>
+      <a class="feat" href="#s4"><span class="fstep">4단계 · 설계안</span><h3>설계안 3가지 비교</h3><p>안정안·균형안·가속안의 목표 도달 시점을 나란히 봅니다.</p>
+        <div class="fv fv-scen" aria-hidden="true"><i style="--h:46%"></i><i class="on" style="--h:72%"></i><i style="--h:90%"></i></div><span class="fgo">비교하기 →</span></a>
+      <a class="feat" href="#s4"><span class="fstep">4단계 · 설계안</span><h3>4-Bucket 배분</h3><p>목적별 계좌에 월 저축을 나누고 성장 경로를 그립니다.</p>
+        <div class="fv fv-donut" aria-hidden="true"><span id="ftBucket"></span></div><span class="fgo">배분 보기 →</span></a>
+      <a class="feat w2" href="#s5"><span class="fstep">5단계 · 실행</span><h3>실행 체크리스트와 캘린더</h3><p>시작일을 정하면 할 일이 날짜별로 배치되고, 월급날·자동이체·분기 점검까지 달력에 표시됩니다. 휴대폰 캘린더로 내보낼 수도 있습니다.</p>
+        <div class="fv fv-cal" aria-hidden="true"><i class=""></i><i class="a"></i><i class=""></i><i class=""></i><i class="b"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="a"></i><i class=""></i><i class=""></i><i class="c"></i><i class=""></i><i class="b"></i><i class=""></i><i class=""></i><i class=""></i><i class="a"></i><i class=""></i><i class=""></i></div><span class="fgo">캘린더 열기 →</span></a>
+      <a class="feat w2" href="#s6"><span class="fstep">6단계 · 점검</span><h3>트리거 기반 리밸런싱</h3><p>비상금 부족, 시장 급락, 소득 변화 같은 조건이 생기면 어느 단계로 돌아가 무엇을 고칠지 자동으로 알려 줍니다.</p>
+        <div class="fv fv-trig" aria-hidden="true"><div><i></i>시장 폭락 · 전고점 대비 −20%<b>대기</b></div><div class="on"><i></i>소득 상승 · 실수령 +10%<b>대응</b></div><div><i></i>대출 완납 · 24개월 차<b>대기</b></div></div><span class="fgo">점검하기 →</span></a>
+      <a class="feat w2 dark" href="#report"><span class="fstep">결과물</span><h3>6단계 재무설계 보고서</h3><p>단계마다 고객이 할 일을 정리한 A4 보고서를 한 번에 만들고 PDF로 저장합니다.</p>
+        <div class="fv fv-doc" aria-hidden="true"><i></i><i></i><i></i></div><span class="fgo">보고서 보기 →</span></a>
+    </div>
+    <div class="feat-more">
+      <a href="#basis">산출 근거·관련 법령 →</a>
+      <button type="button" onclick="document.getElementById('fab').click()">AI 코치에게 묻기 →</button>
+      <button type="button" onclick="document.getElementById('btnPrompt').click()">AI 상담 프롬프트 만들기 →</button>
+    </div>
+  </section>
   <div class="summary" id="summary"></div>
   <div class="hero">
     <div class="card persona">
@@ -1342,6 +1443,7 @@ function update(){
   $("#fc1").innerHTML=`${fmt(c.saveNow)} → <span class="up">${fmt(c.bucketSum)}만</span>`;
   $("#fc2").innerHTML=`${fmt(c.rNow.em,1)} → <span class="up">${fmt(c.rAfter.em,1)}개월</span>`;
   $("#fc3").textContent=won(P72tot);
+  $("#ftEm").textContent=fmt(c.rNow.em,1)+"개월";$("#ftSave").textContent=fmt(c.rNow.save,1)+"%";$("#ftDebt").textContent=fmt(c.rNow.debt,1)+"%";$("#ftBucket").textContent=fmt(c.bucketSum,0)+"만";
   $("#hxMini").innerHTML=`<div><b>${S.goals.length}개</b><span>재무목표</span></div><div><b>3가지</b><span>설계안 비교</span></div><div><b>${execItems(c).length}건</b><span>날짜별 실행 과제</span></div><div><b>${triggers(c).length}개</b><span>점검 트리거</span></div>`;
   // hero
   $("#pAvatar").textContent=(p.name||"?").slice(0,1);
@@ -1461,7 +1563,7 @@ function renderJourney(c){
 function renderCompleteness(c){
   const p=S.profile;const req=[["이름",p.name],["나이",n(p.age)],["직업",p.job],["연봉",n(p.annual)],["세후 소득",c.sal],["지출 항목",c.exNow],["자산",c.totalA],["재무목표",S.goals.filter(g=>n(g.amt)>0).length]];
   const filled=req.filter(r=>r[1]).length;const per=Math.round(filled/req.length*100);
-  $("#compPct").textContent=per+"%";$("#compBar").style.width=per+"%";$("#compBar").className=per===100?"good":per>=70?"warn":"bad";
+  $("#compPct").textContent=per+"%";$("#ftComp").textContent=per+"%";$("#ftComp").parentNode.style.setProperty("--pc",per);$("#compBar").style.width=per+"%";$("#compBar").className=per===100?"good":per>=70?"warn":"bad";
   const issues=[];req.filter(r=>!r[1]).forEach(r=>issues.push(["bad",`${r[0]} 미입력`,"분석 정확도를 위해 입력이 필요합니다."]));
   if(c.sal&&c.exNow+c.saveNow>c.sal+.001)issues.push(["bad","소득보다 지출·저축이 큼",`지출 ${fmt(c.exNow)} + 저축 ${fmt(c.saveNow)} > 소득 ${fmt(c.sal)}. 금액을 다시 확인하세요.`]);
   if(c.unalloc>.001)issues.push(["warn","용도 미확인 금액",`매월 ${fmt(c.unalloc)}만 원의 쓰임이 확인되지 않습니다. 고객에게 추가 질문이 필요합니다.`]);
@@ -1732,7 +1834,7 @@ function buildBanners(){["s1","s2","s3","s4","s5","s6","basis"].forEach(v=>{cons
   const cur=v[0]==="s"?+v.slice(1):0;h.insertAdjacentHTML("beforeend",`<nav class="stepper" aria-label="단계 이동">${SN.map((t,i)=>`<a href="#s${i+1}" class="${i+1===cur?"cur":i+1<cur?"done":""}" title="${i+1}단계 ${t}"><i>${i+1<cur?"✓":i+1}</i><span class="lf">${t}</span><span class="ls">${SS[i]}</span></a>`).join("")}</nav>`)})}
 buildBanners();
 let rafP=0,lastE=null;
-document.addEventListener("pointermove",e=>{lastE=e;if(rafP)return;rafP=requestAnimationFrame(()=>{rafP=0;const ev=lastE,el=ev.target&&ev.target.closest&&ev.target.closest(".card,.kpi,.node,.summary>div");
+document.addEventListener("pointermove",e=>{lastE=e;if(rafP)return;rafP=requestAnimationFrame(()=>{rafP=0;const ev=lastE,el=ev.target&&ev.target.closest&&ev.target.closest(".card,.kpi,.node,.summary>div,.feat");
   if(el){const r=el.getBoundingClientRect();el.style.setProperty("--mx",(ev.clientX-r.left)+"px");el.style.setProperty("--my",(ev.clientY-r.top)+"px")}
   const hv=$("#hxVis");if(hv&&curView==="home"&&matchMedia("(hover:hover)").matches){const r=hv.getBoundingClientRect();HX.x=Math.max(-.6,Math.min(.6,(ev.clientX-r.left)/r.width-.5));HX.y=Math.max(-.6,Math.min(.6,(ev.clientY-r.top)/r.height-.5));hxApply()}})},{passive:true});
 document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(!g||e.target.closest("button,a,input,select,label,textarea"))return;location.hash=g.dataset.go});
