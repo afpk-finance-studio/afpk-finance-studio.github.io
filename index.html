@@ -1056,6 +1056,53 @@ html.dark .fv-cal i.c{background:#fff}
 .fp.rvp .fp-txt{transform:translateY(30px);transition-delay:.25s}
 .fp.rvp.shown .fp-vis,.fp.rvp.shown .fp-txt{transform:none}
 
+/* v13: Toss-inspired pass: pill CTAs with arrow discs, blur-in reveals, statement fill, goal map, grey canvas + borderless white cards */
+.arr{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#111;margin-left:14px;flex:none;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.arr:before{content:"";width:13px;height:13px;background:#fff;-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%272.8%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M4%2012h15M13%206l6%206-6%206%27/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%272.8%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M4%2012h15M13%206l6%206-6%206%27/%3E%3C/svg%3E") center/contain no-repeat}
+a:hover>.arr,button:hover>.arr{transform:translateX(3px)}
+.btn{border-radius:999px}.btn.sm{border-radius:999px}.btn.lg{border-radius:999px}
+.btn.white.lg:has(.arr){padding:7px 7px 7px 24px}
+.fp-go{background:rgba(255,255,255,.1);color:#fff;padding:7px 7px 7px 22px;border-radius:999px;font-weight:600;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.fp-go .arr{background:#fff}.fp-go .arr:before{background:#000}
+.fp-go:hover{background:rgba(255,255,255,.18);color:#fff;box-shadow:none;transform:none}
+.feat-more a,.feat-more button{border-radius:999px}
+.fp{background:radial-gradient(90% 80% at 25% 115%,rgba(150,150,175,.22),transparent 62%),radial-gradient(60% 60% at 90% -10%,rgba(178,92,255,.12),transparent 60%),#0a0a0d;border:none;border-radius:32px}
+.fp.rev{background:radial-gradient(90% 80% at 75% 115%,rgba(150,150,175,.22),transparent 62%),radial-gradient(60% 60% at 10% -10%,rgba(255,111,165,.1),transparent 60%),#0a0a0d}
+.fp:hover{border-color:transparent}
+.feat-head h2,.dash-head h2{font-size:clamp(30px,4.2vw,54px);line-height:1.18;letter-spacing:-.05em;text-wrap:balance}
+.feat-head p{font-size:16px}
+.rv{filter:blur(10px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.16,1,.3,1),filter .9s cubic-bezier(.2,.7,.2,1),box-shadow .18s,border-color .18s;transition-delay:var(--d,0ms)}
+.rv.shown{filter:none}
+.fp.rvp{filter:blur(12px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1.2s cubic-bezier(.16,1,.3,1),filter 1s cubic-bezier(.16,1,.3,1)}
+.fp.rvp.shown{filter:none}
+@media (prefers-reduced-motion:reduce){.rv,.fp.rvp{filter:none}}
+.say-sec{position:relative;display:grid;place-items:center;text-align:center;padding:130px 0 120px;margin-top:20px}
+.say-grid{position:absolute;inset:0 -32px;pointer-events:none;background:linear-gradient(rgba(255,255,255,.08),rgba(255,255,255,.08)) 14% 0/1px 100% no-repeat,linear-gradient(rgba(255,255,255,.08),rgba(255,255,255,.08)) 86% 0/1px 100% no-repeat,linear-gradient(90deg,rgba(255,255,255,.08),rgba(255,255,255,.08)) 0 22%/100% 1px no-repeat,linear-gradient(90deg,rgba(255,255,255,.08),rgba(255,255,255,.08)) 0 78%/100% 1px no-repeat}
+.say{position:relative;margin:0;font-size:clamp(28px,4.6vw,62px);font-weight:800;letter-spacing:-.05em;line-height:1.3;color:#fff}
+.say .c{color:rgba(255,255,255,.15);transition:color .3s}
+.say .c.on{color:#fff}
+.say .c.cur{position:relative}
+.say .c.cur:after{content:"";position:absolute;right:-.12em;top:.1em;bottom:.08em;width:.09em;border-radius:2px;background:linear-gradient(#b25cff,#ff6fa5)}
+.wv-sec{display:flex;flex-direction:column;gap:30px;padding:110px 0 0}
+.wv-meta{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:var(--ink-3);font-size:13.5px;font-variant-numeric:tabular-nums;padding:0 4px}
+.wv-mid{display:flex;align-items:center;gap:14px}.wv-mid i{width:120px;height:1px;background:var(--line-2)}.wv-mid b{color:#ff8fbf;font-weight:600}
+.wv-box{position:relative;height:clamp(300px,40vw,520px);margin:0 -32px;cursor:crosshair}
+.wv-box canvas{display:block;width:100%;height:100%}
+.dash-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:70px 0 18px}
+@media (max-width:900px){.say-grid{inset:0 -16px}.wv-box{margin:0 -16px}.say-sec{padding:84px 0 76px}.wv-sec{padding-top:72px}.wv-mid i{width:36px}.wv-src{display:none}.dash-head{padding-top:44px}}
+html:not(.dark){--bg:#f3f4f6;--side:#ffffff}
+html:not(.dark) .card{border:none;border-radius:26px;box-shadow:none;padding:26px}
+html:not(.dark) .card:hover{box-shadow:0 22px 44px -28px rgba(20,20,40,.22)}
+@container main (max-width:600px){html:not(.dark) .card{padding:20px;border-radius:22px}}
+.vhead{padding:20px 2px 12px;gap:12px}
+.vhead h1{font-size:clamp(30px,3.6vw,46px);letter-spacing:-.045em;line-height:1.2;text-wrap:balance}
+.vhead p{font-size:16.5px;line-height:1.65}
+html:not(.dark) .in{background:#f2f3f6;border-color:transparent;border-radius:12px}
+html:not(.dark) .in:hover{background:#ebecf0}
+html:not(.dark) .in:focus{background:#fff;border-color:#6a3cff;box-shadow:0 0 0 4px rgba(106,60,255,.12);outline:none}
+@media (max-width:600px){.mk-cal .mk-h .mk-live{display:none}.mk-cal .mk-h b{white-space:nowrap}}
+@media print{.rv,.fp.rvp{filter:none!important}html:not(.dark){--bg:#fff}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -1121,7 +1168,7 @@ html.dark .fv-cal i.c{background:#fff}
       <span class="hx-pill"><b id="modeLabel">가상 고객 예시</b>AFPK 표준 재무설계 6단계</span>
       <h1 id="homeTitle">김민준님의 돈이<br><em>모이는 구조</em>를 설계합니다</h1>
       <p>소득·지출·자산을 넣으면 진단부터 설계안 비교, 실행 캘린더, 점검과 보고서까지 한 번에 이어집니다. 계산은 공개된 규칙으로, 최종 판단은 사람이 합니다.</p>
-      <div class="btns"><a class="btn white lg" href="#s2">내 정보로 시작하기 →</a><a class="btn glassb lg" href="#report">보고서 보기</a><button class="btn glassb lg" type="button" id="btnBlank">빈 양식</button></div>
+      <div class="btns"><a class="btn white lg" href="#s2">내 정보로 시작하기<i class="arr"></i></a><a class="btn glassb lg" href="#report">보고서 보기</a><button class="btn glassb lg" type="button" id="btnBlank">빈 양식</button></div>
       <div class="hx-mini" id="hxMini"></div>
     </div>
     <div class="hx-vis" id="hxVis" aria-hidden="true">
@@ -1133,6 +1180,7 @@ html.dark .fv-cal i.c{background:#fff}
       </div>
     </div>
   </div>
+  <section class="say-sec" aria-label="소개"><div class="say-grid" aria-hidden="true"></div><p class="say" id="say">흩어진 숫자를 한 번만 넣으면<br>진단부터 설계, 실행과 점검까지<br>한 흐름으로 이어집니다</p></section>
   <section class="feat-sec" aria-labelledby="featTitle">
     <div class="feat-head">
       <span class="feat-eye">FEATURES</span>
@@ -1146,7 +1194,7 @@ html.dark .fv-cal i.c{background:#fff}
           <div class="mk-rows"><div><span>월 세후소득</span><b id="fpSal"></b></div><div><span>고정지출</span><b id="fpFix"></b></div><div><span>변동지출</span><b id="fpVar"></b></div><div><span>총자산</span><b id="fpAsset"></b></div><div><span>재무목표</span><b id="fpGoals"></b></div></div>
           <div class="mk-ringwrap"><div class="fv-ring"><span id="ftComp">100%</span></div><div><b>입력 완전성</b><small>빠진 값·숫자 모순 없음</small></div></div>
         </div></div>
-        <div class="fp-txt"><span class="fp-tag">1·2단계 · 관계 정립과 자료 수집</span><h3>숫자를 한 번만 넣으면,<br>모든 화면이 함께 계산됩니다.</h3><p>상담 범위와 역할을 먼저 합의하고, 소득·지출·자산·부채·목표를 입력하면 빠진 값과 숫자 모순을 실시간으로 점검합니다.</p><a class="fp-go" href="#s2">자료 입력 바로가기 →</a></div>
+        <div class="fp-txt"><span class="fp-tag">1·2단계 · 관계 정립과 자료 수집</span><h3>숫자를 한 번만 넣으면,<br>모든 화면이 함께 계산됩니다.</h3><p>상담 범위와 역할을 먼저 합의하고, 소득·지출·자산·부채·목표를 입력하면 빠진 값과 숫자 모순을 실시간으로 점검합니다.</p><a class="fp-go" href="#s2">자료 입력 바로가기<i class="arr"></i></a></div>
       </article>
       <article class="fp rev" data-go="s3" style="--i:1">
         <div class="fp-vis"><div class="mk mk-stack">
@@ -1154,27 +1202,27 @@ html.dark .fv-cal i.c{background:#fff}
             <div class="fv-ratio"><div><span>비상예비자금</span><i style="--w:20%;--c:#ff6fa5"></i><b id="ftEm"></b></div><div><span>저축성향률</span><i style="--w:39%;--c:#b25cff"></i><b id="ftSave"></b></div><div><span>부채부담률</span><i style="--w:16%;--c:#3e7bff"></i><b id="ftDebt"></b></div></div></div>
           <div class="mk mk-hero"><small>비상예비자금 충당률</small><div class="mk-big"><span id="fpEmNow"></span><i>→</i><b id="fpEmAfter"></b></div><div class="mk-chip">설계안 실행 시 · 권장 3~6개월</div></div>
         </div></div>
-        <div class="fp-txt"><span class="fp-tag">3단계 · 분석·평가</span><h3>지금 어디에 서 있는지,<br>비율 네 개로 바로 보입니다.</h3><p>비상예비자금, 저축성향, 부채부담, 고위험 자산 비중을 기준과 비교해 적정·위험을 자동으로 판정하고, 현금흐름과 자산부채 구조를 그래프로 보여 줍니다.</p><a class="fp-go" href="#s3">진단 결과 바로가기 →</a></div>
+        <div class="fp-txt"><span class="fp-tag">3단계 · 분석·평가</span><h3>지금 어디에 서 있는지,<br>비율 네 개로 바로 보입니다.</h3><p>비상예비자금, 저축성향, 부채부담, 고위험 자산 비중을 기준과 비교해 적정·위험을 자동으로 판정하고, 현금흐름과 자산부채 구조를 그래프로 보여 줍니다.</p><a class="fp-go" href="#s3">진단 결과 바로가기<i class="arr"></i></a></div>
       </article>
       <article class="fp" data-go="s4" style="--i:2">
         <div class="fp-vis"><div class="mk mk-scen" id="fpScen"></div></div>
-        <div class="fp-txt"><span class="fp-tag">4단계 · 설계안 수립</span><h3>정답 하나 대신,<br>세 가지 설계안을 나란히.</h3><p>같은 자료로 안정안·균형안·가속안을 만들어 월 저축 재원, 저축성향, 목표 도달 시점을 비교합니다. 고르는 사람은 고객과 설계사입니다.</p><a class="fp-go" href="#s4">설계안 비교 바로가기 →</a></div>
+        <div class="fp-txt"><span class="fp-tag">4단계 · 설계안 수립</span><h3>정답 하나 대신,<br>세 가지 설계안을 나란히.</h3><p>같은 자료로 안정안·균형안·가속안을 만들어 월 저축 재원, 저축성향, 목표 도달 시점을 비교합니다. 고르는 사람은 고객과 설계사입니다.</p><a class="fp-go" href="#s4">설계안 비교 바로가기<i class="arr"></i></a></div>
       </article>
       <article class="fp rev" data-go="s4" style="--i:3">
         <div class="fp-vis"><div class="mk mk-bucket"><div class="mk-h"><span class="mk-ic">◑</span><b>4-Bucket 월 적립</b></div><div class="mk-bk"><div class="fv-donut" id="fpDonut"><span id="ftBucket"></span></div><div class="mk-leg" id="fpBk"></div></div></div></div>
-        <div class="fp-txt"><span class="fp-tag">4단계 · 4-Bucket 포트폴리오</span><h3>월 저축을 목적별 계좌에<br>나눠 담습니다.</h3><p>안전자산·절세성장·노후·주거 바구니에 금액과 기대수익률을 정하면, 목표별 도달 시점과 연도별 자산 성장 경로가 바로 그려집니다.</p><a class="fp-go" href="#s4">포트폴리오 바로가기 →</a></div>
+        <div class="fp-txt"><span class="fp-tag">4단계 · 4-Bucket 포트폴리오</span><h3>월 저축을 목적별 계좌에<br>나눠 담습니다.</h3><p>안전자산·절세성장·노후·주거 바구니에 금액과 기대수익률을 정하면, 목표별 도달 시점과 연도별 자산 성장 경로가 바로 그려집니다.</p><a class="fp-go" href="#s4">포트폴리오 바로가기<i class="arr"></i></a></div>
       </article>
       <article class="fp" data-go="s5" style="--i:4">
         <div class="fp-vis"><div class="mk mk-cal"><div class="mk-h"><span class="mk-ic">▦</span><b id="fpCalT">실행 캘린더</b><em class="mk-live">.ics 내보내기</em></div><div class="mk-calgrid" id="fpCal"></div><div class="mk-todo" id="fpTodo"></div></div></div>
-        <div class="fp-txt"><span class="fp-tag">5단계 · 실행</span><h3>할 일이 날짜와 함께<br>달력에 올라갑니다.</h3><p>시작일을 정하면 자산 정리, 계좌 개설, 자동이체 같은 과제가 날짜별로 배치되고 월급날·분기 점검까지 표시됩니다. 휴대폰 캘린더로 내보낼 수도 있습니다.</p><a class="fp-go" href="#s5">캘린더 바로가기 →</a></div>
+        <div class="fp-txt"><span class="fp-tag">5단계 · 실행</span><h3>할 일이 날짜와 함께<br>달력에 올라갑니다.</h3><p>시작일을 정하면 자산 정리, 계좌 개설, 자동이체 같은 과제가 날짜별로 배치되고 월급날·분기 점검까지 표시됩니다. 휴대폰 캘린더로 내보낼 수도 있습니다.</p><a class="fp-go" href="#s5">캘린더 바로가기<i class="arr"></i></a></div>
       </article>
       <article class="fp rev" data-go="s6" style="--i:5">
         <div class="fp-vis"><div class="mk mk-alert"><div class="mk-alh"><b>점검 알림 도착</b><span>PLAN6</span></div><div class="mk-alb"><div class="mk-ald"><b id="fpAlName"></b><small>트리거 7개 자동 판정</small></div><div class="mk-rows" id="fpTrig"></div></div></div></div>
-        <div class="fp-txt"><span class="fp-tag">6단계 · 점검과 리밸런싱</span><h3>상황이 바뀌면,<br>돌아갈 단계를 알려 줍니다.</h3><p>비상금 부족, 시장 급락, 소득 변화, 대출 완납 같은 조건을 매달 판정해 무엇을 고칠지와 어느 단계에서 다시 설계할지 안내합니다.</p><a class="fp-go" href="#s6">점검판 바로가기 →</a></div>
+        <div class="fp-txt"><span class="fp-tag">6단계 · 점검과 리밸런싱</span><h3>상황이 바뀌면,<br>돌아갈 단계를 알려 줍니다.</h3><p>비상금 부족, 시장 급락, 소득 변화, 대출 완납 같은 조건을 매달 판정해 무엇을 고칠지와 어느 단계에서 다시 설계할지 안내합니다.</p><a class="fp-go" href="#s6">점검판 바로가기<i class="arr"></i></a></div>
       </article>
       <article class="fp" data-go="report" style="--i:6">
         <div class="fp-vis"><div class="mk-doc"><div class="pg p3"></div><div class="pg p2"></div><div class="pg p1"><small>재무설계 보고서</small><b id="fpRepName"></b><ol><li>관계 정립</li><li>목표·자료 수집</li><li>분석·평가</li><li>설계안 수립</li><li>실행</li><li>점검·리밸런싱</li></ol></div></div></div>
-        <div class="fp-txt"><span class="fp-tag">결과물 · 보고서</span><h3>6단계를 한 권의<br>보고서로 정리합니다.</h3><p>단계마다 고객이 해야 할 일을 정리한 A4 보고서를 만들고 PDF로 저장합니다. 계산식과 관련 법령은 산출 근거 화면에서 확인할 수 있습니다.</p><a class="fp-go" href="#report">보고서 바로가기 →</a></div>
+        <div class="fp-txt"><span class="fp-tag">결과물 · 보고서</span><h3>6단계를 한 권의<br>보고서로 정리합니다.</h3><p>단계마다 고객이 해야 할 일을 정리한 A4 보고서를 만들고 PDF로 저장합니다. 계산식과 관련 법령은 산출 근거 화면에서 확인할 수 있습니다.</p><a class="fp-go" href="#report">보고서 바로가기<i class="arr"></i></a></div>
       </article>
     </div>
     <div class="feat-more">
@@ -1183,6 +1231,12 @@ html.dark .fv-cal i.c{background:#fff}
       <button type="button" onclick="document.getElementById('btnPrompt').click()">AI 상담 프롬프트 만들기 →</button>
     </div>
   </section>
+  <section class="wv-sec" aria-labelledby="wvTitle">
+    <div class="feat-head"><span class="feat-eye">GOAL MAP</span><h2 id="wvTitle">목표마다 얼마나 높은지,<br>한 장의 지도로</h2><p>봉우리 하나가 재무목표 하나입니다. 목표 금액이 클수록 높게 솟고, 몇 초마다 다음 목표를 비춥니다.</p></div>
+    <div class="wv-meta"><span id="wvClock"></span><span class="wv-mid">재무목표<i></i><b id="wvCnt"></b></span><span class="wv-src">Data : 소득 | 지출 | 자산 | 부채</span></div>
+    <div class="wv-box" id="wvBox"><canvas id="wvCv" aria-hidden="true"></canvas></div>
+  </section>
+  <div class="dash-head"><span class="feat-eye">DASHBOARD</span><h2>지금의 재무 상태와<br>6년 뒤의 모습</h2></div>
   <div class="summary" id="summary"></div>
   <div class="hero">
     <div class="card persona">
@@ -1704,6 +1758,7 @@ function update(){
    $("#fpAlName").textContent=`${esc(p.name||"고객")}님 이번 달 점검`;
    $("#fpTrig").innerHTML=triggers(c).slice(0,5).map(t=>`<div><span>${t.n}</span><b class="${t.f?"f":""}">${t.f?"대응 필요":"정상"}</b></div>`).join("");
    $("#fpRepName").textContent=`${p.name||"고객"}님`;}
+  window.__wvG=S.goals.filter(g=>n(g.amt)>0).map(g=>({name:g.name,amt:n(g.amt)}));if($("#wvCnt"))$("#wvCnt").textContent=S.goals.length+"개";
   $("#hxMini").innerHTML=`<div><b>${S.goals.length}개</b><span>재무목표</span></div><div><b>3가지</b><span>설계안 비교</span></div><div><b>${execItems(c).length}건</b><span>날짜별 실행 과제</span></div><div><b>${triggers(c).length}개</b><span>점검 트리거</span></div>`;
   // hero
   $("#pAvatar").textContent=(p.name||"?").slice(0,1);
@@ -1754,7 +1809,7 @@ function update(){
   $("#gapTable").innerHTML=`<thead><tr><th>목표</th><th class="r">현재</th><th class="r">목표</th><th class="r">차이</th><th>판정</th></tr></thead><tbody>${S.goals.map(g=>{const now=srcNow(g,c),amt=n(g.amt),r=amt>0?now/amt*100:null;const s=r==null?"mute":r>=100?"good":r>=50?"warn":"bad";return `<tr><td>${esc(g.name)}<br><span style="font-size:12px;color:var(--ink-3)">${esc(g.term)} · ${mlabel(n(g.months))}</span></td><td class="r">${fmt(now)}</td><td class="r">${amt?fmt(amt):"지속"}</td><td class="r">${amt?fmt(Math.max(0,amt-now)):"-"}</td><td><span class="pill ${s}">${r==null?"적립":fmt(r,0)+"%"}</span></td></tr>`}).join("")}</tbody>`;
   const gg=S.goals.filter(g=>n(g.amt)>0);
   chart("cGoal",{type:"bar",data:{labels:gg.map(g=>g.name),datasets:[{label:"현재 준비율",data:gg.map(g=>Math.min(150,srcNow(g,c)/n(g.amt)*100)),backgroundColor:"#dcdcdc",hoverBackgroundColor:"#bdbdbd",borderRadius:6,maxBarThickness:20},{label:"목표 시점 예상",data:gg.map(g=>Math.min(150,srcAt(g,c,P,n(g.months))/n(g.amt)*100)),backgroundColor:grad("#6a3cff","#ff7ab8",true),borderRadius:6,maxBarThickness:20}]},
-    options:baseOpts({indexAxis:"y",plugins:Object.assign(baseOpts().plugins,{tooltip:Object.assign({},baseOpts().plugins.tooltip,{callbacks:{label:ctx=>` ${ctx.dataset.label}: ${pct(ctx.parsed.x,0)}`}})}),scales:{x:{max:150,grid:{color:css("--line")},border:{display:false},ticks:{color:css("--ink-2"),callback:v=>v+"%"}},y:{grid:{display:false},ticks:{color:css("--ink-2"),font:{family:css("--font"),size:12}}}}})});
+    options:baseOpts({indexAxis:"y",plugins:Object.assign(baseOpts().plugins,{tooltip:Object.assign({},baseOpts().plugins.tooltip,{callbacks:{label:ctx=>` ${ctx.dataset.label}: ${pct(ctx.parsed.x,0)}`}})}),scales:{x:{min:0,max:150,grid:{color:css("--line")},border:{display:false},ticks:{stepSize:25,color:css("--ink-2"),callback:v=>v+"%"}},y:{grid:{display:false},ticks:{color:css("--ink-2"),font:{family:css("--font"),size:12}}}}})});
   renderDiag(c);
 
   // step4
@@ -2127,6 +2182,36 @@ addEventListener("scroll",()=>requestAnimationFrame(()=>{hxScroll();const d=docu
   if("IntersectionObserver" in window)new IntersectionObserver(es=>{on=es[0].isIntersecting&&!document.hidden;if(on&&!raf)raf=requestAnimationFrame(draw)}).observe(hx);
   document.addEventListener("visibilitychange",()=>{on=!document.hidden;if(on&&!raf)raf=requestAnimationFrame(draw)});
   window.__hxDraw=()=>{size();if(!raf)raf=requestAnimationFrame(draw)};raf=requestAnimationFrame(draw)})();
+
+(function(){const el=$("#say");if(!el)return;const cs=[];
+  (function walk(n){[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();[...c.nodeValue].forEach(ch=>{const s=document.createElement("span");s.className="c";s.textContent=ch;f.appendChild(s);cs.push(s)});c.replaceWith(f)}})})(el);
+  let last=-1;function fill(){if(curView!=="home")return;const r=el.getBoundingClientRect(),vh=innerHeight;const p=Math.max(0,Math.min(1,(vh*.82-r.top)/(r.height+vh*.3)));const k=Math.round(p*cs.length);if(k===last)return;last=k;cs.forEach((c,i)=>{c.classList.toggle("on",i<k);c.classList.toggle("cur",i===k-1&&k<cs.length)})}
+  addEventListener("scroll",()=>requestAnimationFrame(fill),{passive:true});addEventListener("resize",fill);window.__sayFill=()=>{last=-1;fill()};setTimeout(fill,50)})();
+(function(){const cv=$("#wvCv"),box=$("#wvBox");if(!cv||!cv.getContext)return;const ctx=cv.getContext("2d");let W=0,H=0,on=false,raf=0,mx=-9;const t0=performance.now();
+  const RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const SP=[[-.3,.5],[.1,.32],[.3,.62],[-.08,.72],[-.4,.28],[.42,.3]];
+  function size(){const r=cv.getBoundingClientRect(),d=Math.min(2,devicePixelRatio||1);W=r.width;H=r.height;cv.width=W*d;cv.height=H*d;ctx.setTransform(d,0,0,d,0,0)}
+  function draw(now){raf=0;if(!W)size();if(!W)return;const t=RM?0:(now-t0)/1000;ctx.clearRect(0,0,W,H);
+    const G=(window.__wvG||[]).slice(0,6),mA=Math.max(1,...G.map(g=>g.amt)),hi=G.length?Math.floor(t/3.2)%G.length:-1,mob=W<600;
+    const P=G.map((g,i)=>({u:SP[i][0],z:SP[i][1],h:1+2.8*Math.sqrt(g.amt/mA),i,g}));
+    const cols=mob?44:86,rows=mob?24:34,top=H*.3,bot=H*1.02;
+    const Y=z=>top+(bot-top)*Math.pow(z,1.7),SPR=z=>W*(.7+.95*z),AMP=z=>(mob?12:18)+(mob?44:66)*z;
+    const hAt=(u,z)=>{let h=Math.sin(u*8+t*.5+z*4)*.32+Math.cos(u*3.3-z*6+t*.35)*.42;for(const p of P)h+=Math.exp(-(((u-p.u)**2)/.007+((z-p.z)**2)/.022))*p.h;if(mx>-5)h+=Math.exp(-(((u-mx)**2)/.012+((z-.78)**2)/.06))*.9;return h};
+    for(let r=0;r<rows;r++){const z=r/(rows-1),y0=Y(z),sp=SPR(z),am=AMP(z),a=.16+.62*z,rad=.5+1.4*z;
+      for(let c=0;c<cols;c++){const u=c/(cols-1)-.5,h=hAt(u,z);let w=0;const p=P[hi];if(p)w=Math.exp(-(((u-p.u)**2)/.007+((z-p.z)**2)/.022));
+        ctx.fillStyle=w>.12?`rgba(${Math.round(178+77*w)},${Math.round(92+19*w)},${Math.round(255-90*w)},${Math.min(1,a+.35*w).toFixed(3)})`:`rgba(205,206,220,${a.toFixed(3)})`;
+        ctx.beginPath();ctx.arc(W/2+u*sp,y0-h*am,rad*(1+w*.5),0,6.283);ctx.fill()}}
+    ctx.font=`600 ${mob?12:13.5}px ${css("--font")}`;ctx.textAlign="center";
+    for(const p of P){const x=W/2+p.u*SPR(p.z),y=Y(p.z)-hAt(p.u,p.z)*AMP(p.z),on2=p.i===hi,L=on2?(mob?56:84):(mob?34:52);
+      ctx.strokeStyle=on2?"rgba(255,122,184,.9)":"rgba(255,255,255,.28)";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,y-6);ctx.lineTo(x,y-L);ctx.stroke();
+      ctx.beginPath();ctx.arc(x,y-L,on2?5:3.5,0,6.283);if(on2){ctx.fillStyle="#ff7ab8";ctx.fill()}else{ctx.fillStyle="#000";ctx.fill();ctx.strokeStyle="rgba(255,255,255,.45)";ctx.stroke()}
+      if(on2){ctx.fillStyle="#ff9fca";ctx.fillText(p.g.name,x,y-L-(mob?24:28));ctx.fillStyle="rgba(255,255,255,.72)";ctx.font=`500 ${mob?11:12.5}px ${css("--font")}`;ctx.fillText(Math.round(p.g.amt).toLocaleString()+"만 원",x,y-L-(mob?10:12));ctx.font=`600 ${mob?12:13.5}px ${css("--font")}`}}
+    if(on&&!RM)raf=requestAnimationFrame(draw)}
+  box.addEventListener("pointermove",e=>{const r=cv.getBoundingClientRect();mx=(e.clientX-r.left)/r.width-.5});box.addEventListener("pointerleave",()=>{mx=-9});
+  addEventListener("resize",()=>{size();if(!raf)raf=requestAnimationFrame(draw)});
+  const ck=$("#wvClock");const tick=()=>{if(!ck||!on)return;const d=new Date(),z=v=>String(v).padStart(2,"0");ck.textContent=`${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일 ${z(d.getHours())}:${z(d.getMinutes())}:${z(d.getSeconds())}`};setInterval(tick,1000);
+  if("IntersectionObserver" in window)new IntersectionObserver(es=>{on=es[0].isIntersecting&&!document.hidden;tick();if(on&&!raf){size();raf=requestAnimationFrame(draw)}}).observe(box);else{on=true}
+  window.__wvDraw=()=>{size();on=true;tick();draw(performance.now());on=false};})();
 
 function typeIt(el,sp){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;const spans=[];
   (function walk(n){[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();[...c.nodeValue].forEach(ch=>{const s=document.createElement("span");s.className="ch";s.textContent=ch;f.appendChild(s);spans.push(s)});c.replaceWith(f)}else if(c.nodeType===1&&c.tagName!=="BR")walk(c)})})(el);
