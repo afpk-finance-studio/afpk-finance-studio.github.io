@@ -1220,6 +1220,53 @@ html:not(.dark) .goalcard .ghost{background:transparent;font-size:16px;font-weig
 html:not(.dark) .goalcard .ghost:hover,html:not(.dark) .goalcard .ghost:focus{background:#fff;padding-left:10px}
 html:not(.dark) .goalcard .field>span,html:not(.dark) .goalcard label{font-size:12.5px}
 
+/* v17 */
+.feat-more a,.feat-more button{background:none!important;box-shadow:none!important;border:0!important;padding:6px 4px!important;color:#4e5968}
+.feat-more a:hover,.feat-more button:hover{color:#191f28;transform:none!important}
+html:not(.dark) .in:focus{background:#fff;border-color:#3182f6;box-shadow:none}
+.lg2{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:14px;font-size:12.5px;color:#4e5968}
+.lg2>div{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px}
+.lg2 span{display:inline-flex;align-items:center;gap:7px}
+.lg2 i{width:11px;height:11px;border-radius:4px;flex:none}
+/* hero and goal map: full-width black bands */
+body{margin:0}
+#v-home .hx{border-radius:0;margin-top:-28px;box-shadow:0 0 0 100vmax #000;clip-path:inset(0 -100vmax 0 -32px)}
+@media (max-width:900px){#v-home .hx{margin-top:-16px;clip-path:inset(0 -100vmax)}.wv-sec{clip-path:inset(0 -100vmax)}}
+.wv-sec{background:#000;box-shadow:0 0 0 100vmax #000;clip-path:inset(0 -100vmax 0 -32px);margin-top:90px;padding:96px 0 40px}
+.wv-sec .feat-eye{color:#74b9ff}
+.wv-sec .feat-head h2{color:#fff;-webkit-text-fill-color:#fff}
+.wv-sec .feat-head p{color:rgba(255,255,255,.62)}
+.wv-meta{color:rgba(255,255,255,.55)}
+.wv-mid i{background:rgba(255,255,255,.22)}.wv-mid b{color:#74b9ff}
+.wv-sec+.dash-head{margin-top:90px}
+@media (max-width:720px){.wv-sec{margin-top:56px;padding:64px 0 24px}}
+/* feature panels: shorter */
+.feat-sec .fp{padding:26px 40px;gap:32px}
+.feat-sec .fp-vis{zoom:.84}
+@media (max-width:720px){.feat-sec .fp{padding:22px 20px;gap:20px}.feat-sec .fp-vis{zoom:.92}}
+/* check-alert mock */
+.mk.mk-alert{background:rgba(255,255,255,.9);border:1px solid #fff;border-radius:26px;width:min(100%,380px);box-shadow:0 34px 70px -34px rgba(30,60,130,.45)}
+.mk-alert .mk-alh{background:none!important;color:#191f28;display:flex;align-items:center;gap:12px;padding:20px 20px 14px;font-size:inherit}
+.al-ic{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#74b9ff,#3182f6 60%,#1b64da);display:grid;place-items:center;color:#fff;flex:none;box-shadow:0 10px 20px -10px rgba(49,130,246,.8)}
+.al-ic svg{width:21px;height:21px}
+.al-t{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.al-t small{font-size:12px;color:#8b95a1;font-weight:600}
+.al-t b{font-size:17px;font-weight:800;letter-spacing:-.02em}
+.mk-alert .mk-alh .al-ok{font-size:12px;font-weight:700;color:#1b64da;background:#e8f3ff;padding:6px 11px;border-radius:99px;white-space:nowrap}
+.mk-alert .mk-alh .al-ok.f{color:#e42939;background:#ffeef0}
+.mk-alert .mk-alb{padding:2px 12px 12px}
+.mk-alert .mk-ald{margin:0 8px 8px;padding:0 0 12px;border-bottom:1px solid #eef0f3}
+.mk-alert .mk-ald b{font-size:15px}
+.mk-alert .mk-rows{display:flex;flex-direction:column;gap:6px}
+.mk-alert .mk-rows>div{border:0!important;padding:11px 12px;border-radius:14px;background:#f5f7fa;align-items:center}
+.mk-alert .mk-rows span{color:#333d4b;font-weight:600;display:flex;align-items:center;gap:10px}
+.mk-alert .mk-rows span i{position:relative;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#74b9ff,#3182f6);flex:none}
+.mk-alert .mk-rows span i:after{content:"";position:absolute;left:7px;top:4.5px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.mk-alert .mk-rows span i.f{background:linear-gradient(135deg,#ff96aa,#f04452)}
+.mk-alert .mk-rows span i.f:after{content:"!";border:0;transform:none;width:auto;height:auto;left:8px;top:1px;color:#fff;font-size:12px;font-weight:800}
+.mk-alert .mk-rows b{font-size:13px;color:#3182f6;font-weight:700}
+.mk-alert .mk-rows b.f{color:#f04452}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -1290,7 +1337,7 @@ html:not(.dark) .goalcard .field>span,html:not(.dark) .goalcard label{font-size:
     </div>
     <div class="hx-vis" id="hxVis" aria-hidden="true">
       <div class="hx-stage" id="hxStage">
-        <div class="hx-device"><div class="hx-bar"><i></i><i></i><i></i><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>afpk-finance-studio.github.io</span></div><div class="hx-screen"><img src="assets/hero-screen-v16.jpg" alt="" onerror="this.outerHTML='&lt;div class=&quot;ph&quot;&gt;&lt;/div&gt;'"></div></div>
+        <div class="hx-device"><div class="hx-bar"><i></i><i></i><i></i><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>afpk-finance-studio.github.io</span></div><div class="hx-screen"><img src="assets/hero-screen-v17.jpg" alt="" onerror="this.outerHTML='&lt;div class=&quot;ph&quot;&gt;&lt;/div&gt;'"></div></div>
         <div class="fchip f1"><span class="fi">₩</span><div><small>월 저축</small><b id="fc1"></b></div></div>
         <div class="fchip f2"><span class="fi">◎</span><div><small>비상예비자금</small><b id="fc2"></b></div></div>
         <div class="fchip f3"><span class="fi">↗</span><div><small>6년 후 금융자산</small><b id="fc3"></b></div></div>
@@ -1334,7 +1381,7 @@ html:not(.dark) .goalcard .field>span,html:not(.dark) .goalcard label{font-size:
         <div class="fp-txt"><span class="fp-tag">5단계 · 실행</span><h3>할 일이 날짜와 함께<br>달력에 올라갑니다.</h3><p>시작일을 정하면 자산 정리, 계좌 개설, 자동이체 같은 과제가 날짜별로 배치되고 월급날·분기 점검까지 표시됩니다. 휴대폰 캘린더로 내보낼 수도 있습니다.</p><a class="fp-go" href="#s5">캘린더 바로가기<i class="arr"></i></a></div>
       </article>
       <article class="fp rev" data-go="s6" style="--i:5">
-        <div class="fp-vis"><div class="mk mk-alert"><div class="mk-alh"><b>점검 알림 도착</b><span>PLAN6</span></div><div class="mk-alb"><div class="mk-ald"><b id="fpAlName"></b><small>트리거 7개 자동 판정</small></div><div class="mk-rows" id="fpTrig"></div></div></div></div>
+        <div class="fp-vis"><div class="mk mk-alert"><div class="mk-alh"><i class="al-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></i><div class="al-t"><small>PLAN6 · 방금</small><b>점검 알림 도착</b></div><span class="al-ok" id="fpAlOk">모두 정상</span></div><div class="mk-alb"><div class="mk-ald"><b id="fpAlName"></b><small>트리거 7개 자동 판정</small></div><div class="mk-rows" id="fpTrig"></div></div></div></div>
         <div class="fp-txt"><span class="fp-tag">6단계 · 점검과 리밸런싱</span><h3>상황이 바뀌면,<br>돌아갈 단계를 알려 줍니다.</h3><p>비상금 부족, 시장 급락, 소득 변화, 대출 완납 같은 조건을 매달 판정해 무엇을 고칠지와 어느 단계에서 다시 설계할지 안내합니다.</p><a class="fp-go" href="#s6">점검판 바로가기<i class="arr"></i></a></div>
       </article>
       <article class="fp" data-go="report" style="--i:6">
@@ -1485,7 +1532,7 @@ html:not(.dark) .goalcard .field>span,html:not(.dark) .goalcard label{font-size:
   <div class="grid g4" id="ratioKpis" style="gap:12px"></div>
   <div class="grid g2">
     <div class="card"><div class="ch"><div><h3>소득은 어디로 가고 있나</h3><p class="sub">세후 소득 대비 비중 · 조각에 마우스를 올려 보세요</p></div><div class="seg" id="cfSeg"><button type="button" data-k="now" class="on">현재</button><button type="button" data-k="plan">설계안</button></div></div><div class="donutwrap"><div class="chart-box" style="height:250px"><canvas id="cCash"></canvas></div><div class="nleg" id="legCash"></div></div></div>
-    <div class="card"><div class="ch"><div><h3>자산부채 구조</h3><p class="sub">자산 = 부채 + 순자산 · 막대 조각에 마우스를 올려 보세요</p></div></div><div class="chart-box" style="height:300px"><canvas id="cBS"></canvas></div></div>
+    <div class="card"><div class="ch"><div><h3>자산부채 구조</h3><p class="sub">자산 = 부채 + 순자산 · 막대 조각에 마우스를 올려 보세요</p></div></div><div class="chart-box" style="height:270px"><canvas id="cBS"></canvas></div><div class="lg2" id="legBS"></div></div>
   </div>
   <div class="grid g2">
     <div class="card"><div class="ch"><div><h3>목표 갭 분석</h3><p class="sub">현재 준비액과 목표 금액의 차이</p></div></div><div class="tbl-wrap"><table id="gapTable"></table></div></div>
@@ -1764,7 +1811,7 @@ function dsColor(ds,i){if(!ds)return "#999";const cands=[ds.type==="line"&&typeo
 function solidSw(cfg){const o=cfg.options=cfg.options||{},p=o.plugins=o.plugins||{};const lg=p.legend;
   if(lg&&lg.display!==false){lg.labels=Object.assign({},lg.labels,{usePointStyle:true,pointStyle:"rectRounded",boxWidth:10,boxHeight:10,generateLabels:ch=>Chart.defaults.plugins.legend.labels.generateLabels(ch).map(l=>{const ds=ch.data.datasets[l.datasetIndex];const c=dsColor(ds,l.index);return Object.assign(l,{fillStyle:c,strokeStyle:c,lineWidth:0,pointStyle:"rectRounded",lineDash:[]})})})}
   if(p.tooltip){p.tooltip.callbacks=Object.assign({},p.tooltip.callbacks,{labelColor:ctx=>{const c=dsColor(ctx.dataset,ctx.dataIndex);return {borderColor:c,backgroundColor:c,borderWidth:0,borderRadius:3}},labelPointStyle:()=>({pointStyle:"rectRounded",rotation:0})})}}
-function chart(id,cfg){tcCfg(id,cfg);if(typeof Chart!=="undefined")solidSw(cfg);if(typeof Chart==="undefined"){const el=document.getElementById(id);if(el&&!el.dataset.fb){el.dataset.fb=1;el.parentElement.insertAdjacentHTML("beforeend",'<p class="note">그래프 라이브러리를 불러오지 못했습니다. 인터넷 연결을 확인하세요.</p>')}return}
+function chart(id,cfg){tcCfg(id,cfg);if(typeof Chart!=="undefined"&&!Chart._xh){Chart.register(XH);Chart._xh=1}if(typeof Chart!=="undefined")solidSw(cfg);if(typeof Chart==="undefined"){const el=document.getElementById(id);if(el&&!el.dataset.fb){el.dataset.fb=1;el.parentElement.insertAdjacentHTML("beforeend",'<p class="note">그래프 라이브러리를 불러오지 못했습니다. 인터넷 연결을 확인하세요.</p>')}return}
   const cv=document.getElementById(id);
   if(waiting[id]){waiting[id]=cfg;return}
   if(charts[id]){charts[id].data=cfg.data;charts[id].options=cfg.options;charts[id].update(cv.offsetParent?undefined:"none");return}
@@ -1787,8 +1834,10 @@ function tcCfg(id,cfg){const cv=document.getElementById(id);if(!tcOn(cv))return;
 const mixW=(h,a)=>{h=String(h).replace("#","");if(!/^[0-9a-f]{6}$/i.test(h))return h;const v=parseInt(h,16),f=x=>Math.round(x+(255-x)*a);return `rgb(${f(v>>16&255)},${f(v>>8&255)},${f(v&255)})`};
 const mixK=(h,a)=>{h=String(h).replace("#","");if(!/^[0-9a-f]{6}$/i.test(h))return h;const v=parseInt(h,16),f=x=>Math.round(x*(1-a));return `rgb(${f(v>>16&255)},${f(v>>8&255)},${f(v&255)})`};
 const PAL2={"#3182f6":"#6aa8ff","#a9d0ff":"#d6e8ff","#1c4fcf":"#4a7fe8","#62a6ff":"#9cc8ff","#d1d6db":"#eceef1","#333d4b":"#6b7684","#4d9bff":"#86bcff","#74b9ff":"#b0d8ff","#5ea5ff":"#97c5ff","#7fb3ff":"#b5d3ff","#1a46c4":"#4a74dd","#0f3fa8":"#3a64c4","#cdced6":"#eeeef3","#2d2d35":"#6a6a78","#15c39a":"#9be86a"};const p2=cl=>PAL2[String(cl).toLowerCase()]||mixW(cl,.35);
-const segFill=cols=>ctx=>{const cl=TC(cols[ctx.dataIndex%cols.length],ctx.chart.canvas),ar=ctx.chart.chartArea;if(!ar)return cl;const g=ctx.chart.ctx.createLinearGradient(ar.left,ar.bottom,ar.right,ar.top);g.addColorStop(0,mixK(cl,.08));g.addColorStop(.5,cl);g.addColorStop(1,p2(cl));return g};
-const barFill=cl=>{const f=ctx=>{const c=TC(cl,ctx.chart.canvas);return grad(p2(c),mixK(c,.05))(ctx)};f._c=cl;return f};
+const segFill=cols=>ctx=>{const cl=TC(cols[ctx.dataIndex%cols.length],ctx.chart.canvas),ar=ctx.chart.chartArea;if(!ar)return cl;const g=ctx.chart.ctx.createLinearGradient(ar.left,ar.bottom,ar.right,ar.top);g.addColorStop(0,toA(mixK(cl,.06),.92));g.addColorStop(.55,toA(cl,.8));g.addColorStop(1,toA(p2(cl),.62));return g};
+const barFill=cl=>{const f=ctx=>{const c=TC(cl,ctx.chart.canvas);return grad(toA(p2(c),.6),toA(c,.9))(ctx)};f._c=cl;return f};
+const toA=(c,a)=>{c=String(c).trim();if(c[0]==="#")return hexA(c,a);const m=c.match(/rgba?\(([^)]+)\)/);if(!m)return c;const p=m[1].split(",").slice(0,3).join(",");return `rgba(${p},${a})`};
+const XH={id:"xh",afterDatasetsDraw(ch){if(ch.config.type!=="line"||!ch.tooltip)return;const a=ch.tooltip.getActiveElements();if(!a||!a.length)return;const x=a[0].element.x,ar=ch.chartArea,c=ch.ctx;c.save();c.setLineDash([4,4]);c.lineWidth=1.5;c.strokeStyle="rgba(49,130,246,.6)";c.beginPath();c.moveTo(x,ar.top);c.lineTo(x,ar.bottom);c.stroke();c.restore()}};
 const hexA=(h,a)=>{h=String(h).replace("#","");if(h.length===3)h=h.split("").map(x=>x+x).join("");const v=parseInt(h,16);return `rgba(${v>>16&255},${v>>8&255},${v&255},${a})`};
 const lum=h=>{h=String(h).replace("#","");if(!/^[0-9a-f]{6}$/i.test(h))return 0;const v=parseInt(h,16);return ((v>>16&255)*.299+(v>>8&255)*.587+(v&255)*.114)/255};
 function grad(a,b,horiz){return Object.assign(ctx=>{const ch=ctx.chart,ar=ch.chartArea;a=TC(a,ch.canvas);b=TC(b,ch.canvas);if(!ar)return a;const g=horiz?ch.ctx.createLinearGradient(ar.left,0,ar.right,0):ch.ctx.createLinearGradient(0,ar.top,0,ar.bottom);g.addColorStop(0,a);g.addColorStop(1,b);return g},{_c:a})}
@@ -1878,7 +1927,7 @@ function update(){
    $("#fpCal").innerHTML="일월화수목금토".split("").map(w=>`<s>${w}</s>`).join("")+Array(first).fill("<u></u>").join("")+[...Array(dim).keys()].map(k=>{const d=k+1;return `<u class="${hit[d]?"t":""}${d===n(S.exec.payday)?" p":""}">${d}</u>`}).join("");
    $("#fpTodo").innerHTML=ex.slice(0,3).map(e=>`<div><i></i><span>${esc(e[1])}</span><b>${dstr(e[3])}</b></div>`).join("");
    $("#fpAlName").textContent=`${esc(p.name||"고객")}님 이번 달 점검`;
-   $("#fpTrig").innerHTML=triggers(c).slice(0,5).map(t=>`<div><span>${t.n}</span><b class="${t.f?"f":""}">${t.f?"대응 필요":"정상"}</b></div>`).join("");
+   $("#fpTrig").innerHTML=triggers(c).slice(0,5).map(t=>`<div><span><i class="${t.f?"f":""}"></i>${t.n}</span><b class="${t.f?"f":""}">${t.f?"대응 필요":"정상"}</b></div>`).join("");{const nf=triggers(c).slice(0,5).filter(t=>t.f).length,o=$("#fpAlOk");if(o){o.textContent=nf?`대응 ${nf}건`:"모두 정상";o.classList.toggle("f",!!nf)}}
    $("#fpRepName").textContent=`${p.name||"고객"}님`;}
   window.__wvG=S.goals.filter(g=>n(g.amt)>0).map(g=>({name:g.name,amt:n(g.amt)}));if($("#wvCnt"))$("#wvCnt").textContent=S.goals.length+"개";
   $("#hxMini").innerHTML=`<div><b>${S.goals.length}개</b><span>재무목표</span></div><div><b>3가지</b><span>설계안 비교</span></div><div><b>${execItems(c).length}건</b><span>날짜별 실행 과제</span></div><div><b>${triggers(c).length}개</b><span>점검 트리거</span></div>`;
@@ -1926,8 +1975,9 @@ function update(){
   donut("cCash",cfData.map(x=>x[1]),cfData.map(x=>x[0]),cfCol,{text:fmt(cfT)+"만",sub:"월 소득"},ctx=>{const t=ctx.dataset.data.reduce((a,b)=>a+b,0);return ` ${ctx.label}: ${won(ctx.parsed)} (${pct(t?ctx.parsed/t*100:0)})`},"legCash",cfData.map(x=>[x[1],fmt(x[0],x[0]%1?1:0)+"만",pct(cfT?x[0]/cfT*100:0)]));
   chart("cBS",{type:"bar",data:{labels:["자산","부채 + 순자산"],datasets:[
     {label:"유동성",data:[c.A.liquid,0],backgroundColor:col[0],stack:"s"},{label:"안정 투자",data:[c.A.safe,0],backgroundColor:col[1],stack:"s"},{label:"고위험 투자",data:[c.A.risk,0],backgroundColor:col[2],stack:"s"},{label:"노후",data:[c.A.retire,0],backgroundColor:col[3],stack:"s"},{label:"사용 자산",data:[c.A.use,0],backgroundColor:col[4],stack:"s"},
-    {label:"부채",data:[0,c.debtBal],backgroundColor:col[5],stack:"s"},{label:"순자산",data:[0,Math.max(0,c.net)],backgroundColor:"#4d9bff",stack:"s"}].map(d=>Object.assign(d,{backgroundColor:barFill(d.backgroundColor),hoverBackgroundColor:d.backgroundColor,borderRadius:8,borderSkipped:false,maxBarThickness:72,borderColor:"#fff",borderWidth:{top:2}}))},
-    options:baseOpts({interaction:{mode:"nearest",intersect:true},scales:Object.assign(baseOpts().scales,{x:Object.assign(baseOpts().scales.x,{stacked:true}),y:Object.assign(baseOpts().scales.y,{stacked:true})})})});
+    {label:"부채",data:[0,c.debtBal],backgroundColor:"#f25f73",stack:"s"},{label:"순자산",data:[0,Math.max(0,c.net)],backgroundColor:"#4d9bff",stack:"s"}].map(d=>Object.assign(d,{backgroundColor:d.label==="부채"?Object.assign(grad("rgba(255,150,170,.55)","rgba(240,68,82,.85)"),{_c:"#f25f73"}):barFill(d.backgroundColor),hoverBackgroundColor:d.label==="부채"?"rgba(240,68,82,.9)":d.backgroundColor,borderRadius:{topLeft:10,topRight:10,bottomLeft:10,bottomRight:10},borderSkipped:false,maxBarThickness:72,borderColor:"#fff",borderWidth:2}))},
+    options:baseOpts({interaction:{mode:"nearest",intersect:true},plugins:Object.assign(baseOpts().plugins,{legend:{display:false}}),scales:Object.assign(baseOpts().scales,{x:Object.assign(baseOpts().scales.x,{stacked:true}),y:Object.assign(baseOpts().scales.y,{stacked:true})})})});
+  {const sw=(c2,t)=>`<span><i style="background:${c2}"></i>${t}</span>`;$("#legBS").innerHTML=`<div>${sw(col[0],"유동성")+sw(col[1],"안정 투자")+sw(col[2],"고위험 투자")+sw(col[3],"노후")+sw(col[4],"사용 자산")}</div><div>${sw("linear-gradient(180deg,#ff96aa,#f04452)","부채")+sw("#4d9bff","순자산")}</div>`}
   $("#gapTable").innerHTML=`<thead><tr><th>목표</th><th class="r">현재</th><th class="r">목표</th><th class="r">차이</th><th>판정</th></tr></thead><tbody>${S.goals.map(g=>{const now=srcNow(g,c),amt=n(g.amt),r=amt>0?now/amt*100:null;const s=r==null?"mute":r>=100?"good":r>=50?"warn":"bad";return `<tr><td>${esc(g.name)}<br><span style="font-size:12px;color:var(--ink-3)">${esc(g.term)} · ${mlabel(n(g.months))}</span></td><td class="r">${fmt(now)}</td><td class="r">${amt?fmt(amt):"지속"}</td><td class="r">${amt?fmt(Math.max(0,amt-now)):"-"}</td><td><span class="pill ${s}">${r==null?"적립":fmt(r,0)+"%"}</span></td></tr>`}).join("")}</tbody>`;
   const gg=S.goals.filter(g=>n(g.amt)>0);
   chart("cGoal",{type:"bar",data:{labels:gg.map(g=>g.name),datasets:[{label:"현재 준비율",data:gg.map(g=>Math.min(150,srcNow(g,c)/n(g.amt)*100)),backgroundColor:"#e5e8eb",hoverBackgroundColor:"#d1d6db",borderRadius:99,maxBarThickness:16},{label:"목표 시점 예상",data:gg.map(g=>Math.min(150,srcAt(g,c,P,n(g.months))/n(g.amt)*100)),backgroundColor:grad("#a9d0ff","#3182f6",true),borderRadius:99,maxBarThickness:16}]},
@@ -1955,9 +2005,9 @@ function update(){
   donut("cHomeB",c.buckets.map(b=>b.name),c.buckets.map(b=>b.pmt),bc,{text:fmt(c.bucketSum,0)+"만",sub:"월 저축"},ctx=>{const b=c.buckets[ctx.dataIndex];return ` ${b.name}: 월 ${fmt(b.pmt,1)}만 원`},"legHomeB",c.buckets.map(b=>[b.name,fmt(b.pmt,b.pmt%1?1:0)+"만",(b.product||"")+" · "+pct(c.bucketSum?b.pmt/c.bucketSum*100:0,0)]));
   // projection chart
   const labels=[...Array(horizon+1).keys()].map(m=>m===0?"현재":m%12===0?(m/12)+"년":m+"개월");
-  const ds=[{label:"기존 투자자산",data:P.rest.slice(0,horizon+1),backgroundColor:grad(hexA(css("--c5"),.45),hexA(css("--c5"),.08)),borderColor:css("--c5"),fill:"origin",stack:"a"}].concat(P.series.map((s,i)=>({label:s.name,data:s.arr.slice(0,horizon+1),backgroundColor:grad(hexA(col[i%6],.42),hexA(col[i%6],.06)),borderColor:col[i%6],fill:"-1",stack:"a"})));
-  ds.forEach(d=>Object.assign(d,{pointRadius:0,pointHoverRadius:5,borderWidth:2,tension:.25}));
-  gg.filter(g=>!((g.src||[]).length===1&&g.src[0]==="cash")&&n(g.months)<=horizon).forEach((g,i)=>ds.push({label:"목표 · "+g.name,data:labels.map((_,m)=>m===n(g.months)?n(g.amt):null),type:"line",borderColor:css("--ink"),backgroundColor:"#ffffff",pointRadius:labels.map((_,m)=>m===n(g.months)?7:0),pointHoverRadius:9,pointBorderWidth:3,pointBorderColor:srcAt(g,c,P,n(g.months))>=n(g.amt)?css("--green"):css("--red"),showLine:false,stack:"g"+i}));
+  const ds=[{label:"기존 투자자산",data:P.rest.slice(0,horizon+1),backgroundColor:grad(hexA(css("--c5"),.45),hexA(css("--c5"),.08)),borderColor:css("--c5"),fill:"origin",stack:"a"}].concat(P.series.map((s,i)=>({label:s.name,data:s.arr.slice(0,horizon+1),backgroundColor:grad(hexA(col[i%6],.32),hexA(col[i%6],.03)),borderColor:hexA(col[i%6],.9),fill:"-1",stack:"a"})));
+  ds.forEach(d=>Object.assign(d,{pointRadius:0,pointHoverRadius:0,borderWidth:2,tension:.3}));
+  gg.filter(g=>!((g.src||[]).length===1&&g.src[0]==="cash")&&n(g.months)<=horizon).forEach((g,i)=>ds.push({label:"목표 · "+g.name,data:labels.map((_,m)=>m===n(g.months)?n(g.amt):null),type:"line",borderColor:css("--ink"),backgroundColor:"#ffffff",pointRadius:labels.map((_,m)=>m===n(g.months)?7:0),pointHoverRadius:7,pointBorderWidth:3,pointBorderColor:srcAt(g,c,P,n(g.months))>=n(g.amt)?"#3182f6":"#f25f73",showLine:false,stack:"g"+i}));
   chart("cProj",{type:"line",data:{labels,datasets:ds},options:baseOpts({scales:Object.assign(baseOpts().scales,{x:Object.assign(baseOpts().scales.x,{ticks:Object.assign(baseOpts().scales.x.ticks,{autoSkip:false,maxRotation:0,callback:(v,i)=>i%12===0?labels[i]:""})}),y:Object.assign(baseOpts().scales.y,{stacked:true})}),plugins:Object.assign(baseOpts().plugins,{tooltip:Object.assign({},baseOpts().plugins.tooltip,{filter:it=>it.raw!=null,callbacks:{label:ctx=>` ${ctx.dataset.label}: ${won(ctx.parsed.y)}`,footer:items=>{const t=items.filter(i=>!/^목표/.test(i.dataset.label)).reduce((a,i)=>a+i.parsed.y,0);return "합계 "+won(t)}}})})})});
   $("#goalCheck").innerHTML=`<thead><tr><th>목표</th><th class="r">목표</th><th class="r">예상</th><th class="r">도달</th><th>달성</th></tr></thead><tbody>${gRows.map(x=>`<tr><td>${esc(x.g.name)}<br><span style="font-size:12px;color:var(--ink-3)">${esc(x.g.term)} · ${mlabel(n(x.g.months))}</span></td><td class="r">${x.amt?fmt(x.amt):"지속"}</td><td class="r">${fmt(x.v)}</td><td class="r">${mlabel(x.reach)}</td><td>${x.r==null?'<span class="pill info">적립</span>':`<span class="pill ${x.s}">${fmt(x.r,0)}%</span>`}</td></tr>`).join("")}</tbody>`;
   const t=tax(c),tx=[];
@@ -2321,13 +2371,13 @@ addEventListener("scroll",()=>requestAnimationFrame(()=>{hxScroll();const d=docu
     const hAt=(u,z)=>{let h=Math.sin(u*8+t*.5+z*4)*.32+Math.cos(u*3.3-z*6+t*.35)*.42;for(const p of P)h+=Math.exp(-(((u-p.u)**2)/.007+((z-p.z)**2)/.022))*p.h;if(mx>-5)h+=Math.exp(-(((u-mx)**2)/.012+((z-.78)**2)/.06))*.9;return h};
     for(let r=0;r<rows;r++){const z=r/(rows-1),y0=Y(z),sp=SPR(z),am=AMP(z),a=.16+.62*z,rad=.5+1.4*z;
       for(let c=0;c<cols;c++){const u=c/(cols-1)-.5,h=hAt(u,z);let w=0;const p=P[hi];if(p)w=Math.exp(-(((u-p.u)**2)/.007+((z-p.z)**2)/.022));
-        ctx.fillStyle=w>.12?`rgba(49,130,246,${Math.min(1,a+.4*w).toFixed(3)})`:`rgba(110,120,140,${(a*.75).toFixed(3)})`;
+        ctx.fillStyle=w>.12?`rgba(${Math.round(49+80*w)},${Math.round(130+60*w)},255,${Math.min(1,a+.4*w).toFixed(3)})`:`rgba(205,206,220,${a.toFixed(3)})`;
         ctx.beginPath();ctx.arc(W/2+u*sp,y0-h*am,rad*(1+w*.5),0,6.283);ctx.fill()}}
     ctx.font=`600 ${mob?12:13.5}px ${css("--font")}`;ctx.textAlign="center";
     for(const p of P){const x=W/2+p.u*SPR(p.z),y=Y(p.z)-hAt(p.u,p.z)*AMP(p.z),on2=p.i===hi;let L=on2?(mob?48:70):(mob?30:44);if(on2)L=Math.min(L,Math.max(14,y-(mob?40:50)));
-      ctx.strokeStyle=on2?"rgba(49,130,246,.9)":"rgba(25,31,40,.22)";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,y-6);ctx.lineTo(x,y-L);ctx.stroke();
-      ctx.beginPath();ctx.arc(x,y-L,on2?5:3.5,0,6.283);if(on2){ctx.fillStyle="#3182f6";ctx.fill()}else{ctx.fillStyle="#f2f4f6";ctx.fill();ctx.strokeStyle="rgba(25,31,40,.4)";ctx.stroke()}
-      if(on2){ctx.fillStyle="#3182f6";ctx.fillText(p.g.name,x,y-L-(mob?24:28));ctx.fillStyle="#4e5968";ctx.font=`500 ${mob?11:12.5}px ${css("--font")}`;ctx.fillText(Math.round(p.g.amt).toLocaleString()+"만 원",x,y-L-(mob?10:12));ctx.font=`600 ${mob?12:13.5}px ${css("--font")}`}}
+      ctx.strokeStyle=on2?"rgba(116,185,255,.9)":"rgba(255,255,255,.28)";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,y-6);ctx.lineTo(x,y-L);ctx.stroke();
+      ctx.beginPath();ctx.arc(x,y-L,on2?5:3.5,0,6.283);if(on2){ctx.fillStyle="#74b9ff";ctx.fill()}else{ctx.fillStyle="#000";ctx.fill();ctx.strokeStyle="rgba(255,255,255,.45)";ctx.stroke()}
+      if(on2){ctx.fillStyle="#8ec5ff";ctx.fillText(p.g.name,x,y-L-(mob?24:28));ctx.fillStyle="rgba(255,255,255,.72)";ctx.font=`500 ${mob?11:12.5}px ${css("--font")}`;ctx.fillText(Math.round(p.g.amt).toLocaleString()+"만 원",x,y-L-(mob?10:12));ctx.font=`600 ${mob?12:13.5}px ${css("--font")}`}}
     if(on&&!RM)raf=requestAnimationFrame(draw)}
   box.addEventListener("pointermove",e=>{const r=cv.getBoundingClientRect();mx=(e.clientX-r.left)/r.width-.5});box.addEventListener("pointerleave",()=>{mx=-9});
   addEventListener("resize",()=>{size();if(!raf)raf=requestAnimationFrame(draw)});
