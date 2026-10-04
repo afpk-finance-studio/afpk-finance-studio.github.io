@@ -734,6 +734,30 @@ input[type=range]::-moz-range-thumb{border-color:#6a3cff}
 .vhead.banner.rv.shown{transform:none}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1!important;transform:none!important;transition:none}}
 
+/* ===== v7: refined hero mockup (browser chrome, glass sheen, fade-out, phone with island) ===== */
+.hx-device{left:6%;right:6%;padding:0;border-radius:16px;background:#0e0e11;border:1px solid rgba(255,255,255,.14);overflow:hidden;-webkit-mask:linear-gradient(#000 62%,transparent 98%);mask:linear-gradient(#000 62%,transparent 98%);box-shadow:0 0 0 6px rgba(255,255,255,.03),0 -24px 90px -10px rgba(120,80,255,.40),0 50px 100px -30px rgba(0,0,0,.9)}
+.hx-device:before{display:none}
+.hx-device:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,0) 28%,rgba(255,255,255,0) 70%,rgba(255,255,255,.04) 100%)}
+.hx-bar{display:flex;align-items:center;gap:7px;height:34px;padding:0 14px;background:linear-gradient(#1a1a1e,#121215);border-bottom:1px solid rgba(255,255,255,.07);position:relative}
+.hx-bar i{width:10px;height:10px;border-radius:50%;background:#3a3a40}
+.hx-bar span{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,.55);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);padding:3px 14px;border-radius:7px;white-space:nowrap}
+.hx-bar svg{width:11px;height:11px}
+.hx-screen{position:relative}
+.hx-screen img{display:block;width:100%;border-radius:0}
+.hx-phone{padding:7px;border-radius:30px;background:linear-gradient(145deg,#2a2a30,#0b0b0d);border:1px solid rgba(255,255,255,.18);box-shadow:inset 0 0 0 1.5px #000,0 0 0 1px rgba(0,0,0,.6),0 40px 80px -20px rgba(0,0,0,.9),0 0 60px -10px rgba(178,92,255,.35);overflow:hidden}
+.hx-phone img{border-radius:23px}
+.hx-phone .island{position:absolute;top:13px;left:50%;transform:translateX(-50%);width:30%;height:13px;border-radius:99px;background:#000;z-index:2}
+.hx-phone:after{content:"";position:absolute;inset:7px;border-radius:23px;pointer-events:none;background:linear-gradient(120deg,rgba(255,255,255,.14),rgba(255,255,255,0) 35%)}
+.fchip{flex-direction:row;align-items:center;gap:10px;padding:10px 14px 10px 10px;border-radius:16px;background:rgba(14,14,17,.62);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(18px) saturate(180%);-webkit-backdrop-filter:blur(18px) saturate(180%);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 24px 50px -18px rgba(0,0,0,.85)}
+.fchip>div{display:flex;flex-direction:column}
+.fchip .fi{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:15px;font-weight:800;color:#fff;background:linear-gradient(135deg,#6a3cff,#ff6fa5);box-shadow:0 6px 16px -6px rgba(106,60,255,.8);flex:none}
+.fchip small{font-size:11px;letter-spacing:.01em}
+.fchip b{font-size:16px}
+.fchip.f1{left:1%;top:34%}
+.fchip.f2{left:auto;right:17%;top:3%}
+.fchip.f3{left:9%;top:66%}
+@media (max-width:600px){.fchip .fi{width:26px;height:26px;font-size:12px;border-radius:8px}.fchip b{font-size:13px}.hx-bar{height:24px}.hx-bar span{display:none}.hx-bar i{width:7px;height:7px}.hx-phone{border-radius:20px;padding:4px}.hx-phone img{border-radius:16px}.hx-phone .island{top:8px;height:8px}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -804,11 +828,11 @@ input[type=range]::-moz-range-thumb{border-color:#6a3cff}
     </div>
     <div class="hx-vis" id="hxVis" aria-hidden="true">
       <div class="hx-stage" id="hxStage">
-        <div class="hx-device"><img src="assets/shot-desk.jpg" alt="" onerror="this.outerHTML='&lt;div class=&quot;ph&quot;&gt;&lt;/div&gt;'"></div>
-        <div class="hx-phone"><img src="assets/shot-mob.jpg" alt="" onerror="this.parentNode.style.display='none'"></div>
-        <div class="fchip f1"><small>월 저축</small><b id="fc1"></b></div>
-        <div class="fchip f2"><small>비상예비자금</small><b id="fc2"></b></div>
-        <div class="fchip f3"><small>6년 후 금융자산</small><b id="fc3"></b></div>
+        <div class="hx-device"><div class="hx-bar"><i></i><i></i><i></i><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>afpk-finance-studio.github.io</span></div><div class="hx-screen"><img src="assets/shot-desk.jpg" alt="" onerror="this.outerHTML='&lt;div class=&quot;ph&quot;&gt;&lt;/div&gt;'"></div></div>
+        <div class="hx-phone"><span class="island"></span><img src="assets/shot-mob.jpg" alt="" onerror="this.parentNode.style.display='none'"></div>
+        <div class="fchip f1"><span class="fi">₩</span><div><small>월 저축</small><b id="fc1"></b></div></div>
+        <div class="fchip f2"><span class="fi">◎</span><div><small>비상예비자금</small><b id="fc2"></b></div></div>
+        <div class="fchip f3"><span class="fi">↗</span><div><small>6년 후 금융자산</small><b id="fc3"></b></div></div>
       </div>
     </div>
   </div>
@@ -1216,7 +1240,13 @@ const mlabel=m=>m==null?"-":m===Infinity?"기간 내 미달":m===0?"즉시":m<12
 
 /* ---------- charts ---------- */
 const charts={};
-function chart(id,cfg){if(typeof Chart==="undefined"){const el=document.getElementById(id);if(el&&!el.dataset.fb){el.dataset.fb=1;el.parentElement.insertAdjacentHTML("beforeend",'<p class="note">그래프 라이브러리를 불러오지 못했습니다. 인터넷 연결을 확인하세요.</p>')}return}
+const swatch=x=>typeof x==="string"?x:(x&&x._c)||null;
+const okC=c=>c&&!/^(#fff|#ffffff|rgba\(255,\s*255,\s*255)/i.test(c);
+function dsColor(ds,i){if(!ds)return "#999";const cands=[ds.type==="line"&&typeof ds.pointBorderColor==="string"&&ds.pointBorderWidth>=3?ds.pointBorderColor:null,ds._base&&ds._base[i],Array.isArray(ds.backgroundColor)?ds.backgroundColor[i]:null,ds.fill===false||ds.type==="line"&&!ds.fill?swatch(ds.borderColor):null,swatch(ds.backgroundColor),swatch(ds.borderColor)];for(const c of cands){const v=swatch(c);if(okC(v)&&!/rgba\(.*,\s*0?\.[0-3]\d*\)$/.test(v))return v}for(const c of cands){const v=swatch(c);if(okC(v))return v}return "#999"}
+function solidSw(cfg){const o=cfg.options=cfg.options||{},p=o.plugins=o.plugins||{};const lg=p.legend;
+  if(lg&&lg.display!==false){lg.labels=Object.assign({},lg.labels,{usePointStyle:true,pointStyle:"rectRounded",boxWidth:10,boxHeight:10,generateLabels:ch=>Chart.defaults.plugins.legend.labels.generateLabels(ch).map(l=>{const ds=ch.data.datasets[l.datasetIndex];const c=dsColor(ds,l.index);return Object.assign(l,{fillStyle:c,strokeStyle:c,lineWidth:0,pointStyle:"rectRounded",lineDash:[]})})})}
+  if(p.tooltip){p.tooltip.callbacks=Object.assign({},p.tooltip.callbacks,{labelColor:ctx=>{const c=dsColor(ctx.dataset,ctx.dataIndex);return {borderColor:c,backgroundColor:c,borderWidth:0,borderRadius:3}},labelPointStyle:()=>({pointStyle:"rectRounded",rotation:0})})}}
+function chart(id,cfg){if(typeof Chart!=="undefined")solidSw(cfg);if(typeof Chart==="undefined"){const el=document.getElementById(id);if(el&&!el.dataset.fb){el.dataset.fb=1;el.parentElement.insertAdjacentHTML("beforeend",'<p class="note">그래프 라이브러리를 불러오지 못했습니다. 인터넷 연결을 확인하세요.</p>')}return}
   const cv=document.getElementById(id);
   if(waiting[id]){waiting[id]=cfg;return}
   if(charts[id]){charts[id].data=cfg.data;charts[id].options=cfg.options;charts[id].update(cv.offsetParent?undefined:"none");return}
@@ -1235,10 +1265,10 @@ const mixW=(h,a)=>{h=String(h).replace("#","");if(!/^[0-9a-f]{6}$/i.test(h))retu
 const mixK=(h,a)=>{h=String(h).replace("#","");if(!/^[0-9a-f]{6}$/i.test(h))return h;const v=parseInt(h,16),f=x=>Math.round(x*(1-a));return `rgb(${f(v>>16&255)},${f(v>>8&255)},${f(v&255)})`};
 const PAL2={"#6a3cff":"#d46bff","#b25cff":"#ff7ab8","#ff6fa5":"#ffb37a","#3e7bff":"#4fd6ff","#cdced6":"#eeeef3","#2d2d35":"#6a6a78","#15c39a":"#9be86a"};const p2=cl=>PAL2[String(cl).toLowerCase()]||mixW(cl,.35);
 const segFill=cols=>ctx=>{const cl=cols[ctx.dataIndex%cols.length],ar=ctx.chart.chartArea;if(!ar)return cl;const g=ctx.chart.ctx.createLinearGradient(ar.left,ar.bottom,ar.right,ar.top);g.addColorStop(0,mixK(cl,.08));g.addColorStop(.5,cl);g.addColorStop(1,p2(cl));return g};
-const barFill=cl=>grad(p2(cl),mixK(cl,.05));
+const barFill=cl=>{const f=grad(p2(cl),mixK(cl,.05));f._c=cl;return f};
 const hexA=(h,a)=>{h=String(h).replace("#","");if(h.length===3)h=h.split("").map(x=>x+x).join("");const v=parseInt(h,16);return `rgba(${v>>16&255},${v>>8&255},${v&255},${a})`};
 const lum=h=>{h=String(h).replace("#","");if(!/^[0-9a-f]{6}$/i.test(h))return 0;const v=parseInt(h,16);return ((v>>16&255)*.299+(v>>8&255)*.587+(v&255)*.114)/255};
-function grad(a,b,horiz){return ctx=>{const ch=ctx.chart,ar=ch.chartArea;if(!ar)return a;const g=horiz?ch.ctx.createLinearGradient(ar.left,0,ar.right,0):ch.ctx.createLinearGradient(0,ar.top,0,ar.bottom);g.addColorStop(0,a);g.addColorStop(1,b);return g}}
+function grad(a,b,horiz){return Object.assign(ctx=>{const ch=ctx.chart,ar=ch.chartArea;if(!ar)return a;const g=horiz?ch.ctx.createLinearGradient(ar.left,0,ar.right,0):ch.ctx.createLinearGradient(0,ar.top,0,ar.bottom);g.addColorStop(0,a);g.addColorStop(1,b);return g},{_c:a})}
 const GRAY=["#dedee6","rgba(222,222,230,.18)"],VIO=["#ff7ab8","#6a3cff"];
 const GLOW={id:"glow",beforeDatasetDraw(ch,a){if(ch.config.type!=="line")return;const c=ch.ctx;c.save();c.shadowColor="rgba(106,60,255,.35)";c.shadowBlur=14;c.shadowOffsetY=6},afterDatasetDraw(ch){if(ch.config.type!=="line")return;ch.ctx.restore()}};
 const NUMS={id:"nums",afterDatasetsDraw(ch){const ds=ch.data.datasets[0];if(!ds)return;const tot=ds.data.reduce((a,b)=>a+(+b||0),0);if(!tot)return;const m=ch.getDatasetMeta(0),c=ch.ctx;c.save();c.font="700 11px "+css("--font");c.textAlign="center";c.textBaseline="middle";
