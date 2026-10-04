@@ -1027,6 +1027,18 @@ html.dark .fv-cal i.c{background:#fff}
 .fchip.f3{left:auto;right:6%;top:60%}
 @media (max-width:600px){.hx-device{left:0;right:0}.fchip.f1{top:52%}}
 
+/* v11: hero mockup fully visible, lighter screen; feature titles fade instead of typing */
+.hx-vis{aspect-ratio:1.85/1;width:min(100%,1060px)}
+.hx-device{left:10%;right:10%;-webkit-mask:linear-gradient(#000 82%,transparent 100%);mask:linear-gradient(#000 82%,transparent 100%);box-shadow:0 0 0 6px rgba(255,255,255,.04),0 -10px 120px 0 rgba(140,100,255,.45),0 50px 100px -30px rgba(0,0,0,.9)}
+.hx:after{background:radial-gradient(closest-side,rgba(126,84,255,.70),rgba(255,111,165,.25) 55%,transparent);bottom:-20%;height:85%}
+.hx:before{background:radial-gradient(closest-side,rgba(178,92,255,.28),transparent);top:-25%}
+.fchip.f1{left:1%;top:42%}
+.fchip.f2{left:auto;right:1%;top:7%}
+.fchip.f3{left:auto;right:3%;top:64%}
+.fp-txt h3{opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.16,1,.3,1) .2s,transform .9s cubic-bezier(.16,1,.3,1) .2s}
+.fp.shown .fp-txt h3,.fp:not(.rvp) .fp-txt h3{opacity:1;transform:none}
+@media (max-width:600px){.hx-vis{aspect-ratio:1.5/1}.hx-device{left:0;right:0}.fchip.f1{top:58%}.fchip.f2{right:0;top:-4%}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -1107,7 +1119,7 @@ html.dark .fv-cal i.c{background:#fff}
   <section class="feat-sec" aria-labelledby="featTitle">
     <div class="feat-head">
       <span class="feat-eye">FEATURES</span>
-      <h2 id="featTitle" data-type>재무설계 6단계를<br>한 화면에서 끝까지</h2>
+      <h2 id="featTitle">재무설계 6단계를<br>한 화면에서 끝까지</h2>
       <p>상담 합의부터 보고서까지, 이 사이트에서 할 수 있는 일입니다. 각 기능의 바로가기를 누르면 해당 화면으로 이동합니다.</p>
     </div>
     <div class="fps">
@@ -1117,7 +1129,7 @@ html.dark .fv-cal i.c{background:#fff}
           <div class="mk-rows"><div><span>월 세후소득</span><b id="fpSal"></b></div><div><span>고정지출</span><b id="fpFix"></b></div><div><span>변동지출</span><b id="fpVar"></b></div><div><span>총자산</span><b id="fpAsset"></b></div><div><span>재무목표</span><b id="fpGoals"></b></div></div>
           <div class="mk-ringwrap"><div class="fv-ring"><span id="ftComp">100%</span></div><div><b>입력 완전성</b><small>빠진 값·숫자 모순 없음</small></div></div>
         </div></div>
-        <div class="fp-txt"><span class="fp-tag">1·2단계 · 관계 정립과 자료 수집</span><h3 data-type>숫자를 한 번만 넣으면,<br>모든 화면이 함께 계산됩니다.</h3><p>상담 범위와 역할을 먼저 합의하고, 소득·지출·자산·부채·목표를 입력하면 빠진 값과 숫자 모순을 실시간으로 점검합니다.</p><a class="fp-go" href="#s2">자료 입력 바로가기 →</a></div>
+        <div class="fp-txt"><span class="fp-tag">1·2단계 · 관계 정립과 자료 수집</span><h3>숫자를 한 번만 넣으면,<br>모든 화면이 함께 계산됩니다.</h3><p>상담 범위와 역할을 먼저 합의하고, 소득·지출·자산·부채·목표를 입력하면 빠진 값과 숫자 모순을 실시간으로 점검합니다.</p><a class="fp-go" href="#s2">자료 입력 바로가기 →</a></div>
       </article>
       <article class="fp rev" data-go="s3" style="--i:1">
         <div class="fp-vis"><div class="mk mk-stack">
@@ -1125,27 +1137,27 @@ html.dark .fv-cal i.c{background:#fff}
             <div class="fv-ratio"><div><span>비상예비자금</span><i style="--w:20%;--c:#ff6fa5"></i><b id="ftEm"></b></div><div><span>저축성향률</span><i style="--w:39%;--c:#b25cff"></i><b id="ftSave"></b></div><div><span>부채부담률</span><i style="--w:16%;--c:#3e7bff"></i><b id="ftDebt"></b></div></div></div>
           <div class="mk mk-hero"><small>비상예비자금 충당률</small><div class="mk-big"><span id="fpEmNow"></span><i>→</i><b id="fpEmAfter"></b></div><div class="mk-chip">설계안 실행 시 · 권장 3~6개월</div></div>
         </div></div>
-        <div class="fp-txt"><span class="fp-tag">3단계 · 분석·평가</span><h3 data-type>지금 어디에 서 있는지,<br>비율 네 개로 바로 보입니다.</h3><p>비상예비자금, 저축성향, 부채부담, 고위험 자산 비중을 기준과 비교해 적정·위험을 자동으로 판정하고, 현금흐름과 자산부채 구조를 그래프로 보여 줍니다.</p><a class="fp-go" href="#s3">진단 결과 바로가기 →</a></div>
+        <div class="fp-txt"><span class="fp-tag">3단계 · 분석·평가</span><h3>지금 어디에 서 있는지,<br>비율 네 개로 바로 보입니다.</h3><p>비상예비자금, 저축성향, 부채부담, 고위험 자산 비중을 기준과 비교해 적정·위험을 자동으로 판정하고, 현금흐름과 자산부채 구조를 그래프로 보여 줍니다.</p><a class="fp-go" href="#s3">진단 결과 바로가기 →</a></div>
       </article>
       <article class="fp" data-go="s4" style="--i:2">
         <div class="fp-vis"><div class="mk mk-scen" id="fpScen"></div></div>
-        <div class="fp-txt"><span class="fp-tag">4단계 · 설계안 수립</span><h3 data-type>정답 하나 대신,<br>세 가지 설계안을 나란히.</h3><p>같은 자료로 안정안·균형안·가속안을 만들어 월 저축 재원, 저축성향, 목표 도달 시점을 비교합니다. 고르는 사람은 고객과 설계사입니다.</p><a class="fp-go" href="#s4">설계안 비교 바로가기 →</a></div>
+        <div class="fp-txt"><span class="fp-tag">4단계 · 설계안 수립</span><h3>정답 하나 대신,<br>세 가지 설계안을 나란히.</h3><p>같은 자료로 안정안·균형안·가속안을 만들어 월 저축 재원, 저축성향, 목표 도달 시점을 비교합니다. 고르는 사람은 고객과 설계사입니다.</p><a class="fp-go" href="#s4">설계안 비교 바로가기 →</a></div>
       </article>
       <article class="fp rev" data-go="s4" style="--i:3">
         <div class="fp-vis"><div class="mk mk-bucket"><div class="mk-h"><span class="mk-ic">◑</span><b>4-Bucket 월 적립</b></div><div class="mk-bk"><div class="fv-donut" id="fpDonut"><span id="ftBucket"></span></div><div class="mk-leg" id="fpBk"></div></div></div></div>
-        <div class="fp-txt"><span class="fp-tag">4단계 · 4-Bucket 포트폴리오</span><h3 data-type>월 저축을 목적별 계좌에<br>나눠 담습니다.</h3><p>안전자산·절세성장·노후·주거 바구니에 금액과 기대수익률을 정하면, 목표별 도달 시점과 연도별 자산 성장 경로가 바로 그려집니다.</p><a class="fp-go" href="#s4">포트폴리오 바로가기 →</a></div>
+        <div class="fp-txt"><span class="fp-tag">4단계 · 4-Bucket 포트폴리오</span><h3>월 저축을 목적별 계좌에<br>나눠 담습니다.</h3><p>안전자산·절세성장·노후·주거 바구니에 금액과 기대수익률을 정하면, 목표별 도달 시점과 연도별 자산 성장 경로가 바로 그려집니다.</p><a class="fp-go" href="#s4">포트폴리오 바로가기 →</a></div>
       </article>
       <article class="fp" data-go="s5" style="--i:4">
         <div class="fp-vis"><div class="mk mk-cal"><div class="mk-h"><span class="mk-ic">▦</span><b id="fpCalT">실행 캘린더</b><em class="mk-live">.ics 내보내기</em></div><div class="mk-calgrid" id="fpCal"></div><div class="mk-todo" id="fpTodo"></div></div></div>
-        <div class="fp-txt"><span class="fp-tag">5단계 · 실행</span><h3 data-type>할 일이 날짜와 함께<br>달력에 올라갑니다.</h3><p>시작일을 정하면 자산 정리, 계좌 개설, 자동이체 같은 과제가 날짜별로 배치되고 월급날·분기 점검까지 표시됩니다. 휴대폰 캘린더로 내보낼 수도 있습니다.</p><a class="fp-go" href="#s5">캘린더 바로가기 →</a></div>
+        <div class="fp-txt"><span class="fp-tag">5단계 · 실행</span><h3>할 일이 날짜와 함께<br>달력에 올라갑니다.</h3><p>시작일을 정하면 자산 정리, 계좌 개설, 자동이체 같은 과제가 날짜별로 배치되고 월급날·분기 점검까지 표시됩니다. 휴대폰 캘린더로 내보낼 수도 있습니다.</p><a class="fp-go" href="#s5">캘린더 바로가기 →</a></div>
       </article>
       <article class="fp rev" data-go="s6" style="--i:5">
         <div class="fp-vis"><div class="mk mk-alert"><div class="mk-alh"><b>점검 알림 도착</b><span>PLAN6</span></div><div class="mk-alb"><div class="mk-ald"><b id="fpAlName"></b><small>트리거 7개 자동 판정</small></div><div class="mk-rows" id="fpTrig"></div></div></div></div>
-        <div class="fp-txt"><span class="fp-tag">6단계 · 점검과 리밸런싱</span><h3 data-type>상황이 바뀌면,<br>돌아갈 단계를 알려 줍니다.</h3><p>비상금 부족, 시장 급락, 소득 변화, 대출 완납 같은 조건을 매달 판정해 무엇을 고칠지와 어느 단계에서 다시 설계할지 안내합니다.</p><a class="fp-go" href="#s6">점검판 바로가기 →</a></div>
+        <div class="fp-txt"><span class="fp-tag">6단계 · 점검과 리밸런싱</span><h3>상황이 바뀌면,<br>돌아갈 단계를 알려 줍니다.</h3><p>비상금 부족, 시장 급락, 소득 변화, 대출 완납 같은 조건을 매달 판정해 무엇을 고칠지와 어느 단계에서 다시 설계할지 안내합니다.</p><a class="fp-go" href="#s6">점검판 바로가기 →</a></div>
       </article>
       <article class="fp" data-go="report" style="--i:6">
         <div class="fp-vis"><div class="mk-doc"><div class="pg p3"></div><div class="pg p2"></div><div class="pg p1"><small>재무설계 보고서</small><b id="fpRepName"></b><ol><li>관계 정립</li><li>목표·자료 수집</li><li>분석·평가</li><li>설계안 수립</li><li>실행</li><li>점검·리밸런싱</li></ol></div></div></div>
-        <div class="fp-txt"><span class="fp-tag">결과물 · 보고서</span><h3 data-type>6단계를 한 권의<br>보고서로 정리합니다.</h3><p>단계마다 고객이 해야 할 일을 정리한 A4 보고서를 만들고 PDF로 저장합니다. 계산식과 관련 법령은 산출 근거 화면에서 확인할 수 있습니다.</p><a class="fp-go" href="#report">보고서 바로가기 →</a></div>
+        <div class="fp-txt"><span class="fp-tag">결과물 · 보고서</span><h3>6단계를 한 권의<br>보고서로 정리합니다.</h3><p>단계마다 고객이 해야 할 일을 정리한 A4 보고서를 만들고 PDF로 저장합니다. 계산식과 관련 법령은 산출 근거 화면에서 확인할 수 있습니다.</p><a class="fp-go" href="#report">보고서 바로가기 →</a></div>
       </article>
     </div>
     <div class="feat-more">
