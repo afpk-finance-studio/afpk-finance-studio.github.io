@@ -1457,6 +1457,7 @@ html.bk .top{background:rgba(255,255,255,.94)}
 .evx-p b{color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
 @media (max-width:560px){.evx-box{padding:20px}}
 
+[hidden]{display:none!important}
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -1522,7 +1523,7 @@ html.bk .top{background:rgba(255,255,255,.94)}
       <span class="hx-pill"><b id="modeLabel">가상 고객 예시</b>AFPK 표준 재무설계 6단계</span>
       <h1 id="homeTitle">김민준님의 돈이<br><em>모이는 구조</em>를 설계합니다</h1>
       <p>소득·지출·자산을 넣으면 진단부터 설계안 비교, 실행 캘린더, 점검과 보고서까지 한 번에 이어집니다. 계산은 공개된 규칙으로, 최종 판단은 사람이 합니다.</p>
-      <div class="btns"><a class="btn white lg" href="#s2">내 정보로 시작하기<i class="arr"></i></a><a class="btn glassb lg" href="#report">보고서 보기</a><button class="btn glassb lg" type="button" id="btnBlank">빈 양식</button></div>
+      <div class="btns"><a class="btn white lg" href="#s2">내 정보로 시작하기<i class="arr"></i></a><a class="btn glassb lg" href="#report">보고서 보기</a><button class="btn glassb lg" type="button" id="btnBlank">빈 양식</button><button class="btn glassb lg" type="button" id="btnExample2" hidden>예시 고객 다시 보기</button></div>
       <div class="hx-mini" id="hxMini"></div>
     </div>
     <div class="hx-vis" id="hxVis" aria-hidden="true">
@@ -2060,7 +2061,7 @@ function kpi(k,v,unit,sub,status,tip){return `<div class="kpi" tabindex="0"><div
 function update(){
   const c=calc(),p=S.profile;
   const H=Math.max(120,...S.goals.map(g=>n(g.months)));const P=project(c,H);
-  $("#modeLabel").textContent=S.mode==="example"?"가상 고객 예시":"직접 입력한 고객";
+  $("#modeLabel").textContent=S.mode==="example"?"가상 고객 예시":"직접 입력한 고객";$("#btnBlank").hidden=S.mode!=="example";$("#btnExample2").hidden=S.mode==="example";
   {const th=`${esc(p.name||"고객")}님의 돈이<br><em>모이는 구조</em>를 설계합니다`,te=$("#homeTitle");if(te.dataset.h!==th){te.dataset.h=th;te.innerHTML=th;if(!update.typed){update.typed=1;typeIt(te,62)}}}
   $("#sideClient").textContent=`${p.name||"고객"}${p.age?" · "+p.age+"세":""}`;
   const finNow=c.A.liquid+c.A.safe+c.A.risk+c.A.retire;
@@ -2458,7 +2459,7 @@ document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)r
   else if(id==="addGoal")S.goals.push({id:uid(),term:"중기",name:"새 목표",amt:0,months:36,src:[]});
   else if(id==="addSell"){const a=S.assets.find(x=>x.type!=="liquid"&&x.type!=="use");if(!a){toast("2단계에서 투자 자산을 먼저 추가하세요");return}S.sells.push({id:uid(),asset:a.id,amt:0})}
   else if(id==="addBucket")S.buckets.push({id:uid(),name:"새 계좌",product:"",pmt:0,rate:3,link:"",months:""});
-  else if(id==="btnExample"){S=example();toast("예시 고객을 불러왔습니다")}
+  else if(id==="btnExample"||id==="btnExample2"){S=example();toast("예시 고객을 불러왔습니다");if(id==="btnExample2")scrollTo({top:0,behavior:"smooth"})}
   else if(id==="calPrev"||id==="calNext"){calM+=id==="calNext"?1:-1;if(calM<0){calM=11;calY--}if(calM>11){calM=0;calY++}calSel=null;renderCal(calc());return}
   else if(id==="calToday"){const t=new Date();calY=t.getFullYear();calM=t.getMonth();calSel=ymd(t);renderCal(calc());return}
   else if(id==="doPrint"){flushCharts();setTimeout(()=>{try{window.print()}catch(e){toast("이 화면에서는 인쇄가 막혀 있습니다")}},300);return}
