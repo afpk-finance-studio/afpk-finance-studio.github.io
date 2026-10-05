@@ -1664,6 +1664,22 @@ html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:
 .card.rmcard{margin-bottom:0}
 @media (max-width:900px){.rm-fade{clip-path:inset(0 -100vmax);height:110px;margin-bottom:-60px}}
 
+#fab,.fab,#drawer{display:none!important}
+.rmcard .rm-mapwrap{margin-top:36px;padding-top:0;border-top:0}
+.rm-fade{height:320px!important;margin-bottom:-150px!important;border-image:linear-gradient(180deg,#000 0%,#0b0b0d 18%,color-mix(in srgb,var(--bg) 55%,#000) 55%,var(--bg) 100%) fill 0//0 100vmax!important}
+@media (max-width:900px){.rm-fade{height:220px!important;margin-bottom:-90px!important}}
+.rm-line li{cursor:default;transition:opacity .25s}
+.rm-line li>i{transition:transform .25s,background .25s,border-color .25s,box-shadow .25s}
+.rm-line li b,.rm-line li small,.rm-line li span{transition:color .25s}
+.rm-line li:after{content:"";position:absolute;left:0;top:7px;height:2px;width:0;background:#fff;transition:width .45s cubic-bezier(.16,1,.3,1);z-index:0}
+.rm-line ol:hover li{opacity:.4}
+.rm-line ol li:hover{opacity:1}
+.rm-line li:hover:after{width:100%}
+.rm-line li:last-child:hover:after{width:14px}
+.rmcard .rm-line li:hover>i{transform:scale(1.35);background:#fff;border-color:#fff;box-shadow:0 0 0 6px rgba(255,255,255,.12)}
+.rmcard .rm-line li.on:hover>i{background:#3182f6;border-color:#3182f6;box-shadow:0 0 0 6px rgba(49,130,246,.3)}
+.rmcard .rm-line li:hover small{color:#cfd3da}.rmcard .rm-line li:hover span{color:#fff}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -1979,7 +1995,7 @@ html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:
   <div class="card rmcard">
     <div class="ch"><div><h3>실행 로드맵</h3><p class="sub">급여가 들어온 날부터 돈이 자동으로 나뉘는 순서 · 선택한 설계안 금액이 그대로 반영됩니다</p></div>
       <div style="display:flex;gap:10px;flex-wrap:wrap"><div class="field" style="width:150px"><label for="startday">실행 시작일</label><input class="in" id="startday" type="date"></div><div class="field" style="width:86px"><label for="payday">급여일</label><input class="in n" id="payday" type="number" min="1" max="31"></div><div class="field" style="width:86px"><label for="moveday">이체일</label><input class="in n" id="moveday" type="number" min="1" max="31"></div></div></div>
-    <div class="flow rm" id="flow"></div><div class="rm-mapwrap"><div class="rm-lh"><b>자동화 흐름도</b><span>급여가 들어오면 돈이 이렇게 갈라집니다 · 선은 자동이체가 실행되는 순서입니다</span></div><div class="rm-scroll"><div class="rm-map" id="rmMap"></div></div></div><div class="rm-line" id="rmLine"></div>
+    <div class="flow rm" id="flow" hidden></div><div class="rm-mapwrap"><div class="rm-lh"><b>자동화 흐름도</b><span>급여가 들어오면 돈이 이렇게 갈라집니다 · 선은 자동이체가 실행되는 순서입니다</span></div><div class="rm-scroll"><div class="rm-map" id="rmMap"></div></div></div><div class="rm-line" id="rmLine"></div>
   </div>
   <div class="rm-fade" aria-hidden="true"></div>
   <div class="grid" style="grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);align-items:start" id="execGrid">
