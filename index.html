@@ -1499,6 +1499,27 @@ html.bk .top{background:rgba(255,255,255,.94)}
 @media print{.orail,.orail-tip{display:none!important}}
 
 #v-basis .bz-law[hidden]{display:none!important}
+html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:#4e5968}
+.kpi .v{display:flex;align-items:baseline;gap:0}
+.kpi .v .vt{font-size:11.5px;font-weight:700;color:var(--ink-3);letter-spacing:0;margin-right:8px;align-self:center;padding:3px 7px;border-radius:6px;background:var(--fill)}
+.kpi .cmp{display:grid;gap:7px;margin:8px 0 4px}
+.kpi .cr{display:grid;grid-template-columns:46px minmax(0,1fr) auto;align-items:center;gap:10px}
+.kpi .cl{font-size:12px;font-weight:600;color:var(--ink-3)}
+.kpi .cr.aft .cl{color:var(--ink)}
+.kpi .cb{position:relative;height:8px;border-radius:99px;background:#f2f4f6}
+.kpi .cb i{position:absolute;left:0;top:0;bottom:0;border-radius:99px;transition:width .5s ease}
+.kpi .cr.now .cb i{background:linear-gradient(90deg,#e5e8eb,#b0b8c1)}
+.kpi .cr.now .cb i.bad{background:linear-gradient(90deg,#ffd3d8,#f9a1ab)}
+.kpi .cr.aft .cb i{background:linear-gradient(90deg,#a9d0ff,#3182f6)}
+.kpi .cr.aft .cb i.warn{background:linear-gradient(90deg,#d1d6db,#8b95a1)}
+.kpi .cr.aft .cb i.bad{background:linear-gradient(90deg,#ffb6c6,#f04452)}
+.kpi .cb em{position:absolute;top:-4px;bottom:-4px;width:0;border-left:1.5px dashed #191f28;opacity:.55}
+.kpi .cr b{font-size:12.5px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink-3);min-width:58px;text-align:right}
+.kpi .cr.aft b{color:#3182f6;font-size:13.5px}
+.kpi .cr.aft b.warn{color:#4e5968}.kpi .cr.aft b.bad{color:#f04452}
+@media(max-width:760px){.kpi .cr{grid-template-columns:minmax(0,1fr) auto;row-gap:5px}.kpi .cb{grid-column:1/-1;grid-row:2}.kpi .cr b{min-width:0}.kpi .cmp{gap:9px}.kpi .v .vt{display:none}}
+.kpi .d .thk{display:inline-block;width:0;height:10px;border-left:1.5px dashed #191f28;opacity:.55;margin-right:6px;vertical-align:-1px}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -1515,6 +1536,7 @@ html.bk .top{background:rgba(255,255,255,.94)}
 </style>
 </head>
 <body>
+
 
 <aside class="side" aria-label="메뉴">
   <a class="logo" href="#home"><span class="mark"></span>plan6<em>.studio</em></a>
@@ -1984,7 +2006,7 @@ function calc(sk){
   const restAmt=S.assets.filter(a=>["safe","risk","retire"].includes(a.type)&&!linked.has(a.id)).reduce((x,a)=>x+after[a.id],0);
   const R=(liq,ex,sv,risk,inv)=>({em:ex>0?liq/ex:0,save:sal>0?sv/sal*100:0,debt:sal>0?debtPay/sal*100:0,risk:inv>0?risk/inv*100:0});
   return {sk,sc,sal,bonus,exNow,exPlan,fixNow,varNow,fixPlan,varPlan,saveNow,debtPay,debtBal,A,B,totalA,net,sellTotal,after,capacity,buckets,bucketSum,restAmt,planAmt,
-    rNow:R(A.liquid,exNow,saveNow,A.risk,A.safe+A.risk+A.retire),rAfter:R(B.liquid,exPlan,bucketSum,B.risk,B.safe+B.risk+B.retire),unalloc:sal-exNow-saveNow};
+    rNow:R(A.liquid,exNow,saveNow,A.risk,A.safe+A.risk+A.retire),rAfter:R(B.liquid,exPlan,bucketSum,B.risk,B.safe+B.risk+B.retire+bucketSum*12),rSold:B.safe+B.risk+B.retire>0?B.risk/(B.safe+B.risk+B.retire)*100:0,unalloc:sal-exNow-saveNow};
 }
 function project(c,H,scale){
   const series=c.buckets.map(b=>{const r=b.rate/100/12,lim=b.months===""||b.months==null?Infinity:n(b.months);const f=scale&&scale[b.id]!=null?scale[b.id]:1;
@@ -2037,8 +2059,8 @@ const barFill=cl=>{const f=ctx=>{const c=TC(cl,ctx.chart.canvas);return grad(toA
 const toA=(c,a)=>{c=String(c).trim();if(c[0]==="#")return hexA(c,a);const m=c.match(/rgba?\(([^)]+)\)/);if(!m)return c;const p=m[1].split(",").slice(0,3).join(",");return `rgba(${p},${a})`};
 const XH={id:"xh",afterDatasetsDraw(ch){if(ch.config.type!=="line"||!ch.tooltip)return;const a=ch.tooltip.getActiveElements();if(!a||!a.length)return;const x=a[0].element.x,ar=ch.chartArea,c=ch.ctx;c.save();c.setLineDash([4,4]);c.lineWidth=1.5;c.strokeStyle="rgba(49,130,246,.6)";c.beginPath();c.moveTo(x,ar.top);c.lineTo(x,ar.bottom);c.stroke();c.restore()}};
 const rgbOf=c=>{c=String(c).trim();if(c[0]==="#"){let h=c.slice(1);if(h.length===3)h=h.split("").map(x=>x+x).join("");const v=parseInt(h,16);return [v>>16&255,v>>8&255,v&255]}const m=c.match(/rgba?\(([^)]+)\)/);return m?m[1].split(",").slice(0,3).map(Number):[128,128,128]};
-const litE=c=>{const [r,g,b]=rgbOf(c),gr=Math.max(r,g,b)-Math.min(r,g,b)<30,t=gr?[255,255,255]:[143,227,255],a=gr?.6:.62;return `rgb(${[r,g,b].map((x,i)=>Math.round(x+(t[i]-x)*a)).join(",")})`};
-const deepE=c=>{const [r,g,b]=rgbOf(c),gr=Math.max(r,g,b)-Math.min(r,g,b)<30;if(gr)return `rgb(${[r,g,b].map(x=>Math.round(x*.86)).join(",")})`;return `rgb(${Math.round(r*.62)},${Math.round(g*.66)},${Math.round(b*.92)})`};
+const litE=c=>{const [r,g,b]=rgbOf(c),gr=Math.max(r,g,b)-Math.min(r,g,b)<30,t=[255,255,255],a=gr?.6:.4;return `rgb(${[r,g,b].map((x,i)=>Math.round(x+(t[i]-x)*a)).join(",")})`};
+const deepE=c=>{const [r,g,b]=rgbOf(c),gr=Math.max(r,g,b)-Math.min(r,g,b)<30;if(gr)return `rgb(${[r,g,b].map(x=>Math.round(x*.86)).join(",")})`;return `rgb(${[r,g,b].map(x=>Math.round(x*.84)).join(",")})`};
 const hexA=(h,a)=>{h=String(h).replace("#","");if(h.length===3)h=h.split("").map(x=>x+x).join("");const v=parseInt(h,16);return `rgba(${v>>16&255},${v>>8&255},${v&255},${a})`};
 const lum=h=>{h=String(h).replace("#","");if(!/^[0-9a-f]{6}$/i.test(h))return 0;const v=parseInt(h,16);return ((v>>16&255)*.299+(v>>8&255)*.587+(v&255)*.114)/255};
 function grad(a,b,horiz){return Object.assign(ctx=>{const ch=ctx.chart,ar=ch.chartArea;a=TC(a,ch.canvas);b=TC(b,ch.canvas);if(!ar)return a;const g=horiz?ch.ctx.createLinearGradient(ar.left,0,ar.right,0):ch.ctx.createLinearGradient(0,ar.top,0,ar.bottom);g.addColorStop(0,a);g.addColorStop(1,b);return g},{_c:a})}
@@ -2054,6 +2076,7 @@ function donut(id,labels,data,colors,center,tipFn,legId,legItems){colors=colors.
   if(legId)$("#"+legId).innerHTML=legItems.map((x,i)=>`<button type="button" data-leg="${id}" data-i="${i}"><i style="background:linear-gradient(135deg,${mixW(colors[i],.38)},${colors[i]});color:${lum(colors[i])>.68?"#2a2a36":"#fff"}">${i+1}</i><span>${esc(x[0])}<small>${x[2]||""}</small></span><b>${x[1]}</b></button>`).join("")}
 function legHover(btn,on){const ch=charts[btn.dataset.leg];if(!ch)return;const i=+btn.dataset.i;if(on){const el=ch.getDatasetMeta(0).data[i];if(!el)return;ch.setActiveElements([{datasetIndex:0,index:i}]);ch.tooltip.setActiveElements([{datasetIndex:0,index:i}],el.tooltipPosition())}else{ch.setActiveElements([]);ch.tooltip.setActiveElements([],{x:0,y:0})}ch.update()}
 const COLORS=()=>["--c1","--c2","--c3","--c4","--c5","--c6"].map(css);
+const BSC=()=>["--c1","--c3","--c4","--c2","--c5","--c6"].map(css);
 
 /* ---------- static input rendering ---------- */
 const uw=(html,unit)=>`<div class="unitwrap">${html}<span>${unit}</span></div>`;
@@ -2175,18 +2198,18 @@ function updateCore(){
   $("#cfNote").innerHTML=`고정 ${fmt(c.fixNow)} + 변동 ${fmt(c.varNow)} = 총지출 <b>${fmt(c.exNow)}만 원</b> (소득의 ${c.sal?pct(c.exNow/c.sal*100,2):"-"}).`+(Math.abs(c.unalloc)>.001?` 소득 − 지출 − 저축 = ${fmt(c.unalloc)}만 원${c.unalloc>0?" (용도 미확인)":" (소득 초과)"}.`:"");
 
   // step3 ratios
-  const rk=(t,kind,a,b,unit,d,crit,tip)=>{const s1=st(kind,a),s2=st(kind,b);return `<div class="kpi" tabindex="0"><div class="k">${t}<span class="pill ${s1}">${SL[s1]}</span></div><div class="v">${fmt(a,d)}<small>${unit}</small></div><div class="meter"><i class="${s1}" style="width:${Math.min(100,kind==="em"?a/6*100:a)}%"></i></div><div class="d">${crit}</div><div class="d">실행 후 <b style="color:${s2==="good"?"#3182f6":s2==="warn"?"#4e5968":"#f04452"}">${fmt(b,d)}${unit}</b></div><div class="tip">${tip}</div></div>`};
-  $("#ratioKpis").innerHTML=rk("비상예비자금 충당률","em",c.rNow.em,c.rAfter.em,"개월",1,"권장 3~6개월",`유동성 자산 ${fmt(c.A.liquid)} ÷ 월 총지출 ${fmt(c.exNow)}`)+rk("저축성향률","save",c.rNow.save,c.rAfter.save,"%",2,"권장 50% 이상",`월 저축 ${fmt(c.saveNow)} ÷ 세후소득 ${fmt(c.sal)} × 100`)+rk("부채부담률","debt",c.rNow.debt,c.rAfter.debt,"%",2,"안전 20% 이하",`월 상환 ${fmt(c.debtPay)} ÷ 세후소득 ${fmt(c.sal)} × 100`)+rk("고위험 자산 비중","risk",c.rNow.risk,c.rAfter.risk,"%",2,"권장 30% 이하",`고위험 ${fmt(c.A.risk)} ÷ 투자자산 ${fmt(c.A.safe+c.A.risk+c.A.retire)} × 100`);
+  const rk=(t,kind,a,b,unit,d,crit,tip,al)=>{const s1=st(kind,a),s2=st(kind,b),sc=v=>Math.max(2,Math.min(100,kind==="em"?v/6*100:v)),th={em:50,save:50,debt:20,risk:30}[kind];const bar=(lab,v,s,cl)=>`<div class="cr ${cl}"><span class="cl">${lab}</span><div class="cb"><i class="${s}" style="width:${sc(v)}%"></i><em style="left:${th}%"></em></div><b class="${s}">${fmt(v,d)}${unit}</b></div>`;return `<div class="kpi" tabindex="0"><div class="k">${t}<span class="pill ${s1}">${SL[s1]}</span></div><div class="v"><span class="vt">현재</span>${fmt(a,d)}<small>${unit}</small></div><div class="cmp">${bar("현재",a,s1,"now")}${bar(al||"실행 후",b,s2,"aft")}</div><div class="d"><i class="thk"></i>${crit}</div><div class="tip">${tip}</div></div>`};
+  $("#ratioKpis").innerHTML=rk("비상예비자금 충당률","em",c.rNow.em,c.rAfter.em,"개월",1,"권장 3~6개월",`유동성 자산 ${fmt(c.A.liquid)} ÷ 월 총지출 ${fmt(c.exNow)}`)+rk("저축성향률","save",c.rNow.save,c.rAfter.save,"%",2,"권장 50% 이상",`월 저축 ${fmt(c.saveNow)} ÷ 세후소득 ${fmt(c.sal)} × 100`)+rk("부채부담률","debt",c.rNow.debt,c.rAfter.debt,"%",2,"안전 20% 이하",`월 상환 ${fmt(c.debtPay)} ÷ 세후소득 ${fmt(c.sal)} × 100`)+rk("고위험 자산 비중","risk",c.rNow.risk,c.rAfter.risk,"%",2,"권장 30% 이하",`현재 ${fmt(c.A.risk)} ÷ ${fmt(c.A.safe+c.A.risk+c.A.retire)} · 정리 직후 ${pct(c.rSold,2)} · 1년 적립 후 ${fmt(c.B.risk)} ÷ ${fmt(c.B.safe+c.B.risk+c.B.retire+c.bucketSum*12)}`,"1년 후");
   addGo("#ratioKpis",["s4","s4","s4","s4"]);
   const col=COLORS();
   const cfData=cfMode==="now"?[[c.fixNow,"고정지출"],[c.varNow,"변동지출"],[c.saveNow,"저축·투자"],[Math.max(0,c.sal+c.bonus-c.exNow-c.saveNow),"미배분"]]:[[c.fixPlan,"고정지출"],[c.varPlan,"변동지출"],[c.bucketSum,"저축·투자"],[Math.max(0,c.sal+c.bonus-c.exPlan-c.bucketSum),"미배분"]];
-  const cfCol=[css("--c4"),css("--c3"),css("--c1"),css("--c5")],cfT=cfData.reduce((a,x)=>a+x[0],0);
+  const cfCol=[css("--c1"),css("--c2"),css("--c3"),css("--c5")],cfT=cfData.reduce((a,x)=>a+x[0],0);
   donut("cCash",cfData.map(x=>x[1]),cfData.map(x=>x[0]),cfCol,{text:fmt(cfT)+"만",sub:"월 소득"},ctx=>{const t=ctx.dataset.data.reduce((a,b)=>a+b,0);return ` ${ctx.label}: ${won(ctx.parsed)} (${pct(t?ctx.parsed/t*100:0)})`},"legCash",cfData.map(x=>[x[1],fmt(x[0],x[0]%1?1:0)+"만",pct(cfT?x[0]/cfT*100:0)]));
   chart("cBS",{type:"bar",data:{labels:["자산","부채 + 순자산"],datasets:[
-    {label:"유동성",data:[c.A.liquid,0],backgroundColor:col[0],stack:"s"},{label:"안정 투자",data:[c.A.safe,0],backgroundColor:col[1],stack:"s"},{label:"고위험 투자",data:[c.A.risk,0],backgroundColor:col[2],stack:"s"},{label:"노후",data:[c.A.retire,0],backgroundColor:col[3],stack:"s"},{label:"사용 자산",data:[c.A.use,0],backgroundColor:col[4],stack:"s"},
-    {label:"부채",data:[0,c.debtBal],backgroundColor:"#f25f73",stack:"s"},{label:"순자산",data:[0,Math.max(0,c.net)],backgroundColor:"#3182f6",stack:"s"}].map(d=>Object.assign(d,{backgroundColor:d.label==="부채"?Object.assign(grad("rgba(255,182,198,.8)","rgba(226,40,66,.95)"),{_c:"#f25f73"}):barFill(d.backgroundColor),hoverBackgroundColor:d.label==="부채"?"rgba(240,68,82,.9)":d.backgroundColor,borderRadius:x=>{const D=x.chart.data.datasets;let top=-1;D.forEach((a,j)=>{if((+a.data[x.dataIndex]||0)>0&&x.chart.isDatasetVisible(j))top=j});return x.datasetIndex===top?{topLeft:10,topRight:10,bottomLeft:0,bottomRight:0}:0},borderSkipped:false,maxBarThickness:72,borderWidth:0}))},
+    {label:"유동성",data:[c.A.liquid,0],backgroundColor:BSC()[0],stack:"s"},{label:"안정 투자",data:[c.A.safe,0],backgroundColor:BSC()[1],stack:"s"},{label:"고위험 투자",data:[c.A.risk,0],backgroundColor:BSC()[2],stack:"s"},{label:"노후",data:[c.A.retire,0],backgroundColor:BSC()[3],stack:"s"},{label:"사용 자산",data:[c.A.use,0],backgroundColor:col[4],stack:"s"},
+    {label:"부채",data:[0,c.debtBal],backgroundColor:"#f25f73",stack:"s"},{label:"순자산",data:[0,Math.max(0,c.net)],backgroundColor:"#1b4fd1",stack:"s"}].map(d=>Object.assign(d,{backgroundColor:d.label==="부채"?Object.assign(grad("rgba(255,182,198,.8)","rgba(226,40,66,.95)"),{_c:"#f25f73"}):barFill(d.backgroundColor),hoverBackgroundColor:d.label==="부채"?"rgba(240,68,82,.9)":d.backgroundColor,borderRadius:x=>{const D=x.chart.data.datasets;let top=-1;D.forEach((a,j)=>{if((+a.data[x.dataIndex]||0)>0&&x.chart.isDatasetVisible(j))top=j});return x.datasetIndex===top?{topLeft:10,topRight:10,bottomLeft:0,bottomRight:0}:0},borderSkipped:false,maxBarThickness:72,borderWidth:0}))},
     options:baseOpts({interaction:{mode:"nearest",intersect:true},plugins:Object.assign(baseOpts().plugins,{legend:{display:false}}),scales:Object.assign(baseOpts().scales,{x:Object.assign(baseOpts().scales.x,{stacked:true}),y:Object.assign(baseOpts().scales.y,{stacked:true})})})});
-  {const sw=(c2,t)=>`<span><i style="background:${/gradient/.test(c2)?c2:`linear-gradient(180deg,${litE(c2)},${deepE(c2)})`}"></i>${t}</span>`;$("#legBS").innerHTML=`<div>${sw(col[0],"유동성")+sw(col[1],"안정 투자")+sw(col[2],"고위험 투자")+sw(col[3],"노후")+sw(col[4],"사용 자산")}</div><div>${sw("linear-gradient(180deg,#ffb6c6,#e22842)","부채")+sw(`linear-gradient(180deg,${litE("#4d9bff")},${deepE("#4d9bff")})`,"순자산")}</div>`}
+  {const sw=(c2,t)=>`<span><i style="background:${/gradient/.test(c2)?c2:`linear-gradient(180deg,${litE(c2)},${deepE(c2)})`}"></i>${t}</span>`;const bq=BSC();$("#legBS").innerHTML=`<div>${sw(bq[0],"유동성")+sw(bq[1],"안정 투자")+sw(bq[2],"고위험 투자")+sw(bq[3],"노후")+sw(bq[4],"사용 자산")}</div><div>${sw("linear-gradient(180deg,#ffb6c6,#e22842)","부채")+sw(`linear-gradient(180deg,${litE("#1b4fd1")},${deepE("#1b4fd1")})`,"순자산")}</div>`}
   $("#gapTable").innerHTML=`<thead><tr><th>목표</th><th class="r">현재</th><th class="r">목표</th><th class="r">차이</th><th>판정</th></tr></thead><tbody>${S.goals.map(g=>{const now=srcNow(g,c),amt=n(g.amt),r=amt>0?now/amt*100:null;const s=r==null?"mute":r>=100?"good":r>=50?"warn":"bad";return `<tr><td>${esc(g.name)}<br><span style="font-size:12px;color:var(--ink-3)">${esc(g.term)} · ${mlabel(n(g.months))}</span></td><td class="r">${fmt(now)}</td><td class="r">${amt?fmt(amt):"지속"}</td><td class="r">${amt?fmt(Math.max(0,amt-now)):"-"}</td><td><span class="pill ${s}">${r==null?"적립":fmt(r,0)+"%"}</span></td></tr>`}).join("")}</tbody>`;
   const gg=S.goals.filter(g=>n(g.amt)>0);
   chart("cGoal",{type:"bar",data:{labels:gg.map(g=>g.name),datasets:[{label:"현재 준비율",data:gg.map(g=>Math.min(150,srcNow(g,c)/n(g.amt)*100)),backgroundColor:"#e5e8eb",hoverBackgroundColor:"#e5e8eb",borderRadius:6,borderSkipped:false,maxBarThickness:20},{label:"목표 시점 예상",data:gg.map(g=>Math.min(150,srcAt(g,c,P,n(g.months))/n(g.amt)*100)),backgroundColor:grad("#a9d0ff","#3182f6",true),hoverBackgroundColor:grad("#a9d0ff","#3182f6",true),borderRadius:6,borderSkipped:false,maxBarThickness:20}]},
@@ -2232,7 +2255,7 @@ function updateCore(){
   ms.sort((a,b)=>a[0]-b[0]);
   $("#milestones").innerHTML=ms.map(([m,a,b])=>`<div class="item"><span class="pill info" style="min-width:64px;justify-content:center">${m===0?"즉시":mlabel(m)}</span><div><b>${esc(a)}</b><p>${esc(b)}</p></div></div>`).join("");
   const ba=(l,a,b,u,k,d)=>`<tr><td>${l}</td><td class="r">${fmt(a,d)}${u}</td><td>${k?`<span class="pill ${st(k,a)}">${SL[st(k,a)]}</span>`:""}</td><td class="r"><b>${fmt(b,d)}${u}</b></td><td>${k?`<span class="pill ${st(k,b)}">${SL[st(k,b)]}</span>`:""}</td></tr>`;
-  $("#beforeAfter").innerHTML=`<thead><tr><th>지표</th><th class="r">현재</th><th></th><th class="r">실행 후</th><th></th></tr></thead><tbody>${ba("월 총지출",c.exNow,c.exPlan,"만","",0)}${ba("월 저축",c.saveNow,c.bucketSum,"만","",0)}${ba("비상예비자금",c.rNow.em,c.rAfter.em,"개월","em",1)}${ba("저축성향률",c.rNow.save,c.rAfter.save,"%","save",1)}${ba("부채부담률",c.rNow.debt,c.rAfter.debt,"%","debt",1)}${ba("고위험 비중",c.rNow.risk,c.rAfter.risk,"%","risk",1)}</tbody>`;
+  $("#beforeAfter").innerHTML=`<thead><tr><th>지표</th><th class="r">현재</th><th></th><th class="r">실행 후</th><th></th></tr></thead><tbody>${ba("월 총지출",c.exNow,c.exPlan,"만","",0)}${ba("월 저축",c.saveNow,c.bucketSum,"만","",0)}${ba("비상예비자금",c.rNow.em,c.rAfter.em,"개월","em",1)}${ba("저축성향률",c.rNow.save,c.rAfter.save,"%","save",1)}${ba("부채부담률",c.rNow.debt,c.rAfter.debt,"%","debt",1)}${ba("고위험 비중 (1년 후)",c.rNow.risk,c.rAfter.risk,"%","risk",1)}</tbody>`;
 
   renderFlow(c);renderExec(c);renderCal(c);renderMonitor(c);renderEvents(c);renderReport(c,P,gRows,acts);
   $("#aiPrompt").value=buildPrompt(c);
@@ -2417,7 +2440,7 @@ function renderReport(c,P,gRows,acts){
   if(c.rNow.em<3)habits.push("갑작스러운 지출은 투자자산을 팔지 않고 비상예비자금 계좌에서만 꺼냅니다.");
   if(c.rNow.risk>50)habits.push("손실 중인 자산은 ‘본전’이 아니라 목표 기한과 위험 감내 수준을 기준으로 판단합니다.");
   if(c.rNow.save<50)habits.push("쓰고 남은 돈을 저축하지 않고, 급여일 다음 날 저축을 먼저 뗍니다.");
-  const p3=page(3,"재무상태 분석과 평가",`<h3>재무비율 진단</h3>${tbl(["지표","현재","판정","기준","실행 후","판정"],[["비상예비자금 충당률",fmt(c.rNow.em,1)+"개월",stt("em",c.rNow.em),"3~6개월",fmt(c.rAfter.em,1)+"개월",stt("em",c.rAfter.em)],["저축성향률",pct(c.rNow.save,2),stt("save",c.rNow.save),"50% 이상",pct(c.rAfter.save,2),stt("save",c.rAfter.save)],["부채부담률",pct(c.rNow.debt,2),stt("debt",c.rNow.debt),"20% 이하",pct(c.rAfter.debt,2),stt("debt",c.rAfter.debt)],["고위험 자산 비중",pct(c.rNow.risk,2),stt("risk",c.rNow.risk),"30% 이하",pct(c.rAfter.risk,2),stt("risk",c.rAfter.risk)]],[1,4])}
+  const p3=page(3,"재무상태 분석과 평가",`<h3>재무비율 진단</h3>${tbl(["지표","현재","판정","기준","실행 후","판정"],[["비상예비자금 충당률",fmt(c.rNow.em,1)+"개월",stt("em",c.rNow.em),"3~6개월",fmt(c.rAfter.em,1)+"개월",stt("em",c.rAfter.em)],["저축성향률",pct(c.rNow.save,2),stt("save",c.rNow.save),"50% 이상",pct(c.rAfter.save,2),stt("save",c.rAfter.save)],["부채부담률",pct(c.rNow.debt,2),stt("debt",c.rNow.debt),"20% 이하",pct(c.rAfter.debt,2),stt("debt",c.rAfter.debt)],["고위험 자산 비중",pct(c.rNow.risk,2),stt("risk",c.rNow.risk),"30% 이하",pct(c.rAfter.risk,2)+`<br><small style="color:#8b95a1;font-weight:500">1년 적립 후</small>`,stt("risk",c.rAfter.risk)]],[1,4])}
     <div class="rep-2"><div><h3>소득은 어디로 가나 (현재)</h3><div class="rep-donut"><div class="rep-chart"><canvas id="rCash"></canvas></div><ul class="rlg" id="rCashLeg"></ul></div></div><div><h3>자산부채 구조</h3><div class="rep-chart bs"><canvas id="rBS"></canvas></div></div></div>
     <h3>목표 갭</h3>${tbl(["목표","현재 준비","목표 금액","부족액","준비율"],S.goals.map(g=>{const now=srcNow(g,c),amt=n(g.amt);return [esc(g.name),fmt(now),amt?fmt(amt):"지속",amt?fmt(Math.max(0,amt-now)):"-",amt?pct(now/amt*100,0):"-"]}),[1,2,3,4])}
     <h3>원인 진단 (행동재무학)</h3><ul style="margin:0;padding-left:18px">${lastBeh.map(([s,a,b])=>`<li style="padding:3px 0"><b>${a}</b> · ${b}</li>`).join("")}</ul>
@@ -2458,7 +2481,7 @@ function renderReport(c,P,gRows,acts){
   const ccol=[css("--c1"),css("--c2"),css("--c3"),css("--c5")].map(x=>TC(x,document.getElementById("rCash")));
   chart("rCash",{type:"doughnut",data:{labels:cf.map(x=>x[1]),datasets:[{data:cf.map(x=>x[0]),_base:ccol,backgroundColor:segFill(ccol),borderColor:"rgba(0,0,0,0)",borderWidth:0,borderRadius:0,spacing:0}]},plugins:[NUMS],options:baseOpts(Object.assign({},NA,{cutout:"62%",layout:{padding:6},scales:{},plugins:Object.assign(baseOpts().plugins,{legend:{display:false}})}))});
   const tot=cf.reduce((x,y)=>x+y[0],0)||1;$("#rCashLeg").innerHTML=cf.map((x,i)=>`<li><i style="background:linear-gradient(135deg,${litE(ccol[i])},${deepE(ccol[i])})"></i><span>${i+1}. ${x[1]}</span><b>${fmt(x[0])}만</b><small>${pct(x[0]/tot*100,0)}</small></li>`).join("");
-  chart("rBS",{type:"bar",data:{labels:["자산","부채 + 순자산"],datasets:[["유동성",[c.A.liquid,0],col[0]],["안정 투자",[c.A.safe,0],col[1]],["고위험 투자",[c.A.risk,0],col[2]],["노후",[c.A.retire,0],col[3]],["사용 자산",[c.A.use,0],col[4]],["부채",[0,c.debtBal],col[5]],["순자산",[0,Math.max(0,c.net)],"#6f5cff"]].map(([l,d,cl],k,all)=>({label:l,data:d,backgroundColor:l==="부채"?Object.assign(grad("rgba(255,182,198,.8)","rgba(226,40,66,.95)"),{_c:"#f25f73"}):barFill(cl),stack:"s",borderRadius:x=>{let top=-1;all.forEach((a,j)=>{if(a[1][x.dataIndex]>0)top=j});return k===top?{topLeft:10,topRight:10,bottomLeft:0,bottomRight:0}:0},borderSkipped:false,borderWidth:0,maxBarThickness:72}))},options:baseOpts(Object.assign({},NA,{plugins:Object.assign(baseOpts().plugins,{legend:{position:"bottom",labels:baseOpts().plugins.legend.labels}}),scales:Object.assign(baseOpts().scales,{x:Object.assign(baseOpts().scales.x,{stacked:true}),y:Object.assign(baseOpts().scales.y,{stacked:true})})}))});
+  chart("rBS",{type:"bar",data:{labels:["자산","부채 + 순자산"],datasets:[["유동성",[c.A.liquid,0],BSC()[0]],["안정 투자",[c.A.safe,0],BSC()[1]],["고위험 투자",[c.A.risk,0],BSC()[2]],["노후",[c.A.retire,0],BSC()[3]],["사용 자산",[c.A.use,0],col[4]],["부채",[0,c.debtBal],col[5]],["순자산",[0,Math.max(0,c.net)],"#1b4fd1"]].map(([l,d,cl],k,all)=>({label:l,data:d,backgroundColor:l==="부채"?Object.assign(grad("rgba(255,182,198,.8)","rgba(226,40,66,.95)"),{_c:"#f25f73"}):barFill(cl),stack:"s",borderRadius:x=>{let top=-1;all.forEach((a,j)=>{if(a[1][x.dataIndex]>0)top=j});return k===top?{topLeft:10,topRight:10,bottomLeft:0,bottomRight:0}:0},borderSkipped:false,borderWidth:0,maxBarThickness:72}))},options:baseOpts(Object.assign({},NA,{plugins:Object.assign(baseOpts().plugins,{legend:{position:"bottom",labels:baseOpts().plugins.legend.labels}}),scales:Object.assign(baseOpts().scales,{x:Object.assign(baseOpts().scales.x,{stacked:true}),y:Object.assign(baseOpts().scales.y,{stacked:true})})}))});
   const yl=[...Array(73).keys()],yds=[{label:"기존 투자자산",data:P.rest.slice(0,73),backgroundColor:hexA(css("--c5"),.4),borderColor:css("--c5"),fill:"origin",stack:"a"}].concat(P.series.map((x,i)=>({label:x.name,data:x.arr.slice(0,73),backgroundColor:hexA(col[i%6],.35),borderColor:col[i%6],fill:"-1",stack:"a"})));
   yds.forEach(d=>Object.assign(d,{pointRadius:0,borderWidth:1.5,tension:.25}));
   chart("rProj",{type:"line",data:{labels:yl.map(m=>m?m+"개월":"현재"),datasets:yds},options:baseOpts(Object.assign({},NA,{scales:Object.assign(baseOpts().scales,{x:Object.assign(baseOpts().scales.x,{ticks:Object.assign(baseOpts().scales.x.ticks,{autoSkip:false,maxRotation:0,callback:(v,i)=>i%12===0?(i?i/12+"년":"현재"):""})}),y:Object.assign(baseOpts().scales.y,{stacked:true})})}))});
@@ -2673,6 +2696,7 @@ renderInputs();update();route();
   const tick=()=>{const on=home.classList.contains("on")||getComputedStyle(home).display!=="none";rail.classList.toggle("show",on&&scrollY>40);if(!on)return;let k=0;els.forEach(([el],i)=>{if(el.getBoundingClientRect().top<innerHeight*.45)k=i});btns.forEach((b,i)=>b.classList.toggle("on",i===k))};
   addEventListener("scroll",tick,{passive:true});addEventListener("hashchange",()=>setTimeout(tick,60));setTimeout(tick,300)})();
 </script>
+
 
 </body>
 </html>
