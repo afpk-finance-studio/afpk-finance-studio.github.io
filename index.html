@@ -1636,6 +1636,34 @@ html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:
 .rm-l b{margin-left:auto;color:#fff;font-weight:700;font-variant-numeric:tabular-nums;flex:none}
 @media (max-width:700px){.rm-map{min-width:0;display:flex;flex-direction:column;gap:10px}.rm-root,.rm-g,.rm-ls{align-self:stretch}.rm-svg{display:none}.rm-root{margin-bottom:6px}.rm-g{margin-top:8px}.rm-ls{position:relative;margin-left:16px;padding-left:20px;border-left:2px dashed color-mix(in srgb,var(--c) 60%,transparent)}.rm-l{position:relative;max-width:none}.rm-l:before{content:"";position:absolute;left:-21px;top:50%;width:18px;border-top:2px dashed color-mix(in srgb,var(--c) 60%,transparent)}}
 
+#v-s5 .vhead{box-shadow:0 0 0 100vmax #000!important;clip-path:inset(-28px -100vmax 0 -36px)}
+.card.rmcard{clip-path:inset(-24px -100vmax 0 -36px)!important}
+@media (max-width:900px){#v-s5 .vhead{clip-path:inset(-16px -100vmax 0)}.card.rmcard{clip-path:inset(-24px -100vmax 0)!important}}
+.rmcard .rm-p{border:1px solid rgba(255,255,255,.14);border-radius:16px}
+.rmcard .rm-w{background:linear-gradient(180deg,#1a1a1f,#131317);border:1px solid rgba(255,255,255,.12);border-radius:14px;box-shadow:0 24px 60px -30px rgba(0,0,0,.9)}
+.rm-svg path{fill:none;stroke:#3d4048;stroke-width:1.5;transition:stroke .2s,opacity .2s}
+.rm-svg path.s{stroke-width:1.2}
+.rm-map.hov .rm-svg path{opacity:.35}
+.rm-map.hov .rm-svg path.on{opacity:1;stroke:#c9cdd4;stroke-width:1.8}
+.rm-n{transition:opacity .2s,border-color .2s,transform .2s,background .2s}
+.rm-map.hov .rm-n:not(.on){opacity:.38}
+.rm-map .rm-n.on{border-color:rgba(255,255,255,.32)}
+.rm-root{background:linear-gradient(180deg,#1a1a1f,#131317);border:1px solid rgba(255,255,255,.14);border-radius:14px;box-shadow:none;cursor:default}
+.rm-g{background:#121215;border:1px solid rgba(255,255,255,.12);border-radius:14px;cursor:default}
+.rm-g small{font-size:11.5px;color:#8b919b;font-weight:600}
+.rm-l{background:#0e0e11;border:1px solid rgba(255,255,255,.1);border-radius:10px;cursor:default}
+.rm-l i{box-shadow:none;width:7px;height:7px}
+.rm-l small{font-size:11.5px;color:#8b919b;margin-left:auto;opacity:0;transform:translateX(4px);transition:opacity .2s,transform .2s;font-variant-numeric:tabular-nums}
+.rm-l small+b{margin-left:10px}
+.rm-l.on small{opacity:1;transform:none}
+.rm-l.on{background:#16161a}
+.rmcard .rm-mapwrap,.rmcard .rm-line{border-top-color:rgba(255,255,255,.12)}
+@media (max-width:700px){.rm-ls{border-left-color:#3d4048!important}.rm-l:before{border-top-color:#3d4048!important}.rm-l small{opacity:1;transform:none}}
+
+.rm-fade{height:170px;margin:-34px 0 -96px;pointer-events:none;border-image:linear-gradient(180deg,#000,var(--bg)) fill 0//0 100vmax;clip-path:inset(0 -100vmax 0 -36px);position:relative;z-index:0}
+.card.rmcard{margin-bottom:0}
+@media (max-width:900px){.rm-fade{clip-path:inset(0 -100vmax);height:110px;margin-bottom:-60px}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -1953,6 +1981,7 @@ html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:
       <div style="display:flex;gap:10px;flex-wrap:wrap"><div class="field" style="width:150px"><label for="startday">실행 시작일</label><input class="in" id="startday" type="date"></div><div class="field" style="width:86px"><label for="payday">급여일</label><input class="in n" id="payday" type="number" min="1" max="31"></div><div class="field" style="width:86px"><label for="moveday">이체일</label><input class="in n" id="moveday" type="number" min="1" max="31"></div></div></div>
     <div class="flow rm" id="flow"></div><div class="rm-mapwrap"><div class="rm-lh"><b>자동화 흐름도</b><span>급여가 들어오면 돈이 이렇게 갈라집니다 · 선은 자동이체가 실행되는 순서입니다</span></div><div class="rm-scroll"><div class="rm-map" id="rmMap"></div></div></div><div class="rm-line" id="rmLine"></div>
   </div>
+  <div class="rm-fade" aria-hidden="true"></div>
   <div class="grid" style="grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);align-items:start" id="execGrid">
     <div class="card"><div class="ch"><div><h3>실행 체크리스트</h3><p class="sub">완료한 항목을 누르세요 · 날짜는 캘린더와 연결됩니다</p></div><span class="pill info" id="execPill"></span></div><div class="meter" style="margin-bottom:6px"><i id="execBar"></i></div><div id="execList"></div></div>
     <div class="card">
@@ -2434,7 +2463,7 @@ function renderFlow(c){
      ["t","#19c3b1",`${S.exec.moveday}일 · 3순위`,"변동비 체크카드",c.varPlan,S.expenses.filter(e=>e.group!=="fixed"&&c.planAmt(e)>0).map(e=>[e.name,c.planAmt(e)])]];
    if(rest>.5)G.push(["g","#8b919b","남는 돈","비상예비자금 적립",rest,[["파킹통장",rest]]]);
    $("#rmMap").innerHTML=`<svg class="rm-svg" aria-hidden="true"></svg><div class="rm-root rm-n" data-n="root"><span class="rm-tag">${S.exec.payday}일 · 급여 입금</span><b>급여 통장</b><em>${f1(inc)}만</em><small>세후 ${f1(c.sal)}만${c.bonus?` + 비정기 ${f1(c.bonus)}만`:""}</small></div>`+
-     G.map(([k,col,tag,name,amt,leaves],i)=>`<div class="rm-g rm-n" data-n="g${i}" data-c="${col}" style="--c:${col};grid-row:${i+1}"><span class="rm-tag">${tag}</span><b>${name}</b><em>${f1(amt)}만</em></div><div class="rm-ls" style="grid-row:${i+1};--c:${col}">${leaves.map(([a,v])=>`<div class="rm-l rm-n" data-p="g${i}" style="--c:${col}"><i></i><span>${esc(a)}</span><b>${f1(v)}만</b></div>`).join("")}</div>`).join("");
+     G.map(([k,col,tag,name,amt,leaves],i)=>`<div class="rm-g rm-n" data-n="g${i}" data-c="${col}" style="--c:${col};grid-row:${i+1}"><span class="rm-tag">${tag}</span><b>${name}</b><em>${f1(amt)}만</em><small>소득의 ${pct(inc?amt/inc*100:0,1)}</small></div><div class="rm-ls" style="grid-row:${i+1};--c:${col}">${leaves.map(([a,v],j)=>`<div class="rm-l rm-n" data-p="g${i}" data-l="l${i}-${j}" style="--c:${col}"><i></i><span>${esc(a)}</span><small>${pct(inc?v/inc*100:0,1)}</small><b>${f1(v)}만</b></div>`).join("")}</div>`).join("");
    $("#rmMap").style.setProperty("--rows",G.length);rmDraw()}
   {const sd=startDate(),ym=d=>`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,"0")}`;
    const M=[[0,"실행 시작",c.sellTotal?`투자자산 ${fmt(c.sellTotal)}만 원 정리 후 비상예비자금으로`:"계좌 개설과 자동이체 등록"],[1,"첫 자동이체",`4개 계좌 ${f1(c.bucketSum)}만 원`],[3,"첫 분기 점검","지출·비율 점검, 필요하면 재설계"]]
@@ -2446,10 +2475,17 @@ function rmDraw(){const box=document.getElementById("rmMap");if(!box||!box.offse
   const pt=(el,side)=>{const r=el.getBoundingClientRect();return [side?r.right-R.left:r.left-R.left,r.top-R.top+r.height/2]};
   const cv=(a,b)=>{const dx=Math.max(30,(b[0]-a[0])*.5);return `M${a[0]} ${a[1]} C${a[0]+dx} ${a[1]},${b[0]-dx} ${b[1]},${b[0]} ${b[1]}`};
   const root=box.querySelector('[data-n="root"]');let h="";
-  box.querySelectorAll(".rm-g").forEach(g=>{const col=g.dataset.c,d=cv(pt(root,1),pt(g,0));h+=`<path d="${d}" stroke="${col}" stroke-opacity=".35" stroke-width="2" fill="none"/><path class="rm-flow" d="${d}" stroke="${col}" stroke-width="2" fill="none"/>`;
-    box.querySelectorAll(`[data-p="${g.dataset.n}"]`).forEach(l=>{const e=cv(pt(g,1),pt(l,0));h+=`<path d="${e}" stroke="${col}" stroke-opacity=".28" stroke-width="1.5" fill="none"/><path class="rm-flow s" d="${e}" stroke="${col}" stroke-width="1.5" fill="none"/>`})});
+  box.querySelectorAll(".rm-g").forEach(g=>{const k=g.dataset.n,d=cv(pt(root,1),pt(g,0));h+=`<path data-k="${k}" d="${d}"/>`;
+    box.querySelectorAll(`[data-p="${k}"]`).forEach(l=>{h+=`<path class="s" data-k="${k} ${l.dataset.l}" d="${cv(pt(g,1),pt(l,0))}"/>`})});
   svg.innerHTML=h}
-(function(){const b=document.getElementById("rmMap");if(!b)return;if(window.ResizeObserver)new ResizeObserver(()=>rmDraw()).observe(b);addEventListener("resize",rmDraw)})();
+(function(){const b=document.getElementById("rmMap");if(!b)return;
+  const clr=()=>{b.classList.remove("hov");b.querySelectorAll(".on").forEach(x=>x.classList.remove("on"))};
+  b.addEventListener("mouseover",e=>{const n=e.target.closest(".rm-n");clr();if(!n)return;b.classList.add("hov");n.classList.add("on");
+    if(n.dataset.n==="root"){b.querySelectorAll(".rm-n,path").forEach(x=>x.classList.add("on"));return}
+    const g=n.dataset.n&&n.dataset.n[0]==="g"?n.dataset.n:n.dataset.p,l=n.dataset.l;b.querySelector('[data-n="root"]').classList.add("on");const gn=b.querySelector(`[data-n="${g}"]`);if(gn)gn.classList.add("on");
+    b.querySelectorAll("path").forEach(p=>{const ks=p.dataset.k.split(" ");if(l?(ks.length===1&&ks[0]===g)||ks[1]===l:ks[0]===g)p.classList.add("on")});
+    if(!l)b.querySelectorAll(`[data-p="${g}"]`).forEach(x=>x.classList.add("on"))});
+  b.addEventListener("mouseleave",clr);if(window.ResizeObserver)new ResizeObserver(()=>rmDraw()).observe(b);addEventListener("resize",rmDraw)})();
 function startDate(){const v=S.exec&&S.exec.start;let d=v?new Date(v+"T00:00:00"):new Date();if(isNaN(d))d=new Date();d.setHours(0,0,0,0);return d}
 const addD=(d,k)=>{const x=new Date(d);x.setDate(x.getDate()+k);return x};
 const addM=(d,k,day)=>{const x=new Date(d.getFullYear(),d.getMonth()+k,1);const last=new Date(x.getFullYear(),x.getMonth()+1,0).getDate();x.setDate(Math.min(day!=null?day:d.getDate(),last));return x};
