@@ -1699,6 +1699,11 @@ html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:
 .rm-mh p{margin:0;font-size:16px;line-height:1.65;color:rgba(255,255,255,.62);max-width:70ch}.rm-mh p b{color:#fff}
 @media (max-width:700px){.rm-mh p{font-size:14.5px}}
 
+/* v53 fade then gap */
+.rm-fade{margin-bottom:72px!important}
+.rm-fade{border-image:linear-gradient(180deg,#000 0%,#0b0b0d 14%,color-mix(in srgb,var(--bg) 35%,#000) 38%,color-mix(in srgb,var(--bg) 62%,#000) 56%,color-mix(in srgb,var(--bg) 82%,#000) 72%,color-mix(in srgb,var(--bg) 94%,#000) 86%,var(--bg) 100%) fill 0//0 100vmax!important}
+@media (max-width:900px){.rm-fade{margin-bottom:40px!important}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
