@@ -1607,6 +1607,35 @@ html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:
 .rm-in{list-style:none;margin:0;padding:10px 0 0;border-top:1px solid rgba(255,255,255,.08);display:grid;gap:7px}
 .rm-in li{display:flex;justify-content:space-between;font-size:12px;color:#aeb4bd}.rm-in b{color:#fff;font-weight:700;font-variant-numeric:tabular-nums}
 
+.card.rmcard{border-radius:0!important;border:0!important;background:#000!important;box-shadow:0 0 0 100vmax #000!important;clip-path:inset(0 -100vmax 0 -36px);padding:64px 0 72px!important;margin-block:8px;transform:none!important}
+.card.rmcard:before,.card.rmcard:after{display:none!important}
+@media (max-width:900px){.card.rmcard{clip-path:inset(0 -100vmax);padding:44px 0 52px!important}}
+.rm-mapwrap{margin-top:52px;padding-top:28px;border-top:1px solid rgba(255,255,255,.1)}
+.rm-mapwrap .rm-lh b{color:#fff}.rm-mapwrap .rm-lh span{color:#8b919b}
+.rm-scroll{overflow-x:auto;scrollbar-width:none;margin:0 -4px;padding:4px}
+.rm-scroll::-webkit-scrollbar{display:none}
+.rm-map{position:relative;min-width:860px;display:grid;grid-template-columns:230px 230px minmax(0,1fr);grid-template-rows:repeat(var(--rows,3),auto);column-gap:96px;row-gap:22px;padding:6px 0}
+.rm-svg{position:absolute;inset:0;pointer-events:none;overflow:visible}
+.rm-flow{stroke-dasharray:6 10;animation:rmflow 1.4s linear infinite}
+.rm-flow.s{stroke-dasharray:4 9;animation-duration:1.8s}
+@keyframes rmflow{to{stroke-dashoffset:-32}}
+@media (prefers-reduced-motion:reduce){.rm-flow{animation:none}}
+.rm-n{position:relative;z-index:1}
+.rm-root{grid-column:1;grid-row:1/-1;align-self:center;background:linear-gradient(160deg,#1f2a44,#111521);border:1px solid rgba(90,162,255,.35);border-radius:18px;padding:18px 20px;display:flex;flex-direction:column;gap:4px;box-shadow:0 0 0 6px rgba(49,130,246,.08),0 20px 50px -20px rgba(49,130,246,.45)}
+.rm-tag{font-size:11.5px;font-weight:700;color:#8b919b}
+.rm-root b,.rm-g b{font-size:15px;font-weight:800;color:#fff}
+.rm-root em,.rm-g em{font-style:normal;font-size:24px;font-weight:800;color:#fff;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.rm-root small{font-size:12px;color:#aeb4bd}
+.rm-g{grid-column:2;align-self:center;background:#111215;border:1px solid rgba(255,255,255,.09);border-left:3px solid var(--c);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:3px}
+.rm-g .rm-tag{color:var(--c)}
+.rm-g em{font-size:20px}
+.rm-ls{grid-column:3;display:flex;flex-direction:column;gap:8px;align-self:center}
+.rm-l{display:flex;align-items:center;gap:10px;background:#0d0e10;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:9px 14px;max-width:420px;font-size:13px;color:#d5d9df}
+.rm-l i{width:8px;height:8px;border-radius:50%;background:var(--c);flex:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 22%,transparent)}
+.rm-l span{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rm-l b{margin-left:auto;color:#fff;font-weight:700;font-variant-numeric:tabular-nums;flex:none}
+@media (max-width:700px){.rm-map{min-width:0;display:flex;flex-direction:column;gap:10px}.rm-root,.rm-g,.rm-ls{align-self:stretch}.rm-svg{display:none}.rm-root{margin-bottom:6px}.rm-g{margin-top:8px}.rm-ls{position:relative;margin-left:16px;padding-left:20px;border-left:2px dashed color-mix(in srgb,var(--c) 60%,transparent)}.rm-l{position:relative;max-width:none}.rm-l:before{content:"";position:absolute;left:-21px;top:50%;width:18px;border-top:2px dashed color-mix(in srgb,var(--c) 60%,transparent)}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -1922,7 +1951,7 @@ html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:
   <div class="card rmcard">
     <div class="ch"><div><h3>실행 로드맵</h3><p class="sub">급여가 들어온 날부터 돈이 자동으로 나뉘는 순서 · 선택한 설계안 금액이 그대로 반영됩니다</p></div>
       <div style="display:flex;gap:10px;flex-wrap:wrap"><div class="field" style="width:150px"><label for="startday">실행 시작일</label><input class="in" id="startday" type="date"></div><div class="field" style="width:86px"><label for="payday">급여일</label><input class="in n" id="payday" type="number" min="1" max="31"></div><div class="field" style="width:86px"><label for="moveday">이체일</label><input class="in n" id="moveday" type="number" min="1" max="31"></div></div></div>
-    <div class="flow rm" id="flow"></div><div class="rm-line" id="rmLine"></div>
+    <div class="flow rm" id="flow"></div><div class="rm-mapwrap"><div class="rm-lh"><b>자동화 흐름도</b><span>급여가 들어오면 돈이 이렇게 갈라집니다 · 선은 자동이체가 실행되는 순서입니다</span></div><div class="rm-scroll"><div class="rm-map" id="rmMap"></div></div></div><div class="rm-line" id="rmLine"></div>
   </div>
   <div class="grid" style="grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);align-items:start" id="execGrid">
     <div class="card"><div class="ch"><div><h3>실행 체크리스트</h3><p class="sub">완료한 항목을 누르세요 · 날짜는 캘린더와 연결됩니다</p></div><span class="pill info" id="execPill"></span></div><div class="meter" style="margin-bottom:6px"><i id="execBar"></i></div><div id="execList"></div></div>
@@ -2399,12 +2428,28 @@ function renderFlow(c){
     "고정비는 전용 통장에서<br>알아서 납부됩니다",`월세·관리비·대출·보험처럼 매달 같은 돈 ${f1(c.fixPlan)}만 원은 고정비 통장으로 옮겨 자동 납부합니다.`)+
   panel(4,"s6","g4",`<div class="rm-h"><span>매주 · 체크카드</span>${tg}</div><div class="rm-k">이번 주 쓸 수 있는 돈</div><div class="rm-big">${f1(wk)}<small>만</small></div><div class="rm-wk">${[.82,.64,1.04,.71].map((r,i)=>`<div><i class="${r>1?"ov":""}" style="height:${Math.min(100,r*80)}%"></i><span>${i+1}주</span></div>`).join("")}</div><div class="rm-sum"><span>월 한도</span><b>${f1(c.varPlan)}만</b></div>`,
     "변동비는 주간 예산으로<br>새는 돈을 막습니다",`체크카드 월 한도 ${f1(c.varPlan)}만 원, 주간 약 ${f1(wk)}만 원입니다. 한도를 넘은 주는 6단계 점검에서 바로 보입니다.`);
+  {const f1=x=>fmt(x,Math.abs(x%1)>.05?1:0),inc=c.sal+c.bonus,rest=Math.max(0,inc-c.bucketSum-c.fixPlan-c.varPlan);
+   const G=[["b","#3182f6",`${S.exec.moveday}일 · 1순위`,"선저축 자동이체",c.bucketSum,c.buckets.filter(b=>b.pmt>0).map(b=>[b.product||b.name,b.pmt])],
+     ["v","#8b6cff",`${S.exec.moveday}일 · 2순위`,"고정비 통장",c.fixPlan,S.expenses.filter(e=>e.group==="fixed"&&c.planAmt(e)>0).map(e=>[e.name,c.planAmt(e)])],
+     ["t","#19c3b1",`${S.exec.moveday}일 · 3순위`,"변동비 체크카드",c.varPlan,S.expenses.filter(e=>e.group!=="fixed"&&c.planAmt(e)>0).map(e=>[e.name,c.planAmt(e)])]];
+   if(rest>.5)G.push(["g","#8b919b","남는 돈","비상예비자금 적립",rest,[["파킹통장",rest]]]);
+   $("#rmMap").innerHTML=`<svg class="rm-svg" aria-hidden="true"></svg><div class="rm-root rm-n" data-n="root"><span class="rm-tag">${S.exec.payday}일 · 급여 입금</span><b>급여 통장</b><em>${f1(inc)}만</em><small>세후 ${f1(c.sal)}만${c.bonus?` + 비정기 ${f1(c.bonus)}만`:""}</small></div>`+
+     G.map(([k,col,tag,name,amt,leaves],i)=>`<div class="rm-g rm-n" data-n="g${i}" data-c="${col}" style="--c:${col};grid-row:${i+1}"><span class="rm-tag">${tag}</span><b>${name}</b><em>${f1(amt)}만</em></div><div class="rm-ls" style="grid-row:${i+1};--c:${col}">${leaves.map(([a,v])=>`<div class="rm-l rm-n" data-p="g${i}" style="--c:${col}"><i></i><span>${esc(a)}</span><b>${f1(v)}만</b></div>`).join("")}</div>`).join("");
+   $("#rmMap").style.setProperty("--rows",G.length);rmDraw()}
   {const sd=startDate(),ym=d=>`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,"0")}`;
    const M=[[0,"실행 시작",c.sellTotal?`투자자산 ${fmt(c.sellTotal)}만 원 정리 후 비상예비자금으로`:"계좌 개설과 자동이체 등록"],[1,"첫 자동이체",`4개 계좌 ${f1(c.bucketSum)}만 원`],[3,"첫 분기 점검","지출·비율 점검, 필요하면 재설계"]]
      .concat(S.goals.filter(g=>n(g.amt)>0).map(g=>[n(g.months),g.name,`목표 ${fmt(n(g.amt))}만 원`])).sort((x,y)=>x[0]-y[0]);
    $("#rmLine").innerHTML=`<div class="rm-lh"><b>목표까지의 길</b><span>실행 시작일 기준 · 목표 금액과 기한은 2단계에서 바꿀 수 있습니다</span></div><ol>${M.map(([m,t,d],i)=>`<li class="${i?"":"on"}"><i></i><small>${m?ym(addM(sd,m))+" · "+(m%12?m+"개월":m/12+"년"):ym(sd)+" · 시작"}</small><b>${esc(t)}</b><span>${d}</span></li>`).join("")}</ol>`}
   $("#autoRules").innerHTML=[["월간 배분 규칙 생성",`${c.buckets.filter(b=>b.pmt>0).length}개 계좌 자동이체 초안 (${fmt(c.bucketSum,1)}만 원)`,"초안"],["목표 달성 시 재배분","비상예비자금 목표를 채운 뒤 초과분은 ISA로 이동","규칙"],["비정기 수입 사용 규칙",`성과급 월 ${fmt(c.bonus)}만 원 상당은 저축 재원에 포함해 생활비로 새지 않게 관리`,"규칙"],["이상 징후 알림","변동지출이 계획을 10% 넘거나 소득이 줄면 6단계에서 재설계 요청","알림"]].map(([a,b,s],i)=>`<div class="item"><span class="num-badge">${i+1}</span><div><b>${a} <span class="pill mute" style="margin-left:4px">${s}</span></b><p>${b}</p></div></div>`).join("");
 }
+function rmDraw(){const box=document.getElementById("rmMap");if(!box||!box.offsetWidth)return;const svg=box.querySelector(".rm-svg"),R=box.getBoundingClientRect(),W=box.offsetWidth,H=box.offsetHeight;svg.setAttribute("viewBox",`0 0 ${W} ${H}`);svg.setAttribute("width",W);svg.setAttribute("height",H);
+  const pt=(el,side)=>{const r=el.getBoundingClientRect();return [side?r.right-R.left:r.left-R.left,r.top-R.top+r.height/2]};
+  const cv=(a,b)=>{const dx=Math.max(30,(b[0]-a[0])*.5);return `M${a[0]} ${a[1]} C${a[0]+dx} ${a[1]},${b[0]-dx} ${b[1]},${b[0]} ${b[1]}`};
+  const root=box.querySelector('[data-n="root"]');let h="";
+  box.querySelectorAll(".rm-g").forEach(g=>{const col=g.dataset.c,d=cv(pt(root,1),pt(g,0));h+=`<path d="${d}" stroke="${col}" stroke-opacity=".35" stroke-width="2" fill="none"/><path class="rm-flow" d="${d}" stroke="${col}" stroke-width="2" fill="none"/>`;
+    box.querySelectorAll(`[data-p="${g.dataset.n}"]`).forEach(l=>{const e=cv(pt(g,1),pt(l,0));h+=`<path d="${e}" stroke="${col}" stroke-opacity=".28" stroke-width="1.5" fill="none"/><path class="rm-flow s" d="${e}" stroke="${col}" stroke-width="1.5" fill="none"/>`})});
+  svg.innerHTML=h}
+(function(){const b=document.getElementById("rmMap");if(!b)return;if(window.ResizeObserver)new ResizeObserver(()=>rmDraw()).observe(b);addEventListener("resize",rmDraw)})();
 function startDate(){const v=S.exec&&S.exec.start;let d=v?new Date(v+"T00:00:00"):new Date();if(isNaN(d))d=new Date();d.setHours(0,0,0,0);return d}
 const addD=(d,k)=>{const x=new Date(d);x.setDate(x.getDate()+k);return x};
 const addM=(d,k,day)=>{const x=new Date(d.getFullYear(),d.getMonth()+k,1);const last=new Date(x.getFullYear(),x.getMonth()+1,0).getDate();x.setDate(Math.min(day!=null?day:d.getDate(),last));return x};
