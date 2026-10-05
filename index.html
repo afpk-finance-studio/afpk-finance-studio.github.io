@@ -1520,6 +1520,62 @@ html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:
 @media(max-width:760px){.kpi .cr{grid-template-columns:minmax(0,1fr) auto;row-gap:5px}.kpi .cb{grid-column:1/-1;grid-row:2}.kpi .cr b{min-width:0}.kpi .cmp{gap:9px}.kpi .v .vt{display:none}}
 .kpi .d .thk{display:inline-block;width:0;height:10px;border-left:1.5px dashed #191f28;opacity:.55;margin-right:6px;vertical-align:-1px}
 
+#flow.rm{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:4px}
+.rm-c{min-width:0;display:flex;flex-direction:column}
+.rm-p{position:relative;border-radius:22px;background:#000;overflow:hidden;height:420px;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:28px 20px 84px;isolation:isolate}
+.rm-p.g1{background:radial-gradient(120% 70% at 30% 115%,#5d5d63 0%,#232326 42%,#000 72%)}
+.rm-p.g2{background:radial-gradient(90% 60% at 50% 40%,#16171b,#000 70%)}
+.rm-p.g3{background:#000}
+.rm-p.g3:before{content:"";position:absolute;inset:-30% -40% -60% 10%;z-index:-1;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.5) 1px,transparent 1.6px) 0 0/11px 11px;-webkit-mask:radial-gradient(closest-side,#000 30%,transparent 100%);mask:radial-gradient(closest-side,#000 30%,transparent 100%);opacity:.55}
+.rm-p.g4{background:radial-gradient(110% 70% at 80% -10%,#3a3a40 0%,#141416 45%,#000 75%)}
+.rm-w{width:min(100%,280px);background:linear-gradient(180deg,rgba(32,33,38,.92),rgba(17,18,21,.92));border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:18px 18px 16px;color:#fff;box-shadow:0 30px 60px -28px rgba(0,0,0,.9);backdrop-filter:blur(10px);transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.rm-c:hover .rm-w{transform:translateY(-6px)}
+.rm-h{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#e9ebef;margin-bottom:14px}
+.rm-tg{flex:none;width:38px;height:22px;border-radius:99px;background:#3182f6;position:relative}
+.rm-tg:after{content:"";position:absolute;right:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff}
+.rm-k{font-size:12px;color:#9aa0aa;font-weight:600}.rm-k.c,.rm-big.c{text-align:center}
+.rm-big{font-size:30px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1.25;margin-bottom:12px}.rm-big small{font-size:15px;margin-left:2px;color:#cfd3da}
+.rm-big.c{margin-bottom:0}
+.rm-split{display:flex;gap:3px;height:10px;border-radius:99px;overflow:hidden;margin-bottom:12px}.rm-split i{display:block;min-width:4px}
+.rm-lg{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 12px}
+.rm-lg li{display:flex;align-items:center;gap:6px;font-size:12px;color:#aeb4bd}.rm-lg i{width:7px;height:7px;border-radius:2px;flex:none}.rm-lg b{margin-left:auto;color:#fff;font-weight:700;font-variant-numeric:tabular-nums}
+.rm-chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.rm-chips span{font-size:11px;color:#9aa0aa;padding:4px 7px;border-radius:7px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.06)}.rm-chips b{color:#fff;font-weight:700}
+.rm-spark{display:block;width:100%;height:86px;margin:2px 0 10px;overflow:visible}
+.rm-ln{stroke-dasharray:600;stroke-dashoffset:600;transition:stroke-dashoffset 1.6s cubic-bezier(.16,1,.3,1) .2s}
+.rm-c.shown .rm-ln,.rm-c:not(.rv) .rm-ln{stroke-dashoffset:0}
+.rm-pay{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:9px}
+.rm-pay li{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#d5d9df}
+.rm-pay i{width:18px;height:18px;border-radius:50%;background:rgba(49,130,246,.2);color:#8fc3ff;font-style:normal;font-size:10px;font-weight:800;display:grid;place-items:center;flex:none}
+.rm-pay b{margin-left:auto;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+.rm-sum{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.08);padding-top:11px;font-size:12px;color:#9aa0aa}.rm-sum b{font-size:16px;color:#fff;font-weight:800;font-variant-numeric:tabular-nums}
+.rm-wk{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;height:92px;margin-bottom:12px}
+.rm-wk div{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;height:100%}
+.rm-wk i{display:block;width:100%;max-width:30px;border-radius:7px 7px 3px 3px;background:linear-gradient(180deg,#5aa2ff,#1b4fd1)}
+.rm-wk i.ov{background:linear-gradient(180deg,#ff8a9b,#e22842)}
+.rm-wk span{font-size:10.5px;color:#8b919b;line-height:1}
+.rm-wk em{position:absolute;left:-4px;right:-4px;border-top:1.5px dashed rgba(255,255,255,.4);transform:translateY(50%)}
+.rm-go{position:absolute;right:20px;bottom:20px;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);color:#fff;display:grid;place-items:center;transition:background .2s,transform .2s}
+.rm-go svg{width:22px;height:22px}.rm-go:hover{background:rgba(255,255,255,.28);transform:translateX(2px)}
+.rm-t{padding:20px 4px 4px}
+.rm-t span{font-size:12px;font-weight:800;color:#3182f6;letter-spacing:.04em}
+.rm-t h4{margin:6px 0 8px;font-size:clamp(18px,1.45vw,21px);font-weight:800;line-height:1.42;letter-spacing:-.02em;color:var(--ink);text-wrap:balance}
+.rm-t p{margin:0;font-size:14px;line-height:1.7;color:var(--ink-3)}
+.rm-line{margin-top:30px;padding-top:24px;border-top:1px solid var(--line)}
+.rm-lh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:18px}.rm-lh b{font-size:16px;font-weight:800}.rm-lh span{font-size:12.5px;color:var(--ink-3)}
+.rm-line ol{list-style:none;margin:0;padding:0;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,1fr);gap:0;overflow-x:auto;scrollbar-width:none}
+.rm-line ol::-webkit-scrollbar{display:none}
+.rm-line li{position:relative;padding:26px 14px 4px 0;display:flex;flex-direction:column;gap:3px;min-width:0}
+.rm-line li:before{content:"";position:absolute;left:0;right:0;top:7px;height:2px;background:var(--line)}
+.rm-line li:last-child:before{right:auto;width:14px}
+.rm-line li>i{position:absolute;left:0;top:1px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid #191f28;z-index:1}
+.rm-line li.on>i{background:#3182f6;border-color:#3182f6;box-shadow:0 0 0 5px rgba(49,130,246,.18)}
+.rm-line small{font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.rm-line li b{font-size:14.5px;font-weight:800;color:var(--ink)}
+.rm-line li span{font-size:12.5px;color:var(--ink-2);line-height:1.5}
+@media(max-width:1280px){#flow.rm{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){#flow.rm{display:grid;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:84%;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -16px;padding:0 16px 4px;scrollbar-width:none}#flow.rm::-webkit-scrollbar{display:none}.rm-c{scroll-snap-align:start}.rm-p{height:400px}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -1842,9 +1898,9 @@ html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:
 <section class="view" id="v-s5">
   <div class="vhead"><div class="eyebrow">5단계</div><h1>재무설계안 실행</h1><p>의지에 기대지 않도록 급여일 다음 날 돈이 자동으로 나뉘는 구조를 만들고, 해야 할 일을 날짜에 올립니다. 먼저 저축하고, 남은 돈으로 생활합니다.</p></div>
   <div class="card">
-    <div class="ch"><div><h3>자동화 현금흐름망</h3><p class="sub">선택한 설계안의 금액이 그대로 반영됩니다</p></div>
+    <div class="ch"><div><h3>실행 로드맵</h3><p class="sub">급여가 들어온 날부터 돈이 자동으로 나뉘는 순서 · 선택한 설계안 금액이 그대로 반영됩니다</p></div>
       <div style="display:flex;gap:10px;flex-wrap:wrap"><div class="field" style="width:150px"><label for="startday">실행 시작일</label><input class="in" id="startday" type="date"></div><div class="field" style="width:86px"><label for="payday">급여일</label><input class="in n" id="payday" type="number" min="1" max="31"></div><div class="field" style="width:86px"><label for="moveday">이체일</label><input class="in n" id="moveday" type="number" min="1" max="31"></div></div></div>
-    <div class="flow" id="flow"></div>
+    <div class="flow rm" id="flow"></div><div class="rm-line" id="rmLine"></div>
   </div>
   <div class="grid" style="grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);align-items:start" id="execGrid">
     <div class="card"><div class="ch"><div><h3>실행 체크리스트</h3><p class="sub">완료한 항목을 누르세요 · 날짜는 캘린더와 연결됩니다</p></div><span class="pill info" id="execPill"></span></div><div class="meter" style="margin-bottom:6px"><i id="execBar"></i></div><div id="execList"></div></div>
@@ -2305,10 +2361,26 @@ function renderDiag(c){
   $("#aiDiag").innerHTML=ai.map(([a,b],i)=>`<div class="item"><span class="num-badge">${i+1}</span><div><b>${a}</b><p>${b}</p></div></div>`).join("")||'<p class="note">입력값이 늘면 행동 과제가 표시됩니다.</p>';
 }
 function renderFlow(c){
-  $("#flow").innerHTML=`<div class="node"><div class="when">매월 ${S.exec.payday}일</div><b>급여 통장</b><div class="amt">${fmt(c.sal)}만</div><ul><li>세후 근로소득 입금</li>${c.bonus?`<li>비정기 수입 연 ${fmt(c.bonus*12)}만 원</li>`:""}</ul></div>
-  <div class="node"><div class="when">${S.exec.moveday}일 · 1순위</div><b>선저축 자동이체</b><div class="amt">${fmt(c.bucketSum,1)}만</div><ul>${c.buckets.filter(b=>b.pmt>0).map(b=>`<li>${esc(b.product)} ${fmt(b.pmt,1)}만</li>`).join("")}</ul></div>
-  <div class="node"><div class="when">${S.exec.moveday}일 · 2순위</div><b>고정비 통장</b><div class="amt">${fmt(c.fixPlan,1)}만</div><ul>${S.expenses.filter(e=>e.group==="fixed"&&c.planAmt(e)>0).map(e=>`<li>${esc(e.name)} ${fmt(c.planAmt(e),1)}만</li>`).join("")}</ul></div>
-  <div class="node"><div class="when">${S.exec.moveday}일 · 3순위</div><b>변동비 체크카드</b><div class="amt">${fmt(c.varPlan,1)}만</div><ul><li>월 한도 ${fmt(c.varPlan,1)}만 원</li><li>주간 예산 약 ${fmt(c.varPlan/4.3,1)}만 원</li><li>비정기 수입 달에 조정</li></ul></div>`;
+  const AR='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  const inc=c.sal+c.bonus,rest=Math.max(0,inc-c.bucketSum-c.fixPlan-c.varPlan),seg=[[c.bucketSum,"저축","#3182f6"],[c.fixPlan,"고정비","#8b6cff"],[c.varPlan,"변동비","#19c3b1"],[rest,"여유","#5b6270"]].filter(x=>x[0]>0);
+  const P12=project(c,12),tot=m=>P12.series.reduce((x,s)=>x+s.arr[m],0),pts=[...Array(13).keys()].map(tot),mx=Math.max(...pts)||1,mn=Math.min(...pts);
+  const W=260,H=86,xy=pts.map((v,i)=>[i/12*W,H-8-(v-mn)/((mx-mn)||1)*(H-20)]),ln=xy.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1)).join(" ");
+  const fx=S.expenses.filter(e=>e.group==="fixed"&&c.planAmt(e)>0),wk=c.varPlan/4.3;
+  const panel=(i,go,bg,w,t,d)=>`<div class="rm-c"><div class="rm-p ${bg}"><div class="rm-w">${w}</div><a class="rm-go" href="#${go}" aria-label="관련 단계로 이동">${AR}</a></div><div class="rm-t"><span>STEP ${i}</span><h4>${t}</h4><p>${d}</p></div></div>`;
+  const f1=x=>fmt(x,Math.abs(x%1)>.05?1:0),tg='<i class="rm-tg" aria-hidden="true"></i>';
+  $("#flow").innerHTML=
+  panel(1,"s2","g1",`<div class="rm-h"><span>매월 ${S.exec.payday}일 · 급여 통장</span>${tg}</div><div class="rm-k">이번 달 들어온 돈</div><div class="rm-big">${fmt(inc,inc%1?1:0)}<small>만</small></div><div class="rm-split">${seg.map(x=>`<i style="flex:${x[0]};background:${x[2]}"></i>`).join("")}</div><ul class="rm-lg">${seg.map(x=>`<li><i style="background:${x[2]}"></i>${x[1]}<b>${fmt(x[0],x[0]%1?1:0)}만</b></li>`).join("")}</ul>`,
+    "급여일, 한 통장으로<br>모든 돈을 모읍니다",`매월 ${S.exec.payday}일 세후 ${fmt(c.sal)}만 원이 급여 통장에 들어옵니다.${c.bonus?` 비정기 수입은 월 ${fmt(c.bonus)}만 원으로 환산해 함께 나눕니다.`:""}`)+
+  panel(2,"s4","g2",`<div class="rm-h"><span>매월 ${S.exec.moveday}일 · 선저축</span>${tg}</div><div class="rm-chips">${c.buckets.filter(b=>b.pmt>0).map(b=>`<span>${esc(b.name.replace(/^Bucket\s*\d+\s*/i,"")||b.name)} <b>${fmt(b.pmt,b.pmt%1?1:0)}</b></span>`).join("")}</div><svg class="rm-spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><defs><linearGradient id="rmA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3182f6" stop-opacity=".45"/><stop offset="1" stop-color="#3182f6" stop-opacity="0"/></linearGradient></defs>${pts.slice(1).map((v,i)=>`<rect x="${((i+1)/12*W-5).toFixed(1)}" y="${H-4-Math.max(3,c.bucketSum/(mx-mn||1)*(H-20)*.9).toFixed(1)}" width="4" height="${Math.max(3,c.bucketSum/(mx-mn||1)*(H-20)*.9).toFixed(1)}" rx="1.5" fill="rgba(255,255,255,.14)"/>`).join("")}<path d="${ln} L${W} ${H} L0 ${H}Z" fill="url(#rmA)"/><path class="rm-ln" d="${ln}" fill="none" stroke="#5aa2ff" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${xy[12][0]-3}" cy="${xy[12][1]}" r="3.5" fill="#8fc3ff"/></svg><div class="rm-k c">1년 뒤 저축 계좌 잔액</div><div class="rm-big c">${fmt(pts[12])}<small>만</small></div>`,
+    "신경 쓰지 않아도<br>저축이 먼저 빠져나갑니다",`급여 다음 날 ${c.buckets.filter(b=>b.pmt>0).length}개 계좌로 ${f1(c.bucketSum)}만 원이 자동이체됩니다. 남은 돈으로 생활하는 순서가 만들어집니다.`)+
+  panel(3,"s4","g3",`<div class="rm-h"><span>매월 ${S.exec.moveday}일 · 고정비 통장</span>${tg}</div><ul class="rm-pay">${fx.map(e=>`<li><i>✓</i>${esc(e.name)}<b>${f1(c.planAmt(e))}만</b></li>`).join("")}</ul><div class="rm-sum"><span>자동 납부 합계</span><b>${f1(c.fixPlan)}만</b></div>`,
+    "고정비는 전용 통장에서<br>알아서 납부됩니다",`월세·관리비·대출·보험처럼 매달 같은 돈 ${f1(c.fixPlan)}만 원은 고정비 통장으로 옮겨 자동 납부합니다.`)+
+  panel(4,"s6","g4",`<div class="rm-h"><span>매주 · 변동비 체크카드</span>${tg}</div><div class="rm-k">이번 주 쓸 수 있는 돈</div><div class="rm-big">${f1(wk)}<small>만</small></div><div class="rm-wk">${[.82,.64,1.04,.71].map((r,i)=>`<div><i class="${r>1?"ov":""}" style="height:${Math.min(100,r*80)}%"></i><span>${i+1}주</span></div>`).join("")}</div><div class="rm-sum"><span>월 한도</span><b>${f1(c.varPlan)}만</b></div>`,
+    "변동비는 주간 예산으로<br>새는 돈을 막습니다",`체크카드 월 한도 ${f1(c.varPlan)}만 원, 주간 약 ${f1(wk)}만 원입니다. 한도를 넘은 주는 6단계 점검에서 바로 보입니다.`);
+  {const sd=startDate(),ym=d=>`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,"0")}`;
+   const M=[[0,"실행 시작",c.sellTotal?`투자자산 ${fmt(c.sellTotal)}만 원 정리 후 비상예비자금으로`:"계좌 개설과 자동이체 등록"],[1,"첫 자동이체",`4개 계좌 ${f1(c.bucketSum)}만 원`],[3,"첫 분기 점검","지출·비율 점검, 필요하면 재설계"]]
+     .concat(S.goals.filter(g=>n(g.amt)>0).map(g=>[n(g.months),g.name,`목표 ${fmt(n(g.amt))}만 원`])).sort((x,y)=>x[0]-y[0]);
+   $("#rmLine").innerHTML=`<div class="rm-lh"><b>목표까지의 길</b><span>실행 시작일 기준 · 목표 금액과 기한은 2단계에서 바꿀 수 있습니다</span></div><ol>${M.map(([m,t,d],i)=>`<li class="${i?"":"on"}"><i></i><small>${m?ym(addM(sd,m))+" · "+(m%12?m+"개월":m/12+"년"):ym(sd)+" · 시작"}</small><b>${esc(t)}</b><span>${d}</span></li>`).join("")}</ol>`}
   $("#autoRules").innerHTML=[["월간 배분 규칙 생성",`${c.buckets.filter(b=>b.pmt>0).length}개 계좌 자동이체 초안 (${fmt(c.bucketSum,1)}만 원)`,"초안"],["목표 달성 시 재배분","비상예비자금 목표를 채운 뒤 초과분은 ISA로 이동","규칙"],["비정기 수입 사용 규칙",`성과급 월 ${fmt(c.bonus)}만 원 상당은 저축 재원에 포함해 생활비로 새지 않게 관리`,"규칙"],["이상 징후 알림","변동지출이 계획을 10% 넘거나 소득이 줄면 6단계에서 재설계 요청","알림"]].map(([a,b,s],i)=>`<div class="item"><span class="num-badge">${i+1}</span><div><b>${a} <span class="pill mute" style="margin-left:4px">${s}</span></b><p>${b}</p></div></div>`).join("");
 }
 function startDate(){const v=S.exec&&S.exec.start;let d=v?new Date(v+"T00:00:00"):new Date();if(isNaN(d))d=new Date();d.setHours(0,0,0,0);return d}
