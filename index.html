@@ -1704,6 +1704,28 @@ html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:
 .rm-fade{border-image:linear-gradient(180deg,#000 0%,#0b0b0d 14%,color-mix(in srgb,var(--bg) 35%,#000) 38%,color-mix(in srgb,var(--bg) 62%,#000) 56%,color-mix(in srgb,var(--bg) 82%,#000) 72%,color-mix(in srgb,var(--bg) 94%,#000) 86%,var(--bg) 100%) fill 0//0 100vmax!important}
 @media (max-width:900px){.rm-fade{margin-bottom:40px!important}}
 
+/* v54 step5 banner edge visible on black */
+#v-s5 .vhead{box-shadow:0 0 0 100vmax #000,inset 0 0 0 1px rgba(255,255,255,.14)!important;background-color:#0c0d10}
+/* v54 equal banner heights across steps */
+.view .vhead>.stepper{margin-top:auto!important}
+.view .vhead>p{margin-bottom:14px}
+@media (min-width:1101px){.view .vhead{min-height:254px}}
+@media (min-width:901px) and (max-width:1100px){.view .vhead{min-height:274px}}
+@media (min-width:701px) and (max-width:900px){.view .vhead{min-height:240px}}
+@media (min-width:361px) and (max-width:700px){.view .vhead{min-height:294px}}
+@media (max-width:360px){.view .vhead{min-height:348px}}
+/* v54 iOS date input fix */
+input[type=date].in{-webkit-appearance:none;appearance:none;display:block;min-width:0;max-width:100%;box-sizing:border-box}
+input[type=date].in::-webkit-date-and-time-value{text-align:left;min-height:1.2em}
+.rm-fields .field{min-width:0}
+.rm-fields .in{box-sizing:border-box;width:100%}
+@media (max-width:700px){
+ .rm-fields{display:grid!important;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr);gap:8px;width:100%}
+ .rm-fields .field{width:auto!important}
+ .rm-fields .in{padding-inline:12px;font-size:15px;height:52px}
+}
+@media (max-width:360px){.rm-fields{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.rm-fields .field:first-child{grid-column:1/-1}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
