@@ -1576,6 +1576,37 @@ html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:
 @media(max-width:1280px){#flow.rm{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){#flow.rm{display:grid;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:84%;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -16px;padding:0 16px 4px;scrollbar-width:none}#flow.rm::-webkit-scrollbar{display:none}.rm-c{scroll-snap-align:start}.rm-p{height:400px}}
 
+.card.rmcard{background:#000;border-color:#000;color:#fff;box-shadow:0 30px 60px -40px rgba(0,0,0,.6)}
+.rmcard .ch h3{color:#fff}.rmcard .ch .sub{color:#8b919b}
+.rmcard .field label{color:#8b919b}
+.rmcard .in{background:#16171a!important;border-color:#26282d!important;color:#fff!important;color-scheme:dark}
+.rmcard .in:focus{border-color:#3182f6!important;box-shadow:0 0 0 3px rgba(49,130,246,.25)!important}
+.rmcard .rm-p{border:1px solid rgba(255,255,255,.07);height:450px;place-items:start center;padding:34px 22px 90px}
+.rmcard .rm-p.g2{background:radial-gradient(90% 60% at 50% 45%,#1a1b20,#07070a 72%)}
+.rmcard .rm-p.g3{background:#07070a}
+.rmcard .rm-w{width:100%;max-width:280px;height:318px;display:flex;flex-direction:column}
+.rmcard .rm-split,.rmcard .rm-sum,.rmcard .rm-spark{margin-top:auto}
+.rmcard .rm-split+.rm-lg{margin-top:0}
+.rmcard .rm-spark{height:76px;margin-bottom:8px}
+.rmcard .rm-chips{margin-bottom:0}
+.rmcard .rm-pay{gap:8px}
+.rmcard .rm-wk{margin-top:auto;height:96px}
+.rmcard .rm-wk+.rm-sum{margin-top:12px}
+.rmcard .rm-t h4{color:#fff}.rmcard .rm-t p{color:#8b919b}.rmcard .rm-t span{color:#5aa2ff}
+.rmcard .rm-line{border-top-color:rgba(255,255,255,.1)}
+.rmcard .rm-lh b{color:#fff}.rmcard .rm-lh span{color:#8b919b}
+.rmcard .rm-line ol{padding:8px 8px 4px}
+.rmcard .rm-line li:before{background:rgba(255,255,255,.14)}
+.rmcard .rm-line li>i{background:#000;border-color:#fff}
+.rmcard .rm-line li.on>i{background:#3182f6;border-color:#3182f6;box-shadow:0 0 0 5px rgba(49,130,246,.25)}
+.rmcard .rm-line small{color:#8b919b}.rmcard .rm-line li b{color:#fff}.rmcard .rm-line li span{color:#aeb4bd}
+@media(max-width:700px){.rmcard .rm-p{height:430px}}
+
+.rm-h span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.rm-pay li{white-space:nowrap}.rm-pay li>b{flex:none}.rm-pay li{overflow:hidden}
+.rm-in{list-style:none;margin:0;padding:10px 0 0;border-top:1px solid rgba(255,255,255,.08);display:grid;gap:7px}
+.rm-in li{display:flex;justify-content:space-between;font-size:12px;color:#aeb4bd}.rm-in b{color:#fff;font-weight:700;font-variant-numeric:tabular-nums}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -1745,15 +1776,6 @@ html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:
     <div class="card"><div class="ch"><div><h3>지금 먼저 할 일</h3><p class="sub">진단 결과에서 우선순위가 높은 순서</p></div><a class="btn sm" href="#s5">캘린더</a></div><div class="items" id="ovActions"></div></div>
   </div>
 
-  <div class="card">
-    <div class="ch"><div><h3>AI가 맡는 일, 사람이 맡는 일</h3><p class="sub">숫자는 규칙으로 재현하고, AI는 질문·해석·대안 설명을 돕습니다</p></div></div>
-    <div class="grid g4">
-      <div class="node"><div class="when">01</div><b>누락·모순 점검</b><ul><li>필수 입력 완전성</li><li>소득 대비 지출 불일치</li></ul></div>
-      <div class="node"><div class="when">02</div><b>재무비율 자동 진단</b><ul><li>비상예비자금·저축성향</li><li>부채부담·고위험 비중</li></ul></div>
-      <div class="node"><div class="when">03</div><b>시나리오 3개 비교</b><ul><li>안정안·균형안·가속안</li><li>목표 도달 시점 비교</li></ul></div>
-      <div class="node"><div class="when">04</div><b>변화 대응 안내</b><ul><li>트리거 자동 판정</li><li>돌아갈 단계 제시</li></ul></div>
-    </div>
-  </div>
 </section>
 
 <!-- STEP 1 -->
@@ -1897,7 +1919,7 @@ html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:
 <!-- STEP 5 -->
 <section class="view" id="v-s5">
   <div class="vhead"><div class="eyebrow">5단계</div><h1>재무설계안 실행</h1><p>의지에 기대지 않도록 급여일 다음 날 돈이 자동으로 나뉘는 구조를 만들고, 해야 할 일을 날짜에 올립니다. 먼저 저축하고, 남은 돈으로 생활합니다.</p></div>
-  <div class="card">
+  <div class="card rmcard">
     <div class="ch"><div><h3>실행 로드맵</h3><p class="sub">급여가 들어온 날부터 돈이 자동으로 나뉘는 순서 · 선택한 설계안 금액이 그대로 반영됩니다</p></div>
       <div style="display:flex;gap:10px;flex-wrap:wrap"><div class="field" style="width:150px"><label for="startday">실행 시작일</label><input class="in" id="startday" type="date"></div><div class="field" style="width:86px"><label for="payday">급여일</label><input class="in n" id="payday" type="number" min="1" max="31"></div><div class="field" style="width:86px"><label for="moveday">이체일</label><input class="in n" id="moveday" type="number" min="1" max="31"></div></div></div>
     <div class="flow rm" id="flow"></div><div class="rm-line" id="rmLine"></div>
@@ -1913,7 +1935,7 @@ html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:
       <div class="btns" style="margin-top:12px"><button class="btn sm" type="button" id="btnIcs">휴대폰 캘린더에 추가 (.ics)</button></div>
     </div>
   </div>
-  <div class="card"><div class="ch"><div><h3>AI가 실행을 돕는 방식</h3><p class="sub">자동화하되 중요한 결정은 사람이 승인합니다</p></div></div><div class="grid g2" id="autoRules" style="gap:0 24px"></div></div>
+  <div id="autoRules" hidden></div>
 </section>
 
 <!-- STEP 6 -->
@@ -2369,13 +2391,13 @@ function renderFlow(c){
   const panel=(i,go,bg,w,t,d)=>`<div class="rm-c"><div class="rm-p ${bg}"><div class="rm-w">${w}</div><a class="rm-go" href="#${go}" aria-label="관련 단계로 이동">${AR}</a></div><div class="rm-t"><span>STEP ${i}</span><h4>${t}</h4><p>${d}</p></div></div>`;
   const f1=x=>fmt(x,Math.abs(x%1)>.05?1:0),tg='<i class="rm-tg" aria-hidden="true"></i>';
   $("#flow").innerHTML=
-  panel(1,"s2","g1",`<div class="rm-h"><span>매월 ${S.exec.payday}일 · 급여 통장</span>${tg}</div><div class="rm-k">이번 달 들어온 돈</div><div class="rm-big">${fmt(inc,inc%1?1:0)}<small>만</small></div><div class="rm-split">${seg.map(x=>`<i style="flex:${x[0]};background:${x[2]}"></i>`).join("")}</div><ul class="rm-lg">${seg.map(x=>`<li><i style="background:${x[2]}"></i>${x[1]}<b>${fmt(x[0],x[0]%1?1:0)}만</b></li>`).join("")}</ul>`,
+  panel(1,"s2","g1",`<div class="rm-h"><span>${S.exec.payday}일 · 급여 통장</span>${tg}</div><div class="rm-k">이번 달 들어온 돈</div><div class="rm-big">${fmt(inc,inc%1?1:0)}<small>만</small></div><ul class="rm-in"><li>세후 근로소득<b>${fmt(c.sal)}만</b></li>${c.bonus?`<li>비정기 수입 (월 환산)<b>${fmt(c.bonus)}만</b></li>`:""}</ul><div class="rm-split">${seg.map(x=>`<i style="flex:${x[0]};background:${x[2]}"></i>`).join("")}</div><ul class="rm-lg">${seg.map(x=>`<li><i style="background:${x[2]}"></i>${x[1]}<b>${fmt(x[0],x[0]%1?1:0)}만</b></li>`).join("")}</ul>`,
     "급여일, 한 통장으로<br>모든 돈을 모읍니다",`매월 ${S.exec.payday}일 세후 ${fmt(c.sal)}만 원이 급여 통장에 들어옵니다.${c.bonus?` 비정기 수입은 월 ${fmt(c.bonus)}만 원으로 환산해 함께 나눕니다.`:""}`)+
-  panel(2,"s4","g2",`<div class="rm-h"><span>매월 ${S.exec.moveday}일 · 선저축</span>${tg}</div><div class="rm-chips">${c.buckets.filter(b=>b.pmt>0).map(b=>`<span>${esc(b.name.replace(/^Bucket\s*\d+\s*/i,"")||b.name)} <b>${fmt(b.pmt,b.pmt%1?1:0)}</b></span>`).join("")}</div><svg class="rm-spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><defs><linearGradient id="rmA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3182f6" stop-opacity=".45"/><stop offset="1" stop-color="#3182f6" stop-opacity="0"/></linearGradient></defs>${pts.slice(1).map((v,i)=>`<rect x="${((i+1)/12*W-5).toFixed(1)}" y="${H-4-Math.max(3,c.bucketSum/(mx-mn||1)*(H-20)*.9).toFixed(1)}" width="4" height="${Math.max(3,c.bucketSum/(mx-mn||1)*(H-20)*.9).toFixed(1)}" rx="1.5" fill="rgba(255,255,255,.14)"/>`).join("")}<path d="${ln} L${W} ${H} L0 ${H}Z" fill="url(#rmA)"/><path class="rm-ln" d="${ln}" fill="none" stroke="#5aa2ff" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${xy[12][0]-3}" cy="${xy[12][1]}" r="3.5" fill="#8fc3ff"/></svg><div class="rm-k c">1년 뒤 저축 계좌 잔액</div><div class="rm-big c">${fmt(pts[12])}<small>만</small></div>`,
+  panel(2,"s4","g2",`<div class="rm-h"><span>${S.exec.moveday}일 · 선저축</span>${tg}</div><div class="rm-chips">${c.buckets.filter(b=>b.pmt>0).map(b=>`<span>${esc(b.name.replace(/^Bucket\s*\d+\s*/i,"")||b.name)} <b>${fmt(b.pmt,b.pmt%1?1:0)}</b></span>`).join("")}</div><svg class="rm-spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><defs><linearGradient id="rmA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3182f6" stop-opacity=".45"/><stop offset="1" stop-color="#3182f6" stop-opacity="0"/></linearGradient></defs>${pts.slice(1).map((v,i)=>`<rect x="${((i+1)/12*W-5).toFixed(1)}" y="${H-4-Math.max(3,c.bucketSum/(mx-mn||1)*(H-20)*.9).toFixed(1)}" width="4" height="${Math.max(3,c.bucketSum/(mx-mn||1)*(H-20)*.9).toFixed(1)}" rx="1.5" fill="rgba(255,255,255,.14)"/>`).join("")}<path d="${ln} L${W} ${H} L0 ${H}Z" fill="url(#rmA)"/><path class="rm-ln" d="${ln}" fill="none" stroke="#5aa2ff" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${xy[12][0]-3}" cy="${xy[12][1]}" r="3.5" fill="#8fc3ff"/></svg><div class="rm-k c">1년 뒤 저축 계좌 잔액</div><div class="rm-big c">${fmt(pts[12])}<small>만</small></div>`,
     "신경 쓰지 않아도<br>저축이 먼저 빠져나갑니다",`급여 다음 날 ${c.buckets.filter(b=>b.pmt>0).length}개 계좌로 ${f1(c.bucketSum)}만 원이 자동이체됩니다. 남은 돈으로 생활하는 순서가 만들어집니다.`)+
-  panel(3,"s4","g3",`<div class="rm-h"><span>매월 ${S.exec.moveday}일 · 고정비 통장</span>${tg}</div><ul class="rm-pay">${fx.map(e=>`<li><i>✓</i>${esc(e.name)}<b>${f1(c.planAmt(e))}만</b></li>`).join("")}</ul><div class="rm-sum"><span>자동 납부 합계</span><b>${f1(c.fixPlan)}만</b></div>`,
+  panel(3,"s4","g3",`<div class="rm-h"><span>${S.exec.moveday}일 · 고정비 통장</span>${tg}</div><ul class="rm-pay">${fx.map(e=>`<li><i>✓</i>${esc(e.name)}<b>${f1(c.planAmt(e))}만</b></li>`).join("")}</ul><div class="rm-sum"><span>자동 납부 합계</span><b>${f1(c.fixPlan)}만</b></div>`,
     "고정비는 전용 통장에서<br>알아서 납부됩니다",`월세·관리비·대출·보험처럼 매달 같은 돈 ${f1(c.fixPlan)}만 원은 고정비 통장으로 옮겨 자동 납부합니다.`)+
-  panel(4,"s6","g4",`<div class="rm-h"><span>매주 · 변동비 체크카드</span>${tg}</div><div class="rm-k">이번 주 쓸 수 있는 돈</div><div class="rm-big">${f1(wk)}<small>만</small></div><div class="rm-wk">${[.82,.64,1.04,.71].map((r,i)=>`<div><i class="${r>1?"ov":""}" style="height:${Math.min(100,r*80)}%"></i><span>${i+1}주</span></div>`).join("")}</div><div class="rm-sum"><span>월 한도</span><b>${f1(c.varPlan)}만</b></div>`,
+  panel(4,"s6","g4",`<div class="rm-h"><span>매주 · 체크카드</span>${tg}</div><div class="rm-k">이번 주 쓸 수 있는 돈</div><div class="rm-big">${f1(wk)}<small>만</small></div><div class="rm-wk">${[.82,.64,1.04,.71].map((r,i)=>`<div><i class="${r>1?"ov":""}" style="height:${Math.min(100,r*80)}%"></i><span>${i+1}주</span></div>`).join("")}</div><div class="rm-sum"><span>월 한도</span><b>${f1(c.varPlan)}만</b></div>`,
     "변동비는 주간 예산으로<br>새는 돈을 막습니다",`체크카드 월 한도 ${f1(c.varPlan)}만 원, 주간 약 ${f1(wk)}만 원입니다. 한도를 넘은 주는 6단계 점검에서 바로 보입니다.`);
   {const sd=startDate(),ym=d=>`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,"0")}`;
    const M=[[0,"실행 시작",c.sellTotal?`투자자산 ${fmt(c.sellTotal)}만 원 정리 후 비상예비자금으로`:"계좌 개설과 자동이체 등록"],[1,"첫 자동이체",`4개 계좌 ${f1(c.bucketSum)}만 원`],[3,"첫 분기 점검","지출·비율 점검, 필요하면 재설계"]]
@@ -2755,7 +2777,7 @@ renderInputs();update();route();
   const run=()=>{const t=(q.value||"").replace(/\s/g,"").toLowerCase();let k=0;box.querySelectorAll(".bz-law").forEach(a=>{const ok=(cat==="전체"||a.dataset.cat.split(" ").includes(cat)||(cat==="예시"&&a.classList.contains("ex")))&&(!t||a.dataset.q.includes(t));a.hidden=!ok;if(ok)k++});none.hidden=k>0};
   q.addEventListener("input",run);document.getElementById("bzCats").addEventListener("click",e=>{const b=e.target.closest("[data-bzc]");if(!b)return;cat=b.dataset.bzc;b.parentElement.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));run()})})();
 (function(){const home=document.getElementById("v-home");if(!home)return;
-  const SEC=[["#hx","시작"],[".say-sec","소개"],[".feat-sec","6단계 기능"],[".wv-sec","목표 지도"],[".dash-head","대시보드"],[".hero","고객 프로필"],[".card.glow","목표 시뮬레이터"],[".grid.g2","자산 전망 · 저축 배분"],[".grid.g2 + .grid.g2","목표 달성 · 할 일"],[":scope > .card:last-of-type","AI와 사람의 역할"]];
+  const SEC=[["#hx","시작"],[".say-sec","소개"],[".feat-sec","6단계 기능"],[".wv-sec","목표 지도"],[".dash-head","대시보드"],[".hero","고객 프로필"],[".card.glow","목표 시뮬레이터"],[".grid.g2","자산 전망 · 저축 배분"],[".grid.g2 + .grid.g2","목표 달성 · 할 일"]];
   const els=SEC.map(([sel,name])=>[home.querySelector(":scope > "+sel.replace(":scope > ",""))||home.querySelector(sel),name]).filter(x=>x[0]);
   const rail=document.createElement("nav");rail.className="orail";rail.setAttribute("aria-label","개요 목차");const tip=document.createElement("div");tip.className="orail-tip";
   const W=[14,10,13,9,12,8,11,9,10,8];
