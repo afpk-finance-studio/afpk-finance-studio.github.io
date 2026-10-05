@@ -1693,6 +1693,38 @@ html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:
 .rm-line li{padding:34px 28px 6px 0;gap:6px}
 @media(max-width:760px){.rm-head{padding:8px 0 0}.rm-head h2{font-size:30px}.rm-head p{font-size:14.5px}.rmcard .rm-mapwrap{margin-top:48px!important}.rmcard .rm-line{margin-top:56px;padding-top:40px}}
 
+/* v50 step 5 light like other steps */
+#v-s5 .vhead{box-shadow:none!important;clip-path:none!important}
+.card.rmcard{background:#fff!important;color:var(--ink)!important;border:1px solid var(--line)!important;border-radius:26px!important;box-shadow:0 1px 2px rgba(0,0,0,.03),0 12px 32px -18px rgba(0,0,0,.12)!important;clip-path:none!important;padding:56px 40px 48px!important;margin-block:0!important}
+@media (max-width:900px){.card.rmcard{padding:36px 20px 32px!important}}
+.rm-eye{color:#3182f6}
+.rm-head h2{color:#191f28}
+.rm-head p{color:#4e5968}
+.rmcard .field label{color:#6b7684}
+.rmcard .in{background:#f2f4f6!important;border-color:#e5e8eb!important;color:#191f28!important;color-scheme:light}
+.rmcard .rm-lh b,.rm-mapwrap .rm-lh b{color:#191f28}.rmcard .rm-lh span,.rm-mapwrap .rm-lh span{color:#8b95a1}
+.rm-svg path{stroke:#d1d6db}
+.rm-map.hov .rm-svg path.on{stroke:#4e5968}
+.rm-root{background:#fff;border:1px solid #e5e8eb;box-shadow:0 10px 30px -18px rgba(0,0,0,.18)}
+.rm-g{background:#fff;border:1px solid #e5e8eb;box-shadow:0 6px 20px -16px rgba(0,0,0,.16)}
+.rm-root b,.rm-g b,.rm-root em,.rm-g em{color:#191f28}
+.rm-root small,.rm-g small{color:#8b95a1}
+.rm-map .rm-n.on{border-color:#b0b8c1}
+.rm-l{background:#f9fafb;border:1px solid #eef0f3;color:#333d4b}
+.rm-l b{color:#191f28}
+.rm-l small{color:#8b95a1}
+.rm-l.on{background:#f2f4f6}
+@media (max-width:700px){.rm-ls{border-left-color:#d1d6db!important}.rm-l:before{border-top-color:#d1d6db!important}}
+.rmcard .rm-line{border-top:1px solid #eef0f3}
+.rmcard .rm-line li:before{background:#e5e8eb}
+.rm-line li:after{background:#191f28}
+.rmcard .rm-line li>i{background:#fff;border-color:#191f28}
+.rmcard .rm-line small{color:#8b95a1}.rmcard .rm-line li b{color:#191f28}.rmcard .rm-line li span{color:#4e5968}
+.rmcard .rm-line li:hover>i{background:#191f28;border-color:#191f28;box-shadow:0 0 0 6px rgba(25,31,40,.08)}
+.rmcard .rm-line li.on:hover>i{background:#3182f6;border-color:#3182f6;box-shadow:0 0 0 6px rgba(49,130,246,.18)}
+.rm-line ol{grid-auto-columns:minmax(150px,1fr)}.rm-line li{padding-right:20px}
+.rmcard .rm-line li:hover small{color:#4e5968}.rmcard .rm-line li:hover span{color:#191f28}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -2010,7 +2042,6 @@ html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:
       <div class="rm-fields"><div class="field" style="width:150px"><label for="startday">실행 시작일</label><input class="in" id="startday" type="date"></div><div class="field" style="width:86px"><label for="payday">급여일</label><input class="in n" id="payday" type="number" min="1" max="31"></div><div class="field" style="width:86px"><label for="moveday">이체일</label><input class="in n" id="moveday" type="number" min="1" max="31"></div></div></div>
     <div class="flow rm" id="flow" hidden></div><div class="rm-mapwrap"><div class="rm-lh"><b>자동화 흐름도</b><span>급여가 들어오면 돈이 이렇게 갈라집니다 · 선은 자동이체가 실행되는 순서입니다</span></div><div class="rm-scroll"><div class="rm-map" id="rmMap"></div></div></div><div class="rm-line" id="rmLine"></div>
   </div>
-  <div class="rm-fade" aria-hidden="true"></div>
   <div class="grid" style="grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);align-items:start" id="execGrid">
     <div class="card"><div class="ch"><div><h3>실행 체크리스트</h3><p class="sub">완료한 항목을 누르세요 · 날짜는 캘린더와 연결됩니다</p></div><span class="pill info" id="execPill"></span></div><div class="meter" style="margin-bottom:6px"><i id="execBar"></i></div><div id="execList"></div></div>
     <div class="card">
