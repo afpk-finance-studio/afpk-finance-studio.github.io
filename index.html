@@ -1680,6 +1680,19 @@ html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:
 .rmcard .rm-line li.on:hover>i{background:#3182f6;border-color:#3182f6;box-shadow:0 0 0 6px rgba(49,130,246,.3)}
 .rmcard .rm-line li:hover small{color:#cfd3da}.rmcard .rm-line li:hover span{color:#fff}
 
+/* v49 roadmap head + timeline spacing */
+.rm-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:24px 16px 8px}
+.rm-eye{font-size:13px;font-weight:800;letter-spacing:.14em;color:#74b9ff}
+.rm-head h2{margin:0;font-size:clamp(32px,4.4vw,58px);line-height:1.16;letter-spacing:-.05em;font-weight:800;color:#fff;text-wrap:balance}
+.rm-head p{margin:4px 0 0;font-size:16px;line-height:1.65;color:rgba(255,255,255,.62);max-width:52ch}
+.rm-fields{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:22px;text-align:left}
+.rmcard .rm-mapwrap{margin-top:72px!important}
+.rmcard .rm-line{margin-top:84px;padding-top:56px}
+.rmcard .rm-line .rm-lh{margin-bottom:30px}
+.rm-line ol{grid-auto-columns:minmax(190px,1fr)}
+.rm-line li{padding:34px 28px 6px 0;gap:6px}
+@media(max-width:760px){.rm-head{padding:8px 0 0}.rm-head h2{font-size:30px}.rm-head p{font-size:14.5px}.rmcard .rm-mapwrap{margin-top:48px!important}.rmcard .rm-line{margin-top:56px;padding-top:40px}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -1993,8 +2006,8 @@ html:root{--c1:#3182f6;--c2:#8b6cff;--c3:#19c3b1;--c4:#ffb020;--c5:#d1d6db;--c6:
 <section class="view" id="v-s5">
   <div class="vhead"><div class="eyebrow">5단계</div><h1>재무설계안 실행</h1><p>의지에 기대지 않도록 급여일 다음 날 돈이 자동으로 나뉘는 구조를 만들고, 해야 할 일을 날짜에 올립니다. 먼저 저축하고, 남은 돈으로 생활합니다.</p></div>
   <div class="card rmcard">
-    <div class="ch"><div><h3>실행 로드맵</h3><p class="sub">급여가 들어온 날부터 돈이 자동으로 나뉘는 순서 · 선택한 설계안 금액이 그대로 반영됩니다</p></div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap"><div class="field" style="width:150px"><label for="startday">실행 시작일</label><input class="in" id="startday" type="date"></div><div class="field" style="width:86px"><label for="payday">급여일</label><input class="in n" id="payday" type="number" min="1" max="31"></div><div class="field" style="width:86px"><label for="moveday">이체일</label><input class="in n" id="moveday" type="number" min="1" max="31"></div></div></div>
+    <div class="rm-head"><span class="rm-eye">ROADMAP</span><h2>급여가 들어온 날부터<br>돈이 알아서 나뉩니다</h2><p>실행 로드맵입니다. 선택한 설계안의 금액이 자동이체 순서 그대로 반영되고, 아래 날짜를 바꾸면 흐름도와 캘린더가 함께 바뀝니다.</p>
+      <div class="rm-fields"><div class="field" style="width:150px"><label for="startday">실행 시작일</label><input class="in" id="startday" type="date"></div><div class="field" style="width:86px"><label for="payday">급여일</label><input class="in n" id="payday" type="number" min="1" max="31"></div><div class="field" style="width:86px"><label for="moveday">이체일</label><input class="in n" id="moveday" type="number" min="1" max="31"></div></div></div>
     <div class="flow rm" id="flow" hidden></div><div class="rm-mapwrap"><div class="rm-lh"><b>자동화 흐름도</b><span>급여가 들어오면 돈이 이렇게 갈라집니다 · 선은 자동이체가 실행되는 순서입니다</span></div><div class="rm-scroll"><div class="rm-map" id="rmMap"></div></div></div><div class="rm-line" id="rmLine"></div>
   </div>
   <div class="rm-fade" aria-hidden="true"></div>
