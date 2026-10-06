@@ -2428,6 +2428,72 @@ body.wpg .view .vhead.phead{margin-bottom:8px!important}
 .gxc b{font-size:11.5cqw}
 .gxd{font-size:max(12.5px,4cqw)}
 
+/* v64 Clobe-style feature cards */
+#v-home .fps.clb{gap:28px;margin-top:44px}
+#v-home .fps.clb .fp,#v-home .fps.clb .fp.rev{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0!important;align-items:stretch;min-height:0;padding:0!important;border-radius:28px!important;border:1px solid rgba(255,255,255,.1)!important;background:#060607!important;box-shadow:none!important;overflow:hidden}
+#v-home .fps.clb .fp:before,#v-home .fps.clb .fp:after{display:none!important}
+#v-home .fps.clb .fp.rev .fp-vis{order:0!important}
+#v-home .fps.clb .fp-vis{display:grid;place-items:center;min-height:0;padding:44px 40px;background:radial-gradient(60% 55% at 50% 100%,rgba(124,77,255,.32),rgba(49,130,246,.10) 55%,transparent 80%)!important}
+#v-home .fps.clb .fp-vis:before{display:none!important}
+#v-home .fps.clb .fp-txt{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:48px 52px 48px 20px}
+#v-home .fps.clb .fp-tag{display:inline-flex!important;padding:13px 22px!important;border-radius:12px!important;background:#1d1d21!important;color:#fff!important;font-size:15.5px!important;font-weight:600!important;letter-spacing:-.01em;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border:0!important}
+#v-home .fps.clb .fp-txt h3{display:block!important;margin:30px 0 18px!important;font-size:clamp(26px,2.5vw,38px)!important;line-height:1.32!important;color:#fff!important;opacity:1!important;transform:none!important}
+#v-home .fps.clb .fp-txt p{font-size:clamp(15px,1.2vw,17px)!important;line-height:1.75!important;color:#9a9aa3!important;max-width:44ch}
+#v-home .fps.clb .fp-go{margin-top:28px!important;background:#1d1d21!important;color:#fff!important}
+#v-home .fps.clb .fp.shown:hover{transform:none!important;box-shadow:none!important;border-color:rgba(255,255,255,.18)!important}
+/* rise one by one */
+#v-home .fps.clb .fp.rvp{opacity:0!important;transform:translateY(80px)!important;filter:none!important;transition:opacity .9s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1),border-color .3s!important}
+#v-home .fps.clb .fp.rvp.shown{opacity:1!important;transform:none!important}
+#v-home .fps.clb .fp.rvp .fp-vis,#v-home .fps.clb .fp.rvp .fp-txt{opacity:0;transform:translateY(40px)!important;transition:opacity .9s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+#v-home .fps.clb .fp.rvp .fp-vis{transition-delay:.15s}
+#v-home .fps.clb .fp.rvp .fp-txt{transition-delay:.3s}
+#v-home .fps.clb .fp.rvp.shown .fp-vis,#v-home .fps.clb .fp.rvp.shown .fp-txt{opacity:1;transform:none!important}
+@media (max-width:860px){#v-home .fps.clb{gap:18px}#v-home .fps.clb .fp,#v-home .fps.clb .fp.rev{grid-template-columns:minmax(0,1fr);border-radius:22px!important}#v-home .fps.clb .fp-vis{padding:28px 18px 8px}#v-home .fps.clb .fp-txt{padding:24px 22px 30px}#v-home .fps.clb .fp-txt h3{margin:20px 0 12px!important}#v-home .fps.clb .fp-tag{padding:10px 16px!important;font-size:14px!important}}
+@media (prefers-reduced-motion:reduce){#v-home .fps.clb .fp.rvp,#v-home .fps.clb .fp.rvp .fp-vis,#v-home .fps.clb .fp.rvp .fp-txt{opacity:1!important;transform:none!important}}
+
+/* v65 Clobe-like CTA banner */
+.jb{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:28px;margin:64px 0 0;padding:46px 48px;border-radius:20px;background:linear-gradient(115deg,#2a3bff 0%,#5b4bff 38%,#7a5cf0 62%,#4d9bff 100%);border:1px solid rgba(255,255,255,.18)}
+.jb:after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(50% 120% at 100% 0%,rgba(95,224,207,.45),transparent 60%);pointer-events:none}
+.jb-sh{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.jb-sh i{position:absolute;top:-40%;width:200px;height:190%;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.04));transform:rotate(-38deg);transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
+.jb-sh i:nth-child(1){left:14%}.jb-sh i:nth-child(2){left:24%;opacity:.8}.jb-sh i:nth-child(3){left:34%;opacity:.6}.jb-sh i:nth-child(4){left:44%;opacity:.4}
+.jb:hover .jb-sh i{transform:rotate(-38deg) translateY(-24px)}
+.jb-t{display:flex;flex-direction:column;gap:8px;min-width:0}
+.jb h2{margin:0;font-size:clamp(22px,2.3vw,30px);font-weight:800;letter-spacing:-.035em;color:#fff;text-wrap:balance}
+.jb p{margin:0;font-size:15px;line-height:1.6;color:rgba(255,255,255,.8);max-width:52ch}
+.jb-btn{flex:none;display:inline-flex;align-items:center;padding:16px 26px;border-radius:12px;background:#000;color:#fff;font-size:16px;font-weight:700;text-decoration:none;transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s}
+.jb-btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(0,0,0,.6)}
+@media (max-width:760px){.jb{flex-direction:column;align-items:flex-start;padding:30px 24px;margin-top:40px}.jb-btn{align-self:stretch;justify-content:center}}
+/* v65 home footer */
+.hfoot{display:grid;align-items:start;grid-template-columns:minmax(0,1fr) auto;gap:32px 48px;margin:80px 0 0;padding:44px 0 8px;border-top:1px solid rgba(255,255,255,.1);color:#fff}
+.hf-logo{display:flex;align-items:center;gap:10px;font-size:24px;font-weight:800;letter-spacing:-.03em}
+.hf-mark{position:relative;width:30px;height:28px}
+.hf-mark i{position:absolute;width:16px;height:16px;border-radius:50%}
+.hf-mark i:nth-child(1){left:0;top:10px;background:#19c3b1}.hf-mark i:nth-child(2){left:8px;top:0;background:#3182f6}.hf-mark i:nth-child(3){left:14px;top:11px;background:#8b6cff}
+.hf-cols{display:flex;gap:64px}
+.hf-cols>div{display:flex;flex-direction:column;gap:14px;min-width:0}
+.hf-cols b{font-size:18px;font-weight:700;color:#d4d4d8;margin-bottom:6px}
+.hf-cols a,.hf-cols span{font-size:14.5px;color:#a1a1aa;text-decoration:none}
+.hf-cols a:hover{color:#fff}
+.hf-copy{grid-column:1/-1;margin:16px 0 0;font-size:13px;color:#6b6f78}
+#v-home~.foot,body.hpg .foot{display:none}
+@media (max-width:900px){.hfoot{grid-template-columns:minmax(0,1fr)}.hf-cols{flex-wrap:wrap;gap:28px 40px}}
+/* v65 smaller score card */
+#v-home #dScore.dscore{padding:30px 40px!important;gap:32px!important;background:#060607!important;border:1px solid rgba(255,255,255,.1)!important}
+#v-home #dScore .ds-v{width:min(100%,360px)!important;padding:20px 18px 22px!important}
+#v-home #dScore .gx2{width:min(100%,270px)}
+#v-home #dScore .gx-cap{font-size:18px}
+/* v65 s1 step cards hover/click */
+.r1-steps li{padding:0!important;background:none!important}
+.r1-steps li a{position:relative;display:flex;flex-direction:column;gap:6px;height:100%;padding:18px 16px;border-radius:16px;background:#f5f7fa;color:inherit;text-decoration:none;border:1px solid transparent;transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s,background .3s,border-color .3s}
+.r1-steps li a:hover{transform:translateY(-4px);background:#fff;border-color:#e5e8eb;box-shadow:0 16px 32px -18px rgba(30,60,130,.35)}
+.r1-steps li a:active{transform:translateY(-1px) scale(.98)}
+.r1-steps li.on a{background:#191f28}
+.r1-steps li.on a:hover{background:#000;border-color:#000}
+.r1-go{position:absolute;right:16px;top:20px;width:8px;height:8px;border-top:2px solid #b0b8c1;border-right:2px solid #b0b8c1;transform:rotate(45deg);opacity:0;transition:opacity .3s,right .3s}
+.r1-steps li a:hover .r1-go{opacity:1;right:13px}
+.r1-steps li.on .r1-go{border-color:rgba(255,255,255,.6)}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -2567,11 +2633,18 @@ body.wpg .view .vhead.phead{margin-bottom:8px!important}
   </section>
   <div class="dash-head"><span class="feat-eye">AI SCORE</span><h2>AI가 매긴<br>재무건강 점수</h2><p class="dash-lead">예시 고객의 지금 점수와 설계안대로 실행했을 때의 점수입니다. 내 정보를 넣으면 3단계 분석·평가에서 내 점수와 진단을 볼 수 있습니다</p></div>
   <div class="ds-wrap"><div class="ds-glow" aria-hidden="true"><i></i><i></i><i></i></div><div class="card dscore" id="dScore"></div></div>
-  <section class="jc" id="jc" aria-labelledby="jcT"><div class="jc-orbs" aria-hidden="true"><i></i><i></i><i></i></div>
-    <div class="jc-mq" aria-hidden="true"><div><span>관계 정립</span><span>목표·자료 수집</span><span>분석·평가</span><span>설계안 수립</span><span>설계안 실행</span><span>점검·리밸런싱</span><span>관계 정립</span><span>목표·자료 수집</span><span>분석·평가</span><span>설계안 수립</span><span>설계안 실행</span><span>점검·리밸런싱</span></div></div>
-    <div class="jc-in"><span class="feat-eye">YOUR TURN</span><h2 id="jcT">이제 <em>내 숫자</em>로<br>점수를 받아 보세요</h2><p>소득·지출·자산·목표를 넣는 순간, 진단과 AI 평가와 설계안이 모두 내 기준으로 다시 계산됩니다.</p>
-    <a class="jc-btn" href="#s2"><span>내 정보로 점수 받기</span><i aria-hidden="true"></i></a>
-    <ul class="jc-ok"><li>회원가입 없이 바로</li><li>입력한 값은 내 브라우저에만 저장</li><li>언제든 예시로 되돌리기</li></ul></div></section>
+  <section class="jb" id="jc" aria-labelledby="jcT"><div class="jb-sh" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="jb-t"><h2 id="jcT">이제 내 숫자로 점수를 받아 보세요</h2><p>소득·지출·자산·목표를 넣으면 진단, AI 평가, 설계안이 모두 내 기준으로 다시 계산됩니다.</p></div>
+    <a class="jb-btn" href="#s2">내 정보로 점수 받기</a></section>
+  <footer class="hfoot" aria-label="사이트 정보">
+    <div class="hf-logo"><span class="hf-mark" aria-hidden="true"><i></i><i></i><i></i></span>threekong</div>
+    <div class="hf-cols">
+      <div><b>재무설계 6단계</b><a href="#s1">관계 정립</a><a href="#s2">목표·자료 수집</a><a href="#s3">분석·평가</a><a href="#s4">설계안 수립</a><a href="#s5">설계안 실행</a><a href="#s6">점검·리밸런싱</a></div>
+      <div><b>자료</b><a href="#report">재무설계 보고서</a><a href="#basis">산출 근거·관련 법령</a><a href="#s2">새 고객 입력</a></div>
+      <div class="hf-note"><b>유의사항</b><span>회원가입 없이 바로 쓸 수 있어요</span><span>입력한 값은 내 브라우저에만 저장돼요</span><span>예시 고객 김민준은 가상 인물이에요</span><span>예상 수익률은 가정값이며 수익을 보장하지 않아요</span><span>최종 결정은 고객과 재무설계사가 해요</span></div>
+    </div>
+    <p class="hf-copy">© 2026 threekong. All rights reserved.</p>
+  </footer>
   <div class="ov-cta"><div><b>내 숫자로 직접 해 보세요</b><p>소득·지출·자산·목표를 입력하면 진단, AI 평가, 설계안이 모두 내 기준으로 다시 계산됩니다</p></div><div class="btns"><a class="btn primary" href="#s2">내 정보 입력 바로 가기</a><a class="btn" href="#s3">분석·평가 결과 보기</a></div></div>
 </section>
 
@@ -2581,12 +2654,12 @@ body.wpg .view .vhead.phead{margin-bottom:8px!important}
   <div class="card r1-flow">
     <div class="ch"><div><h3>상담은 이렇게 진행돼요</h3><p class="sub">지금은 6단계 중 첫 번째, 약속을 정하는 단계입니다</p></div></div>
     <ol class="r1-steps">
-      <li class="on"><span>01</span><b>약속 정하기</b><small>도와드릴 범위와 역할을 정해요</small></li>
-      <li><span>02</span><b>내 정보 알려 주기</b><small>소득·지출·자산·목표를 적어요</small></li>
-      <li><span>03</span><b>지금 상태 진단</b><small>잘하는 점과 부족한 점을 봐요</small></li>
-      <li><span>04</span><b>설계안 받기</b><small>목표별로 돈을 나눠 담아요</small></li>
-      <li><span>05</span><b>실행하기</b><small>자동이체와 할 일을 챙겨요</small></li>
-      <li><span>06</span><b>정기 점검</b><small>상황이 바뀌면 다시 맞춰요</small></li>
+      <li class="on"><a href="#s1"><span>01</span><b>약속 정하기</b><small>도와드릴 범위와 역할을 정해요</small><i class="r1-go" aria-hidden="true"></i></a></li>
+      <li><a href="#s2"><span>02</span><b>내 정보 알려 주기</b><small>소득·지출·자산·목표를 적어요</small><i class="r1-go" aria-hidden="true"></i></a></li>
+      <li><a href="#s3"><span>03</span><b>지금 상태 진단</b><small>잘하는 점과 부족한 점을 봐요</small><i class="r1-go" aria-hidden="true"></i></a></li>
+      <li><a href="#s4"><span>04</span><b>설계안 받기</b><small>목표별로 돈을 나눠 담아요</small><i class="r1-go" aria-hidden="true"></i></a></li>
+      <li><a href="#s5"><span>05</span><b>실행하기</b><small>자동이체와 할 일을 챙겨요</small><i class="r1-go" aria-hidden="true"></i></a></li>
+      <li><a href="#s6"><span>06</span><b>정기 점검</b><small>상황이 바뀌면 다시 맞춰요</small><i class="r1-go" aria-hidden="true"></i></a></li>
     </ol>
   </div>
   <div class="grid g2">
@@ -3725,7 +3798,7 @@ function typeIt(el,sp){if(matchMedia("(prefers-reduced-motion: reduce)").matches
 const typeIO="IntersectionObserver" in window?new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){typeIO.unobserve(x.target);typeIt(x.target,48)}}),{rootMargin:"0px 0px -15% 0px"}):null;
 document.querySelectorAll("[data-type]").forEach(el=>typeIO&&!matchMedia("(prefers-reduced-motion: reduce)").matches?(el.classList.add("pre-type"),typeIO.observe(el)):0);
 const featIO="IntersectionObserver" in window?new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("shown")}else if(x.boundingClientRect.top>0){x.target.classList.remove("shown")}}),{rootMargin:"0px 0px -16% 0px"}):null;
-document.querySelectorAll(".fp").forEach(el=>{if(!el.closest(".fps")&&featIO){el.classList.add("rvp");featIO.observe(el)}else el.classList.add("shown")});
+document.querySelectorAll(".fp").forEach(el=>{if(featIO){el.classList.add("rvp");featIO.observe(el)}else el.classList.add("shown")});
 document.querySelectorAll(".feats>.feat").forEach((el,k)=>{if(!featIO)return;el.classList.add("rv","rvf");el.style.setProperty("--d",(k%2)*110+"ms");featIO.observe(el)});
 /* custom cursor (overview only, pointer devices) */
 const FINE=matchMedia("(hover:hover) and (pointer:fine)").matches&&!matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -3817,19 +3890,8 @@ renderInputs();update();route();
  addEventListener("scroll",()=>{if(!raf)raf=requestAnimationFrame(f)},{passive:true});addEventListener("resize",f);setTimeout(f,300);
  sec.addEventListener("pointermove",e=>{const r=sec.getBoundingClientRect();sec.style.setProperty("--mx",((e.clientX-r.left)/r.width*100).toFixed(1)+"%");sec.style.setProperty("--my",((e.clientY-r.top)/r.height*100).toFixed(1)+"%")})})();
 
-// v62 Toss-ads style accordion for overview features
-(function(){const box=document.querySelector("#v-home .fps");if(!box)return;box.classList.add("acc");
- const T=["내 정보를 한 번만 넣으면","지금 내 상태가 궁금하다면","어떤 설계안이 맞을지 고민이라면","저축을 목적별로 나누고 싶다면","실행 일정을 놓치기 싫다면","상황이 바뀌었다면","보고서로 받아 보고 싶다면"];
- const fps=[...box.querySelectorAll(".fp")];let cur=0,user=false,inView=false,hov=false;
- fps.forEach((fp,k)=>{fp.removeAttribute("data-go");fp.classList.remove("rvp");const tx=fp.querySelector(".fp-txt"),tag=tx.querySelector(".fp-tag");
-  tx.insertAdjacentHTML("afterbegin",`<button type="button" class="fa-t" aria-expanded="false"><small>${tag?tag.textContent:""}</small><span>${T[k]||""}</span></button>`);
-  tx.querySelector(".fa-t").addEventListener("click",()=>{user=true;open(k)})});
- function open(k){cur=k;fps.forEach((fp,i)=>{const on=i===k;fp.classList.toggle("on",on);fp.querySelector(".fa-t").setAttribute("aria-expanded",on);if(on){fp.classList.remove("shown");void fp.offsetWidth;fp.classList.add("shown")}})}
- open(0);
- box.addEventListener("pointerenter",()=>hov=true);box.addEventListener("pointerleave",()=>hov=false);
- if("IntersectionObserver" in window)new IntersectionObserver(es=>es.forEach(e=>inView=e.isIntersecting),{threshold:.35}).observe(box);
- setInterval(()=>{if(user||hov||!inView||!matchMedia("(min-width:861px)").matches||!document.body.classList.contains("hpg")||matchMedia("(prefers-reduced-motion:reduce)").matches)return;open((cur+1)%fps.length)},5200);
-})();
+// v64 Clobe-style feature cards rise one by one
+(function(){const box=document.querySelector("#v-home .fps");if(box)box.classList.add("clb")})();
 
 // v63 gauge reveal
 (function(){const seen=()=>document.querySelectorAll(".gx2:not(.on)").forEach(el=>{const r=el.getBoundingClientRect();if(r.top<innerHeight*.88&&r.bottom>0&&r.width>0){requestAnimationFrame(()=>el.classList.add("on"));window.__gx[el.dataset.gx]=1}});
