@@ -1791,11 +1791,11 @@ html.dark .gplan{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,
 .dai-h{margin-top:20px!important}
 .dai-rx{margin:0 0 16px;padding:0;list-style:none;counter-reset:rx;display:flex;flex-direction:column;gap:8px}
 .dai-rx li{counter-increment:rx;display:grid;grid-template-columns:26px minmax(0,1fr);gap:10px;font-size:14px;line-height:1.6;color:#4e5968}.dai-rx li b{color:#191f28}
-.dai-rx li:before{content:counter(rx);width:24px;height:24px;border-radius:50%;background:#191f28;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;margin-top:1px}
+.dai-rx li:before{content:counter(rx,decimal-leading-zero);width:24px;height:24px;border-radius:50%;background:#191f28;color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;margin-top:1px}
 .anaCard .ana-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr);gap:20px;align-items:stretch}
 .ana-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:as}
 .ana-steps li{counter-increment:as;display:grid;grid-template-columns:26px minmax(0,1fr);column-gap:10px;font-size:13.5px;color:#4e5968;line-height:1.55}
-.ana-steps li:before{content:counter(as);grid-row:1/3;width:24px;height:24px;border-radius:50%;background:#e8f1ff;color:#3182f6;font-weight:800;font-size:12px;display:grid;place-items:center}
+.ana-steps li:before{content:counter(as,decimal-leading-zero);grid-row:1/3;width:24px;height:24px;border-radius:50%;background:#e8f1ff;color:#3182f6;font-weight:800;font-size:12px;display:grid;place-items:center}
 .ana-steps li b{color:#191f28;font-size:14px}
 .ana-steps li.note{margin-top:4px;background:#f9fafb;border-radius:12px;padding:12px 14px;grid-template-columns:minmax(0,1fr)}.ana-steps li.note:before{display:none}
 .anaCard .prompt{min-height:260px;height:100%;font-size:12.5px}
@@ -2006,6 +2006,112 @@ html:not(.dark) #monList .in:focus,html:not(.dark) #monthList .in:focus{border-c
 @media (min-width:901px) and (max-width:1100px){:root{--lg-w:44px}.gnb .logo{font-size:0}.gnb .logo .kmark{width:30px}.gl{font-size:12.5px!important}.gm-i,.gm-b{font-size:12px!important;white-space:normal}}
 .np tbody tr:last-child th,.np tbody tr:last-child td{border-bottom:0}
 
+
+/* v60 commercial page header */
+.view .vhead.phead{position:relative;display:grid!important;grid-template-columns:minmax(0,1fr) 300px;column-gap:56px;row-gap:14px;align-items:start;min-height:0!important;padding:60px 0 52px!important;margin:-28px 0 8px!important;background:#fff!important;background-color:#fff!important;color:#191f28;border-radius:0!important;box-shadow:0 0 0 100vmax #fff!important;clip-path:inset(-200px -100vmax 0 -100vmax)!important;overflow:visible!important;isolation:auto}
+.view .vhead.phead:before,.view .vhead.phead:after,.view .vhead.phead .bart,.view .vhead.phead .stepper{display:none!important}
+.phead>*{grid-column:1}
+.phead .crumb{display:flex;align-items:center;gap:8px;font-size:15px;color:#8b95a1;font-weight:500}
+.phead .crumb a{color:#8b95a1;text-decoration:none}.phead .crumb a:hover{color:#191f28}
+.phead .crumb i{width:6px;height:6px;border-top:1.5px solid #b0b8c1;border-right:1.5px solid #b0b8c1;transform:rotate(45deg)}
+.phead .crumb b{color:#191f28;font-weight:700}
+.view .vhead.phead h1{color:#191f28!important;font-size:clamp(34px,4vw,52px)!important;letter-spacing:-.045em;line-height:1.18;margin:18px 0 0;max-width:none}
+.view .vhead.phead>p{color:#4e5968!important;font-size:18px!important;line-height:1.7;max-width:46ch!important;margin:0!important}
+.pside{grid-column:2!important;grid-row:1/span 3;align-self:end;display:flex;flex-direction:column;gap:12px;padding:24px;border:1px solid #e5e8eb;border-radius:20px;background:#fff}
+.pnum{align-self:flex-start;border:1px solid #e5e8eb;border-radius:10px;padding:6px 11px;font-size:15px;font-weight:600;color:#6b7684;font-variant-numeric:tabular-nums}
+.pbars{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}.pbars i{height:6px;border-radius:3px;background:#eef0f3}.pbars i.on{background:#191f28}
+.pside small{font-size:13.5px;color:#8b95a1}
+.pnav{display:flex;gap:6px;margin-top:4px}
+.pnav a{flex:1;text-align:center;padding:11px 8px;border-radius:12px;background:#f2f4f6;color:#333d4b;font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pnav a.nx{background:#191f28;color:#fff}
+.pnav a:hover{filter:brightness(.96)}
+@media (max-width:900px){.view .vhead.phead{grid-template-columns:minmax(0,1fr);padding:32px 0 28px!important;margin-top:-16px!important}.pside{grid-column:1!important;grid-row:auto;padding:18px;margin-top:8px}.view .vhead.phead>p{font-size:16px!important}}
+/* toss number chips everywhere */
+.num-badge,.stepn,.dai-rx li:before,.ana-steps li:before{width:auto!important;min-width:36px;height:28px!important;padding:0 8px;border-radius:9px!important;background:#fff!important;border:1px solid #e5e8eb;color:#6b7684!important;font-size:13px!important;font-weight:600!important;display:inline-grid!important;place-items:center;font-variant-numeric:tabular-nums;letter-spacing:0}
+.dai-rx li,.ana-steps li{grid-template-columns:40px minmax(0,1fr)!important}
+.stepn{margin-right:2px!important;vertical-align:3px}
+.item>.num-badge{flex:none}
+/* v60 aurora hero */
+#v-home .hx .hx-cv{opacity:.35}
+#v-home .hx:before,#v-home .hx:after{display:none!important}
+.aur{position:absolute!important;inset:0;width:auto!important;z-index:0;pointer-events:none;overflow:hidden;--mx:0;--my:0}
+.aur i{position:absolute;border-radius:50%;filter:blur(70px);mix-blend-mode:screen;will-change:transform}
+.aur .a1{width:62%;height:46%;left:34%;top:26%;background:linear-gradient(115deg,#3a1fd1 0%,#8b5cf6 38%,#e879f9 70%,#f9a8d4 100%);transform:translate(calc(var(--mx)*40px),calc(var(--my)*30px)) rotate(-24deg);animation:aur1 14s ease-in-out infinite alternate;opacity:.85}
+.aur .a2{width:40%;height:40%;left:56%;top:12%;background:radial-gradient(closest-side,#6d28d9,transparent);transform:translate(calc(var(--mx)*-60px),calc(var(--my)*-40px));animation:aur2 18s ease-in-out infinite alternate;opacity:.9}
+.aur .a3{width:30%;height:30%;left:48%;top:46%;background:radial-gradient(closest-side,#f0abfc,transparent);transform:translate(calc(var(--mx)*80px),calc(var(--my)*60px));animation:aur3 11s ease-in-out infinite alternate;opacity:.7}
+@keyframes aur1{to{transform:translate(calc(var(--mx)*40px - 4%),calc(var(--my)*30px + 6%)) rotate(-16deg) scale(1.08)}}
+@keyframes aur2{to{transform:translate(calc(var(--mx)*-60px + 8%),calc(var(--my)*-40px + 10%)) scale(1.15)}}
+@keyframes aur3{to{transform:translate(calc(var(--mx)*80px - 12%),calc(var(--my)*60px - 8%)) scale(.9)}}
+@media (prefers-reduced-motion:reduce){.aur i{animation:none}}
+#v-home .hx{position:relative}
+#v-home .hx-copy{position:relative;z-index:1}
+@media (min-width:901px){#v-home .hx{grid-template-columns:minmax(0,1fr)!important}#v-home .hx-copy{max-width:640px}}
+@media (max-width:900px){#v-home .hx .aur .a1{left:10%;top:52%;width:90%}#v-home .hx-vis.aur{min-height:0!important;aspect-ratio:auto!important}}
+
+
+/* v60 wider top menu */
+@media (min-width:901px){.gnb-in,.gm-in{max-width:1680px!important}
+.gm-col,.gm-col:last-child{border-left:0!important;border-right:0!important;padding:30px 0 36px!important;gap:8px!important}
+.gm-in{position:relative}
+.gmega .gm-col a,.gmega .gm-col button{white-space:nowrap}}
+@media (min-width:1500px){:root{--lg-w:200px;--tl-w:150px}.gl{font-size:16px!important}.gm-col a,.gm-col button{font-size:15.5px!important}}
+
+
+/* v60 dark aurora page header like overview */
+.view .vhead.phead{background:#000!important;background-color:#000!important;color:#fff;box-shadow:0 0 0 100vmax #000!important;clip-path:inset(-200px -100vmax 0 -100vmax)!important;padding:72px 0 64px!important}
+.view .vhead.phead>.paur{position:absolute;top:-80px;bottom:0;left:50%;width:100vw;transform:translateX(-50%);grid-column:auto;pointer-events:none;overflow:hidden;z-index:0;--mx:0;--my:0}
+.view .vhead.phead>.paur i{position:absolute;border-radius:50%;filter:blur(70px);mix-blend-mode:screen}
+.paur .a1{width:46%;height:70%;right:4%;top:22%;background:linear-gradient(115deg,#3a1fd1,#8b5cf6 40%,#e879f9 75%,#f9a8d4);transform:rotate(-20deg);opacity:.55;animation:paur 16s ease-in-out infinite alternate}
+.paur .a2{width:28%;height:60%;right:24%;top:5%;background:radial-gradient(closest-side,#6d28d9,transparent);opacity:.7;animation:paur 12s ease-in-out infinite alternate-reverse}
+@keyframes paur{to{transform:translate(-6%,8%) rotate(-12deg) scale(1.1)}}
+.view .vhead.phead>*:not(.paur){position:relative;z-index:1}
+.view .vhead.phead h1{color:#fff!important}
+.view .vhead.phead>p{color:rgba(255,255,255,.66)!important}
+.phead .crumb,.phead .crumb a{color:rgba(255,255,255,.5)}.phead .crumb a:hover,.phead .crumb b{color:#fff}
+.phead .crumb i{border-color:rgba(255,255,255,.35)}
+.pside{background:rgba(255,255,255,.06)!important;border-color:rgba(255,255,255,.12)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.pnum{border-color:rgba(255,255,255,.18)!important;color:rgba(255,255,255,.8)!important}
+.pbars i{background:rgba(255,255,255,.14)}.pbars i.on{background:#fff}
+.pside small{color:rgba(255,255,255,.55)}
+.pnav a{background:rgba(255,255,255,.1);color:#fff}.pnav a.nx{background:#fff;color:#191f28}
+@media (max-width:900px){.view .vhead.phead{padding:36px 0 32px!important}.paur .a1{width:90%;right:-20%}}
+@media (prefers-reduced-motion:reduce){.paur i{animation:none}}
+
+
+/* v60 overview score redesign */
+#dScore.dscore{display:grid!important;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:56px;padding:48px 56px!important;border-radius:28px;border:1px solid #e5e8eb;box-shadow:none}
+#dScore .ds-tag{align-self:flex-start;border:1px solid #e5e8eb;border-radius:10px;padding:6px 11px;font-size:14px;font-weight:600;color:#6b7684}
+#dScore .ds-r{gap:16px}
+#dScore .ds-r h4{font-size:clamp(28px,3vw,40px);line-height:1.25;letter-spacing:-.04em}
+#dScore .ds-r p{font-size:17px;max-width:44ch}
+#dScore .ds-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+#dScore .ds-btns .btn{padding:14px 22px;border-radius:14px;font-size:15.5px;font-weight:700}
+#dScore .ds-p{background:#191f28;color:#fff;border-color:#191f28}
+#dScore .ds-g{background:#f2f4f6;color:#333d4b;border-color:#f2f4f6}
+#dScore .ds-v{display:flex;flex-direction:column;align-items:center;gap:18px;padding:32px 36px;border-radius:24px;background:#f9fafb}
+#dScore .dai-rings{gap:20px}
+#dScore .dring{width:168px!important;height:168px!important}
+#dScore .dring b{font-size:46px!important}
+#dScore .dring small{font-size:14px}
+#dScore .ds-gain{border:1px solid #c9dcff;background:#fff;color:#3182f6;border-radius:10px;padding:6px 10px;font-size:14px;font-weight:700;white-space:nowrap}
+#dScore .ds-leg{display:flex;gap:16px;font-size:13.5px;color:#6b7684}
+#dScore .ds-leg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+#v-home .ov-cta{display:none!important}
+@media (max-width:900px){#dScore.dscore{grid-template-columns:minmax(0,1fr);gap:28px;padding:28px 20px!important}#dScore .ds-v{padding:22px 12px}#dScore .dring{width:118px!important;height:118px!important}#dScore .dring b{font-size:32px!important}#dScore .dai-rings{gap:10px}#dScore .ds-btns .btn{flex:1;justify-content:center;text-align:center}}
+/* basis header glow */
+#v-basis{position:relative}
+#v-basis .bz-head{position:relative;padding:40px 0 24px}
+#v-basis .bz-head>*{position:relative;z-index:1}
+#v-basis>.bz-aur{position:absolute;top:-120px;height:900px;left:50%;width:100vw;transform:translateX(-50%);pointer-events:none;overflow:hidden;z-index:0;-webkit-mask-image:linear-gradient(#000 45%,transparent 92%);mask-image:linear-gradient(#000 45%,transparent 92%)}
+#v-basis>*:not(.bz-aur){position:relative;z-index:1}
+#v-basis>.bz-aur i{position:absolute;border-radius:50%;filter:blur(80px);mix-blend-mode:screen}
+#v-basis .paur .a1{width:48%;height:70%;right:2%;top:16%;background:linear-gradient(115deg,#3a1fd1,#8b5cf6 40%,#e879f9 75%,#f9a8d4);transform:rotate(-20deg);opacity:.6;animation:paur 16s ease-in-out infinite alternate}
+#v-basis .paur .a2{width:30%;height:60%;right:26%;top:0;background:radial-gradient(closest-side,#6d28d9,transparent);opacity:.75;animation:paur 12s ease-in-out infinite alternate-reverse}
+#v-basis .bz-head p{color:rgba(255,255,255,.7)!important}
+/* rail on every page */
+.orail{left:max(8px,calc((100vw - 1312px)/2 - 40px))!important}
+.orail-tip{left:calc(max(8px,calc((100vw - 1312px)/2 - 40px)) + 28px)!important}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -2028,7 +2134,7 @@ html:not(.dark) #monList .in:focus,html:not(.dark) #monthList .in:focus{border-c
   <a class="logo" href="#home"><svg class="kmark" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="10.2" cy="21.4" rx="6.6" ry="7.4" transform="rotate(-18 10.2 21.4)" fill="#19c3b1"/><ellipse cx="21.8" cy="21.4" rx="6.6" ry="7.4" transform="rotate(18 21.8 21.4)" fill="#8b6cff"/><ellipse cx="16" cy="11.6" rx="7.4" ry="7.8" fill="#3182f6"/><circle cx="13.3" cy="11.2" r="1.35" fill="#fff"/><circle cx="18.7" cy="11.2" r="1.35" fill="#fff"/><path d="M14.4 14.2q1.6 1.4 3.2 0" stroke="#fff" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>threekong</a>
   <div class="client">
     <a href="#s2" title="고객 정보 수정"><span id="sideClient">김민준 · 28세</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></a>
-    <button type="button" id="btnBlank2" title="새 고객 (빈 양식)" aria-label="새 고객"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+    <button type="button" id="btnBlank2" title="새 고객" aria-label="새 고객"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
   </div>
   <div class="qtools">
     <button type="button" id="btnPrompt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>프롬프트</button>
@@ -2059,7 +2165,7 @@ html:not(.dark) #monList .in:focus,html:not(.dark) #monthList .in:focus{border-c
   <nav class="gmenu" aria-label="주 메뉴"><div class="gi"><a class="gl" href="#home" data-v="home">개요</a><div class="gdd"><a href="#home" data-j="home" data-t="#dMe">지금 내 상태</a><a href="#home" data-j="home" data-t="#dScore">AI 재무건강 점수</a><a href="#home" data-j="home" data-t=".ov-cta">내 정보로 시작하기</a></div></div><div class="gi"><a class="gl" href="#s1" data-v="s1">관계 정립</a><div class="gdd"><a href="#s1" data-j="s1" data-t="재무목표">상담 목표</a><a href="#s1" data-j="s1" data-t="분석 범위">분석 범위</a><a href="#s1" data-j="s1" data-t="서비스 제공 범위">서비스 제공 범위</a><a href="#s1" data-j="s1" data-t="상담 합의 확인">상담 합의 확인</a></div></div><div class="gi"><a class="gl" href="#s2" data-v="s2">목표·자료 수집</a><div class="gdd"><a href="#s2" data-j="s2" data-t="기본 정보">기본 정보</a><a href="#s2" data-j="s2" data-t="월 현금흐름">월 수입과 지출</a><a href="#s2" data-j="s2" data-t="자산">자산</a><a href="#s2" data-j="s2" data-t="부채">부채</a><a href="#s2" data-j="s2" data-t="우선순위별 재무목표">재무 목표</a></div></div><div class="gi"><a class="gl" href="#s3" data-v="s3">분석·평가</a><div class="gdd"><a href="#s3" data-j="s3" data-t="#dGoal">재무 목표</a><a href="#s3" data-j="s3" data-t="#dEval">재무 진단</a><a href="#s3" data-j="s3" data-t="#dAI">AI 종합 평가</a><a href="#s3" data-j="s3" data-t="#summary">설계안 효과</a><a href="#s3" data-j="s3" data-t="소득은 어디로 가고 있나">소득 흐름</a><a href="#s3" data-j="s3" data-t="자산부채 구조">자산부채 구조</a><a href="#s3" data-j="s3" data-t="목표 갭 분석">목표 갭 분석</a><a href="#s3" data-j="s3" data-t="행동재무학 진단">행동재무학 진단</a><a href="#s3" data-j="s3" data-t="AI 진단">AI 진단</a><a href="#s3" data-j="s3" data-t="다른 AI에게 분석 맡기기">AI 분석 프롬프트</a></div></div><div class="gi"><a class="gl" href="#s4" data-v="s4">설계안 수립</a><div class="gdd"><a href="#s4" data-j="s4" data-t="지출 구조 개선">지출 구조 개선</a><a href="#s4" data-j="s4" data-t="자산 재배치">자산 재배치</a><a href="#s4" data-j="s4" data-t="4-Bucket">월 적립 배분</a><a href="#s4" data-j="s4" data-t="자산 성장 경로">자산 성장 경로</a><a href="#s4" data-j="s4" data-t="목표 달성 검증">목표 달성 검증</a><a href="#s4" data-j="s4" data-t="세제 혜택 추정">세제 혜택</a></div></div><div class="gi"><a class="gl" href="#s5" data-v="s5">설계안 실행</a><div class="gdd"><a href="#s5" data-j="s5" data-t="자동화 흐름도">자동이체 흐름</a><a href="#s5" data-j="s5" data-t="실행 체크리스트 · 실행 캘린더">체크리스트 · 캘린더</a></div></div><div class="gi"><a class="gl" href="#s6" data-v="s6">점검·리밸런싱</a><div class="gdd"><a href="#s6" data-j="s6" data-t="월간 점검판">월간 점검판</a><a href="#s6" data-j="s6" data-t="트리거 기반">리밸런싱 기준</a><a href="#s6" data-j="s6" data-t="상황이 달라졌다면">상황 변화 대응</a></div></div><div class="gi"><a class="gl" href="#report" data-v="report">보고서</a></div><div class="gi"><a class="gl" href="#basis" data-v="basis">산출 근거</a></div></nav>
   <div class="gtools"><button type="button" class="gt gpill" data-proxy="btnPrompt">AI 프롬프트</button></div>
 </div>
-<div class="gmega"><div class="gm-in"><div class="gm-col"><a class="gm-t" href="#home">개요</a><a class="gm-i" href="#home" data-j="home" data-t=".feat-sec">기능 소개</a><a class="gm-i" href="#home" data-j="home" data-t=".wv-sec">목표 지도</a><a class="gm-i" href="#home" data-j="home" data-t="#dScore">AI 점수</a><a class="gm-i" href="#home" data-j="home" data-t=".ov-cta">시작하기</a></div><div class="gm-col"><a class="gm-t" href="#s1">관계 정립</a><a class="gm-i" href="#s1" data-j="s1" data-t="재무목표">상담 목표</a><a class="gm-i" href="#s1" data-j="s1" data-t="분석 범위">분석 범위</a><a class="gm-i" href="#s1" data-j="s1" data-t="서비스 제공 범위">서비스 범위</a><a class="gm-i" href="#s1" data-j="s1" data-t="상담 합의 확인">상담 합의</a></div><div class="gm-col"><a class="gm-t" href="#s2">목표·자료 수집</a><a class="gm-i" href="#s2" data-j="s2" data-t="기본 정보">기본 정보</a><a class="gm-i" href="#s2" data-j="s2" data-t="월 현금흐름">수입과 지출</a><a class="gm-i" href="#s2" data-j="s2" data-t="자산">자산·부채</a><a class="gm-i" href="#s2" data-j="s2" data-t="우선순위별 재무목표">재무 목표</a><button type="button" class="gm-i gm-b" data-proxy="btnExample">예시 불러오기</button><button type="button" class="gm-i gm-b" data-proxy="btnBlank2">새 고객 (빈 양식)</button></div><div class="gm-col"><a class="gm-t" href="#s3">분석·평가</a><a class="gm-i" href="#s3" data-j="s3" data-t="#dMe">지금 내 상태</a><a class="gm-i" href="#s3" data-j="s3" data-t="#dGoal">재무 목표</a><a class="gm-i" href="#s3" data-j="s3" data-t="#dEval">재무 진단</a><a class="gm-i" href="#s3" data-j="s3" data-t="#dAI">AI 평가</a><a class="gm-i" href="#s3" data-j="s3" data-t="#summary">설계안 효과</a><a class="gm-i" href="#s3" data-j="s3" data-t="내 돈 습관 진단">돈 습관</a><a class="gm-i" href="#s3" data-j="s3" data-t="다른 AI에게 분석 맡기기">AI 프롬프트</a></div><div class="gm-col"><a class="gm-t" href="#s4">설계안 수립</a><a class="gm-i" href="#s4" data-j="s4" data-t="지금과 설계 후">전후 비교</a><a class="gm-i" href="#s4" data-j="s4" data-t="지출 구조 개선">지출 개선</a><a class="gm-i" href="#s4" data-j="s4" data-t="자산 재배치">자산 재배치</a><a class="gm-i" href="#s4" data-j="s4" data-t="4-Bucket">월 적립 배분</a><a class="gm-i" href="#s4" data-j="s4" data-t="자산 성장 경로">성장 경로</a><a class="gm-i" href="#s4" data-j="s4" data-t="세제 혜택 추정">세제 혜택</a></div><div class="gm-col"><a class="gm-t" href="#s5">설계안 실행</a><a class="gm-i" href="#s5" data-j="s5" data-t="자동화 흐름도">자동이체</a><a class="gm-i" href="#s5" data-j="s5" data-t="실행 체크리스트 · 실행 캘린더">체크리스트</a><a class="gm-i" href="#s5" data-j="s5" data-t="실행 체크리스트 · 실행 캘린더">캘린더</a></div><div class="gm-col"><a class="gm-t" href="#s6">점검·리밸런싱</a><a class="gm-i" href="#s6" data-j="s6" data-t="월간 점검판">월간 점검</a><a class="gm-i" href="#s6" data-j="s6" data-t="트리거 기반">리밸런싱</a><a class="gm-i" href="#s6" data-j="s6" data-t="상황이 달라졌다면">상황 변화</a></div><div class="gm-col"><a class="gm-t" href="#report">보고서</a><a class="gm-i" href="#report">PDF 인쇄</a></div><div class="gm-col"><a class="gm-t" href="#basis">산출 근거</a><a class="gm-i" href="#basis">관련 법령</a></div></div></div>
+<div class="gmega"><div class="gm-in"><div class="gm-col"><a class="gm-t" href="#home">개요</a><a class="gm-i" href="#home" data-j="home" data-t=".feat-sec">기능 소개</a><a class="gm-i" href="#home" data-j="home" data-t=".wv-sec">목표 지도</a><a class="gm-i" href="#home" data-j="home" data-t="#dScore">AI 점수</a><a class="gm-i" href="#home" data-j="home" data-t=".ov-cta">시작하기</a></div><div class="gm-col"><a class="gm-t" href="#s1">관계 정립</a><a class="gm-i" href="#s1" data-j="s1" data-t="재무목표">상담 목표</a><a class="gm-i" href="#s1" data-j="s1" data-t="분석 범위">분석 범위</a><a class="gm-i" href="#s1" data-j="s1" data-t="서비스 제공 범위">서비스 범위</a><a class="gm-i" href="#s1" data-j="s1" data-t="상담 합의 확인">상담 합의</a></div><div class="gm-col"><a class="gm-t" href="#s2">목표·자료 수집</a><a class="gm-i" href="#s2" data-j="s2" data-t="기본 정보">기본 정보</a><a class="gm-i" href="#s2" data-j="s2" data-t="월 현금흐름">수입과 지출</a><a class="gm-i" href="#s2" data-j="s2" data-t="자산">자산·부채</a><a class="gm-i" href="#s2" data-j="s2" data-t="우선순위별 재무목표">재무 목표</a><button type="button" class="gm-i gm-b" data-proxy="btnExample">예시 불러오기</button><button type="button" class="gm-i gm-b" data-proxy="btnBlank2">새 고객</button></div><div class="gm-col"><a class="gm-t" href="#s3">분석·평가</a><a class="gm-i" href="#s3" data-j="s3" data-t="#dMe">지금 내 상태</a><a class="gm-i" href="#s3" data-j="s3" data-t="#dGoal">재무 목표</a><a class="gm-i" href="#s3" data-j="s3" data-t="#dEval">재무 진단</a><a class="gm-i" href="#s3" data-j="s3" data-t="#dAI">AI 평가</a><a class="gm-i" href="#s3" data-j="s3" data-t="#summary">설계안 효과</a><a class="gm-i" href="#s3" data-j="s3" data-t="내 돈 습관 진단">돈 습관</a><a class="gm-i" href="#s3" data-j="s3" data-t="다른 AI에게 분석 맡기기">AI 프롬프트</a></div><div class="gm-col"><a class="gm-t" href="#s4">설계안 수립</a><a class="gm-i" href="#s4" data-j="s4" data-t="지금과 설계 후">전후 비교</a><a class="gm-i" href="#s4" data-j="s4" data-t="지출 구조 개선">지출 개선</a><a class="gm-i" href="#s4" data-j="s4" data-t="자산 재배치">자산 재배치</a><a class="gm-i" href="#s4" data-j="s4" data-t="4-Bucket">월 적립 배분</a><a class="gm-i" href="#s4" data-j="s4" data-t="자산 성장 경로">성장 경로</a><a class="gm-i" href="#s4" data-j="s4" data-t="세제 혜택 추정">세제 혜택</a></div><div class="gm-col"><a class="gm-t" href="#s5">설계안 실행</a><a class="gm-i" href="#s5" data-j="s5" data-t="자동화 흐름도">자동이체</a><a class="gm-i" href="#s5" data-j="s5" data-t="실행 체크리스트 · 실행 캘린더">체크리스트</a><a class="gm-i" href="#s5" data-j="s5" data-t="실행 체크리스트 · 실행 캘린더">캘린더</a></div><div class="gm-col"><a class="gm-t" href="#s6">점검·리밸런싱</a><a class="gm-i" href="#s6" data-j="s6" data-t="월간 점검판">월간 점검</a><a class="gm-i" href="#s6" data-j="s6" data-t="트리거 기반">리밸런싱</a><a class="gm-i" href="#s6" data-j="s6" data-t="상황이 달라졌다면">상황 변화</a></div><div class="gm-col"><a class="gm-t" href="#report">보고서</a><a class="gm-i" href="#report">PDF 인쇄</a></div><div class="gm-col"><a class="gm-t" href="#basis">산출 근거</a><a class="gm-i" href="#basis">관련 법령</a></div></div></div>
 </header>
 
 <header class="top">
@@ -2083,7 +2189,7 @@ html:not(.dark) #monList .in:focus,html:not(.dark) #monthList .in:focus{border-c
       <div class="btns"><a class="btn white lg" href="#s2">내 정보로 시작하기<i class="arr"></i></a><a class="btn glassb lg" href="#report">보고서 보기</a><button class="btn glassb lg" type="button" id="btnBlank">빈 양식</button><button class="btn glassb lg" type="button" id="btnExample2" hidden>예시 고객 다시 보기</button></div>
       <div class="hx-mini" id="hxMini"></div>
     </div>
-    <div class="hx-vis hx-art" id="hxVis" aria-hidden="true"><img src="assets/hero-pig.png" alt="" width="1600" height="1300"></div>
+    <div class="hx-vis aur" id="hxVis" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
   </div>
   <section class="say-sec" aria-label="소개"><div class="say-grid" aria-hidden="true"></div><p class="say" id="say">흩어진 숫자를 한 번만 넣으면<br>진단부터 설계, 실행과 점검까지<br>한 흐름으로 이어집니다</p></section>
   <section class="mq" aria-hidden="true"><div class="mq-row"><div class="mq-track"><span><i></i>1단계 고객과의 관계 정립</span><span><i></i>2단계 재무목표 · 자료 수집</span><span><i></i>3단계 재무상태 분석 · 평가</span><span><i></i>4단계 재무설계안 수립 · 제시</span><span><i></i>5단계 재무설계안 실행</span><span><i></i>6단계 점검 · 리밸런싱</span><span><i></i>1단계 고객과의 관계 정립</span><span><i></i>2단계 재무목표 · 자료 수집</span><span><i></i>3단계 재무상태 분석 · 평가</span><span><i></i>4단계 재무설계안 수립 · 제시</span><span><i></i>5단계 재무설계안 실행</span><span><i></i>6단계 점검 · 리밸런싱</span></div></div><div class="mq-row r"><div class="mq-track"><span><i></i>판단 근거 · 관련 법령</span><span><i></i>단계별 고객 실행 과제</span><span><i></i>안정안 · 균형안 · 가속안</span><span><i></i>AI 활용 프롬프트</span><span><i></i>날짜별 실행 캘린더</span><span><i></i>6단계 재무설계 보고서</span><span><i></i>판단 근거 · 관련 법령</span><span><i></i>단계별 고객 실행 과제</span><span><i></i>안정안 · 균형안 · 가속안</span><span><i></i>AI 활용 프롬프트</span><span><i></i>날짜별 실행 캘린더</span><span><i></i>6단계 재무설계 보고서</span></div></div></section>
@@ -2191,7 +2297,6 @@ html:not(.dark) #monList .in:focus,html:not(.dark) #monthList .in:focus{border-c
 <!-- STEP 2 -->
 <section class="view" id="v-s2">
   <div class="vhead"><div class="eyebrow">2단계 · 내 정보와 목표 적기</div><h1>재무목표 설정과 자료 수집</h1><p>숫자 뒤에 있는 생활 조건까지 모읍니다. 여기서 바꾼 값은 모든 화면에 바로 반영됩니다.</p></div>
-  <div class="s2guide"><span><b>1</b>기본 정보</span><span><b>2</b>월 수입과 지출</span><span><b>3</b>자산과 부채</span><span><b>4</b>재무 목표</span></div>
   <div class="summary sum7" id="liveSum"></div>
   <div class="card">
     <div class="ch"><div><h3>데이터 완전성 <span class="pill good">LIVE</span></h3><p class="sub">필수 입력과 숫자 사이의 모순을 자동으로 점검합니다</p></div><b id="compPct" style="font-size:30px;letter-spacing:-.03em;background:var(--grad2);-webkit-background-clip:text;background-clip:text;color:transparent"></b></div>
@@ -2199,12 +2304,12 @@ html:not(.dark) #monList .in:focus,html:not(.dark) #monthList .in:focus{border-c
     <div class="items comp-grid" id="compList" style="margin-top:12px"></div>
   </div>
   <div class="card">
-    <div class="ch"><div><h3><span class="stepn">1</span>기본 정보</h3><p class="sub">회색 예시 글자를 참고해 칸을 채우세요. 개인(근로소득자) 기준입니다</p></div></div>
+    <div class="ch"><div><h3><span class="stepn">01</span>기본 정보</h3><p class="sub">회색 예시 글자를 참고해 칸을 채우세요. 개인(근로소득자) 기준입니다</p></div></div>
     <div id="profileFields"></div>
   </div>
   <div class="grid g2">
     <div class="card">
-      <div class="ch"><div><h3><span class="stepn">2</span>월 현금흐름</h3><p class="sub">한 달 기준 현재 금액 · 단위 만 원</p></div></div>
+      <div class="ch"><div><h3><span class="stepn">02</span>월 현금흐름</h3><p class="sub">한 달 기준 현재 금액 · 단위 만 원</p></div></div>
       <div class="list" id="incomeList" style="margin-bottom:16px"></div>
       <div class="sublabel">고정지출</div>
       <div class="list" id="fixedList" style="margin-bottom:16px"></div>
@@ -2214,17 +2319,17 @@ html:not(.dark) #monList .in:focus,html:not(.dark) #monthList .in:focus{border-c
     </div>
     <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
       <div class="card">
-        <div class="ch"><div><h3><span class="stepn">3</span>자산</h3><p class="sub">구분에 따라 재무비율 계산에 쓰입니다</p></div></div>
+        <div class="ch"><div><h3><span class="stepn">03</span>자산</h3><p class="sub">구분에 따라 재무비율 계산에 쓰입니다</p></div></div>
         <div class="list" id="assetList"></div>
       </div>
       <div class="card">
-        <div class="ch"><div><h3><span class="stepn">3</span>부채</h3><p class="sub">잔액 · 월 상환 · 금리 · 잔여 개월</p></div></div>
+        <div class="ch"><div><h3><span class="stepn">03</span>부채</h3><p class="sub">잔액 · 월 상환 · 금리 · 잔여 개월</p></div></div>
         <div id="debtList" style="display:flex;flex-direction:column;gap:10px"></div>
       </div>
     </div>
   </div>
   <div class="card">
-    <div class="ch"><div><h3><span class="stepn">4</span>우선순위별 재무목표</h3><p class="sub">목표마다 돈을 모을 계좌를 고르면, 설계안대로 저축했을 때 기한 안에 얼마가 모이고 언제 달성되는지 카드 아래에 바로 계산됩니다</p></div><button class="btn sm" type="button" id="addGoal">+ 목표 추가</button></div>
+    <div class="ch"><div><h3><span class="stepn">04</span>우선순위별 재무목표</h3><p class="sub">목표마다 돈을 모을 계좌를 고르면, 설계안대로 저축했을 때 기한 안에 얼마가 모이고 언제 달성되는지 카드 아래에 바로 계산됩니다</p></div><button class="btn sm" type="button" id="addGoal">+ 목표 추가</button></div>
     <div class="grid g2" id="goalList"></div>
   </div>
 </section>
@@ -2378,7 +2483,7 @@ html:not(.dark) #monList .in:focus,html:not(.dark) #monthList .in:focus{border-c
 
 <!-- BASIS -->
 <section class="view" id="v-basis">
-  <div class="bz-head"><span class="bz-eye">근거</span><h1>산출 근거와<br>관련 법령</h1><p>화면의 모든 숫자가 어떤 식과 기준으로 나왔는지 밝힙니다. 카드를 누르면 기관 사이트와 법령 원문으로 바로 이동합니다.</p></div>
+  <div class="paur bz-aur" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div><div class="bz-head"><span class="bz-eye">근거</span><h1>산출 근거와<br>관련 법령</h1><p>화면의 모든 숫자가 어떤 식과 기준으로 나왔는지 밝힙니다. 카드를 누르면 기관 사이트와 법령 원문으로 바로 이동합니다.</p></div>
   <div class="bz-sec"><h2>관련 법령</h2><p class="bz-sub">예시 고객에 적용한 조문과 함께, 다른 고객 상담에 자주 쓰는 조문도 모았습니다. 카드를 누르면 국가법령정보센터 원문이 새 창으로 열립니다.</p><div class="bz-tool"><label class="bz-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="bzQ" type="search" placeholder="제도나 법령 이름으로 검색 (예: 청년미래적금, 월세, 중소기업)" autocomplete="off"></label><div class="bz-cats" id="bzCats"><button type="button" class="on" data-bzc="전체">전체</button><button type="button" class="" data-bzc="예시">예시 고객 적용</button><button type="button" class="" data-bzc="청년">청년</button><button type="button" class="" data-bzc="주택">주택</button><button type="button" class="" data-bzc="저축·투자">저축·투자</button><button type="button" class="" data-bzc="연금">연금</button><button type="button" class="" data-bzc="세금">세금</button><button type="button" class="" data-bzc="직장">직장</button></div></div><div class="bz-laws" id="bzLaws"><a class="bz-law ex" data-cat="저축·투자" data-q="저축·투자중개형isa조세특례제한법제91조의18순이익200만원(서민형400만원)까지비과세,초과분은9.9%분리과세" href="https://www.law.go.kr/법령/조세특례제한법/제91조의18" target="_blank" rel="noopener"><div class="bz-l"><small>중개형 ISA</small><em>제91조의18</em><b>조세특례제한법</b></div><div class="bz-r"><p>순이익 200만 원(서민형 400만 원)까지 비과세, 초과분은 9.9% 분리과세</p><span class="go">원문 보기 <i>↗</i></span></div></a><a class="bz-law ex" data-cat="연금" data-q="연금연금저축·irp세액공제소득세법제59조의3연금저축600만원포함연900만원한도,총급여5,500만원이하16.5%,초과13.2%" href="https://www.law.go.kr/법령/소득세법/제59조의3" target="_blank" rel="noopener"><div class="bz-l"><small>연금저축·IRP 세액공제</small><em>제59조의3</em><b>소득세법</b></div><div class="bz-r"><p>연금저축 600만 원 포함 연 900만 원 한도, 총급여 5,500만 원 이하 16.5%, 초과 13.2%</p><span class="go">원문 보기 <i>↗</i></span></div></a><a class="bz-law ex" data-cat="청년" data-q="청년청년도약계좌조세특례제한법제91조의225년유지시이자소득비과세와소득구간별정부기여금" href="https://www.law.go.kr/법령/조세특례제한법/제91조의22" target="_blank" rel="noopener"><div class="bz-l"><small>청년도약계좌</small><em>제91조의22</em><b>조세특례제한법</b></div><div class="bz-r"><p>5년 유지 시 이자소득 비과세와 소득 구간별 정부기여금</p><span class="go">원문 보기 <i>↗</i></span></div></a><a class="bz-law ex" data-cat="주택" data-q="주택주택청약종합저축소득공제조세특례제한법제87조총급여7,000만원이하무주택세대주,연300만원한도40%소득공제" href="https://www.law.go.kr/법령/조세특례제한법/제87조" target="_blank" rel="noopener"><div class="bz-l"><small>주택청약 소득공제</small><em>제87조</em><b>조세특례제한법</b></div><div class="bz-r"><p>총급여 7,000만 원 이하 무주택 세대주, 연 300만 원 한도 40% 소득공제</p><span class="go">원문 보기 <i>↗</i></span></div></a><a class="bz-law ex" data-cat="세금" data-q="세금이자소득원천징수소득세법제129조일반예적금이자15.4%(원천징수14%+지방소득세)" href="https://www.law.go.kr/법령/소득세법/제129조" target="_blank" rel="noopener"><div class="bz-l"><small>이자소득 원천징수</small><em>제129조</em><b>소득세법</b></div><div class="bz-r"><p>일반 예적금 이자 15.4% (원천징수 14% + 지방소득세)</p><span class="go">원문 보기 <i>↗</i></span></div></a><a class="bz-law" data-cat="청년" data-q="청년청년미래적금조세특례제한법제91조의25만19~34세,월50만원한도3년적립,이자비과세와정부기여금6~12%" href="https://www.law.go.kr/법령/조세특례제한법/제91조의25" target="_blank" rel="noopener"><div class="bz-l"><small>청년미래적금</small><em>제91조의25</em><b>조세특례제한법</b></div><div class="bz-r"><p>만 19~34세, 월 50만 원 한도 3년 적립, 이자 비과세와 정부기여금 6~12%</p><span class="go">원문 보기 <i>↗</i></span></div></a><a class="bz-law" data-cat="직장 청년" data-q="직장중소기업취업청년소득세감면조세특례제한법제30조청년은취업일부터5년간소득세90%감면,연200만원한도" href="https://www.law.go.kr/법령/조세특례제한법/제30조" target="_blank" rel="noopener"><div class="bz-l"><small>중소기업 취업 청년 소득세 감면</small><em>제30조</em><b>조세특례제한법</b></div><div class="bz-r"><p>청년은 취업일부터 5년간 소득세 90% 감면, 연 200만 원 한도</p><span class="go">원문 보기 <i>↗</i></span></div></a><a class="bz-law" data-cat="직장" data-q="직장중소기업의범위중소기업기본법제2조감면과지원대상이되는중소기업인지판단하는기준" href="https://www.law.go.kr/법령/중소기업기본법/제2조" target="_blank" rel="noopener"><div class="bz-l"><small>중소기업의 범위</small><em>제2조</em><b>중소기업기본법</b></div><div class="bz-r"><p>감면과 지원 대상이 되는 중소기업인지 판단하는 기준</p><span class="go">원문 보기 <i>↗</i></span></div></a><a class="bz-law" data-cat="주택" data-q="주택월세세액공제조세특례제한법제95조의2총급여8,000만원이하무주택세대주,연1,000만원한도15~17%" href="https://www.law.go.kr/법령/조세특례제한법/제95조의2" target="_blank" rel="noopener"><div class="bz-l"><small>월세 세액공제</small><em>제95조의2</em><b>조세특례제한법</b></div><div class="bz-r"><p>총급여 8,000만 원 이하 무주택 세대주, 연 1,000만 원 한도 15~17%</p><span class="go">원문 보기 <i>↗</i></span></div></a><a class="bz-law" data-cat="주택" data-q="주택전세대출원리금소득공제소득세법제52조무주택세대주의주택임차차입금원리금상환액40%,연400만원한도" href="https://www.law.go.kr/법령/소득세법/제52조" target="_blank" rel="noopener"><div class="bz-l"><small>전세대출 원리금 소득공제</small><em>제52조</em><b>소득세법</b></div><div class="bz-r"><p>무주택 세대주의 주택임차차입금 원리금 상환액 40%, 연 400만 원 한도</p><span class="go">원문 보기 <i>↗</i></span></div></a><a class="bz-law" data-cat="세금" data-q="세금신용카드등소득공제조세특례제한법제126조의2총급여의25%를넘게쓴금액부터공제,체크카드·현금영수증30%,신용카드15%" href="https://www.law.go.kr/법령/조세특례제한법/제126조의2" target="_blank" rel="noopener"><div class="bz-l"><small>신용카드 등 소득공제</small><em>제126조의2</em><b>조세특례제한법</b></div><div class="bz-r"><p>총급여의 25%를 넘게 쓴 금액부터 공제, 체크카드·현금영수증 30%, 신용카드 15%</p><span class="go">원문 보기 <i>↗</i></span></div></a><a class="bz-law" data-cat="직장" data-q="직장근로장려금조세특례제한법제100조의3단독가구총소득2,200만원미만등요건을채우면최대165만원지급" href="https://www.law.go.kr/법령/조세특례제한법/제100조의3" target="_blank" rel="noopener"><div class="bz-l"><small>근로장려금</small><em>제100조의3</em><b>조세특례제한법</b></div><div class="bz-r"><p>단독가구 총소득 2,200만 원 미만 등 요건을 채우면 최대 165만 원 지급</p><span class="go">원문 보기 <i>↗</i></span></div></a><a class="bz-law" data-cat="연금" data-q="연금보험료등특별세액공제소득세법제59조의4보장성보험료연100만원한도12%,의료비·교육비공제도이조문" href="https://www.law.go.kr/법령/소득세법/제59조의4" target="_blank" rel="noopener"><div class="bz-l"><small>보험료 등 특별세액공제</small><em>제59조의4</em><b>소득세법</b></div><div class="bz-r"><p>보장성 보험료 연 100만 원 한도 12%, 의료비·교육비 공제도 이 조문</p><span class="go">원문 보기 <i>↗</i></span></div></a><a class="bz-law" data-cat="저축·투자" data-q="저축·투자예금자보호한도예금자보호법제32조금융회사별1인당원금과이자를합해1억원까지보호" href="https://www.law.go.kr/법령/예금자보호법/제32조" target="_blank" rel="noopener"><div class="bz-l"><small>예금자보호 한도</small><em>제32조</em><b>예금자보호법</b></div><div class="bz-r"><p>금융회사별 1인당 원금과 이자를 합해 1억 원까지 보호</p><span class="go">원문 보기 <i>↗</i></span></div></a></div><p class="bz-none" id="bzNone" hidden>찾는 조문이 없습니다. 다른 이름으로 검색해 보세요.</p></div>
   <div class="bz-mq" aria-hidden="true"><div class="bz-track"><span>Markowitz · Portfolio Selection (1952)</span><span>Kahneman &amp; Tversky · Prospect Theory (1979)</span><span>Thaler · Mental Accounting Matters (1999)</span><span>Thaler &amp; Sunstein · Nudge (2008)</span><span>한국은행 ECOS</span><span>금융투자협회</span><span>서민금융진흥원</span><span>국가법령정보센터</span><span>Markowitz · Portfolio Selection (1952)</span><span>Kahneman &amp; Tversky · Prospect Theory (1979)</span><span>Thaler · Mental Accounting Matters (1999)</span><span>Thaler &amp; Sunstein · Nudge (2008)</span><span>한국은행 ECOS</span><span>금융투자협회</span><span>서민금융진흥원</span><span>국가법령정보센터</span></div></div>
   <div class="bz-sec"><h2>자주 묻는 질문</h2><p class="bz-sub">계산식과 가정에 대해 자주 묻는 질문을 모았습니다.</p><div class="bz-qs"><details class="bz-q" open><summary><span>1. 재무비율 네 가지는 어떻게 계산하나요?</span><i></i></summary><div class="bz-a"><div class="bz-f"><b>비상예비자금 충당률</b><code>유동성 자산 ÷ 월 총지출 (개월)</code><small>권장 3~6개월 · 3개월 미만 위험</small></div><div class="bz-f"><b>저축성향률</b><code>월 저축·투자액 ÷ 월 세후 근로소득 × 100</code><small>미혼 사회초년생 50% 이상 권장 · 30% 미만 위험</small></div><div class="bz-f"><b>부채부담률</b><code>월 부채 상환액 ÷ 월 세후 근로소득 × 100</code><small>20% 이하 안전 · 30% 초과 위험</small></div><div class="bz-f"><b>고위험 자산 비중</b><code>고위험 자산 ÷ 총 투자자산 × 100</code><small>30% 이하 적정 · 50% 초과 위험 · 총 투자자산은 안정·고위험·노후 자산의 합</small></div></div></details><details class="bz-q"><summary><span>2. 미래가치는 어떤 식으로 계산하나요?</span><i></i></summary><div class="bz-a"><div class="bz-f"><b>적립식 복리 (매월 말 납입)</b><code>FV = PMT × [(1 + r)ⁿ − 1] ÷ r</code></div><div class="bz-f"><b>거치금 복리</b><code>FV = PV × (1 + r)ⁿ</code><small>r = 연 기대수익률 ÷ 12, n = 개월 수. 성장 경로는 매월 잔액 × (1 + r) + 납입액으로 반복 계산합니다.</small></div><div class="bz-f"><b>검증 예시 · 중개형 ISA</b><code>31 × [(1 + 0.07/12)³⁶ − 1] ÷ (0.07/12) ≈ 1,239만 원</code></div></div></details><details class="bz-q"><summary><span>3. 기대수익률은 어떻게 정했나요?</span><i></i></summary><div class="bz-a"><p>청년도약계좌 5.5%는 기본금리 4.5%에 정부기여금과 비과세를 연환산했습니다. ISA 7.0%는 S&amp;P500 과거 30년 연평균 9.8%에서 보수적으로 2.8%p를 뺐습니다. 연금저축 6.0%는 글로벌 주식 60%·채권 40%의 장기 평균, 청약 4.5%는 청년 우대금리 가정입니다. 모두 보장 수익이 아닙니다.</p></div></details><details class="bz-q"><summary><span>4. 안정안 · 균형안 · 가속안은 무엇이 다른가요?</span><i></i></summary><div class="bz-a"><div class="tbl-wrap"><table><thead><tr><th>구분</th><th class="r">안정안</th><th class="r">균형안</th><th class="r">가속안</th></tr></thead><tbody><tr><td>지출 절감 폭 (균형안 대비)</td><td class="r">60%</td><td class="r">100%</td><td class="r">135%</td></tr><tr><td>성장형 계좌(ISA·연금) 기대수익률</td><td class="r">−1%p</td><td class="r">기준</td><td class="r">+1%p</td></tr><tr><td>절감액 차이의 배분</td><td class="r" colspan="3">성장형 계좌(ISA)에 더하거나 뺌</td></tr><tr><td>상대적 변동성</td><td class="r">낮음</td><td class="r">중간</td><td class="r">높음</td></tr></tbody></table></div></div></details><details class="bz-q"><summary><span>5. 세법과 제도는 언제 기준인가요?</span><i></i></summary><div class="bz-a"><p>2026년 현행 기준입니다. 세법과 정책상품 요건은 자주 바뀌므로 실제 가입 전 금융기관과 국세청 안내로 다시 확인해야 합니다. 위 법령 카드를 누르면 언제나 최신 원문을 볼 수 있습니다.</p></div></details><details class="bz-q"><summary><span>6. 어떤 이론과 문헌을 참고했나요?</span><i></i></summary><div class="bz-a"><ul class="bz-refs"><li><b>Markowitz, H. (1952). Portfolio Selection.</b> 분산투자와 효율적 투자선</li><li><b>Kahneman, D. &amp; Tversky, A. (1979). Prospect Theory.</b> 손실회피와 매몰비용 오류</li><li><b>Thaler, R. H. (1999). Mental Accounting Matters.</b> 심리적 회계와 소액 지출 누수</li><li><b>Thaler, R. H. &amp; Sunstein, C. R. (2008). Nudge.</b> 선저축 자동화 넛지</li></ul></div></details></div></div>
@@ -2746,7 +2851,7 @@ function updateCore(){
      ["목표",`준비 끝난 목표 ${rd}/${tg.length}개`,`기한 내 달성 ${ok2}/${tg.length}개`,"목표 금액이 있는 목표 기준",ok2>rd],
      ["AI 재무건강 점수",s0+"점",s1+"점",band(s1),s1>s0]];
     $("#nowPlan").innerHTML=`<colgroup><col style="width:20%"><col style="width:18%"><col style="width:44px"><col style="width:22%"><col></colgroup><thead><tr><th>항목</th><th>지금</th><th></th><th>설계 후</th><th>무엇이 바뀌나</th></tr></thead><tbody>${rows.map(r=>`<tr><th>${r[0]}</th><td class="n0">${r[1]}</td><td class="ar">→</td><td class="n1${r[4]?" up":""}">${r[2]}</td><td class="nt">${r[4]?`<span class="lchip gain">이득</span>`:""}${r[3]}</td></tr>`).join("")}</tbody>`}
-   $("#dScore").innerHTML=`<div class="dai-rings">${ring(s0,"#f25f73","현재")}<span class="dai-arrow">→</span>${ring(s1,C1,"실행 후")}</div><div class="ds-r"><h4>${nm}님은 지금 <em>${band(s0)}</em>입니다</h4><p>설계안대로 실행하면 점수가 <b>${s0}점 → ${s1}점</b>으로 오릅니다. 무엇이 부족하고 어떻게 바꾸는지는 분석·평가에서 확인하세요.</p><a class="btn sm" href="#s3">AI 평가 자세히 보기</a></div>`;
+   $("#dScore").innerHTML=`<div class="ds-r"><span class="ds-tag">${nm}님 · AI 재무건강 점수</span><h4>지금은 <em>${band(s0)}</em>입니다</h4><p>설계안대로 실행하면 점수가 <b>${s0}점에서 ${s1}점</b>으로 오릅니다. 무엇이 부족하고 어떻게 바꾸는지는 분석·평가에서 한눈에 볼 수 있어요.</p><div class="ds-btns"><a class="btn ds-p" href="#s2">내 정보로 점수 받기</a><a class="btn ds-g" href="#s3">AI 평가 자세히 보기</a></div></div><div class="ds-v"><div class="dai-rings">${ring(s0,"#f25f73","현재")}<span class="ds-gain">+${s1-s0}점</span>${ring(s1,C1,"실행 후")}</div><div class="ds-leg"><span><i style="background:#f25f73"></i>지금 그대로</span><span><i style="background:${C1}"></i>설계안 실행 후</span></div></div>`;
   }
   {const ta=document.getElementById("anaPrompt");if(ta)ta.value=buildAnaPrompt(c)}
   $("#ovGoals").innerHTML=gRows.map(x=>`<div class="item" data-go="s4"><span class="pill ${x.s}">${esc(x.g.term)}</span><div><b>${esc(x.g.name)}</b><p>${x.amt>0?`${mlabel(n(x.g.months))} 후 목표 ${won(x.amt)} · 예상 ${won(x.v)} (${fmt(x.r,0)}%)`:`${mlabel(n(x.g.months))} 후 예상 적립액 ${won(x.v)}`}</p>${x.amt>0?`<div class="meter" style="margin-top:8px"><i class="${x.s}" style="width:${Math.min(100,x.r)}%"></i></div>`:""}</div></div>`).join("")||`<p class="note">2단계에서 목표를 추가하세요.</p>`;
@@ -2755,7 +2860,7 @@ function updateCore(){
   if(cut>0)acts.push(["warn","지출 구조 개선",`월 ${fmt(cut)}만 원 절감 · ${S.expenses.filter(e=>c.planAmt(e)<n(e.amt)).map(e=>esc(e.name)).join(", ")}`]);
   if(c.rNow.risk>30&&c.sellTotal>0)acts.push(["warn","고위험 자산 정리",`${fmt(c.sellTotal)}만 원 정리 후 목적별 계좌로 재배치`]);
   if(c.bucketSum>0)acts.push(["good","급여일 다음 날 자동이체",`매월 ${S.exec.moveday}일 ${c.buckets.filter(b=>b.pmt>0).length}개 계좌로 ${fmt(c.bucketSum)}만 원 선저축`]);
-  $("#ovActions").innerHTML=acts.map(([s,a,b],i)=>`<div class="item" data-go="${/자동이체/.test(a)?"s5":"s4"}"><span class="num-badge">${i+1}</span><div><b>${a}</b><p>${b}</p></div></div>`).join("")||`<p class="note">값을 입력하면 우선순위가 표시됩니다.</p>`;
+  $("#ovActions").innerHTML=acts.map(([s,a,b],i)=>`<div class="item" data-go="${/자동이체/.test(a)?"s5":"s4"}"><span class="num-badge">${String(i+1).padStart(2,"0")}</span><div><b>${a}</b><p>${b}</p></div></div>`).join("")||`<p class="note">값을 입력하면 우선순위가 표시됩니다.</p>`;
   $("#s1q").textContent=`“${p.name||"고객"}님의 목표 중 반드시 지켜야 하는 것은 무엇인가요?” → 비상예비자금 ${won(n((S.goals[0]||{}).amt))}은 고정, 생활비 조정은 월 ${fmt(Math.max(0,c.exNow-sum(S.expenses,e=>e.target)))}만 원까지 가능.`;
 
   // step2
@@ -2877,7 +2982,7 @@ function renderDiag(c){
   if(c.exNow>c.exPlan)ai.push(["변동지출에 상한을 둡니다",`근거: 변동지출 ${fmt(c.varNow)} → ${fmt(c.varPlan,1)}만 원으로 줄이면 저축성향률이 ${pct(c.rNow.save,1)} → ${pct(c.rAfter.save,1)}가 됩니다.`]);
   if(c.rNow.debt<=20&&c.debtPay)ai.push(["대출은 조기 상환하지 않습니다",`근거: 부채부담률 ${pct(c.rNow.debt,1)}로 안전하고 금리가 낮아, 여유 자금은 세제 혜택 계좌가 유리합니다.`]);
   const t=tax(c);if(t.hasPens)ai.push(["세제 혜택 계좌를 우선 채웁니다",`근거: 연금저축 연 ${fmt(t.pensYear)}만 원 납입 시 ${fmt(t.pensCredit,1)}만 원 환급, 수익률로 환산하면 즉시 ${t.pensRate}%입니다.`]);
-  $("#aiDiag").innerHTML=ai.map(([a,b],i)=>`<div class="item"><span class="num-badge">${i+1}</span><div><b>${a}</b><p>${b}</p></div></div>`).join("")||'<p class="note">입력값이 늘면 행동 과제가 표시됩니다.</p>';
+  $("#aiDiag").innerHTML=ai.map(([a,b],i)=>`<div class="item"><span class="num-badge">${String(i+1).padStart(2,"0")}</span><div><b>${a}</b><p>${b}</p></div></div>`).join("")||'<p class="note">입력값이 늘면 행동 과제가 표시됩니다.</p>';
 }
 function renderFlow(c){
   const AR='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
@@ -2909,7 +3014,7 @@ function renderFlow(c){
    const M=[[0,"실행 시작",c.sellTotal?`투자자산 ${fmt(c.sellTotal)}만 원 정리 후 비상예비자금으로`:"계좌 개설과 자동이체 등록"],[1,"첫 자동이체",`4개 계좌 ${f1(c.bucketSum)}만 원`],[3,"첫 분기 점검","지출·비율 점검, 필요하면 재설계"]]
      .concat(S.goals.filter(g=>n(g.amt)>0).map(g=>[n(g.months),g.name,`목표 ${fmt(n(g.amt))}만 원`])).sort((x,y)=>x[0]-y[0]);
    $("#rmLine").innerHTML=`<div class="rm-lh"><b>목표까지의 길</b><span>실행 시작일 기준 · 목표 금액과 기한은 2단계에서 바꿀 수 있습니다</span></div><ol>${M.map(([m,t,d],i)=>`<li class="${i?"":"on"}"><i></i><small>${m?ym(addM(sd,m))+" · "+(m%12?m+"개월":m/12+"년"):ym(sd)+" · 시작"}</small><b>${esc(t)}</b><span>${d}</span></li>`).join("")}</ol>`}
-  $("#autoRules").innerHTML=[["월간 배분 규칙 생성",`${c.buckets.filter(b=>b.pmt>0).length}개 계좌 자동이체 초안 (${fmt(c.bucketSum,1)}만 원)`,"초안"],["목표 달성 시 재배분","비상예비자금 목표를 채운 뒤 초과분은 ISA로 이동","규칙"],["비정기 수입 사용 규칙",`성과급 월 ${fmt(c.bonus)}만 원 상당은 저축 재원에 포함해 생활비로 새지 않게 관리`,"규칙"],["이상 징후 알림","변동지출이 계획을 10% 넘거나 소득이 줄면 6단계에서 재설계 요청","알림"]].map(([a,b,s],i)=>`<div class="item"><span class="num-badge">${i+1}</span><div><b>${a} <span class="pill mute" style="margin-left:4px">${s}</span></b><p>${b}</p></div></div>`).join("");
+  $("#autoRules").innerHTML=[["월간 배분 규칙 생성",`${c.buckets.filter(b=>b.pmt>0).length}개 계좌 자동이체 초안 (${fmt(c.bucketSum,1)}만 원)`,"초안"],["목표 달성 시 재배분","비상예비자금 목표를 채운 뒤 초과분은 ISA로 이동","규칙"],["비정기 수입 사용 규칙",`성과급 월 ${fmt(c.bonus)}만 원 상당은 저축 재원에 포함해 생활비로 새지 않게 관리`,"규칙"],["이상 징후 알림","변동지출이 계획을 10% 넘거나 소득이 줄면 6단계에서 재설계 요청","알림"]].map(([a,b,s],i)=>`<div class="item"><span class="num-badge">${String(i+1).padStart(2,"0")}</span><div><b>${a} <span class="pill mute" style="margin-left:4px">${s}</span></b><p>${b}</p></div></div>`).join("");
 }
 function rmDraw(){const box=document.getElementById("rmMap");if(!box||!box.offsetWidth)return;const svg=box.querySelector(".rm-svg"),R=box.getBoundingClientRect(),W=box.offsetWidth,H=box.offsetHeight;svg.setAttribute("viewBox",`0 0 ${W} ${H}`);svg.setAttribute("width",W);svg.setAttribute("height",H);
   const pt=(el,side)=>{const r=el.getBoundingClientRect();return [side?r.right-R.left:r.left-R.left,r.top-R.top+r.height/2]};
@@ -3136,7 +3241,7 @@ function renderCoach(c){c=c||calc();const P=project(c,120);const T={report:"보�
   s6:[["트리거",`지금 대응이 필요한 항목은 ${triggers(c).filter(x=>x.f).length}건입니다.`],["재설계 원칙","변화가 생기면 해당 입력을 다시 수집하고 4단계에서 고객이 우선순위를 다시 고릅니다."]],
   basis:[["투명성","모든 수치는 화면에 공개된 산식으로 재현할 수 있습니다."]],
   report:[["구성","표지 요약과 6단계 각 장 끝에 ‘고객이 할 일’을 넣었습니다."],["출력","PDF 저장 · 인쇄 버튼을 누르면 A4 기준으로 장마다 나뉘어 저장됩니다."]]};
-  $("#drTitle").textContent="AI 코치 · "+T[curView];$("#drBody").innerHTML=(L[curView]||[]).map(([a,b],i)=>`<div class="item"><span class="num-badge">${i+1}</span><div><b>${a}</b><p>${b}</p></div></div>`).join("")}
+  $("#drTitle").textContent="AI 코치 · "+T[curView];$("#drBody").innerHTML=(L[curView]||[]).map(([a,b],i)=>`<div class="item"><span class="num-badge">${String(i+1).padStart(2,"0")}</span><div><b>${a}</b><p>${b}</p></div></div>`).join("")}
 
 /* ---------- events ---------- */
 function setPath(p,v){const k=p.split(".");let x=S;for(let i=0;i<k.length-1;i++)x=x[k[i]];x[k[k.length-1]]=v}
@@ -3197,9 +3302,9 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"){$("#modal").classLi
 const BI={s1:'<circle cx="9" cy="8" r="3.2"/><circle cx="16.5" cy="9" r="2.5"/><path d="M3 20v-.5A5.5 5.5 0 018.5 14h1A5.5 5.5 0 0115 19.5v.5M15.5 14.2A4.5 4.5 0 0121 18.6v1.4"/>',s2:'<rect x="5" y="4" width="14" height="17" rx="2.5"/><path d="M9 3.5h6v3H9zM9 12h6M9 16h4"/>',s3:'<path d="M12 3v9h9"/><path d="M20.5 15A9 9 0 1112 3"/>',s4:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4"/>',s5:'<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4M9 15.5l2 2 4-4"/>',s6:'<path d="M21 12a9 9 0 01-15.5 6.3L3 16M3 12a9 9 0 0115.5-6.3L21 8M21 3v5h-5M3 21v-5h5"/>',basis:'<path d="M4 19V5a2 2 0 012-2h12v18H6a2 2 0 01-2-2zM8 7h6M8 11h6"/>'};
 const BC=new Proxy({},{get:()=>["rgba(49,130,246,.42)","rgba(116,185,255,.20)"]});
 const SS=["관계","목표","분석","설계","실행","점검"];const SN=["관계 정립","목표·자료 수집","분석·평가","설계안 수립","실행·캘린더","점검·리밸런싱"];
-function buildBanners(){["s1","s2","s3","s4","s5","s6","basis"].forEach(v=>{const h=document.querySelector("#v-"+v+" .vhead");if(!h||h.classList.contains("banner"))return;h.classList.add("banner");h.style.setProperty("--b1",BC[v][0]);h.style.setProperty("--b2",BC[v][1]);
-  h.insertAdjacentHTML("afterbegin",`<div class="bart" aria-hidden="true"><span class="big">${v[0]==="s"?v.slice(1):"§"}</span><span class="sq a"></span><span class="orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${BI[v]}</svg></span><span class="sq b"></span></div>`);
-  const cur=v[0]==="s"?+v.slice(1):0;h.insertAdjacentHTML("beforeend",`<nav class="stepper" aria-label="단계 이동">${SN.map((t,i)=>`<a href="#s${i+1}" class="${i+1===cur?"cur":i+1<cur?"done":""}" title="${i+1}단계 ${t}"><i>${i+1<cur?"✓":i+1}</i><span class="lf">${t}</span><span class="ls">${SS[i]}</span></a>`).join("")}</nav>`)})}
+function buildBanners(){["s1","s2","s3","s4","s5","s6"].forEach(v=>{const h=document.querySelector("#v-"+v+" .vhead");if(!h||h.classList.contains("phead"))return;h.classList.add("phead");h.insertAdjacentHTML("afterbegin",`<div class="paur" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>`);
+  const n=+v.slice(1),e=h.querySelector(".eyebrow");if(e)e.outerHTML=`<nav class="crumb" aria-label="현재 위치"><a href="#home">재무설계 6단계</a><i></i><span>${n}단계</span><i></i><b>${SN[n-1]}</b></nav>`;
+  h.insertAdjacentHTML("beforeend",`<div class="pside"><span class="pnum">${String(n).padStart(2,"0")}</span><div class="pbars" aria-hidden="true">${SN.map((t,k)=>`<i class="${k<n?"on":""}"></i>`).join("")}</div><small>6단계 중 ${n}단계</small><div class="pnav">${n>1?`<a href="#s${n-1}">이전 단계</a>`:`<a href="#home">개요</a>`}${n<6?`<a class="nx" href="#s${n+1}">다음 · ${SN[n]}</a>`:`<a class="nx" href="#report">보고서 보기</a>`}</div></div>`)})}
 buildBanners();
 let rafP=0,lastE=null;
 document.addEventListener("pointermove",e=>{lastE=e;if(rafP)return;rafP=requestAnimationFrame(()=>{rafP=0;const ev=lastE,el=ev.target&&ev.target.closest&&ev.target.closest(".card,.kpi,.node,.summary>div,.feat");
@@ -3317,8 +3422,13 @@ function route(){let v=(location.hash||"").slice(1);if(!VIEWS.includes(v))v="hom
   if(changed)window.scrollTo(0,0);
   flushCharts();renderCoach();reveal();if(v==="home"){hxScroll();window.__hxDraw&&window.__hxDraw()}if(changed||!route.did){route.did=1;countUp($("#v-"+v))}}
 window.addEventListener("hashchange",route);
+/* v60 aurora follows mouse */
+(function(){const a=$("#hxVis.aur"),hx=$("#hx");if(!a||!hx)return;let tx=0,ty=0,x=0,y=0,raf=0;const loop=()=>{x+=(tx-x)*.06;y+=(ty-y)*.06;a.style.setProperty("--mx",x.toFixed(3));a.style.setProperty("--my",y.toFixed(3));raf=Math.abs(tx-x)+Math.abs(ty-y)>.002?requestAnimationFrame(loop):0};
+  hx.addEventListener("pointermove",e=>{const r=hx.getBoundingClientRect();tx=(e.clientX-r.left)/r.width*2-1;ty=(e.clientY-r.top)/r.height*2-1;if(!raf)raf=requestAnimationFrame(loop)});
+  hx.addEventListener("pointerleave",()=>{tx=0;ty=0;if(!raf)raf=requestAnimationFrame(loop)})})();
+
 /* v59 dark gnb over hero */
-(function(){const g=$("#gnb");if(!g)return;const f=()=>{const hx=$("#hx");g.classList.toggle("dk",curView==="home"&&hx&&hx.getBoundingClientRect().bottom>64)};addEventListener("scroll",f,{passive:true});addEventListener("hashchange",()=>setTimeout(f,30));setTimeout(f,50)})();
+(function(){const g=$("#gnb");if(!g)return;const f=()=>{const hx=$("#hx");const ph=document.querySelector("#v-"+curView+" .vhead.phead");g.classList.toggle("dk",(curView==="home"&&hx&&hx.getBoundingClientRect().bottom>64)||curView==="basis"||!!(ph&&ph.getBoundingClientRect().bottom>64))};addEventListener("scroll",f,{passive:true});addEventListener("hashchange",()=>setTimeout(f,30));setTimeout(f,50)})();
 
 /* v59 monitor presets */
 document.addEventListener("click",e=>{const b=e.target.closest("[data-mp]");if(!b)return;const o=JSON.parse(b.dataset.mp);Object.assign(S.mon,o);save();renderInputs();update();
@@ -3342,19 +3452,22 @@ renderInputs();update();route();
 (function(){const box=document.getElementById("bzLaws");if(!box)return;let cat="전체";const q=document.getElementById("bzQ"),none=document.getElementById("bzNone");
   const run=()=>{const t=(q.value||"").replace(/\s/g,"").toLowerCase();let k=0;box.querySelectorAll(".bz-law").forEach(a=>{const ok=(cat==="전체"||a.dataset.cat.split(" ").includes(cat)||(cat==="예시"&&a.classList.contains("ex")))&&(!t||a.dataset.q.includes(t));a.hidden=!ok;if(ok)k++});none.hidden=k>0};
   q.addEventListener("input",run);document.getElementById("bzCats").addEventListener("click",e=>{const b=e.target.closest("[data-bzc]");if(!b)return;cat=b.dataset.bzc;b.parentElement.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));run()})})();
-(function(){const home=document.getElementById("v-home");if(!home)return;
-  const SEC=[["#hx","시작"],[".say-sec","소개"],[".feat-sec","6단계 기능"],[".wv-sec","목표 지도"],[".dash-head","AI 점수"],[".card.glow","05 설계안"],[".grid.g2","자산 전망 · 저축 배분"],[".grid.g2 + .grid.g2","목표 달성 · 할 일"]];
-  const els=SEC.map(([sel,name])=>[home.querySelector(":scope > "+sel.replace(":scope > ",""))||home.querySelector(sel),name]).filter(x=>x[0]);
-  const rail=document.createElement("nav");rail.className="orail";rail.setAttribute("aria-label","개요 목차");const tip=document.createElement("div");tip.className="orail-tip";
-  const W=[14,10,13,9,12,8,11,9,10,8];
-  els.forEach(([el,name],i)=>{const b=document.createElement("button");b.type="button";b.style.setProperty("--w",W[i%W.length]+"px");b.setAttribute("aria-label",name);
-    b.addEventListener("mouseenter",()=>{const r=b.getBoundingClientRect();tip.textContent=name;tip.style.top=(r.top+r.height/2-14)+"px";tip.classList.add("show")});
-    b.addEventListener("mouseleave",()=>tip.classList.remove("show"));
-    b.addEventListener("click",()=>{scrollTo({top:el.getBoundingClientRect().top+scrollY-88,behavior:"smooth"})});rail.appendChild(b)});
-  document.body.appendChild(rail);document.body.appendChild(tip);
-  const btns=[...rail.children];
-  const tick=()=>{const on=home.classList.contains("on")||getComputedStyle(home).display!=="none";rail.classList.toggle("show",on&&scrollY>40);if(!on)return;let k=0;els.forEach(([el],i)=>{if(el.getBoundingClientRect().top<innerHeight*.45)k=i});btns.forEach((b,i)=>b.classList.toggle("on",i===k))};
-  addEventListener("scroll",tick,{passive:true});addEventListener("hashchange",()=>setTimeout(tick,60));setTimeout(tick,300)})();
+(function(){const W=[14,10,13,9,12,8,11,9,10,8];const rail=document.createElement("nav");rail.className="orail";rail.setAttribute("aria-label","페이지 목차");const tip=document.createElement("div");tip.className="orail-tip";document.body.appendChild(rail);document.body.appendChild(tip);
+  const HOME=[["#hx","시작"],[".say-sec","소개"],[".feat-sec","6단계 기능"],[".wv-sec","목표 지도"],[".dash-head","AI 점수"]];
+  let els=[],btns=[],cur="";const vw=()=>{const h=location.hash.slice(1);return document.getElementById("v-"+h)?h:"home"};
+  const nm=el=>{const h=el.matches("h1,h2,h3")?el:el.querySelector("h1,h2,h3,h4");let t=(h?h.textContent:"").replace(/\s+/g," ").trim().replace(/^\d+\s*/,"");return t.length>16?t.slice(0,15)+"…":t};
+  const collect=v=>{const view=document.getElementById("v-"+v);if(!view)return[];
+    if(v==="home")return HOME.map(([q,n])=>[view.querySelector(q),n]).filter(x=>x[0]);
+    const out=[];let last=-1e9;const head=view.querySelector(".vhead,.bz-head");if(head)out.push([head,"시작"]);
+    view.querySelectorAll(".dch, .bz-sec, .card").forEach(el=>{if(el.offsetParent===null||el.closest(".vhead"))return;if(el.parentElement.closest(".card"))return;const n=nm(el);if(!n)return;const y=el.getBoundingClientRect().top+scrollY;if(y-last<260)return;last=y;out.push([el,n])});
+    return out.slice(0,12)};
+  const build=()=>{const v=vw();cur=v;els=collect(v);rail.innerHTML="";
+    els.forEach(([el,name],i)=>{const b=document.createElement("button");b.type="button";b.style.setProperty("--w",W[i%W.length]+"px");b.setAttribute("aria-label",name);
+      b.addEventListener("mouseenter",()=>{const r=b.getBoundingClientRect();tip.textContent=name;tip.style.top=(r.top+r.height/2-14)+"px";tip.classList.add("show")});
+      b.addEventListener("mouseleave",()=>tip.classList.remove("show"));
+      b.addEventListener("click",()=>{scrollTo({top:el.getBoundingClientRect().top+scrollY-88,behavior:"smooth"})});rail.appendChild(b)});btns=[...rail.children];tick()};
+  const tick=()=>{if(vw()!==cur)return build();rail.classList.toggle("show",els.length>2&&scrollY>40);let k=0;els.forEach(([el],i)=>{if(el.getBoundingClientRect().top<innerHeight*.45)k=i});btns.forEach((b,i)=>b.classList.toggle("on",i===k))};
+  addEventListener("scroll",tick,{passive:true});addEventListener("hashchange",()=>setTimeout(build,120));addEventListener("resize",()=>setTimeout(build,200));setTimeout(build,400)})();
 </script>
 
 
