@@ -1159,44 +1159,6 @@ html:not(.dark){--bg:#f2f4f6;--side:#ffffff;--card:#fff;--card-2:#f9fafb;--fill:
 .say .c.cur:after{background:#3182f6;width:.07em}
 .say-sec{padding:110px 0 100px}
 .say-grid{background:linear-gradient(rgba(0,0,0,.07),rgba(0,0,0,.07)) 14% 0/1px 100% no-repeat,linear-gradient(rgba(0,0,0,.07),rgba(0,0,0,.07)) 86% 0/1px 100% no-repeat,linear-gradient(90deg,rgba(0,0,0,.07),rgba(0,0,0,.07)) 0 22%/100% 1px no-repeat,linear-gradient(90deg,rgba(0,0,0,.07),rgba(0,0,0,.07)) 0 78%/100% 1px no-repeat}
-/* feature panels: pastel glass like Toss cards */
-.fp{background:linear-gradient(135deg,#eef4ff 0%,#cfe0ff 48%,#f1e9ff 100%);box-shadow:none}
-.fp.rev{background:linear-gradient(135deg,#dfeaff 0%,#b4d0ff 55%,#e3edff 100%)}
-.fp:nth-child(3),.fp:nth-child(7){background:linear-gradient(135deg,#f1f2ff 0%,#dcd9ff 50%,#ffece0 100%)}
-.fp:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 70% at 30% 40%,rgba(255,255,255,.65),transparent 70%);pointer-events:none}
-.fp-vis:before{background:radial-gradient(closest-side,rgba(255,255,255,.7),transparent);filter:none}
-.fp-tag{background:rgba(255,255,255,.65);color:#3182f6;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:99px;padding:9px 16px;font-size:13.5px}
-.fp-txt h3{color:#191f28}
-.fp-txt p{color:#4e5968}
-.fp-go{background:rgba(255,255,255,.7);color:#191f28}
-.fp-go .arr{background:#191f28}.fp-go .arr:before{background:#fff}
-.fp-go:hover{background:#fff;color:#191f28}
-.mk{background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.9);color:#191f28;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 30px 60px -32px rgba(30,60,130,.35)}
-.mk-ic{background:#f2f4f6;color:#4e5968}
-.mk-live{color:#03b26c;border-color:rgba(3,178,108,.3)}
-.mk-rows>div{border-top-color:#eef0f3}.mk-rows span{color:#8b95a1}.mk-rows b.f{color:#f59f00}
-.mk-ringwrap{background:#f2f4f6}.mk-ringwrap small{color:#8b95a1}
-.mk .fv-ring:before,.mk .fv-donut:before{background:#fff!important}
-.mk-ringwrap .fv-ring:before{background:#f2f4f6!important}
-.mk-stack{background:none;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
-.mk-back{opacity:.75}.mk-back .fv-ratio div{color:#8b95a1}.mk-back .fv-ratio b{color:#191f28}.mk-back .fv-ratio i{background:#e5e8eb}
-.mk-hero{border:1px solid rgba(49,130,246,.35);box-shadow:0 0 0 6px rgba(49,130,246,.08),0 30px 60px -28px rgba(30,60,130,.45)}
-.mk-hero small{color:#8b95a1}
-.mk-big span{color:#b0b8c1}.mk-big i{color:#d1d6db}
-.mk-big b{background:linear-gradient(90deg,#3182f6,#74b9ff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.mk-chip{color:#03b26c;border-color:rgba(3,178,108,.35)}
-.sc{background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.9);color:#191f28;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 20px 40px -28px rgba(30,60,130,.35)}
-.sc.on{border-color:rgba(49,130,246,.45);box-shadow:0 24px 50px -20px rgba(49,130,246,.45)}
-.sc small{color:#4e5968}.sc b i,.sc span{color:#8b95a1}.sc em{color:#b0b8c1}
-.sc.on .bar i{background:linear-gradient(#74b9ff,#3182f6)}
-.mk-leg>div{border-top-color:#eef0f3}.mk-leg small{color:#8b95a1}
-.mk-calgrid s{color:#8b95a1}.mk-calgrid u{background:#f2f4f6;color:#4e5968}.mk-calgrid u.t{color:#fff}.mk-calgrid u.p{color:#191f28}
-.mk-todo div{background:#f2f4f6}.mk-todo i{border-color:#d1d6db}.mk-todo b{color:#8b95a1}
-.mk-alh{background:radial-gradient(120% 140% at 80% 0%,#7fb6ff 0%,#3182f6 45%,#1b64da 90%);color:#fff}
-.mk-ald{border-bottom-color:#eef0f3}.mk-ald small{color:#8b95a1}
-.mk-alb .mk-rows b{color:#03b26c}.mk-alb .mk-rows b.f{color:#f59f00}
-.mk-doc .pg{box-shadow:0 26px 50px -24px rgba(30,60,130,.4)}
-.mk-doc .p1{background:#fff}.mk-doc .p2{background:#eef3fb}.mk-doc .p3{background:#dde7f7}
 .feat-more a,.feat-more button{color:#4e5968;background:#fff}
 /* goal map on light */
 .wv-mid i{background:#d1d6db}.wv-mid b{color:#3182f6}
@@ -1278,8 +1240,6 @@ html:not(.dark) .callout{background:linear-gradient(135deg,#f0f9ff,#e8f1ff)}
 html:not(.dark) .callout.good{background:linear-gradient(135deg,#e8f7ff,#e0ecff)}
 html:not(.dark) .callout.warn{background:linear-gradient(135deg,#f3f4ff,#e9ebff)}
 html:not(.dark) .callout.bad{background:linear-gradient(135deg,#fff5f7,#ffeaee)}
-.mk-live,.mk-chip{color:#1b64da!important;border-color:rgba(49,130,246,.3)!important}
-.mk-live:before,.mk-chip:before{background:#3182f6!important}
 .mk-alb .mk-rows b{color:#3182f6}.mk-rows b.f{color:#4f5bd5}
 
 /* v20: hero breathing room + a hint of violet */
@@ -2279,8 +2239,6 @@ body.wpg .view .vhead.phead{margin-bottom:8px!important}
 #v-home .fp,#v-home .fp.rev{background:radial-gradient(70% 90% at 22% 110%,var(--fpc),transparent 65%),radial-gradient(50% 60% at 95% -10%,var(--fpc),transparent 60%),#121318!important;border:1px solid rgba(255,255,255,.07)!important}
 #v-home .fp.rev{background:radial-gradient(70% 90% at 78% 110%,var(--fpc),transparent 65%),radial-gradient(50% 60% at 5% -10%,var(--fpc),transparent 60%),#121318!important}
 #v-home .fp-vis:before{background:radial-gradient(closest-side,var(--fpc),transparent)!important;filter:blur(20px)!important;opacity:.9}
-#v-home .fp .mk{background:#fff!important;border-color:#fff!important}
-#v-home .fp .mk.mk-stack{background:transparent!important;border:0!important;box-shadow:none!important}
 /* spacing around shortcut links and goal map */
 #v-home .feat-more{margin-top:28px}
 #v-home .wv-sec{margin-top:24px!important;padding-top:56px!important}
@@ -2494,6 +2452,59 @@ body.wpg .view .vhead.phead{margin-bottom:8px!important}
 .r1-steps li a:hover .r1-go{opacity:1;right:13px}
 .r1-steps li.on .r1-go{border-color:rgba(255,255,255,.6)}
 
+/* v66 feature cards back to the dark v14 look, shorter */
+#v-home .fps.clb{gap:22px}
+#v-home .fps.clb .fp,#v-home .fps.clb .fp.rev{background:radial-gradient(90% 80% at 25% 115%,rgba(150,150,175,.22),transparent 62%),radial-gradient(60% 60% at 90% -10%,rgba(77,155,255,.12),transparent 60%),#0a0a0d!important;border:1px solid rgba(255,255,255,.08)!important;border-radius:32px!important}
+#v-home .fps.clb .fp-vis{padding:30px 36px!important;background:none!important}
+#v-home .fps.clb .fp-vis .mk{zoom:.88}
+#v-home .fps.clb .fp-txt{padding:30px 48px 30px 12px}
+#v-home .fps.clb .fp-tag{background:#18181d!important;font-size:14.5px!important;padding:11px 18px!important}
+#v-home .fps.clb .fp-txt h3{margin:20px 0 12px!important;font-size:clamp(24px,2.2vw,34px)!important}
+#v-home .fps.clb .fp-txt p{font-size:15.5px!important;line-height:1.7!important}
+#v-home .fps.clb .fp-go{margin-top:22px!important;background:rgba(255,255,255,.1)!important;color:#fff!important}
+#v-home .fps.clb .fp-go:hover{background:#fff!important;color:#000!important}
+#v-home .fps.clb .fp-go:hover .arr{background:#000}#v-home .fps.clb .fp-go:hover .arr:before{background:#fff}
+#v-home .fp .mk{box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 30px 60px -30px rgba(0,0,0,.9)}
+@media (max-width:860px){#v-home .fps.clb .fp-vis{padding:22px 16px 0!important}#v-home .fps.clb .fp-vis .mk{zoom:.8}#v-home .fps.clb .fp-txt{padding:18px 22px 24px}#v-home .fps.clb .fp-txt h3{margin:14px 0 8px!important;font-size:22px!important}#v-home .fps.clb .fp-txt p{font-size:14px!important}#v-home .fps.clb .fp-go{margin-top:16px!important}}
+/* v66 threekong banner */
+.jb{--bx:50%;--by:50%;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:36px;padding:48px 52px;border-radius:32px;background:#0b0b0f;border:1px solid rgba(255,255,255,.1)}
+.jb:after{display:none}
+.jb-sh{display:none}
+.jb-orbs{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden;border-radius:inherit}
+.jb-orbs i{position:absolute;width:380px;height:380px;border-radius:50%;filter:blur(60px);opacity:.55;mix-blend-mode:screen;transition:left 1.2s cubic-bezier(.16,1,.3,1),top 1.2s cubic-bezier(.16,1,.3,1)}
+.jb-orbs i:nth-child(1){background:#3182f6;left:calc(var(--bx) - 340px);top:calc(var(--by) - 160px)}
+.jb-orbs i:nth-child(2){background:#8b6cff;left:calc(var(--bx) - 190px);top:calc(var(--by) - 280px)}
+.jb-orbs i:nth-child(3){background:#19c3b1;left:calc(var(--bx) - 40px);top:calc(var(--by) - 100px)}
+.jb:hover .jb-orbs i:nth-child(1){left:calc(var(--bx) - 260px)}.jb:hover .jb-orbs i:nth-child(3){left:calc(var(--bx) - 120px)}
+.jb-mark{position:relative;width:96px;height:88px;flex:none}
+.jb-mark i{position:absolute;width:50px;height:50px;border-radius:50%;box-shadow:inset 0 -6px 12px rgba(0,0,0,.18),0 12px 30px -8px rgba(0,0,0,.5);transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.jb-mark i:nth-child(1){left:0;top:34px;background:linear-gradient(145deg,#5fe0cf,#19c3b1)}
+.jb-mark i:nth-child(2){left:22px;top:0;background:linear-gradient(145deg,#74b9ff,#3182f6)}
+.jb-mark i:nth-child(3){left:44px;top:36px;background:linear-gradient(145deg,#b3a2ff,#8b6cff)}
+.jb:hover .jb-mark i:nth-child(1){transform:translate(-6px,4px)}.jb:hover .jb-mark i:nth-child(2){transform:translateY(-6px)}.jb:hover .jb-mark i:nth-child(3){transform:translate(6px,4px)}
+.jb-eye{font-size:12px;font-weight:800;letter-spacing:.16em;color:#8fb8ff}
+.jb h2{font-size:clamp(26px,2.8vw,38px);line-height:1.25}
+.jb p{color:rgba(255,255,255,.66)}
+.jb-btn{gap:14px;padding:8px 8px 8px 26px;border-radius:999px;background:#fff;color:#111;font-size:16.5px;font-weight:800}
+.jb-btn i{position:relative;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#3182f6,#8b6cff 55%,#19c3b1);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.jb-btn i:before{content:"";position:absolute;left:13px;top:21px;width:17px;height:2px;border-radius:2px;background:#fff}
+.jb-btn i:after{content:"";position:absolute;left:21px;top:16.5px;width:8px;height:8px;border-top:2px solid #fff;border-right:2px solid #fff;transform:rotate(45deg)}
+.jb-btn:hover{box-shadow:0 0 0 6px rgba(255,255,255,.08),0 20px 40px -14px rgba(116,140,255,.7)}
+.jb-btn:hover i{transform:rotate(-45deg)}
+@media (max-width:900px){.jb{grid-template-columns:minmax(0,1fr);gap:20px;padding:32px 24px;border-radius:24px}.jb-mark{width:72px;height:66px}.jb-mark i{width:38px;height:38px}.jb-mark i:nth-child(1){top:26px}.jb-mark i:nth-child(2){left:17px}.jb-mark i:nth-child(3){left:34px;top:27px}.jb-btn{justify-self:stretch;justify-content:space-between}}
+
+/* v66 dark alert mock */
+#v-home .fp .mk.mk-alert{background:#16161b!important;border:1px solid rgba(255,255,255,.08)!important;color:#fff}
+#v-home .mk-alert .mk-alh{color:#fff!important}
+#v-home .mk-alert .al-t small{color:#8a8a94}
+#v-home .mk-alert .mk-alh .al-ok{background:rgba(49,130,246,.16);color:#8fb8ff}
+#v-home .mk-alert .mk-alh .al-ok.f{background:rgba(240,68,82,.16);color:#ff8a96}
+#v-home .mk-alert .mk-ald{border-bottom-color:rgba(255,255,255,.08)}
+#v-home .mk-alert .mk-ald b{color:#fff}#v-home .mk-alert .mk-ald small{color:#8a8a94}
+#v-home .mk-alert .mk-rows>div{background:#1f1f25!important}
+#v-home .mk-alert .mk-rows span{color:#e5e5ea}
+#v-home .mk-alert .mk-rows b{color:#8fb8ff}#v-home .mk-alert .mk-rows b.f{color:#ff8a96}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -2612,7 +2623,7 @@ body.wpg .view .vhead.phead{margin-bottom:8px!important}
         <div class="fp-txt"><span class="fp-tag">5단계 · 실행</span><h3>할 일이 날짜와 함께<br>달력에 올라갑니다.</h3><p>시작일을 정하면 자산 정리, 계좌 개설, 자동이체 같은 과제가 날짜별로 배치되고 월급날·분기 점검까지 표시됩니다. 휴대폰 캘린더로 내보낼 수도 있습니다.</p><a class="fp-go" href="#s5">캘린더 바로가기<i class="arr"></i></a></div>
       </article>
       <article class="fp rev" data-go="s6" style="--i:5">
-        <div class="fp-vis"><div class="mk mk-alert"><div class="mk-alh"><i class="al-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></i><div class="al-t"><small>PLAN6 · 방금</small><b>점검 알림 도착</b></div><span class="al-ok" id="fpAlOk">모두 정상</span></div><div class="mk-alb"><div class="mk-ald"><b id="fpAlName"></b><small>트리거 7개 자동 판정</small></div><div class="mk-rows" id="fpTrig"></div></div></div></div>
+        <div class="fp-vis"><div class="mk mk-alert"><div class="mk-alh"><i class="al-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></i><div class="al-t"><small>threekong · 방금</small><b>점검 알림 도착</b></div><span class="al-ok" id="fpAlOk">모두 정상</span></div><div class="mk-alb"><div class="mk-ald"><b id="fpAlName"></b><small>트리거 7개 자동 판정</small></div><div class="mk-rows" id="fpTrig"></div></div></div></div>
         <div class="fp-txt"><span class="fp-tag">6단계 · 점검과 리밸런싱</span><h3>상황이 바뀌면,<br>돌아갈 단계를 알려 줍니다.</h3><p>비상금 부족, 시장 급락, 소득 변화, 대출 완납 같은 조건을 매달 판정해 무엇을 고칠지와 어느 단계에서 다시 설계할지 안내합니다.</p><a class="fp-go" href="#s6">점검판 바로가기<i class="arr"></i></a></div>
       </article>
       <article class="fp" data-go="report" style="--i:6">
@@ -2633,9 +2644,10 @@ body.wpg .view .vhead.phead{margin-bottom:8px!important}
   </section>
   <div class="dash-head"><span class="feat-eye">AI SCORE</span><h2>AI가 매긴<br>재무건강 점수</h2><p class="dash-lead">예시 고객의 지금 점수와 설계안대로 실행했을 때의 점수입니다. 내 정보를 넣으면 3단계 분석·평가에서 내 점수와 진단을 볼 수 있습니다</p></div>
   <div class="ds-wrap"><div class="ds-glow" aria-hidden="true"><i></i><i></i><i></i></div><div class="card dscore" id="dScore"></div></div>
-  <section class="jb" id="jc" aria-labelledby="jcT"><div class="jb-sh" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-    <div class="jb-t"><h2 id="jcT">이제 내 숫자로 점수를 받아 보세요</h2><p>소득·지출·자산·목표를 넣으면 진단, AI 평가, 설계안이 모두 내 기준으로 다시 계산됩니다.</p></div>
-    <a class="jb-btn" href="#s2">내 정보로 점수 받기</a></section>
+  <section class="jb" id="jc" aria-labelledby="jcT"><div class="jb-orbs" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="jb-mark" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="jb-t"><span class="jb-eye">YOUR TURN</span><h2 id="jcT">이제 내 숫자로<br>점수를 받아 보세요</h2><p>소득·지출·자산·목표를 넣으면 진단, AI 평가, 설계안이 모두 내 기준으로 다시 계산됩니다.</p></div>
+    <a class="jb-btn" href="#s2"><span>내 정보로 점수 받기</span><i aria-hidden="true"></i></a></section>
   <footer class="hfoot" aria-label="사이트 정보">
     <div class="hf-logo"><span class="hf-mark" aria-hidden="true"><i></i><i></i><i></i></span>threekong</div>
     <div class="hf-cols">
@@ -3896,6 +3908,9 @@ renderInputs();update();route();
 // v63 gauge reveal
 (function(){const seen=()=>document.querySelectorAll(".gx2:not(.on)").forEach(el=>{const r=el.getBoundingClientRect();if(r.top<innerHeight*.88&&r.bottom>0&&r.width>0){requestAnimationFrame(()=>el.classList.add("on"));window.__gx[el.dataset.gx]=1}});
  addEventListener("scroll",seen,{passive:true});setInterval(seen,400)})();
+
+// v66 banner beans follow the pointer
+(function(){const b=document.getElementById("jc");if(!b)return;b.addEventListener("pointermove",e=>{const r=b.getBoundingClientRect();b.style.setProperty("--bx",((e.clientX-r.left)/r.width*100).toFixed(1)+"%");b.style.setProperty("--by",((e.clientY-r.top)/r.height*100).toFixed(1)+"%")});b.addEventListener("pointerleave",()=>{b.style.removeProperty("--bx");b.style.removeProperty("--by")})})();
 </script>
 
 
