@@ -2397,6 +2397,37 @@ body.wpg .view .vhead.phead{margin-bottom:8px!important}
 @media (min-width:901px){#v-home .hx .aur.tk3{bottom:0!important;-webkit-mask-image:linear-gradient(#000 50%,transparent 98%)!important;mask-image:linear-gradient(#000 50%,transparent 98%)!important}}
 @media (max-width:900px){#v-home .hx .aur.tk3{-webkit-mask-image:linear-gradient(#000 45%,transparent 96%)!important;mask-image:linear-gradient(#000 45%,transparent 96%)!important}}
 
+/* v63 Toss-style double gauge */
+.gx2{--tr:#eef0f3;--tx:#191f28;--mu:#8b95a1;position:relative;width:min(100%,380px);aspect-ratio:1.18/1;margin:0 auto}
+.gxa{position:absolute;width:64%;aspect-ratio:1}
+.gx-b{right:0;top:0}.gx-a{left:0;bottom:0}
+.gxa svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.gxa circle{fill:none;stroke-width:9;stroke-linecap:round}
+.gxt{stroke:var(--tr)}
+.gxp{stroke-dasharray:0 528;transition:stroke-dasharray 1.6s cubic-bezier(.16,1,.3,1)}
+.gx-b .gxp{transition-delay:.35s}
+.gx2.on .gxp{stroke-dasharray:var(--len) 528}
+.gxc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding-top:4%}
+.gxc small{font-size:14px;font-weight:600;color:var(--mu)}
+.gxc b{font-size:clamp(34px,4vw,46px);font-weight:800;letter-spacing:-.04em;line-height:1.1;color:var(--tx);font-variant-numeric:tabular-nums}
+.gxc b em{font-style:normal;font-size:.62em;margin-left:2px}
+.gxd{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:700;color:#8b4cf0}
+.gxd i{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:9px solid #3182f6}
+.gx-cap{margin:6px 0 0;text-align:center;font-size:clamp(20px,2vw,26px);font-weight:800;line-height:1.35;letter-spacing:-.03em;color:var(--tx,#191f28)}
+.dai-l .gx-cap{--tx:#191f28}
+.dai-l .gx2{width:min(100%,340px)}
+#v-home #dScore .ds-v{--tx:#fff;background:radial-gradient(60% 60% at 80% 20%,rgba(162,76,240,.28),transparent 70%),radial-gradient(60% 60% at 15% 85%,rgba(49,130,246,.22),transparent 70%),#17171b!important;border:1px solid rgba(255,255,255,.07)!important;box-shadow:none!important;padding:28px 24px 30px!important;width:min(100%,460px)!important;gap:10px!important}
+#v-home #dScore .gx2{--tr:rgba(255,255,255,.12);--tx:#fff;--mu:rgba(255,255,255,.6)}
+#v-home #dScore .gx-cap{color:#fff}
+@media (max-width:560px){.gxc small{font-size:12.5px}.gxd{font-size:13px}.gxa circle{stroke-width:10}}
+@media (prefers-reduced-motion:reduce){.gxp{transition:none}}
+
+.gx2{aspect-ratio:1.04/1;container-type:inline-size}
+.gxa{width:58%}
+.gxc small{font-size:max(12px,3.9cqw)}
+.gxc b{font-size:11.5cqw}
+.gxd{font-size:max(12.5px,4cqw)}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -3129,13 +3160,15 @@ function updateCore(){
    const sc=(em,sv,db,rk)=>Math.round(Math.min(1,em/3)*25+Math.min(1,sv/50)*25+(db<=20?25:Math.max(0,25*(1-(db-20)/20)))+(rk<=30?25:Math.max(0,25*(1-(rk-30)/40))));
    const s0=sc(c.rNow.em,c.rNow.save,c.rNow.debt,c.rNow.risk),s1=sc(c.rAfter.em,c.rAfter.save,c.rAfter.debt,c.rAfter.risk);
    const ok=R.filter(r=>st(r[2],r[6],r[7],r[8])==="good"),ng=R.filter(r=>st(r[2],r[6],r[7],r[8])!=="good");
+   window.__gx=window.__gx||{};const gx2=(id,a,b)=>{const L=395.8,arc=(v,g,cls,lab,extra)=>`<div class="gxa ${cls}"><svg viewBox="0 0 200 200" aria-hidden="true"><circle class="gxt" cx="100" cy="100" r="84" stroke-dasharray="${L} 528" transform="rotate(135 100 100)"/><circle class="gxp" cx="100" cy="100" r="84" stroke="url(#${g})" style="--len:${(L*Math.max(0,Math.min(100,v))/100).toFixed(1)}" transform="rotate(135 100 100)"/></svg><div class="gxc"><small>${lab}</small>${extra}<b>${v}<em>점</em></b></div></div>`;
+    return `<div class="gx2${window.__gx[id]?" on":""}" data-gx="${id}" role="img" aria-label="AI 재무건강 점수 지금 ${a}점, 설계안 실행 후 ${b}점"><svg width="0" height="0" style="position:absolute"><defs><linearGradient id="gA${id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffb37a"/><stop offset="1" stop-color="#f04452"/></linearGradient><linearGradient id="gB${id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3182f6"/><stop offset="1" stop-color="#a24cf0"/></linearGradient></defs></svg>${arc(b,"gB"+id,"gx-b","설계안 실행 후",`<span class="gxd"><i></i>${b-a}점</span>`)}${arc(a,"gA"+id,"gx-a","지금","")}</div>`};
    const ring=(v,cl,lab)=>`<div class="dring"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="#eef0f3" stroke-width="10"/><circle cx="50" cy="50" r="42" fill="none" stroke="${cl}" stroke-width="10" stroke-linecap="butt" stroke-dasharray="${(v/100*263.9).toFixed(1)} 264" transform="rotate(-90 50 50)"/></svg><div><b>${v}</b><small>${lab}</small></div></div>`;
    const band=v=>v>=80?"건강한 상태":v>=55?"기본은 갖췄지만 보완이 필요한 상태":"기초 체력부터 다져야 하는 상태";
    const cut=c.exNow-c.exPlan;
    const rx=[`<b>비상예비자금부터 채웁니다.</b> 생활비 ${fmt(c.rNow.em,1)}개월분 → <b>${fmt(c.rAfter.em,1)}개월분</b>`,
      cut>.05?`<b>지출을 월 ${fmt(cut)}만 원 줄여 저축으로 돌립니다.</b> 월 저축 ${fmt(c.saveNow)}만 → <b>${fmt(c.bucketSum)}만 원</b> (저축성향률 ${pct(c.rNow.save,1)} → ${pct(c.rAfter.save,1)})`:`<b>월 저축을 ${fmt(c.bucketSum)}만 원으로 맞춥니다.</b> 저축성향률 ${pct(c.rNow.save,1)} → ${pct(c.rAfter.save,1)}`,
      `<b>고위험 자산을 줄이고 목표별 계좌 ${c.buckets.filter(b=>b.pmt>0).length}개로 나눠 모읍니다.</b> 고위험 비중 ${pct(c.rNow.risk,1)} → ${pct(c.rAfter.risk,1)} (1년 적립 후)`];
-   $("#dAI").innerHTML=`<div class="dai-l"><span class="dai-tag">AI 재무건강 점수</span><div class="dai-rings">${ring(s0,"#f25f73","현재")}<span class="dai-arrow">→</span>${ring(s1,C1,"실행 후")}</div><p class="dai-cap">4가지 재무비율을 각 25점으로 환산한 점수입니다</p></div>
+   $("#dAI").innerHTML=`<div class="dai-l"><span class="dai-tag">AI 재무건강 점수</span>${gx2("ai",s0,s1)}<p class="gx-cap">설계안대로 하면<br>AI 점수가 ${s1-s0}점 올라요</p><p class="dai-cap">4가지 재무비율을 각 25점으로 환산한 점수입니다</p></div>
    <div class="dai-r"><h4>${nm}님은 지금 <em>${band(s0)}</em>입니다</h4><p class="dai-sum">${ok.length?ok.map(r=>r[0]).join("·")+"은 기준을 지키고 있지만, ":""}${ng.map(r=>r[0]).join("·")||"모든 항목"}${ng.length?"이 기준에 못 미칩니다":"이 기준을 지키고 있습니다"}. 설계안대로 실행하면 점수가 <b>${s0}점 → ${s1}점</b>으로 오릅니다.</p>
    <div class="dai-cols"><div><h5>잘하고 있는 점</h5><ul>${ok.map(r=>`<li><i class="g"></i>${r[0]} ${fmt(r[2],1)}${r[4]} (기준 ${r[9]})</li>`).join("")||"<li>아직 기준을 지키는 항목이 없습니다</li>"}</ul></div><div><h5>보완할 점</h5><ul>${ng.map(r=>`<li><i class="b"></i>${r[0]} ${fmt(r[2],1)}${r[4]} (기준 ${r[9]})</li>`).join("")||"<li>없음</li>"}</ul></div></div>
    <h5 class="dai-h">AI 처방</h5><ol class="dai-rx">${rx.map(x=>`<li><span>${x}</span></li>`).join("")}</ol><div class="btns"><a class="btn sm" href="#s3">분석 자세히</a><a class="btn primary sm" href="#s4">설계안 보기</a></div></div>`;
@@ -3149,7 +3182,7 @@ function updateCore(){
      ["목표",`준비 끝난 목표 ${rd}/${tg.length}개`,`기한 내 달성 ${ok2}/${tg.length}개`,"목표 금액이 있는 목표 기준",ok2>rd],
      ["AI 재무건강 점수",s0+"점",s1+"점",band(s1),s1>s0]];
     $("#nowPlan").innerHTML=`<colgroup><col style="width:20%"><col style="width:18%"><col style="width:44px"><col style="width:22%"><col></colgroup><thead><tr><th>항목</th><th>지금</th><th></th><th>설계 후</th><th>무엇이 바뀌나</th></tr></thead><tbody>${rows.map(r=>`<tr><th>${r[0]}</th><td class="n0">${r[1]}</td><td class="ar">→</td><td class="n1${r[4]?" up":""}">${r[2]}</td><td class="nt">${r[4]?`<span class="lchip gain">개선</span>`:""}${r[3]}</td></tr>`).join("")}</tbody>`}
-   $("#dScore").innerHTML=`<div class="ds-r"><span class="ds-tag">${nm}님 · AI 재무건강 점수</span><h4>지금은 <em>${band(s0)}</em>입니다</h4><p>설계안대로 실행하면 점수가 <b>${s0}점에서 ${s1}점</b>으로 오릅니다. 무엇이 부족하고 어떻게 바꾸는지는 분석·평가에서 한눈에 볼 수 있어요.</p><div class="ds-btns"><a class="btn ds-p" href="#s2">내 정보로 점수 받기</a><a class="btn ds-g" href="#s3">AI 평가 자세히 보기</a></div></div><div class="ds-v"><div class="dai-rings">${ring(s0,"#f25f73","현재")}<span class="ds-gain">+${s1-s0}점</span>${ring(s1,C1,"실행 후")}</div><div class="ds-leg"><span><i style="background:#f25f73"></i>지금 그대로</span><span><i style="background:${C1}"></i>설계안 실행 후</span></div></div>`;
+   $("#dScore").innerHTML=`<div class="ds-r"><span class="ds-tag">${nm}님 · AI 재무건강 점수</span><h4>지금은 <em>${band(s0)}</em>입니다</h4><p>설계안대로 실행하면 점수가 <b>${s0}점에서 ${s1}점</b>으로 오릅니다. 무엇이 부족하고 어떻게 바꾸는지는 분석·평가에서 한눈에 볼 수 있어요.</p><div class="ds-btns"><a class="btn ds-p" href="#s2">내 정보로 점수 받기</a><a class="btn ds-g" href="#s3">AI 평가 자세히 보기</a></div></div><div class="ds-v">${gx2("ds",s0,s1)}<p class="gx-cap">설계안대로 하면<br>AI 점수가 ${s1-s0}점 올라요!</p></div>`;
   }
   {const ta=document.getElementById("anaPrompt");if(ta)ta.value=buildAnaPrompt(c)}
   $("#ovGoals").innerHTML=gRows.map(x=>`<div class="item" data-go="s4"><span class="pill ${x.s}">${esc(x.g.term)}</span><div><b>${esc(x.g.name)}</b><p>${x.amt>0?`${mlabel(n(x.g.months))} 후 목표 ${won(x.amt)} · 예상 ${won(x.v)} (${fmt(x.r,0)}%)`:`${mlabel(n(x.g.months))} 후 예상 적립액 ${won(x.v)}`}</p>${x.amt>0?`<div class="meter" style="margin-top:8px"><i class="${x.s}" style="width:${Math.min(100,x.r)}%"></i></div>`:""}</div></div>`).join("")||`<p class="note">2단계에서 목표를 추가하세요.</p>`;
@@ -3797,6 +3830,10 @@ renderInputs();update();route();
  if("IntersectionObserver" in window)new IntersectionObserver(es=>es.forEach(e=>inView=e.isIntersecting),{threshold:.35}).observe(box);
  setInterval(()=>{if(user||hov||!inView||!matchMedia("(min-width:861px)").matches||!document.body.classList.contains("hpg")||matchMedia("(prefers-reduced-motion:reduce)").matches)return;open((cur+1)%fps.length)},5200);
 })();
+
+// v63 gauge reveal
+(function(){const seen=()=>document.querySelectorAll(".gx2:not(.on)").forEach(el=>{const r=el.getBoundingClientRect();if(r.top<innerHeight*.88&&r.bottom>0&&r.width>0){requestAnimationFrame(()=>el.classList.add("on"));window.__gx[el.dataset.gx]=1}});
+ addEventListener("scroll",seen,{passive:true});setInterval(seen,400)})();
 </script>
 
 
