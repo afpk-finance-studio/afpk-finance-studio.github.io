@@ -2028,7 +2028,11 @@ html:not(.dark) #monList .in:focus,html:not(.dark) #monthList .in:focus{border-c
 @media (max-width:900px){.view .vhead.phead{grid-template-columns:minmax(0,1fr);padding:32px 0 28px!important;margin-top:-16px!important}.pside{grid-column:1!important;grid-row:auto;padding:18px;margin-top:8px}.view .vhead.phead>p{font-size:16px!important}}
 /* toss number chips everywhere */
 .num-badge,.stepn,.dai-rx li:before,.ana-steps li:before{width:auto!important;min-width:36px;height:28px!important;padding:0 8px;border-radius:9px!important;background:#fff!important;border:1px solid #e5e8eb;color:#6b7684!important;font-size:13px!important;font-weight:600!important;display:inline-grid!important;place-items:center;font-variant-numeric:tabular-nums;letter-spacing:0}
-.dai-rx li,.ana-steps li{grid-template-columns:40px minmax(0,1fr)!important}
+.num-badge,.stepn,.dai-rx li:before,.ana-steps li:before{box-sizing:border-box}
+.dai-rx li,.ana-steps li{grid-template-columns:44px minmax(0,1fr)!important;column-gap:12px!important}
+.dai-rx li:before,.ana-steps li:before{justify-self:start;margin-top:-2px!important}
+.ana-steps li.note{grid-template-columns:minmax(0,1fr)!important}
+.ana-steps li.note:before{display:none!important}
 .stepn{margin-right:2px!important;vertical-align:3px}
 .item>.num-badge{flex:none}
 /* v60 aurora hero */
@@ -2112,6 +2116,81 @@ html:not(.dark) #monList .in:focus,html:not(.dark) #monthList .in:focus{border-c
 .orail{left:max(8px,calc((100vw - 1312px)/2 - 40px))!important}
 .orail-tip{left:calc(max(8px,calc((100vw - 1312px)/2 - 40px)) + 28px)!important}
 
+
+/* v60 s5 header fixes */
+#v-s5 .view .vhead.phead,#v-s5 .vhead.phead{box-shadow:0 0 0 100vmax #000!important;clip-path:inset(-200px -100vmax -28px -100vmax)!important;border:0!important;outline:0!important}
+/* v60 fisheye scroll rail */
+.orail{gap:0!important}
+.orail button{width:120px!important;height:12px!important;display:flex!important;align-items:center;gap:14px}
+.orail button::before{position:static!important;flex:none;height:2px!important;width:var(--fw,16px)!important;opacity:var(--fo,.35)!important;border-radius:1px!important;transition:width .35s cubic-bezier(.16,1,.3,1),opacity .35s!important}
+.orail button.on::before{height:3px!important}
+.orail button::after{content:attr(aria-label);color:#fff;font:700 15px/1 var(--font);letter-spacing:-.02em;white-space:nowrap;opacity:0;transform:translateX(-4px);transition:opacity .25s,transform .25s}
+.orail.flash button.on::after,.orail:hover button.on::after{opacity:1;transform:none}
+.orail:hover button.on:not(:hover)::after{opacity:.35}
+.orail button:hover::after{opacity:1!important;transform:none}
+.orail-tip{display:none!important}
+
+
+/* v61 three beans hero */
+.aur.tk3 i{position:absolute;left:0;top:0;width:var(--d,520px);height:var(--d,520px);margin:calc(var(--d,520px)/-2) 0 0 calc(var(--d,520px)/-2);border-radius:50%;filter:blur(64px);mix-blend-mode:screen;opacity:.82;animation:none!important;will-change:transform}
+.aur.tk3 .o1{background:radial-gradient(closest-side,#3182f6,rgba(49,130,246,.35) 55%,transparent)}
+.aur.tk3 .o2{background:radial-gradient(closest-side,#8b6cff,rgba(139,108,255,.35) 55%,transparent)}
+.aur.tk3 .o3{background:radial-gradient(closest-side,#19c3b1,rgba(25,195,177,.32) 55%,transparent)}
+@media (max-width:900px){.aur.tk3{--d:300px}}
+/* v61 overview fully black */
+body.hpg{background:#000!important}
+body.hpg .view#v-home{color:#fff}
+#v-home .feat-head h2,#v-home .dash-head h2{color:#fff!important;-webkit-text-fill-color:#fff!important}
+#v-home .feat-head p,#v-home .dash-lead{color:rgba(255,255,255,.62)!important}
+#v-home .fp,#v-home .fp.rev{background:rgba(255,255,255,.045)!important;border:1px solid rgba(255,255,255,.09)!important;box-shadow:none!important}
+#v-home .fp-txt h3{color:#fff!important}
+#v-home .fp-txt p{color:rgba(255,255,255,.62)!important}
+#v-home .fp-tag{background:rgba(255,255,255,.08)!important;color:#c4b5ff!important}
+#v-home .fp-go{background:rgba(255,255,255,.1)!important;color:#fff!important}
+#v-home .feat-more a,#v-home .feat-more button{color:rgba(255,255,255,.6)!important}
+#v-home .feat-more a:hover,#v-home .feat-more button:hover{color:#fff!important}
+/* glass score card */
+.ds-wrap{position:relative;isolation:isolate}
+.ds-glow{position:absolute;inset:-40px 0;z-index:-1;pointer-events:none}
+.ds-glow i{position:absolute;width:30%;height:70%;border-radius:50%;filter:blur(90px);opacity:.28;mix-blend-mode:screen}
+.ds-glow i:nth-child(1){left:52%;top:10%;background:#3182f6}
+.ds-glow i:nth-child(2){left:66%;top:20%;background:#8b6cff}
+.ds-glow i:nth-child(3){left:58%;top:30%;background:#19c3b1;opacity:.2}
+#v-home #dScore.dscore{background:rgba(255,255,255,.06)!important;border:1px solid rgba(255,255,255,.14)!important;backdrop-filter:blur(28px) saturate(140%);-webkit-backdrop-filter:blur(28px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)!important}
+#v-home #dScore .ds-r h4{color:#fff}
+#v-home #dScore .ds-r h4 em{color:#8fb8ff}
+#v-home #dScore .ds-r p{color:rgba(255,255,255,.66)}
+#v-home #dScore .ds-r p b{color:#fff}
+#v-home #dScore .ds-tag{border-color:rgba(255,255,255,.18);color:rgba(255,255,255,.75)}
+#v-home #dScore .ds-p{background:#fff;color:#191f28;border-color:#fff}
+#v-home #dScore .ds-g{background:rgba(255,255,255,.1);color:#fff;border-color:transparent}
+#v-home #dScore .ds-v{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+#v-home #dScore .dring circle:first-child{stroke:rgba(255,255,255,.12)}
+#v-home #dScore .dring b{color:#fff}
+#v-home #dScore .dring small,#v-home #dScore .ds-leg{color:rgba(255,255,255,.6)}
+#v-home #dScore .ds-gain{background:transparent;border-color:rgba(143,184,255,.45);color:#8fb8ff}
+/* v61 white pages like the report */
+body.wpg{background:#fff!important}
+body.wpg .view .vhead.phead{background:#fff!important;background-color:#fff!important;color:#191f28;box-shadow:0 0 0 100vmax #fff!important;border-bottom:1px solid #eef0f3}
+body.wpg .vhead.phead>.paur{display:none!important}
+body.wpg .view .vhead.phead h1{color:#191f28!important}
+body.wpg .view .vhead.phead>p{color:#4e5968!important}
+body.wpg .phead .crumb,body.wpg .phead .crumb a{color:#8b95a1}body.wpg .phead .crumb b{color:#191f28}body.wpg .phead .crumb i{border-color:#b0b8c1}
+body.wpg .pside{background:#fff!important;border-color:#e5e8eb!important;backdrop-filter:none}
+body.wpg .pnum{border-color:#e5e8eb!important;color:#6b7684!important}
+body.wpg .pbars i{background:#eef0f3}body.wpg .pbars i.on{background:#191f28}
+body.wpg .pside small{color:#8b95a1}
+body.wpg .pnav a{background:#f2f4f6;color:#333d4b}body.wpg .pnav a.nx{background:#191f28;color:#fff}
+body.wpg .view .card{border:1px solid #eef0f3;box-shadow:none}
+#homeTitle em,#homeTitle em *{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+.card.rmcard{clip-path:inset(-24px -100vmax 0 -100vmax)!important}
+/* close mega after click */
+.gnb.gx .gmega{opacity:0!important;visibility:hidden!important}
+
+html,body{overflow-x:clip}
+#v-home .hx{overflow:visible!important}
+#v-home .hx .aur.tk3{left:50%!important;right:auto!important;width:100vw!important;top:-64px!important;bottom:-80px!important;transform:translateX(-50%);-webkit-mask-image:linear-gradient(#000 75%,transparent);mask-image:linear-gradient(#000 75%,transparent)}
+@media (max-width:900px){#v-home .hx .aur.tk3{bottom:24px!important;-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}}
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -2189,7 +2268,7 @@ html:not(.dark) #monList .in:focus,html:not(.dark) #monthList .in:focus{border-c
       <div class="btns"><a class="btn white lg" href="#s2">내 정보로 시작하기<i class="arr"></i></a><a class="btn glassb lg" href="#report">보고서 보기</a><button class="btn glassb lg" type="button" id="btnBlank">빈 양식</button><button class="btn glassb lg" type="button" id="btnExample2" hidden>예시 고객 다시 보기</button></div>
       <div class="hx-mini" id="hxMini"></div>
     </div>
-    <div class="hx-vis aur" id="hxVis" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+    <div class="hx-vis aur tk3" id="hxVis" aria-hidden="true"><i class="o1"></i><i class="o2"></i><i class="o3"></i></div>
   </div>
   <section class="say-sec" aria-label="소개"><div class="say-grid" aria-hidden="true"></div><p class="say" id="say">흩어진 숫자를 한 번만 넣으면<br>진단부터 설계, 실행과 점검까지<br>한 흐름으로 이어집니다</p></section>
   <section class="mq" aria-hidden="true"><div class="mq-row"><div class="mq-track"><span><i></i>1단계 고객과의 관계 정립</span><span><i></i>2단계 재무목표 · 자료 수집</span><span><i></i>3단계 재무상태 분석 · 평가</span><span><i></i>4단계 재무설계안 수립 · 제시</span><span><i></i>5단계 재무설계안 실행</span><span><i></i>6단계 점검 · 리밸런싱</span><span><i></i>1단계 고객과의 관계 정립</span><span><i></i>2단계 재무목표 · 자료 수집</span><span><i></i>3단계 재무상태 분석 · 평가</span><span><i></i>4단계 재무설계안 수립 · 제시</span><span><i></i>5단계 재무설계안 실행</span><span><i></i>6단계 점검 · 리밸런싱</span></div></div><div class="mq-row r"><div class="mq-track"><span><i></i>판단 근거 · 관련 법령</span><span><i></i>단계별 고객 실행 과제</span><span><i></i>안정안 · 균형안 · 가속안</span><span><i></i>AI 활용 프롬프트</span><span><i></i>날짜별 실행 캘린더</span><span><i></i>6단계 재무설계 보고서</span><span><i></i>판단 근거 · 관련 법령</span><span><i></i>단계별 고객 실행 과제</span><span><i></i>안정안 · 균형안 · 가속안</span><span><i></i>AI 활용 프롬프트</span><span><i></i>날짜별 실행 캘린더</span><span><i></i>6단계 재무설계 보고서</span></div></div></section>
@@ -2249,7 +2328,7 @@ html:not(.dark) #monList .in:focus,html:not(.dark) #monthList .in:focus{border-c
     <div class="wv-box" id="wvBox"><canvas id="wvCv" aria-hidden="true"></canvas></div>
   </section>
   <div class="dash-head"><span class="feat-eye">AI SCORE</span><h2>AI가 매긴<br>재무건강 점수</h2><p class="dash-lead">예시 고객의 지금 점수와 설계안대로 실행했을 때의 점수입니다. 내 정보를 넣으면 3단계 분석·평가에서 내 점수와 진단을 볼 수 있습니다</p></div>
-  <div class="card dscore" id="dScore"></div>
+  <div class="ds-wrap"><div class="ds-glow" aria-hidden="true"><i></i><i></i><i></i></div><div class="card dscore" id="dScore"></div></div>
   <div class="ov-cta"><div><b>내 숫자로 직접 해 보세요</b><p>소득·지출·자산·목표를 입력하면 진단, AI 평가, 설계안이 모두 내 기준으로 다시 계산됩니다</p></div><div class="btns"><a class="btn primary" href="#s2">내 정보 입력 바로 가기</a><a class="btn" href="#s3">분석·평가 결과 보기</a></div></div>
 </section>
 
@@ -2470,8 +2549,8 @@ html:not(.dark) #monList .in:focus,html:not(.dark) #monthList .in:focus{border-c
 <section class="view" id="v-s6">
   <div class="vhead"><div class="eyebrow">6단계 · 매달 점검하고 고치기</div><h1>점검과 리밸런싱</h1><p>계획과 실제가 달라지는 순간을 포착하고, 어느 단계로 돌아가 무엇을 고칠지 안내합니다.</p></div>
   <div class="grid g2">
-    <div class="card"><div class="ch"><div><h3>월간 점검판</h3><p class="sub">회색 칸을 눌러 이번 달 실제 금액을 바꾸면 계획과 바로 비교합니다</p></div></div><div class="mpre"><span>눌러 보세요</span><button type="button" data-mp='{"actVar":130}'>변동지출 초과</button><button type="button" data-mp='{"actFixed":135}'>고정지출 증가</button><button type="button" data-mp='{"actSave":90}'>저축 덜 함</button><button type="button" data-mp='{"actIncome":360}'>성과급 받음</button><button type="button" data-mp='{"actIncome":310,"actFixed":114,"actVar":95,"actSave":131}'>계획대로</button></div><div class="list" id="monthList"></div><div id="monthNote" style="margin-top:14px"></div></div>
-    <div class="card"><div class="ch"><div><h3>현재 상황</h3><p class="sub">버튼을 누르거나 칸의 숫자를 바꾸면, 아래 매트릭스가 대응이 필요한 항목을 바로 알려 줍니다</p></div></div><div class="mpre"><span>눌러 보세요</span><button type="button" data-mp='{"drop":20}'>주가 20% 하락</button><button type="button" data-mp='{"isaDev":12}'>ISA 비중 12%p 벗어남</button><button type="button" data-mp='{"raise":10}'>월급 10% 인상</button><button type="button" data-mp='{"cma":500}'>비상금 500만 사용</button><button type="button" data-mp='{"yearend":"true"}'>연말정산 환급</button><button type="button" data-mp='{"housing":"true"}'>전세 만기</button><button type="button" data-mp='{"elapsed":12}'>1년 지남</button><button type="button" data-mp='{"cma":1000,"isaDev":4,"drop":0,"raise":0,"elapsed":0,"yearend":"false","housing":"false"}'>처음 상태로</button></div><div class="list" id="monList"></div></div>
+    <div class="card"><div class="ch"><div><h3>월간 점검판</h3><p class="sub">회색 칸을 눌러 이번 달 실제 금액을 바꾸면 계획과 바로 비교합니다</p></div></div><div class="mpre"><button type="button" data-mp='{"actVar":130}'>변동지출 초과</button><button type="button" data-mp='{"actFixed":135}'>고정지출 증가</button><button type="button" data-mp='{"actSave":90}'>저축 덜 함</button><button type="button" data-mp='{"actIncome":360}'>성과급 받음</button><button type="button" data-mp='{"actIncome":310,"actFixed":114,"actVar":95,"actSave":131}'>계획대로</button></div><div class="list" id="monthList"></div><div id="monthNote" style="margin-top:14px"></div></div>
+    <div class="card"><div class="ch"><div><h3>현재 상황</h3><p class="sub">버튼을 누르거나 칸의 숫자를 바꾸면, 아래 매트릭스가 대응이 필요한 항목을 바로 알려 줍니다</p></div></div><div class="mpre"><button type="button" data-mp='{"drop":20}'>주가 20% 하락</button><button type="button" data-mp='{"isaDev":12}'>ISA 비중 12%p 벗어남</button><button type="button" data-mp='{"raise":10}'>월급 10% 인상</button><button type="button" data-mp='{"cma":500}'>비상금 500만 사용</button><button type="button" data-mp='{"yearend":"true"}'>연말정산 환급</button><button type="button" data-mp='{"housing":"true"}'>전세 만기</button><button type="button" data-mp='{"elapsed":12}'>1년 지남</button><button type="button" data-mp='{"cma":1000,"isaDev":4,"drop":0,"raise":0,"elapsed":0,"yearend":"false","housing":"false"}'>처음 상태로</button></div><div class="list" id="monList"></div></div>
   </div>
   <div class="card"><div class="ch"><div><h3>트리거 기반 리밸런싱 매트릭스</h3><p class="sub">주황색은 지금 조건이 충족되어 대응이 필요한 항목입니다</p></div><span class="pill" id="trigPill"></span></div><div id="trigList"></div></div>
   <div class="card">
@@ -3304,7 +3383,7 @@ const BC=new Proxy({},{get:()=>["rgba(49,130,246,.42)","rgba(116,185,255,.20)"]}
 const SS=["관계","목표","분석","설계","실행","점검"];const SN=["관계 정립","목표·자료 수집","분석·평가","설계안 수립","실행·캘린더","점검·리밸런싱"];
 function buildBanners(){["s1","s2","s3","s4","s5","s6"].forEach(v=>{const h=document.querySelector("#v-"+v+" .vhead");if(!h||h.classList.contains("phead"))return;h.classList.add("phead");h.insertAdjacentHTML("afterbegin",`<div class="paur" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>`);
   const n=+v.slice(1),e=h.querySelector(".eyebrow");if(e)e.outerHTML=`<nav class="crumb" aria-label="현재 위치"><a href="#home">재무설계 6단계</a><i></i><span>${n}단계</span><i></i><b>${SN[n-1]}</b></nav>`;
-  h.insertAdjacentHTML("beforeend",`<div class="pside"><span class="pnum">${String(n).padStart(2,"0")}</span><div class="pbars" aria-hidden="true">${SN.map((t,k)=>`<i class="${k<n?"on":""}"></i>`).join("")}</div><small>6단계 중 ${n}단계</small><div class="pnav">${n>1?`<a href="#s${n-1}">이전 단계</a>`:`<a href="#home">개요</a>`}${n<6?`<a class="nx" href="#s${n+1}">다음 · ${SN[n]}</a>`:`<a class="nx" href="#report">보고서 보기</a>`}</div></div>`)})}
+  h.insertAdjacentHTML("beforeend",`<div class="pside"><span class="pnum">${String(n).padStart(2,"0")}</span><div class="pbars" aria-hidden="true">${SN.map((t,k)=>`<i class="${k<n?"on":""}"></i>`).join("")}</div><small>6단계 중 ${n}단계</small><div class="pnav">${n>1?`<a href="#s${n-1}">이전 단계</a>`:`<a href="#home">개요</a>`}${n<6?`<a class="nx" href="#s${n+1}">다음 단계</a>`:`<a class="nx" href="#report">보고서 보기</a>`}</div></div>`)})}
 buildBanners();
 let rafP=0,lastE=null;
 document.addEventListener("pointermove",e=>{lastE=e;if(rafP)return;rafP=requestAnimationFrame(()=>{rafP=0;const ev=lastE,el=ev.target&&ev.target.closest&&ev.target.closest(".card,.kpi,.node,.summary>div,.feat");
@@ -3422,13 +3501,22 @@ function route(){let v=(location.hash||"").slice(1);if(!VIEWS.includes(v))v="hom
   if(changed)window.scrollTo(0,0);
   flushCharts();renderCoach();reveal();if(v==="home"){hxScroll();window.__hxDraw&&window.__hxDraw()}if(changed||!route.did){route.did=1;countUp($("#v-"+v))}}
 window.addEventListener("hashchange",route);
-/* v60 aurora follows mouse */
-(function(){const a=$("#hxVis.aur"),hx=$("#hx");if(!a||!hx)return;let tx=0,ty=0,x=0,y=0,raf=0;const loop=()=>{x+=(tx-x)*.06;y+=(ty-y)*.06;a.style.setProperty("--mx",x.toFixed(3));a.style.setProperty("--my",y.toFixed(3));raf=Math.abs(tx-x)+Math.abs(ty-y)>.002?requestAnimationFrame(loop):0};
-  hx.addEventListener("pointermove",e=>{const r=hx.getBoundingClientRect();tx=(e.clientX-r.left)/r.width*2-1;ty=(e.clientY-r.top)/r.height*2-1;if(!raf)raf=requestAnimationFrame(loop)});
-  hx.addEventListener("pointerleave",()=>{tx=0;ty=0;if(!raf)raf=requestAnimationFrame(loop)})})();
+/* v61 three beans gather */
+(function(){const a=$("#hxVis.tk3"),hx=$("#hx");if(!a||!hx)return;const os=[...a.children];const st=os.map(()=>({x:0,y:0}));let W=0,H=0,mx=null,my=null,t0=performance.now(),gather=1,g=0;
+  const size=()=>{W=a.clientWidth;H=a.clientHeight};size();
+  hx.addEventListener("pointermove",e=>{const r=a.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top});
+  hx.addEventListener("pointerleave",()=>{mx=null;my=null});
+  const red=matchMedia("(prefers-reduced-motion:reduce)").matches;
+  const loop=now=>{size();if(!W){requestAnimationFrame(loop);return}if(!st.ok){st.ok=1;os.forEach((o,k)=>{st[k].x=W*.72+Math.cos(k*2.1)*W*.3;st[k].y=H*.5+Math.sin(k*2.1)*H*.4})}const t=(now-t0)/1000;const cx0=W>900?W*.72:W*.5,cy0=W>900?H*.48:H*.78;const wantG=mx===null?(0.5+0.5*Math.sin(t*.35)):1;g+=(wantG-g)*.03;
+    const cx=mx===null?cx0:cx0+(mx-cx0)*.55,cy=my===null?cy0:cy0+(my-cy0)*.55;const spread=(W>900?W*.2:W*.32)*(1-g)+(W>900?70:40)*g;
+    os.forEach((o,k)=>{const ang=k*2.094+t*.25+(1-g)*Math.sin(t*.5+k);const tx=cx+Math.cos(ang)*spread,ty=cy+Math.sin(ang)*spread*.8;const s2=st[k];s2.x+=(tx-s2.x)*(red?1:.06);s2.y+=(ty-s2.y)*(red?1:.06);o.style.transform=`translate(${s2.x.toFixed(1)}px,${s2.y.toFixed(1)}px)`});
+    if(!red)requestAnimationFrame(loop)};
+  os.forEach((o,k)=>{st[k].x=W*.72+Math.cos(k*2.1)*W*.3;st[k].y=H*.5+Math.sin(k*2.1)*H*.4});requestAnimationFrame(loop)})();
+/* close mega menu after a click */
+(function(){const g=$("#gnb");if(!g)return;g.addEventListener("click",e=>{if(e.target.closest(".gmega a,.gmega button,.gmenu a")){g.classList.add("gx")}});g.addEventListener("mouseleave",()=>g.classList.remove("gx"))})();
 
 /* v59 dark gnb over hero */
-(function(){const g=$("#gnb");if(!g)return;const f=()=>{const hx=$("#hx");const ph=document.querySelector("#v-"+curView+" .vhead.phead");g.classList.toggle("dk",(curView==="home"&&hx&&hx.getBoundingClientRect().bottom>64)||curView==="basis"||!!(ph&&ph.getBoundingClientRect().bottom>64))};addEventListener("scroll",f,{passive:true});addEventListener("hashchange",()=>setTimeout(f,30));setTimeout(f,50)})();
+(function(){const g=$("#gnb");if(!g)return;const f=()=>{const hx=$("#hx");const ph=document.querySelector("#v-"+curView+" .vhead.phead");g.classList.toggle("dk",curView==="home"||curView==="basis"||(curView==="s5"&&!!(ph&&ph.getBoundingClientRect().bottom>64)));document.body.classList.toggle("hpg",curView==="home");document.body.classList.toggle("wpg",/^s[12346]$/.test(curView))};addEventListener("scroll",f,{passive:true});addEventListener("hashchange",()=>setTimeout(f,30));setTimeout(f,50)})();
 
 /* v59 monitor presets */
 document.addEventListener("click",e=>{const b=e.target.closest("[data-mp]");if(!b)return;const o=JSON.parse(b.dataset.mp);Object.assign(S.mon,o);save();renderInputs();update();
@@ -3466,7 +3554,7 @@ renderInputs();update();route();
       b.addEventListener("mouseenter",()=>{const r=b.getBoundingClientRect();tip.textContent=name;tip.style.top=(r.top+r.height/2-14)+"px";tip.classList.add("show")});
       b.addEventListener("mouseleave",()=>tip.classList.remove("show"));
       b.addEventListener("click",()=>{scrollTo({top:el.getBoundingClientRect().top+scrollY-88,behavior:"smooth"})});rail.appendChild(b)});btns=[...rail.children];tick()};
-  const tick=()=>{if(vw()!==cur)return build();rail.classList.toggle("show",els.length>2&&scrollY>40);let k=0;els.forEach(([el],i)=>{if(el.getBoundingClientRect().top<innerHeight*.45)k=i});btns.forEach((b,i)=>b.classList.toggle("on",i===k))};
+  const tick=()=>{if(vw()!==cur)return build();rail.classList.toggle("show",els.length>2&&scrollY>40);let k=0;els.forEach(([el],i)=>{if(el.getBoundingClientRect().top<innerHeight*.45)k=i});if(k!==rail._k){rail._k=k;rail.classList.add("flash");clearTimeout(rail._t);rail._t=setTimeout(()=>rail.classList.remove("flash"),1400)}btns.forEach((b,i)=>{const d=Math.abs(i-k);b.classList.toggle("on",i===k);b.style.setProperty("--fw",(i===k?56:Math.max(14,46-d*8))+"px");b.style.setProperty("--fo",i===k?1:Math.max(.22,.55-d*.08))})};
   addEventListener("scroll",tick,{passive:true});addEventListener("hashchange",()=>setTimeout(build,120));addEventListener("resize",()=>setTimeout(build,200));setTimeout(build,400)})();
 </script>
 
