@@ -2288,6 +2288,111 @@ body.wpg .view .vhead.phead{margin-bottom:8px!important}
 
 .gnb{transition:background-color .6s ease,border-color .6s ease,box-shadow .6s ease!important}.gnb .gl,.gnb .logo,.gnb .gt{transition:color .6s ease,background-color .6s ease!important}
 .md-n:empty{border-color:transparent!important}
+/* v61 join CTA (Toss careers style) */
+.jc{--p:0;--mx:50%;--my:60%;position:relative;isolation:isolate;overflow:hidden;margin:56px calc(50% - 50vw) 0;padding:150px 24px 140px;background:#000;color:#fff;text-align:center}
+.jc-orbs{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.jc-orbs i{position:absolute;left:var(--mx);top:var(--my);width:min(56vw,620px);aspect-ratio:1;border-radius:50%;filter:blur(70px);opacity:calc(.25 + var(--p)*.55);mix-blend-mode:screen;transition:left 1.2s cubic-bezier(.16,1,.3,1),top 1.2s cubic-bezier(.16,1,.3,1)}
+.jc-orbs i:nth-child(1){background:radial-gradient(closest-side,#3182f6,transparent);transform:translate(calc(-50% - (1 - var(--p))*42vw),calc(-50% + (1 - var(--p))*10vh))}
+.jc-orbs i:nth-child(2){background:radial-gradient(closest-side,#8b6cff,transparent);transform:translate(-50%,calc(-50% - (1 - var(--p))*30vh))}
+.jc-orbs i:nth-child(3){background:radial-gradient(closest-side,#19c3b1,transparent);transform:translate(calc(-50% + (1 - var(--p))*42vw),calc(-50% + (1 - var(--p))*10vh))}
+.jc-mq{position:absolute;left:0;right:0;top:50%;z-index:-1;transform:translateY(-50%);overflow:hidden;pointer-events:none;opacity:.5}
+.jc-mq div{display:flex;gap:64px;width:max-content;animation:jcmq 40s linear infinite}
+.jc-mq span{font-size:clamp(70px,11vw,170px);font-weight:900;letter-spacing:-.05em;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.09)}
+@keyframes jcmq{to{transform:translateX(-50%)}}
+.jc-in{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px;max-width:880px;margin:0 auto;transform:scale(calc(.88 + var(--p)*.12));opacity:calc(.2 + var(--p)*.8)}
+.jc h2{margin:0;font-size:clamp(38px,6.4vw,84px);font-weight:800;line-height:1.14;letter-spacing:-.05em;color:#fff;text-wrap:balance}
+.jc h2 em{font-style:normal;background:linear-gradient(90deg,#74b9ff,#a99bff,#5fe0cf);-webkit-background-clip:text;background-clip:text;color:transparent}
+.jc p{margin:0;max-width:44ch;font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:rgba(255,255,255,.66)}
+.jc-btn{display:inline-flex;align-items:center;gap:14px;margin-top:18px;padding:10px 10px 10px 32px;border-radius:999px;background:#fff;color:#111;font-size:19px;font-weight:800;letter-spacing:-.02em;text-decoration:none;box-shadow:0 0 0 0 rgba(139,108,255,.0),0 20px 60px -10px rgba(116,140,255,.55);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s}
+.jc-btn i{position:relative;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#3182f6,#8b6cff 55%,#19c3b1);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.jc-btn i:before{content:"";position:absolute;left:14px;top:23px;width:18px;height:2px;background:#fff;border-radius:2px}
+.jc-btn i:after{content:"";position:absolute;left:23px;top:18px;width:9px;height:9px;border-top:2px solid #fff;border-right:2px solid #fff;transform:rotate(45deg)}
+.jc-btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 0 0 8px rgba(255,255,255,.08),0 28px 70px -10px rgba(116,140,255,.75)}
+.jc-btn:hover i{transform:rotate(-45deg)}
+.jc-ok{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;margin:14px 0 0;padding:0;list-style:none;font-size:14px;color:rgba(255,255,255,.55)}
+.jc-ok li{display:flex;align-items:center;gap:8px}
+.jc-ok li:before{content:"";width:7px;height:7px;border-radius:50%;background:#5fe0cf}
+@media (max-width:720px){.jc{margin-top:36px;padding:96px 20px 90px}.jc-btn{font-size:17px;padding-left:24px}.jc-btn i{width:42px;height:42px}.jc-btn i:before{left:12px;top:20px}.jc-btn i:after{left:20px;top:15.5px}.jc-ok{flex-direction:column;align-items:center;gap:6px}}
+@media (prefers-reduced-motion:reduce){.jc-mq div{animation:none}}
+/* v61 shorter feature cards */
+#v-home .feat-sec .fp{padding:22px 40px;gap:36px}
+#v-home .fp .mk{padding:16px 18px;width:min(100%,400px)}
+#v-home .fp .mk-h{margin-bottom:6px}
+#v-home .fp .mk-rows>div{padding:7px 0;font-size:13.5px}
+#v-home .fp .mk-ringwrap{margin-top:8px;padding:10px 12px}
+#v-home .fp .mk-ringwrap .fv-ring{width:58px;height:58px}
+#v-home .fp-txt h3{margin:12px 0 10px}
+#v-home .fp-txt p{font-size:15px;line-height:1.65}
+@media (max-width:720px){#v-home .feat-sec .fp{padding:20px 18px;gap:18px}}
+/* v61 goal source label */
+.gsrc-h{margin-left:6px;font-size:12.5px;font-weight:500;color:#8b95a1}
+
+/* v62 Toss-ads style overview */
+#v-home .feat-head,#v-home .dash-head{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:48px;row-gap:22px;align-items:start;text-align:left!important;justify-items:start}
+#v-home .feat-head .feat-eye,#v-home .dash-head .feat-eye{grid-column:1/-1;display:inline-flex;align-items:center;gap:12px;background:none!important;-webkit-text-fill-color:#a1a1aa!important;color:#a1a1aa!important;font-size:15px;font-weight:600;letter-spacing:0}
+#v-home .feat-head .feat-eye:before,#v-home .dash-head .feat-eye:before{content:"";width:14px;height:14px;border-radius:50%;background:#a1a1aa}
+#v-home .feat-head h2,#v-home .dash-head h2{grid-column:1;margin:0!important;font-size:clamp(30px,3.4vw,46px)!important;line-height:1.25!important;text-align:left!important}
+#v-home .feat-head p,#v-home .dash-head p{grid-column:2;margin:6px 0 0!important;max-width:44ch!important;font-size:clamp(15px,1.3vw,18px)!important;line-height:1.75!important;color:#9b9ba3!important;text-align:left!important}
+@media (max-width:760px){#v-home .feat-head,#v-home .dash-head{grid-template-columns:minmax(0,1fr)}#v-home .feat-head p,#v-home .dash-head p{grid-column:1;margin:0!important}}
+#v-home .fps.acc{gap:0;margin-top:44px;border-top:1px solid rgba(255,255,255,.12)}
+#v-home .fps.acc .fp,#v-home .fps.acc .fp.rev{display:grid!important;grid-template-columns:minmax(0,1fr);gap:0;min-height:0;padding:30px 0!important;border:0!important;border-bottom:1px solid rgba(255,255,255,.12)!important;border-radius:0!important;background:none!important;box-shadow:none!important;transform:none!important;opacity:1!important;filter:none!important;overflow:visible}
+#v-home .fps.acc .fp:before,#v-home .fps.acc .fp:after{display:none!important}
+#v-home .fps.acc .fp.shown:hover{transform:none!important;box-shadow:none!important}
+#v-home .fps.acc .fp-txt{transform:none!important;opacity:1!important;display:flex;flex-direction:column;align-items:flex-start}
+#v-home .fps.acc .fp-tag,#v-home .fps.acc .fp-txt h3{display:none!important}
+#v-home .fps.acc .fp-txt>p,#v-home .fps.acc .fp-go,#v-home .fps.acc .fp-vis{display:none}
+.fa-t{display:flex;flex-direction:column;align-items:flex-start;gap:10px;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer;color:rgba(255,255,255,.26);font:inherit;transition:color .3s}
+.fa-t span{font-size:clamp(24px,2.6vw,36px);font-weight:800;letter-spacing:-.04em;line-height:1.3}
+.fa-t small{display:none;font-size:14px;font-weight:600;color:#8b8b94}
+.fa-t:hover{color:rgba(255,255,255,.55)}
+#v-home .fps.acc .fp.on{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);column-gap:56px;align-items:center;padding:44px 0!important}
+#v-home .fps.acc .fp.on .fp-vis{order:2!important}
+#v-home .fps.acc .fp.on .fa-t{color:#fff;cursor:default}
+#v-home .fps.acc .fp.on .fa-t small{display:block}
+#v-home .fps.acc .fp.on .fp-txt>p{display:block;margin:22px 0 0;font-size:clamp(15px,1.3vw,18px)!important;line-height:1.8!important;color:#a1a1aa!important;max-width:42ch;animation:faIn .6s cubic-bezier(.16,1,.3,1) both .05s}
+#v-home .fps.acc .fp.on .fp-go{display:inline-flex;margin-top:28px;animation:faIn .6s cubic-bezier(.16,1,.3,1) both .12s}
+#v-home .fps.acc .fp.on .fp-vis{display:grid!important;place-items:center;min-height:400px;padding:40px 32px;border-radius:36px;background:radial-gradient(70% 70% at 50% 110%,var(--fpc),transparent 70%),#1c1c1f;overflow:hidden;transform:none!important;opacity:1!important;animation:faIn .7s cubic-bezier(.16,1,.3,1) both}
+#v-home .fps.acc .fp.on .fp-vis:before{display:none}
+@keyframes faIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media (max-width:860px){#v-home .fps.acc .fp.on{grid-template-columns:minmax(0,1fr);row-gap:24px;padding:30px 0!important}#v-home .fps.acc .fp.on .fp-vis{min-height:0;padding:28px 18px;border-radius:26px}}
+@media (prefers-reduced-motion:reduce){#v-home .fps.acc .fp.on .fp-vis,#v-home .fps.acc .fp.on .fp-txt>p,#v-home .fps.acc .fp.on .fp-go{animation:none}}
+/* v62 step 1 */
+.r1-steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin:6px 0 0;padding:0;list-style:none}
+.r1-steps li{display:flex;flex-direction:column;gap:6px;padding:18px 16px;border-radius:16px;background:#f5f7fa;min-width:0}
+.r1-steps li span{display:inline-grid;place-items:center;width:34px;height:26px;border:1px solid #e5e8eb;border-radius:8px;background:#fff;color:#8b95a1;font-size:13px;font-weight:700}
+.r1-steps li b{font-size:16px;letter-spacing:-.02em;color:#191f28}
+.r1-steps li small{font-size:13px;color:#8b95a1;line-height:1.5}
+.r1-steps li.on{background:#191f28}
+.r1-steps li.on span{background:transparent;border-color:rgba(255,255,255,.3);color:#fff}
+.r1-steps li.on b{color:#fff}.r1-steps li.on small{color:rgba(255,255,255,.65)}
+@media (max-width:1000px){.r1-steps{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:560px){.r1-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.r1-list{display:flex;flex-direction:column;margin:0;padding:0;list-style:none}
+.r1-list li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:14px;padding:16px 0;border-top:1px solid #f2f4f6}
+.r1-list li:first-child{border-top:0;padding-top:4px}
+.r1-list b{font-size:16px;color:#191f28;letter-spacing:-.02em}
+.r1-list p{margin:4px 0 0;font-size:14px;color:#6b7684;line-height:1.6}
+.r1-list i{position:relative;width:24px;height:24px;border-radius:50%;margin-top:1px}
+.r1-list i.ok{background:linear-gradient(135deg,#74b9ff,#3182f6)}
+.r1-list i.ok:after{content:"";position:absolute;left:8.5px;top:5px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.r1-list i.no{background:#f2f4f6}
+.r1-list i.no:before,.r1-list i.no:after{content:"";position:absolute;left:6px;top:11px;width:12px;height:2px;border-radius:2px;background:#8b95a1;transform:rotate(45deg)}
+.r1-list i.no:after{transform:rotate(-45deg)}
+.r1-who{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.r1-who>div{display:flex;flex-direction:column;gap:8px;padding:22px;border-radius:18px;background:#f5f7fa;min-width:0}
+.r1-who b{font-size:17px;color:#191f28}
+.r1-who p{margin:0;font-size:14px;color:#4e5968;line-height:1.65}
+.r1-ic{display:inline-grid;place-items:center;align-self:flex-start;min-width:44px;height:28px;padding:0 10px;border-radius:999px;font-size:12.5px;font-weight:800;color:#fff}
+.r1-ic.c1{background:#3182f6}.r1-ic.c2{background:#8b6cff}.r1-ic.c3{background:#19c3b1}
+.r1-q{margin:14px 0 0;padding:16px 18px;border-radius:14px;border:1px solid #e5e8eb;font-size:14px;color:#4e5968;line-height:1.7}
+.r1-q b{display:block;margin-bottom:4px;color:#191f28}
+@media (max-width:760px){.r1-who{grid-template-columns:minmax(0,1fr)}}
+
+/* v62 marquee colours */
+#v-home .mq-row:not(.r) .mq-track span{font-size:clamp(18px,1.8vw,25px)!important;color:rgba(255,255,255,.8)!important}
+#v-home .mq-row.r .mq-track span{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#5b9bff!important;-webkit-text-fill-color:#5b9bff!important;font-weight:600;font-size:clamp(16px,1.6vw,22px)!important}
+@media (max-width:900px){#v-home .mq-row:not(.r) .mq-track span{font-size:16px!important}#v-home .mq-row.r .mq-track span{font-size:14.5px!important}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -2427,46 +2532,58 @@ body.wpg .view .vhead.phead{margin-bottom:8px!important}
   </section>
   <div class="dash-head"><span class="feat-eye">AI SCORE</span><h2>AI가 매긴<br>재무건강 점수</h2><p class="dash-lead">예시 고객의 지금 점수와 설계안대로 실행했을 때의 점수입니다. 내 정보를 넣으면 3단계 분석·평가에서 내 점수와 진단을 볼 수 있습니다</p></div>
   <div class="ds-wrap"><div class="ds-glow" aria-hidden="true"><i></i><i></i><i></i></div><div class="card dscore" id="dScore"></div></div>
+  <section class="jc" id="jc" aria-labelledby="jcT"><div class="jc-orbs" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="jc-mq" aria-hidden="true"><div><span>관계 정립</span><span>목표·자료 수집</span><span>분석·평가</span><span>설계안 수립</span><span>설계안 실행</span><span>점검·리밸런싱</span><span>관계 정립</span><span>목표·자료 수집</span><span>분석·평가</span><span>설계안 수립</span><span>설계안 실행</span><span>점검·리밸런싱</span></div></div>
+    <div class="jc-in"><span class="feat-eye">YOUR TURN</span><h2 id="jcT">이제 <em>내 숫자</em>로<br>점수를 받아 보세요</h2><p>소득·지출·자산·목표를 넣는 순간, 진단과 AI 평가와 설계안이 모두 내 기준으로 다시 계산됩니다.</p>
+    <a class="jc-btn" href="#s2"><span>내 정보로 점수 받기</span><i aria-hidden="true"></i></a>
+    <ul class="jc-ok"><li>회원가입 없이 바로</li><li>입력한 값은 내 브라우저에만 저장</li><li>언제든 예시로 되돌리기</li></ul></div></section>
   <div class="ov-cta"><div><b>내 숫자로 직접 해 보세요</b><p>소득·지출·자산·목표를 입력하면 진단, AI 평가, 설계안이 모두 내 기준으로 다시 계산됩니다</p></div><div class="btns"><a class="btn primary" href="#s2">내 정보 입력 바로 가기</a><a class="btn" href="#s3">분석·평가 결과 보기</a></div></div>
 </section>
 
 <!-- STEP 1 -->
 <section class="view" id="v-s1">
-  <div class="vhead"><div class="eyebrow">1단계 · 상담 약속 정하기</div><h1>고객과의 관계 정립</h1><p>AI가 대신 결정하지 않도록, 상담의 범위와 역할, 책임을 먼저 합의합니다.</p></div>
-  <div class="grid g4">
-    <div class="card hover"><span class="pill info">포함</span><h3 style="margin-top:12px;font-size:17px">재무목표</h3><p class="sub" style="color:var(--ink-2);font-size:13.5px;margin-top:4px">비상예비자금 · 전세 보증금 · 청약 시드머니 · 노후 계좌</p></div>
-    <div class="card hover"><span class="pill info">포함</span><h3 style="margin-top:12px;font-size:17px">분석 범위</h3><p class="sub" style="color:var(--ink-2);font-size:13.5px;margin-top:4px">현금흐름 · 자산부채 · 재무비율 · 세제 혜택 연계</p></div>
-    <div class="card hover"><span class="pill mute">중립</span><h3 style="margin-top:12px;font-size:17px">상품 수준</h3><p class="sub" style="color:var(--ink-2);font-size:13.5px;margin-top:4px">특정 종목 추천 없이 계좌 목적과 자산군 중심으로 설계</p></div>
-    <div class="card hover"><span class="pill good">보조</span><h3 style="margin-top:12px;font-size:17px">AI 역할</h3><p class="sub" style="color:var(--ink-2);font-size:13.5px;margin-top:4px">정리·계산·대안 생성·설명. 최종 선택은 고객과 설계사</p></div>
+  <div class="vhead"><div class="eyebrow">1단계 · 상담 약속 정하기</div><h1>시작하기 전에,<br>서로 약속부터 정해요</h1><p>재무설계의 첫 단계는 계산이 아니라 약속입니다. 무엇을 도와드리고 무엇은 하지 않는지, 누가 무엇을 맡는지 먼저 정하고 시작합니다.</p></div>
+  <div class="card r1-flow">
+    <div class="ch"><div><h3>상담은 이렇게 진행돼요</h3><p class="sub">지금은 6단계 중 첫 번째, 약속을 정하는 단계입니다</p></div></div>
+    <ol class="r1-steps">
+      <li class="on"><span>01</span><b>약속 정하기</b><small>도와드릴 범위와 역할을 정해요</small></li>
+      <li><span>02</span><b>내 정보 알려 주기</b><small>소득·지출·자산·목표를 적어요</small></li>
+      <li><span>03</span><b>지금 상태 진단</b><small>잘하는 점과 부족한 점을 봐요</small></li>
+      <li><span>04</span><b>설계안 받기</b><small>목표별로 돈을 나눠 담아요</small></li>
+      <li><span>05</span><b>실행하기</b><small>자동이체와 할 일을 챙겨요</small></li>
+      <li><span>06</span><b>정기 점검</b><small>상황이 바뀌면 다시 맞춰요</small></li>
+    </ol>
   </div>
   <div class="grid g2">
-    <div class="card">
-      <div class="ch"><div><h3>서비스 제공 범위</h3><p class="sub">무엇을 해 드리고, 무엇은 하지 않는지</p></div></div>
-      <div class="sublabel">포함</div>
-      <div class="list" style="margin-bottom:14px">
-        <div class="row"><span class="lbl">종합 재무상태 진단 (현금흐름표·자산부채표·재무비율)</span><span class="dot good"></span></div>
-        <div class="row"><span class="lbl">지출 구조 개선과 저축 여력 확보</span><span class="dot good"></span></div>
-        <div class="row"><span class="lbl">단기·중기·장기 목표별 4-Bucket 포트폴리오</span><span class="dot good"></span></div>
-        <div class="row"><span class="lbl">ISA·연금저축·청년 정책상품 세제 혜택 연계</span><span class="dot good"></span></div>
-      </div>
-      <div class="sublabel">제외</div>
-      <div class="list">
-        <div class="row"><span class="lbl">개별 주식·암호화폐 단기 매매 종목 추천</span><span class="dot bad"></span></div>
-        <div class="row"><span class="lbl">금융상품 판매·가입 대행, 세무 신고 대리</span><span class="dot bad"></span></div>
-      </div>
+    <div class="card r1-do">
+      <div class="ch"><div><h3>이 상담에서 해 드리는 것</h3><p class="sub">김민준님 같은 직장인의 돈 관리를 처음부터 끝까지</p></div></div>
+      <ul class="r1-list">
+        <li><i class="ok"></i><div><b>내 돈 흐름을 한 장으로 정리</b><p>매달 들어오고 나가는 돈, 가진 것과 갚을 것을 표로 보여 드려요</p></div></li>
+        <li><i class="ok"></i><div><b>새는 지출을 찾아 저축할 돈 만들기</b><p>줄일 수 있는 지출과 그만큼 늘어나는 저축액을 알려 드려요</p></div></li>
+        <li><i class="ok"></i><div><b>목표별로 통장 나누기</b><p>비상금, 전세 보증금, 내 집 마련, 노후 자금을 따로 모아요</p></div></li>
+        <li><i class="ok"></i><div><b>세금 혜택 챙기기</b><p>ISA, 연금저축, 청년도약계좌처럼 세금을 아끼는 통장을 연결해요</p></div></li>
+      </ul>
     </div>
-    <div class="card">
-      <div class="ch"><div><h3>Human-in-the-loop 원칙</h3><p class="sub">재무설계사의 설명 책임과 고객의 선택권을 남겨 둡니다</p></div></div>
-      <div class="callout" style="margin-bottom:16px">AI는 한 개의 정답을 내놓지 않습니다. 같은 데이터로 안정안·균형안·가속안을 만들고, 가정과 장단점을 함께 보여 준 뒤 사람이 선택합니다.</div>
-      <div class="items">
-        <div class="item"><span class="num-badge">AI</span><div><b>정량 시뮬레이션</b><p>현금흐름, 재무비율, 복리 미래가치, 목표 달성률, 트리거 판정</p></div></div>
-        <div class="item"><span class="num-badge">FP</span><div><b>제도 검증과 최종 판단</b><p>현행 세법·정책 요건 확인, 행동재무학적 지침, 위험관리 보완</p></div></div>
-        <div class="item"><span class="num-badge">Q</span><div><b>AI 질문 예시</b><p id="s1q"></p></div></div>
-      </div>
+    <div class="card r1-dont">
+      <div class="ch"><div><h3>해 드리지 않는 것</h3><p class="sub">고객님께 불리할 수 있는 일은 처음부터 하지 않아요</p></div></div>
+      <ul class="r1-list">
+        <li><i class="no"></i><div><b>특정 주식·코인 종목 추천</b><p>"이 종목 사세요"가 아니라 어떤 통장에 얼마를 모을지를 설계해요</p></div></li>
+        <li><i class="no"></i><div><b>금융상품 판매나 가입 대행</b><p>상품을 팔아 수수료를 받지 않아요. 가입은 고객님이 직접 하세요</p></div></li>
+        <li><i class="no"></i><div><b>세금 신고 대행</b><p>연말정산이나 종합소득세 신고는 세무 전문가의 일이에요</p></div></li>
+      </ul>
     </div>
   </div>
   <div class="card">
-    <div class="ch"><div><h3>상담 합의 확인</h3><p class="sub">고객과 함께 확인한 항목을 눌러 체크하세요</p></div><span class="pill info" id="consentPill"></span></div>
+    <div class="ch"><div><h3>누가 무엇을 맡나요</h3><p class="sub">AI는 계산을 돕는 도구일 뿐, 결정은 사람이 합니다</p></div></div>
+    <div class="r1-who">
+      <div><span class="r1-ic c1">고객</span><b>고객님</b><p>정확한 정보를 알려 주시고, 여러 설계안 중 마음에 드는 것을 직접 고르세요. 실행도 고객님이 합니다.</p></div>
+      <div><span class="r1-ic c2">FP</span><b>재무설계사</b><p>세금 제도와 정책 조건이 맞는지 확인하고, 설계안을 쉽게 설명해 드립니다. 최종 검토 책임을 집니다.</p></div>
+      <div><span class="r1-ic c3">AI</span><b>AI 도구</b><p>빠진 값과 계산을 점검하고 안정·균형·가속 세 가지 안을 만들어요. 정답을 정하지는 않아요.</p></div>
+    </div>
+    <p class="r1-q" id="s1q"></p>
+  </div>
+  <div class="card">
+    <div class="ch"><div><h3>시작 전에 함께 확인해요</h3><p class="sub">읽어 보시고 동의하는 항목을 눌러 체크해 주세요</p></div><span class="pill info" id="consentPill"></span></div>
     <div id="consentList"></div>
   </div>
 </section>
@@ -2506,7 +2623,7 @@ body.wpg .view .vhead.phead{margin-bottom:8px!important}
     </div>
   </div>
   <div class="card">
-    <div class="ch"><div><h3><span class="stepn">04</span>우선순위별 재무목표</h3><p class="sub">목표마다 돈을 모을 계좌를 고르면, 설계안대로 저축했을 때 기한 안에 얼마가 모이고 언제 달성되는지 카드 아래에 바로 계산됩니다</p></div><button class="btn sm" type="button" id="addGoal">+ 목표 추가</button></div>
+    <div class="ch"><div><h3><span class="stepn">04</span>우선순위별 재무목표</h3><p class="sub">목표마다 그 돈을 어느 통장에서 모을지 누르면, 기한 안에 모이는지 카드 아래에 바로 알려 드려요</p></div><button class="btn sm" type="button" id="addGoal">+ 목표 추가</button></div>
     <div class="grid g2" id="goalList"></div>
   </div>
 </section>
@@ -2879,8 +2996,8 @@ function renderInputs(){
   $("#varList").innerHTML=ix.filter(([e])=>e.group!=="fixed").map(([e,i])=>exRow(e,i)).join("")+`<button class="addrow" type="button" data-add="variable">+ 변동지출 추가</button>`;
   $("#assetList").innerHTML=`<div class="row edit3 head"><span>자산</span><span>구분</span><span style="text-align:right">금액</span><span></span></div>`+S.assets.map((a,i)=>`<div class="row edit3">${ti(`assets.${i}.name`,a.name,"자산명","ghost","자산 이름 (예: 청약통장)")}${si(`assets.${i}.type`,a.type,Object.entries(TYPES),"구분")}${ni(`assets.${i}.amt`,a.amt,a.name)}<button class="del" type="button" data-del="assets.${i}" aria-label="삭제">×</button></div>`).join("")+`<button class="addrow" type="button" id="addAsset">+ 자산 추가</button>`;
   $("#debtList").innerHTML=(S.debts.length?S.debts.map((d,i)=>`<div class="goalcard"><div class="top2" style="grid-template-columns:minmax(0,1fr) 30px">${ti(`debts.${i}.name`,d.name,"부채명","ghost","부채 이름 (예: 학자금대출)")}<button class="del" type="button" data-del="debts.${i}" aria-label="삭제">×</button></div><div class="nums" style="grid-template-columns:repeat(4,minmax(0,1fr))">${fld("잔액",ni(`debts.${i}.bal`,d.bal,"잔액"))}${fld("월 상환",ni(`debts.${i}.pay`,d.pay,"월 상환"))}${fld("금리",ni(`debts.${i}.rate`,d.rate,"금리","%"))}${fld("잔여",ni(`debts.${i}.months`,d.months,"잔여","개월"))}</div></div>`).join(""):`<p class="note">부채가 없습니다.</p>`)+`<button class="btn sm" type="button" id="addDebt" style="align-self:flex-start">+ 부채 추가</button>`;
-  const srcOpts=[["cash","비상예비자금"]].concat(S.buckets.map(b=>[b.id,b.name])).concat([["rest","기존 투자자산"]]);
-  $("#goalList").innerHTML=S.goals.map((g,i)=>`<div class="goalcard"><div class="top2">${si(`goals.${i}.term`,g.term,[["단기","단기"],["중기","중기"],["장기","장기"],["은퇴","은퇴"]],"구분")}${ti(`goals.${i}.name`,g.name,"목표","","목표 이름 (예: 결혼자금)")}<button class="del" type="button" data-del="goals.${i}" aria-label="삭제">×</button></div><div class="nums">${fld("목표 금액",ni(`goals.${i}.amt`,g.amt,"목표 금액"))}${fld("기한",ni(`goals.${i}.months`,g.months,"기한","개월"))}</div><div class="field"><label>돈을 모을 계좌 (재원)</label><div class="chips">${srcOpts.map(([v,l])=>`<button type="button" class="chipbtn${(g.src||[]).includes(v)?" on":""}" data-src="${i}" data-v="${v}">${esc(l)}</button>`).join("")}</div></div><div class="gplan" id="gplan${i}"></div></div>`).join("");
+  const srcOpts=[["cash","지금 있는 비상금"]].concat(S.buckets.map(b=>[b.id,((b.product||b.name||"").split(" (")[0])+(n(b.pmt)>0?` · 월 ${fmt(n(b.pmt),n(b.pmt)%1?1:0)}만`:"")])).concat([["rest","지금 있는 투자금"]]);
+  $("#goalList").innerHTML=S.goals.map((g,i)=>`<div class="goalcard"><div class="top2">${si(`goals.${i}.term`,g.term,[["단기","단기"],["중기","중기"],["장기","장기"],["은퇴","은퇴"]],"구분")}${ti(`goals.${i}.name`,g.name,"목표","","목표 이름 (예: 결혼자금)")}<button class="del" type="button" data-del="goals.${i}" aria-label="삭제">×</button></div><div class="nums">${fld("목표 금액",ni(`goals.${i}.amt`,g.amt,"목표 금액"))}${fld("기한",ni(`goals.${i}.months`,g.months,"기한","개월"))}</div><div class="field"><label>이 목표에 쓸 돈 <small class="gsrc-h">여러 개 고를 수 있어요</small></label><div class="chips">${srcOpts.map(([v,l])=>`<button type="button" class="chipbtn${(g.src||[]).includes(v)?" on":""}" data-src="${i}" data-v="${v}">${esc(l)}</button>`).join("")}</div></div><div class="gplan" id="gplan${i}"></div></div>`).join("");
   // step4
   $("#cutList").innerHTML=`<div class="row edit3 head"><span>항목</span><span style="text-align:right">현재</span><span style="text-align:right">목표</span><span></span></div>`+S.expenses.map((e,i)=>`<div class="row edit3"><span class="lbl">${esc(e.name)}<small>${esc(e.note||"")}</small></span><span class="val">${fmt(n(e.amt))}</span>${ni(`expenses.${i}.target`,e.target,e.name+" 목표")}<span class="val" data-o="d-${e.id}" style="font-size:12.5px"></span></div>`).join("");
   const assetOpts=S.assets.filter(a=>a.type!=="liquid"&&a.type!=="use").map(a=>[a.id,a.name]);
@@ -2896,7 +3013,7 @@ function renderInputs(){
   if(!gopts.find(g=>g.id===S.gjGoal)&&gopts[0])S.gjGoal=gopts[0].id;
   renderConsent();
 }
-const CONSENT=[["d","가상 고객 데이터를 분석과 시뮬레이션에 활용하는 데 동의"],["r","기대수익률은 가정값이며 수익 보장이 아님을 확인"],["h","중요한 의사결정은 사람이 검토한 뒤 확정"],["p","재무 정보는 재무설계 목적 외에 사용하지 않음"],["c","정기 점검 주기(분기·연간)와 재설계 조건에 합의"]];
+const CONSENT=[["d","제가 알려 드린 정보로 상담과 계산을 진행하는 데 동의해요"],["r","예상 수익률은 가정일 뿐, 수익을 보장하지 않는다는 것을 알아요"],["h","중요한 결정은 설명을 듣고 제가 직접 내려요"],["p","제 재무 정보는 재무설계 외의 목적으로 쓰이지 않아요"],["c","분기마다 점검하고, 큰 변화가 생기면 다시 설계해요"]];
 let lastIssues=[],lastBeh=[],lastTax=[];
 function renderConsent(){const items=CONSENT;
   $("#consentList").innerHTML=items.map(([k,t])=>`<label class="check${S.consent[k]?" done":""}"><input type="checkbox" data-con="${k}"${S.consent[k]?" checked":""}><span>${t}</span><span class="when"></span></label>`).join("");
@@ -2970,14 +3087,14 @@ function updateCore(){
   {const sd=startDate(),ymd=m=>{const d=new Date(sd);d.setMonth(d.getMonth()+m);return d.getFullYear()+"년 "+(d.getMonth()+1)+"월"},bk=Object.fromEntries(c.buckets.map(b=>[b.id,b]));
    gRows.forEach((x,i)=>{const el=document.getElementById("gplan"+i);if(!el)return;const g=x.g,mo=n(g.months),src=g.src||[];
     const pays=src.filter(k=>bk[k]&&bk[k].pmt>0).map(k=>[bk[k].product||bk[k].name,bk[k].pmt]),mon=pays.reduce((a,p)=>a+p[1],0);
-    const parts=[];if(src.includes("cash"))parts.push(`비상예비자금 ${fmt(c.B.liquid)}만 원`);if(src.includes("rest"))parts.push("기존 투자자산");
+    const parts=[];if(src.includes("cash"))parts.push(`지금 있는 비상금 ${fmt(c.B.liquid)}만 원`);if(src.includes("rest"))parts.push("지금 있는 투자금");
     const how=(pays.length?`매달 ${pays.map(p=>`${esc(p[0])} <b>${fmt(p[1],p[1]%1?1:0)}만</b>`).join(" + ")} 원을 모으고`:"")+(parts.length?(pays.length?", ":"")+parts.join("·")+"을 함께 씁니다":pays.length?"":"");
-    if(!src.length){el.innerHTML=`<div class="gp-warn">아직 돈을 모을 계좌를 고르지 않았습니다. 위에서 계좌를 골라 주세요.</div>`;return}
-    if(x.amt<=0){el.innerHTML=`<div class="gp-head"><span class="pill info">꾸준히 쌓는 목표</span><b>${mlabel(mo)} 뒤 예상 ${won(x.v)}</b></div><p class="gp-txt">${how||"선택한 계좌로 적립합니다"}. 목표 금액 없이 기한까지 계속 쌓아 가는 목표로, ${ymd(mo)}에 약 <b>${won(x.v)}</b>이 모일 것으로 계산됩니다.</p>`;return}
+    if(!src.length){el.innerHTML=`<div class="gp-warn">아직 이 목표에 쓸 돈을 고르지 않았어요. 위에서 통장을 눌러 주세요.</div>`;return}
+    if(x.amt<=0){el.innerHTML=`<div class="gp-head"><span class="pill info">금액 없이 꾸준히</span><b>${mlabel(mo)} 뒤 약 ${won(x.v)}이 모여요</b></div><p class="gp-txt">${how||"선택한 계좌로 적립합니다"}. 목표 금액 없이 기한까지 계속 쌓아 가는 목표로, ${ymd(mo)}에 약 <b>${won(x.v)}</b>이 모일 것으로 계산됩니다.</p>`;return}
     const gap=Math.max(0,x.amt-x.v),need=mo>0?gap/mo:gap,ok=x.r>=100;
-    el.innerHTML=`<div class="gp-head"><span class="pill ${x.s}">${ok?"기한 내 달성":x.r>=80?"조금 부족":"부족"}</span><b>${ymd(mo)}까지 ${won(x.amt)} 중 ${won(Math.min(x.v,x.amt))} (${fmt(Math.min(x.r,999),0)}%)</b></div><div class="meter"><i class="${x.s}" style="width:${Math.min(100,x.r)}%"></i></div>
-    <dl class="gp-kv"><div><dt>매달 모으는 돈</dt><dd>${mon?fmt(mon,mon%1?1:0)+"만 원":src.includes("cash")?"보유 현금 사용":"-"}</dd></div><div><dt>예상 달성 시점</dt><dd>${x.reach===Infinity?"6년 안에 미달":x.reach==null?"-":x.reach===0?"지금 바로":ymd(x.reach)}</dd></div><div><dt>${ok?"여유":"부족한 금액"}</dt><dd>${ok?won(x.v-x.amt):won(gap)}</dd></div></dl>
-    <p class="gp-txt">${how}${how?". ":""}${ok?`설계안대로 저축하면 기한(${ymd(mo)})보다 ${x.reach!=null&&x.reach!==Infinity&&x.reach<mo?`${mo-x.reach}개월 빠른 <b>${ymd(x.reach)}</b>에`:"기한 안에"} 목표를 채웁니다.`:`기한까지 <b>${won(gap)}</b>이 모자랍니다. 매달 약 <b>${fmt(need,1)}만 원</b>을 더 넣거나${x.reach!==Infinity&&x.reach!=null?` 기한을 ${ymd(x.reach)}까지 ${x.reach-mo}개월 늘리면`:" 기한을 늘리면"} 채워집니다.`}</p>`});}
+    el.innerHTML=`<div class="gp-head"><span class="pill ${x.s}">${ok?"기한 안에 달성":x.r>=80?"조금 부족":"부족"}</span><b>${ok?`${ymd(mo)}까지 ${won(x.amt)}을 모을 수 있어요`:`${ymd(mo)}까지 ${won(x.amt)} 중 ${won(x.v)}만 모여요 (${fmt(x.r,0)}%)`}</b></div><div class="meter"><i class="${x.s}" style="width:${Math.min(100,x.r)}%"></i></div>
+    <dl class="gp-kv"><div><dt>매달 넣는 돈</dt><dd>${mon?fmt(mon,mon%1?1:0)+"만 원":src.includes("cash")?"없음 (비상금 사용)":"-"}</dd></div><div><dt>목표를 채우는 달</dt><dd>${x.reach===Infinity?"6년 안에 어려움":x.reach==null?"-":x.reach===0?"지금 이미 충분":ymd(x.reach)}</dd></div><div><dt>${ok?"기한에 남는 돈":"모자란 돈"}</dt><dd>${ok?won(x.v-x.amt):won(gap)}</dd></div></dl>
+    <p class="gp-txt">${how}${how?". ":""}${ok?(x.reach===0?`지금 가진 돈만으로 이미 목표 금액이 준비되어 있어요. 기한(${ymd(mo)})까지 그대로 지키면 됩니다.`:`설계안대로 저축하면 기한(${ymd(mo)})보다 ${x.reach!=null&&x.reach!==Infinity&&x.reach<mo?`${mo-x.reach}개월 빠른 <b>${ymd(x.reach)}</b>에`:"기한 안에"} 목표를 채웁니다.`):`기한까지 <b>${won(gap)}</b>이 모자랍니다. 매달 약 <b>${fmt(need,1)}만 원</b>을 더 넣거나${x.reach!==Infinity&&x.reach!=null?` 기한을 ${ymd(x.reach)}까지 ${x.reach-mo}개월 늘리면`:" 기한을 늘리면"} 채워집니다.`}</p>`});}
 
   // v56 customer dashboard
   {const p=S.profile,inc=c.sal+c.bonus,nm=esc(p.name||"고객"),C1=css("--c1"),C2=css("--c2"),C3=css("--c3"),C4=css("--c4"),C5=css("--c5");
@@ -3038,7 +3155,7 @@ function updateCore(){
   if(c.rNow.risk>30&&c.sellTotal>0)acts.push(["warn","고위험 자산 정리",`${fmt(c.sellTotal)}만 원 정리 후 목적별 계좌로 재배치`]);
   if(c.bucketSum>0)acts.push(["good","급여일 다음 날 자동이체",`매월 ${S.exec.moveday}일 ${c.buckets.filter(b=>b.pmt>0).length}개 계좌로 ${fmt(c.bucketSum)}만 원 선저축`]);
   $("#ovActions").innerHTML=acts.map(([s,a,b],i)=>`<div class="item" data-go="${/자동이체/.test(a)?"s5":"s4"}"><span class="num-badge">${String(i+1).padStart(2,"0")}</span><div><b>${a}</b><p>${b}</p></div></div>`).join("")||`<p class="note">값을 입력하면 우선순위가 표시됩니다.</p>`;
-  $("#s1q").textContent=`“${p.name||"고객"}님의 목표 중 반드시 지켜야 하는 것은 무엇인가요?” → 비상예비자금 ${won(n((S.goals[0]||{}).amt))}은 고정, 생활비 조정은 월 ${fmt(Math.max(0,c.exNow-sum(S.expenses,e=>e.target)))}만 원까지 가능.`;
+  $("#s1q").innerHTML=`<b>첫 상담에서 이런 걸 여쭤봐요</b> “${esc(p.name||"고객")}님, 꼭 지켜야 하는 목표는 무엇인가요?” 예를 들어 ${esc(p.name||"고객")}님은 비상금 ${won(n((S.goals[0]||{}).amt))}은 꼭 지키고, 생활비는 월 ${fmt(Math.max(0,c.exNow-sum(S.expenses,e=>e.target)))}만 원까지 줄일 수 있다고 하셨어요.`;
 
   // step2
   renderCompleteness(c);
@@ -3344,11 +3461,11 @@ function renderReport(c,P,gRows,acts){
     <h3>진단과 처방</h3><div class="rep-sum"><b>진단</b> ${weak.length?`${weak.map(k=>RN[k]).join(", ")} 지표가 위험 구간입니다.`:"주요 재무비율이 위험 구간을 벗어나 있습니다."}${p.concern?` 고객의 고민은 “${esc(p.concern)}”입니다.`:""}<br><b>처방</b> ${acts.map(([s,a],i)=>`${"①②③④⑤⑥"[i]} ${a}`).join("  ")||"값을 입력하면 처방이 표시됩니다."}<br><b>기대 효과</b> 매월 ${fmt(c.bucketSum)}만 원을 목적별 계좌에 먼저 저축해, 6년 뒤 금융자산 약 ${won(P72)}을 만듭니다.</div>
     <h3>보고서 구성</h3>${tbl(["단계","내용","핵심 결과"],[["1","관계 정립","서비스 범위 · 역할 · 합의 사항"],["2","목표 설정 · 자료 수집",`재무목표 ${S.goals.length}개 · 월 세후소득 ${fmt(c.sal)}만 원`],["3","분석 · 평가",`위험 지표 ${weak.length}개 · 순자산 ${fmt(c.net)}만 원`],["4","설계안 수립 · 제시",`${sc.name} · 월 ${fmt(c.bucketSum)}만 원 목적별 적립`],["5","실행",`실행 과제 ${it.length}건 · ${dstr(st0)} 시작`],["6","점검 · 리밸런싱",`트리거 ${T.length}개 · 분기 점검`]])}
     ${todo("가장 먼저 할 일",it.slice(0,3).map(x=>`<b>${dstr(x[3])}</b> ${esc(x[1])}`))}<div class="rep-foot">${nm}님 재무설계 보고서 · 개요 · ${ymd(today)} 작성 · 금액 단위 만 원</div></article>`;
-  const p1=page(1,"고객과의 관계 정립",`<p>재무설계는 목표와 책임의 범위를 먼저 합의하는 데서 시작합니다. 이 보고서는 AI 도구가 계산과 정리를 돕고, 최종 판단은 고객과 재무설계사가 내리는 방식으로 작성했습니다.</p>
-    <h3>서비스 범위</h3>${tbl(["구분","내용"],[["포함","종합 재무상태 진단 (현금흐름표 · 자산부채표 · 재무비율)"],["포함","지출 구조 개선과 저축 여력 확보"],["포함","단기 · 중기 · 장기 목표별 4-Bucket 포트폴리오"],["포함","ISA · 연금저축 · 청년 정책상품 세제 혜택 연계"],["제외","개별 주식 · 암호화폐 단기 매매 종목 추천"],["제외","금융상품 판매 · 가입 대행, 세무 신고 대리"]])}
-    <h3>역할 분담</h3>${tbl(["주체","맡는 일"],[["AI 도구","입력 누락 · 모순 점검, 재무비율 계산, 시나리오 3안 생성, 트리거 판정"],["재무설계사","세법 · 정책 요건 검증, 행동재무학적 해석, 설계안 설명과 최종 검토"],["고객","목표 우선순위 결정, 설계안 선택, 실행과 정기 점검"]])}
-    <h3>합의 사항</h3>${tbl(["확인","내용"],CONSENT.map(([k,x])=>[S.consent[k]?"☑":"☐",x]))}
-    ${todo("고객이 확인할 것",CONSENT.filter(([k])=>!S.consent[k]).map(([k,x])=>x).concat(["합의한 내용을 확인하고 마지막 장에 서명합니다."]))}`);
+  const p1=page(1,"고객과의 관계 정립",`<p>재무설계는 계산보다 약속이 먼저입니다. 이 장에는 상담에서 무엇을 도와드리고 무엇은 하지 않는지, 누가 어떤 일을 맡는지, 시작 전에 함께 확인한 내용을 정리했습니다.</p>
+    <h3>해 드리는 것과 하지 않는 것</h3>${tbl(["구분","내용"],[["해 드려요","매달 들어오고 나가는 돈, 가진 것과 갚을 것을 한 장으로 정리"],["해 드려요","새는 지출을 찾아 저축할 돈 만들기"],["해 드려요","비상금 · 전세 · 내 집 마련 · 노후처럼 목표별로 통장 나누기"],["해 드려요","ISA · 연금저축 · 청년도약계좌 같은 세금 혜택 통장 연결"],["하지 않아요","특정 주식 · 코인 종목 추천"],["하지 않아요","금융상품 판매 · 가입 대행, 세금 신고 대행"]])}
+    <h3>누가 무엇을 맡나요</h3>${tbl(["누가","맡는 일"],[["고객","정확한 정보 제공, 목표의 우선순위 결정, 설계안 선택과 실행"],["재무설계사","세금 제도와 정책 조건 확인, 설계안 설명, 최종 검토"],["AI 도구","빠진 값과 계산 점검, 안정 · 균형 · 가속 세 가지 안 만들기 (결정은 하지 않음)"]])}
+    <h3>시작 전에 함께 확인한 것</h3>${tbl(["확인","내용"],CONSENT.map(([k,x])=>[S.consent[k]?"☑":"☐",x]))}
+    ${todo("고객이 할 일",CONSENT.filter(([k])=>!S.consent[k]).map(([k,x])=>"확인하기: "+x).concat(["위 내용을 읽고 마지막 장에 서명합니다."]))}`);
   const prof=[["이름 (가명)",p.name],["만 나이",p.age?p.age+"세":""],["직업 · 경력",p.job],["가구 구성",p.household],["거주 형태",p.housing],["투자 성향",p.risk],["라이프사이클",p.stage],["연봉 (총급여)",n(p.annual)?fmt(n(p.annual))+"만 원":""],["무주택 세대주",p.homeless],["현재 저축",S.saving.note||""]];
   const pr=[];for(let i=0;i<prof.length;i+=2)pr.push([prof[i][0],esc(prof[i][1]),prof[i+1]?prof[i+1][0]:"",prof[i+1]?esc(prof[i+1][1]):""]);
   const p2=page(2,"재무목표 설정과 자료 수집",`<h3>고객 프로필</h3>${tbl(["항목","내용","항목","내용"],pr)}
@@ -3571,7 +3688,7 @@ function typeIt(el,sp){if(matchMedia("(prefers-reduced-motion: reduce)").matches
 const typeIO="IntersectionObserver" in window?new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){typeIO.unobserve(x.target);typeIt(x.target,48)}}),{rootMargin:"0px 0px -15% 0px"}):null;
 document.querySelectorAll("[data-type]").forEach(el=>typeIO&&!matchMedia("(prefers-reduced-motion: reduce)").matches?(el.classList.add("pre-type"),typeIO.observe(el)):0);
 const featIO="IntersectionObserver" in window?new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("shown")}else if(x.boundingClientRect.top>0){x.target.classList.remove("shown")}}),{rootMargin:"0px 0px -16% 0px"}):null;
-document.querySelectorAll(".fp").forEach(el=>{if(featIO){el.classList.add("rvp");featIO.observe(el)}else el.classList.add("shown")});
+document.querySelectorAll(".fp").forEach(el=>{if(!el.closest(".fps")&&featIO){el.classList.add("rvp");featIO.observe(el)}else el.classList.add("shown")});
 document.querySelectorAll(".feats>.feat").forEach((el,k)=>{if(!featIO)return;el.classList.add("rv","rvf");el.style.setProperty("--d",(k%2)*110+"ms");featIO.observe(el)});
 /* custom cursor (overview only, pointer devices) */
 const FINE=matchMedia("(hover:hover) and (pointer:fine)").matches&&!matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -3657,6 +3774,25 @@ renderInputs();update();route();
       b.addEventListener("click",()=>{scrollTo({top:el.getBoundingClientRect().top+scrollY-88,behavior:"smooth"})});rail.appendChild(b)});btns=[...rail.children];tick()};
   const tick=()=>{if(vw()!==cur)return build();rail.classList.toggle("show",cur==="home"&&els.length>2&&scrollY>40);let k=0;els.forEach(([el],i)=>{if(el.getBoundingClientRect().top<innerHeight*.45)k=i});if(k!==rail._k){rail._k=k;rail.classList.add("flash");clearTimeout(rail._t);rail._t=setTimeout(()=>rail.classList.remove("flash"),1400)}btns.forEach((b,i)=>{const d=Math.abs(i-k);b.classList.toggle("on",i===k);b.style.setProperty("--fw",(i===k?56:Math.max(14,46-d*8))+"px");b.style.setProperty("--fo",i===k?1:Math.max(.22,.55-d*.08))})};
   addEventListener("scroll",tick,{passive:true});addEventListener("hashchange",()=>setTimeout(build,120));addEventListener("resize",()=>setTimeout(build,200));setTimeout(build,400)})();
+
+// v61 join CTA: three glows gather as it scrolls in
+(function(){const sec=document.getElementById("jc");if(!sec)return;let raf=0;const f=()=>{raf=0;if(!document.body.classList.contains("hpg"))return;const r=sec.getBoundingClientRect(),vh=innerHeight;const p=Math.max(0,Math.min(1,(vh-r.top)/(vh*.85)));sec.style.setProperty("--p",p.toFixed(3))};
+ addEventListener("scroll",()=>{if(!raf)raf=requestAnimationFrame(f)},{passive:true});addEventListener("resize",f);setTimeout(f,300);
+ sec.addEventListener("pointermove",e=>{const r=sec.getBoundingClientRect();sec.style.setProperty("--mx",((e.clientX-r.left)/r.width*100).toFixed(1)+"%");sec.style.setProperty("--my",((e.clientY-r.top)/r.height*100).toFixed(1)+"%")})})();
+
+// v62 Toss-ads style accordion for overview features
+(function(){const box=document.querySelector("#v-home .fps");if(!box)return;box.classList.add("acc");
+ const T=["내 정보를 한 번만 넣으면","지금 내 상태가 궁금하다면","어떤 설계안이 맞을지 고민이라면","저축을 목적별로 나누고 싶다면","실행 일정을 놓치기 싫다면","상황이 바뀌었다면","보고서로 받아 보고 싶다면"];
+ const fps=[...box.querySelectorAll(".fp")];let cur=0,user=false,inView=false,hov=false;
+ fps.forEach((fp,k)=>{fp.removeAttribute("data-go");fp.classList.remove("rvp");const tx=fp.querySelector(".fp-txt"),tag=tx.querySelector(".fp-tag");
+  tx.insertAdjacentHTML("afterbegin",`<button type="button" class="fa-t" aria-expanded="false"><small>${tag?tag.textContent:""}</small><span>${T[k]||""}</span></button>`);
+  tx.querySelector(".fa-t").addEventListener("click",()=>{user=true;open(k)})});
+ function open(k){cur=k;fps.forEach((fp,i)=>{const on=i===k;fp.classList.toggle("on",on);fp.querySelector(".fa-t").setAttribute("aria-expanded",on);if(on){fp.classList.remove("shown");void fp.offsetWidth;fp.classList.add("shown")}})}
+ open(0);
+ box.addEventListener("pointerenter",()=>hov=true);box.addEventListener("pointerleave",()=>hov=false);
+ if("IntersectionObserver" in window)new IntersectionObserver(es=>es.forEach(e=>inView=e.isIntersecting),{threshold:.35}).observe(box);
+ setInterval(()=>{if(user||hov||!inView||!matchMedia("(min-width:861px)").matches||!document.body.classList.contains("hpg")||matchMedia("(prefers-reduced-motion:reduce)").matches)return;open((cur+1)%fps.length)},5200);
+})();
 </script>
 
 
