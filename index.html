@@ -3241,6 +3241,9 @@ html:not(.dark) #v-s4 .bkg-f .field select.in{padding-right:0!important;cursor:p
 
 html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
 
+/* v91 step 1 boxes show their whole content */
+.ra-box{max-height:none!important;overflow:visible!important}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -3827,7 +3830,7 @@ function tax(c){const annual=n(S.profile.annual);const pens=c.buckets.filter(b=>
 const mlabel=m=>m==null?"-":m===Infinity?"기간 내 미달":m===0?"즉시":m<12?m+"개월":Math.floor(m/12)+"년"+(m%12?" "+m%12+"개월":"");
 
 /* ---------- charts ---------- */
-const charts={};
+const charts={};window.__charts=charts;window.__upd=()=>{try{update()}catch(e){}};
 const swatch=x=>typeof x==="string"?x:(x&&x._c)||null;
 const okC=c=>c&&!/^(#fff|#ffffff|rgba\(255,\s*255,\s*255)/i.test(c);
 function dsColor(ds,i){if(!ds)return "#999";const cands=[ds.type==="line"&&typeof ds.pointBorderColor==="string"&&ds.pointBorderWidth>=3?ds.pointBorderColor:null,ds._base&&ds._base[i],Array.isArray(ds.backgroundColor)?ds.backgroundColor[i]:null,ds.fill===false||ds.type==="line"&&!ds.fill?swatch(ds.borderColor):null,swatch(ds.backgroundColor),swatch(ds.borderColor)];for(const c of cands){const v=swatch(c);if(okC(v)&&!/rgba\(.*,\s*0?\.[0-3]\d*\)$/.test(v))return v}for(const c of cands){const v=swatch(c);if(okC(v))return v}return "#999"}
@@ -4853,6 +4856,16 @@ const line='<svg class="kn-line" viewBox="0 0 600 260" preserveAspectRatio="none
 Object.keys(N).forEach(v=>{const sec=document.getElementById("v-"+v);if(!sec||sec.querySelector(".knext"))return;const [a,b,c,h]=N[v];const el=document.createElement("a");el.className="knext";el.href=h;el.innerHTML=line+`<small>${a}</small><b>${b}</b><p>${c}</p><i class="kn-go" aria-hidden="true"></i>`;
 const f=sec.querySelector(".hfoot,.hfoot-bz");if(f)sec.insertBefore(el,f);else sec.appendChild(el)})})();
 </script>
+<script>
+(function(){
+function refresh(root){const C=window.__charts||{};Object.keys(C).forEach(id=>{const ch=C[id],el=document.getElementById(id);if(!ch||!el||(root&&!root.contains(el)))return;const r=el.getBoundingClientRect();if(!r.width)return;try{ch.resize();ch.update("none")}catch(e){}})}
+let t;function later(full){clearTimeout(t);t=setTimeout(()=>{if(full&&window.__upd)window.__upd();const v=document.querySelector(".view.on")||document;refresh(v)},120)}
+addEventListener("hashchange",()=>later(false));
+document.addEventListener("click",e=>{if(e.target.closest("#btnExample,#btnExample2,#btnBlank,#btnBlank2,[data-proxy],a[data-start]"))setTimeout(()=>later(true),60)});
+if("IntersectionObserver" in window){const io=new IntersectionObserver(es=>es.forEach(en=>{if(!en.isIntersecting)return;const C=window.__charts||{},ch=C[en.target.id];if(ch){const d=ch.data&&ch.data.datasets&&ch.data.datasets[0];const sum=d?d.data.reduce((a,b)=>a+(+b||0),0):1;if(sum===0&&window.__upd){window.__upd()}try{ch.resize();ch.update()}catch(e){}}}),{threshold:.2});document.querySelectorAll("canvas[id]").forEach(c=>io.observe(c))}
+})();
+</script>
+
 
 
 
