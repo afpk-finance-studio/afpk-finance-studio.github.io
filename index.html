@@ -2714,6 +2714,77 @@ button{transition-property:transform,background,color,border-color,box-shadow,op
 .jb-btn i:before{left:10px!important;top:17px!important;width:15px!important}
 .jb-btn i:after{left:16px!important;top:12.5px!important}
 
+/* v80 Toss-style summary + rx cards */
+.s3sum{gap:28px!important;padding:36px 36px 32px!important;border-radius:28px!important;border:0!important;background:#fff;box-shadow:0 1px 0 rgba(0,0,0,.02),0 8px 32px rgba(2,32,71,.06)!important}
+.s3s-eye{font-size:15px;font-weight:700;color:#3182f6;letter-spacing:-.01em}
+.s3s-h{gap:10px!important}
+.s3s-h h3{font-size:clamp(24px,2.3vw,30px)!important;font-weight:700!important;letter-spacing:-.035em!important;line-height:1.38!important;color:#191f28!important}
+.s3s-h p{font-size:16px!important;color:#6b7684!important;letter-spacing:-.01em}
+.s3s-g{gap:20px!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.s3s-g section{background:#f9fafb;border-radius:22px;padding:22px 22px 18px;min-width:0}
+.s3s-g h4{margin:0 0 6px!important;font-size:15px!important;font-weight:700!important;color:#4e5968!important;letter-spacing:-.01em}
+.s3s-l li{display:flex!important;justify-content:space-between;align-items:center!important;gap:16px!important;padding:14px 0!important;border-top:1px solid #eef0f3!important}
+.s3s-l li:first-child{border-top:0!important}
+.s3s-l li b{font-size:16px!important;font-weight:600!important;letter-spacing:-.02em;color:#191f28}
+.s3s-l li small{font-size:13.5px!important;color:#8b95a1!important;letter-spacing:-.01em}
+.s3s-l li em{flex:none;font-style:normal;font-size:14px;font-weight:700;color:#3182f6}
+.s3s-l li.warn em{color:#f04452}.s3s-l li.bad em{color:#f04452}
+.sg-w{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.sg{background:#fff;border-radius:18px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:6px}
+.sg-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.sg-top b{font-size:15px;font-weight:600;color:#4e5968;letter-spacing:-.01em}
+.sg-top span{font-size:14px;color:#8b95a1;font-variant-numeric:tabular-nums}
+.sg-when{font-size:24px;font-weight:700;letter-spacing:-.035em;color:#191f28;font-variant-numeric:tabular-nums}
+.sg-tl{position:relative;height:8px;border-radius:99px;background:#eef0f3;margin:14px 0 22px}
+.sg-tl i{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:#3182f6;transition:width 1.2s cubic-bezier(.16,1,.3,1)}
+.sg.late .sg-tl i{background:#f66570}
+.sg-tl u{position:absolute;top:-5px;width:2px;height:18px;background:#191f28;border-radius:2px;transform:translateX(-1px);text-decoration:none}
+.sg-tl s{position:absolute;top:21px;left:50%;transform:translateX(-50%);white-space:nowrap;text-decoration:none;font-size:11.5px;font-weight:600;color:#6b7684}
+.sg-tl u[style^="left:100"] s{left:auto;right:0;transform:none}
+.sg-st{margin:0;font-size:14.5px;color:#4e5968;letter-spacing:-.01em}
+.sg.ok .sg-st b{color:#3182f6}.sg.late .sg-st b{color:#f04452}
+.s3s-note{margin:10px 2px 0!important;font-size:13px!important;color:#8b95a1!important}
+.rx2{list-style:none;margin:6px 0 18px;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.rx2 li{background:#f9fafb;border-radius:20px;padding:20px 20px 18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.rx2-k{font-size:13px;font-weight:600;color:#8b95a1;letter-spacing:-.01em}
+.rx2-v{font-size:clamp(20px,1.8vw,24px);font-weight:700;letter-spacing:-.035em;color:#191f28;font-variant-numeric:tabular-nums;line-height:1.3}
+.rx2 p{margin:4px 0 0;display:flex;flex-direction:column;gap:3px;font-size:13.5px;line-height:1.5;color:#6b7684}
+.rx2 p strong{font-size:15px;font-weight:600;color:#333d4b;letter-spacing:-.02em}
+@media (max-width:900px){.rx2{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:820px){.s3s-g{grid-template-columns:minmax(0,1fr)!important}}
+@media (max-width:700px){.s3sum{padding:24px 18px 20px!important;gap:20px!important;border-radius:22px!important}.s3s-h h3{font-size:21px!important}.s3s-h p{font-size:14px!important}
+ .s3s-g section{padding:16px 16px 12px;border-radius:18px}.s3s-l li b{font-size:15px!important}.s3s-l li small{font-size:12.5px!important}.sg-when{font-size:21px}.rx2 li{padding:16px}.rx2-v{font-size:20px}}
+
+/* v81 mobile step-by-step input */
+.wz-head,.wz-bar{display:none}
+@media (max-width:700px){
+ #v-s2.wz>#liveSum,#v-s2.wz>.card.wz-comp{display:none!important}
+ #v-s2.wz [data-wz]:not(.wz-on){display:none!important}
+ #v-s2.wz.wz-last>.card.wz-comp{display:block!important;order:9}
+ #v-s2.wz [data-wz] .ch h3{display:none}
+ #v-s2.wz [data-wz] .ch .sub{margin-top:0}
+ #v-s2.wz .wz-head{display:flex;flex-direction:column;gap:12px;padding:4px 2px 0}
+ .wz-prog{display:flex;gap:4px}
+ .wz-prog i{flex:1;height:4px;border-radius:99px;background:#e5e8eb;transition:background .3s}
+ .wz-prog i.on{background:#3182f6}
+ .wz-step{font-size:13px;font-weight:600;color:#3182f6}
+ .wz-t{margin:0;font-size:24px;font-weight:700;letter-spacing:-.035em;line-height:1.35;color:#191f28}
+ .wz-d{margin:-4px 0 0;font-size:14px;color:#6b7684;line-height:1.55}
+ #v-s2.wz [data-wz].wz-on{animation:wzIn .35s cubic-bezier(.2,.7,.2,1)}
+ @keyframes wzIn{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+ .wz-bar{position:fixed;left:0;right:0;bottom:0;z-index:80;gap:8px;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(to top,#fff 70%,rgba(255,255,255,0))}
+ body.wz-show .wz-bar{display:flex}
+ body.wz-show .x-top{display:none}
+ .wz-bar button{height:54px;border-radius:16px;border:0;font:inherit;font-size:16.5px;font-weight:700;cursor:pointer}
+ .wz-prev{flex:0 0 96px;background:#f2f4f6;color:#4e5968}
+ .wz-next{flex:1;background:#3182f6;color:#fff}
+ .wz-prev[hidden]{display:none}
+ #v-s2.wz{padding-bottom:96px}
+}
+@media print{.wz-bar{display:none!important}}
+
+@media (max-width:700px){#v-s2.wz .pside{display:none!important}#v-s2.wz .vhead{padding-bottom:4px!important;min-height:0!important}body.wz-show .x-toast{bottom:92px}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -2789,7 +2860,7 @@ button{transition-property:transform,background,color,border-color,box-shadow,op
       <span class="hx-pill"><b id="modeLabel">가상 고객 예시</b>AFPK 표준 재무설계 6단계</span>
       <h1 id="homeTitle">김민준님의 돈이<br><em>모이는 구조</em>를 설계합니다</h1>
       <p>소득·지출·자산을 넣으면 진단부터 설계안 비교, 실행 캘린더, 점검과 보고서까지 한 번에 이어집니다. 계산은 공개된 규칙으로, 최종 판단은 사람이 합니다.</p>
-      <div class="btns"><a class="btn white lg" href="#s2">내 정보로 시작하기<i class="arr"></i></a><a class="btn glassb lg" href="#report">보고서 보기</a><button class="btn glassb lg" type="button" id="btnBlank">빈 양식</button><button class="btn glassb lg" type="button" id="btnExample2" hidden>예시 고객 다시 보기</button></div>
+      <div class="btns"><a class="btn white lg" href="#s2" data-start>내 정보로 시작하기<i class="arr"></i></a><a class="btn glassb lg" href="#report">보고서 보기</a><button class="btn glassb lg" type="button" id="btnBlank">빈 양식</button><button class="btn glassb lg" type="button" id="btnExample2" hidden>예시 고객 다시 보기</button></div>
       <div class="hx-mini" id="hxMini"></div>
     </div>
     <div class="hx-vis aur tk3" id="hxVis" aria-hidden="true"><i class="o1"></i><i class="o2"></i><i class="o3"></i></div>
@@ -2856,7 +2927,7 @@ button{transition-property:transform,background,color,border-color,box-shadow,op
   <section class="jb" id="jc" aria-labelledby="jcT"><div class="jb-orbs" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="jb-mark" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="jb-t"><span class="jb-eye">YOUR TURN</span><h2 id="jcT">이제 내 숫자로<br>점수를 받아 보세요</h2><p>소득·지출·자산·목표를 넣으면 진단, AI 평가, 설계안이 모두 내 기준으로 다시 계산됩니다.</p></div>
-    <a class="jb-btn" href="#s2"><span>내 정보로 점수 받기</span><i aria-hidden="true"></i></a></section>
+    <a class="jb-btn" href="#s2" data-start><span>내 정보로 점수 받기</span><i aria-hidden="true"></i></a></section>
   <footer class="hfoot" aria-label="사이트 정보">
     <div class="hf-logo"><span class="hf-mark" aria-hidden="true"><i></i><i></i><i></i></span>threekong</div>
     <div class="hf-cols">
@@ -2872,7 +2943,7 @@ button{transition-property:transform,background,color,border-color,box-shadow,op
       <p>입력한 정보는 서버로 보내지 않고 이용자의 브라우저에만 저장됩니다. 예시 고객 김민준은 가상의 인물입니다.</p></div>
     <p class="hf-copy">© 2026 threekong. All rights reserved.</p>
   </footer>
-  <div class="ov-cta"><div><b>내 숫자로 직접 해 보세요</b><p>소득·지출·자산·목표를 입력하면 진단, AI 평가, 설계안이 모두 내 기준으로 다시 계산됩니다</p></div><div class="btns"><a class="btn primary" href="#s2">내 정보 입력 바로 가기</a><a class="btn" href="#s3">분석·평가 결과 보기</a></div></div>
+  <div class="ov-cta"><div><b>내 숫자로 직접 해 보세요</b><p>소득·지출·자산·목표를 입력하면 진단, AI 평가, 설계안이 모두 내 기준으로 다시 계산됩니다</p></div><div class="btns"><a class="btn primary" href="#s2" data-start>내 정보 입력 바로 가기</a><a class="btn" href="#s3">분석·평가 결과 보기</a></div></div>
 </section>
 
 <!-- STEP 1 -->
@@ -2953,13 +3024,13 @@ button{transition-property:transform,background,color,border-color,box-shadow,op
         <div class="list" id="assetList"></div>
       </div>
       <div class="card">
-        <div class="ch"><div><h3><span class="stepn">03</span>부채</h3><p class="sub">잔액 · 월 상환 · 금리 · 잔여 개월</p></div></div>
+        <div class="ch"><div><h3><span class="stepn">04</span>부채</h3><p class="sub">잔액 · 월 상환 · 금리 · 잔여 개월</p></div></div>
         <div id="debtList" style="display:flex;flex-direction:column;gap:10px"></div>
       </div>
     </div>
   </div>
   <div class="card">
-    <div class="ch"><div><h3><span class="stepn">04</span>우선순위별 재무목표</h3><p class="sub">목표마다 그 돈을 어느 통장에서 모을지 누르면, 기한 안에 모이는지 카드 아래에 바로 알려 드려요</p></div><button class="btn sm" type="button" id="addGoal">+ 목표 추가</button></div>
+    <div class="ch"><div><h3><span class="stepn">05</span>우선순위별 재무목표</h3><p class="sub">목표마다 그 돈을 어느 통장에서 모을지 누르면, 기한 안에 모이는지 카드 아래에 바로 알려 드려요</p></div><button class="btn sm" type="button" id="addGoal">+ 목표 추가</button></div>
     <div class="grid g2" id="goalList"></div>
   </div>
 </section>
@@ -3256,9 +3327,9 @@ function calc(sk){syncBuckets(S);if(S.saving&&Array.isArray(S.saving.items)&&S.s
     S.saving.items.filter(x=>n(x.amt)>0).forEach(x=>{const k=svKind(String(x.name||""));let i=k==="h"?fi(/청약/):k==="i"?fi(/ISA/i):k==="p"?fi(/연금|IRP/i):buckets.findIndex(b=>b.id==="bi_"+x.id);if(i<0&&k==="o")i=buckets.findIndex(b=>b.id==="b1");if(i<0)i=gi;svBase[i]+=n(x.amt)})}
   const svSum=svBase.reduce((a,x)=>a+x,0);
   if(auto&&svSum>0){const pool=Math.max(0,capacity>0?capacity:saveNow),extra=Math.max(0,pool-svSum);if(emNeed>0)emPmt=Math.min(Math.round(extra*.6),Math.ceil(emNeed/emMo));let rest=extra-emPmt;
-    buckets.forEach((b,i)=>{b.pmt=svBase[i]});const pi=buckets.findIndex(b=>/연금|IRP/i.test(b.product+b.name));
-    if(rest>0&&pi>=0&&pi!==gi){const add=Math.max(0,Math.min(Math.floor(rest*.4),50-buckets[pi].pmt));buckets[pi].pmt+=add;rest-=add}
-    if(rest>0)buckets[gi].pmt+=rest;
+    buckets.forEach((b,i)=>{b.pmt=svBase[i]});
+    if(rest>0){let ti=svBase[gi]>0?gi:buckets.findIndex((b,i)=>svBase[i]>0&&/적금|예금|저축/.test(b.product)&&!/미래|도약|청약/.test(b.product));if(ti<0)ti=buckets.findIndex((b,i)=>svBase[i]>0&&!/미래|도약|청약|연금|IRP/i.test(b.product));
+      if(ti>=0)buckets[ti].pmt+=rest;else emPmt+=rest;rest=0}
     buckets.forEach(b=>b.auto=true)}
   else if(auto){const pool=Math.max(0,capacity>0?capacity:saveNow);if(emNeed>0)emPmt=Math.min(Math.round(pool*.6),Math.ceil(emNeed/emMo));let rest=pool-emPmt;
     const cap=b=>/도약/.test(b.product)?70:/청약/.test(b.product)?25:/연금/.test(b.product+b.name)?50:Infinity;
@@ -3396,7 +3467,7 @@ let lastIssues=[],lastBeh=[],lastTax=[];
 function renderConsent(){const items=CONSENT;
   $("#consentList").innerHTML=items.map(([k,t])=>`<label class="check${S.consent[k]?" done":""}"><input type="checkbox" data-con="${k}"${S.consent[k]?" checked":""}><span>${t}</span><span class="when"></span></label>`).join("");
   const d=items.filter(([k])=>S.consent[k]).length;$("#consentPill").className="pill "+(d===items.length?"good":"info");$("#consentPill").textContent=`${d} / ${items.length} 확인`;
-  const g=document.getElementById("consentGo");if(g)g.innerHTML=d===items.length?`<p><b>모두 확인했어요.</b> 이제 내 소득·지출·가진 돈·목표를 적으러 가요.</p><a class="cg-btn" href="#s2">시작하기 <i aria-hidden="true">→</i></a>`:`<p>${items.length-d}개 남았어요. 모두 확인하면 시작할 수 있어요.</p><button class="cg-all" type="button" data-conall="1">모두 동의하기</button>`}
+  const g=document.getElementById("consentGo");if(g)g.innerHTML=d===items.length?`<p><b>모두 확인했어요.</b> 이제 내 소득·지출·가진 돈·목표를 적으러 가요.</p><a class="cg-btn" href="#s2" data-start>시작하기 <i aria-hidden="true">→</i></a>`:`<p>${items.length-d}개 남았어요. 모두 확인하면 시작할 수 있어요.</p><button class="cg-all" type="button" data-conall="1">모두 동의하기</button>`}
 
 /* ---------- live update ---------- */
 const o=(k,h)=>document.querySelectorAll(`[data-o="${k}"]`).forEach(el=>el.innerHTML=h);
@@ -3492,18 +3563,18 @@ function updateCore(){
       <div class="dgc-bar"><i class="p" style="width:${pp}%"></i><i class="n" style="width:${pn}%"></i></div>
       <div class="dgc-lg"><span><i class="n"></i>지금 모은 돈 ${won(Math.round(Math.min(now,amt)))}</span><span><i class="p"></i>계획대로 모으면 ${won(Math.round(amt*x.r/100))}</span></div><p class="dgc-p dgc-say">${x.r>=100?`설계안대로 매달 모으면 <b>${ymd(n(g.months))}까지 ${won(amt)}</b>을 다 채울 수 있어요.`:`설계안대로 모아도 기한까지 <b>${won(Math.round(amt-amt*x.r/100))}</b>이 모자라요. 기간을 늘리거나 매달 모으는 돈을 늘려야 해요.`}</p></div>`}).join("")}
 {const inc=c.sal+c.bonus,un=Math.round(Math.max(0,inc-c.exNow-c.saveNow)),sr=inc?c.saveNow/inc*100:0,nmS=esc(S.profile.name||"고객"),sd0=startDate(),ym=m=>{const d=new Date(sd0);d.setMonth(d.getMonth()+m);return d.getFullYear()+"년 "+(d.getMonth()+1)+"월"};
-   const L={good:"양호",warn:"주의",bad:"개선"},row=(s,t,d)=>`<li><span class="pill ${s}">${L[s]}</span><div><b>${t}</b><small>${d}</small></div></li>`;
-   const rs=[row(sr>=50?"good":sr>=30?"warn":"bad",`월 ${fmt(inc)}만 원 중 ${fmt(c.saveNow)}만 원을 모으고 있어요`,`번 돈의 ${fmt(sr,0)}%를 저축해요. ${sr>=50?"저축은 잘하고 있어요.":"절반 이상 모으는 게 좋아요."}`),
-     row(c.rNow.em>=3?"good":"warn",`급할 때 바로 쓸 돈은 생활비 ${fmt(c.rNow.em,1)}달치예요`,c.rNow.em>=3?"갑자기 돈이 필요해도 버틸 수 있어요.":"3달치는 있어야 갑자기 돈이 필요할 때 적금이나 투자를 깨지 않아요.")];
-   if(un>=1)rs.push(row("warn",`매달 ${fmt(un)}만 원은 정해진 곳 없이 통장에 남아요`,"이름표를 붙여 두지 않으면 쉽게 써 버리는 돈이에요. 설계안에서 저축으로 돌려요."));
-   rs.push(c.debtBal>0?row(c.rNow.debt<=20?"good":"warn",`빚 ${fmt(c.debtBal)}만 원을 갚고 있어요`,`월급의 ${fmt(c.rNow.debt,0)}%가 빚 갚는 데 나가요. ${c.rNow.debt<=20?"부담 없는 수준이에요.":"20%가 넘으면 저축할 돈이 줄어요."}`):row("good","갚을 빚이 없어요","번 돈을 모두 나를 위해 쓸 수 있어요."));
-   if(c.rNow.risk>30)rs.push(row("warn",`모은 돈의 ${fmt(c.rNow.risk,0)}%가 주식·코인이에요`,"시장이 흔들리면 목표 자금이 크게 줄 수 있어요."));
-   const gs=gRows.filter(x=>x.amt>0).map(x=>{const g=x.g,mo=n(g.months),r=x.reach,ok=r!=null&&r!==Infinity&&r<=mo,diff=r===Infinity?0:mo-r;
-     return `<li><div class="sg-t"><b>${esc(g.name)}</b><small>${won(x.amt)} · 기한 ${ym(mo)}</small></div><div class="sg-r"><b>${r===Infinity||r==null?"지금 계획으론 기한 안에 어려워요":r===0?"이미 다 모였어요":ym(r)+"에 다 모여요"}</b><span class="pill ${ok?"good":"bad"}">${r===Infinity||r==null?"계획 조정 필요":r===0?"완료":ok?(diff>0?`기한보다 ${diff}달 빨라요`:"기한에 딱 맞아요"):`기한보다 ${-diff}달 늦어요`}</span></div></li>`}).join("");
-   const bad=gRows.filter(x=>x.amt>0&&!(x.reach!=null&&x.reach!==Infinity&&x.reach<=n(x.g.months))).length;
-   $("#dSum").innerHTML=`<div class="s3s-h"><span class="s3s-tag">결론부터 말씀드릴게요</span><h3>${nmS}님은 ${sr>=50?"저축은 잘하고 있어요":"저축을 조금 늘려야 해요"}.${c.rNow.em<3?" 다만 비상금이 부족해요.":""}</h3><p>${gRows.some(x=>x.amt>0)?(bad?`목표 ${gRows.filter(x=>x.amt>0).length}개 중 ${bad}개는 지금 계획으로 기한을 맞추기 어려워요.`:`설계안대로 모으면 목표 ${gRows.filter(x=>x.amt>0).length}개를 모두 기한 안에 이룰 수 있어요.`):"목표를 넣으면 언제 모을 수 있는지 알려 드려요."}</p></div>
-    <div class="s3s-g"><div><h4>지금 내 돈 관리는</h4><ul class="s3s-l">${rs.join("")}</ul></div><div><h4>목표는 언제 다 모이나요</h4>${gs?`<ul class="s3s-l s3s-goal">${gs}</ul><p class="s3s-note">설계안대로 매달 모았을 때 기준이에요. 어떻게 모으는지는 4단계에서 볼 수 있어요.</p>`:`<p class="s3s-note">2단계에서 목표를 넣으면 여기에 나와요.</p>`}</div></div>`}
-      const st=(v,g,w,lo)=>lo?(v<=g?"good":v<=w?"warn":"bad"):(v>=g?"good":v>=w?"warn":"bad"),SL={good:"양호",warn:"주의",bad:"위험"};
+   const L={good:"양호",warn:"주의",bad:"개선 필요"},row=(s,t,d)=>`<li class="${s}"><div><b>${t}</b><small>${d}</small></div><em>${L[s]}</em></li>`;
+   const rs=[row(sr>=50?"good":sr>=30?"warn":"bad",`번 돈의 ${fmt(sr,0)}%를 모으고 있어요`,`월 ${fmt(inc)}만 원 중 ${fmt(c.saveNow)}만 원`),
+     row(c.rNow.em>=3?"good":"warn",`비상금은 생활비 ${fmt(c.rNow.em,1)}달치예요`,c.rNow.em>=3?"갑자기 돈이 필요해도 버틸 수 있어요":"3달치는 있어야 적금·투자를 깨지 않아요")];
+   if(un>=1)rs.push(row("warn",`매달 ${fmt(un)}만 원이 그냥 남아요`,"이름표가 없으면 쉽게 써 버리는 돈이에요"));
+   rs.push(c.debtBal>0?row(c.rNow.debt<=20?"good":"warn",`빚 ${fmt(c.debtBal)}만 원을 갚고 있어요`,`월급의 ${fmt(c.rNow.debt,0)}%가 상환에 나가요`):row("good","갚을 빚이 없어요","번 돈을 모두 나를 위해 쓸 수 있어요"));
+   if(c.rNow.risk>30)rs.push(row("warn",`모은 돈의 ${fmt(c.rNow.risk,0)}%가 주식·코인이에요`,"시장이 흔들리면 목표 자금이 크게 줄 수 있어요"));
+   const GR=gRows.filter(x=>x.amt>0),gs=GR.map(x=>{const g=x.g,mo=n(g.months),r=x.reach,inf=r==null||r===Infinity,ok=!inf&&r<=mo,diff=inf?0:mo-r,mx=Math.max(mo,inf?mo*1.5:r,1),pr=inf?100:r/mx*100,pd=mo/mx*100;
+     return `<div class="sg ${ok?"ok":"late"}"><div class="sg-top"><b>${esc(g.name)}</b><span>${won(x.amt)}</span></div><div class="sg-when">${inf?"기한 안에 어려워요":r===0?"이미 다 모였어요":ym(r)}</div><div class="sg-tl"><i style="width:${pr.toFixed(1)}%"></i><u style="left:${pd.toFixed(1)}%"><s>기한 ${ym(mo).replace("년 ",".").replace("월","")}</s></u></div><p class="sg-st">${inf?"지금 계획으로는 모으기 어려워요":r===0?"목표 금액을 이미 갖고 있어요":ok?(diff>0?`기한보다 <b>${diff}달 빨리</b> 모여요`:"기한에 <b>딱 맞춰</b> 모여요"):`기한보다 <b>${-diff}달 늦게</b> 모여요`}</p></div>`}).join("");
+   const bad=GR.filter(x=>!(x.reach!=null&&x.reach!==Infinity&&x.reach<=n(x.g.months))).length;
+   $("#dSum").innerHTML=`<div class="s3s-h"><span class="s3s-eye">결론부터 말씀드릴게요</span><h3>${nmS}님은 ${sr>=50?"저축을 잘하고 있어요":"저축을 조금 늘려야 해요"}${c.rNow.em<3?",<br>다만 비상금이 부족해요":""}</h3><p>${GR.length?(bad?`목표 ${GR.length}개 중 ${bad}개는 지금 계획으로 기한을 맞추기 어려워요.`:`설계안대로 모으면 목표 ${GR.length}개를 모두 기한 안에 이룰 수 있어요.`):"목표를 넣으면 언제 모을 수 있는지 알려 드려요."}</p></div>
+    <div class="s3s-g"><section><h4>지금 내 돈 관리</h4><ul class="s3s-l">${rs.join("")}</ul></section><section><h4>목표는 언제 다 모이나요</h4>${gs?`<div class="sg-w">${gs}</div><p class="s3s-note">설계안대로 매달 모았을 때 기준이에요</p>`:`<p class="s3s-note">2단계에서 목표를 넣으면 여기에 나와요</p>`}</section></div>`}
+   const st=(v,g,w,lo)=>lo?(v<=g?"good":v<=w?"warn":"bad"):(v>=g?"good":v>=w?"warn":"bad"),SL={good:"양호",warn:"주의",bad:"위험"};
    const R=[["비상예비자금","em",c.rNow.em,c.rAfter.em,"개월",12,3,1.5,0,"3~6개월",v=>`급할 때 바로 쓸 수 있는 돈이 생활비 <b>${fmt(v,1)}개월분</b>입니다. 3개월분은 있어야 실직·병원비 같은 일에도 투자자산을 깨지 않습니다.`],
      ["저축성향률","save",c.rNow.save,c.rAfter.save,"%",80,50,30,0,"50% 이상",v=>`소득의 <b>${fmt(v,1)}%</b>를 저축하고 있습니다. 목표를 기한 안에 이루려면 절반 이상 저축이 권장됩니다.`],
      ["부채부담률","debt",c.rNow.debt,c.rAfter.debt,"%",50,20,30,1,"20% 이하",v=>`소득의 <b>${fmt(v,1)}%</b>가 대출 상환에 나갑니다. ${v<=20?"안전한 수준입니다.":"20%를 넘으면 저축할 여력이 줄어듭니다."}`],
@@ -3531,13 +3602,14 @@ function updateCore(){
    const pb=(v,cl)=>`<span class="dpt ${cl}"><i style="width:${v/25*100}%"></i></span>`;
    const tb=`<div class="dai-tb" role="table"><div class="dtr dth" role="row"><span>점수 항목</span><span>지금</span><span>실행 후</span></div>${IT.map((r,k)=>`<div class="dtr" role="row"><span class="dtn"><b>${r[0]}</b><small>${r[1]} · ${r[2]}</small></span><span class="dtv"><em>${r[5](r[3])}</em><b>${p0[k]}<small>/25점</small></b>${pb(p0[k],"a")}</span><span class="dtv"><em>${r[5](r[4])}</em><b class="${p1[k]>p0[k]?"up":""}">${p1[k]}<small>/25점</small></b>${pb(p1[k],"b")}</span></div>`).join("")}<div class="dtr dtt" role="row"><span class="dtn"><b>합계</b><small>100점 만점</small></span><span class="dtv"><b>${s0}<small>점</small></b></span><span class="dtv"><b class="${s1>s0?"up":""}">${s1}<small>점</small></b></span></div></div>`;
    const nb=c.buckets.filter(b=>b.pmt>0).length;
-   const rx=[c.rNow.em>=3?`<b>비상금은 이미 충분해요.</b> 생활비 ${fmt(c.rNow.em,1)}달치가 있어요`:c.emPmt>0?`<b>매달 ${fmt(c.emPmt)}만 원씩 비상금 통장에 모아요.</b> 1년 안에 생활비 ${fmt(c.rAfter.em,1)}달치가 돼요`:`<b>투자 일부를 정리해 비상금을 만들어요.</b> 생활비 ${fmt(c.rNow.em,1)}달치 → ${fmt(c.rAfter.em,1)}달치`,
-     (()=>{const lf=Math.round(c.bucketSum-c.saveNow-cut),fl=`매달 모으는 돈이 <b>${fmt(c.saveNow)}만 → ${fmt(c.bucketSum)}만 원</b>이 돼요`;return cut>.05?(lf>=1?`<b>지출을 월 ${fmt(cut)}만 원 줄이고, 그냥 통장에 남던 ${fmt(lf)}만 원도 모아요.</b> 그래서 ${fmt(c.saveNow)}만 + ${fmt(cut)}만 + ${fmt(lf)}만, ${fl}`:`<b>지출을 월 ${fmt(cut)}만 원 줄여 저축으로 돌려요.</b> ${fl}`):lf>=1?`<b>그냥 통장에 남던 ${fmt(lf)}만 원도 매달 모아요.</b> ${fl}`:null})()||`<b>매달 ${fmt(c.bucketSum)}만 원을 월급날 다음 날 먼저 모아요.</b> 쓰고 남은 돈이 아니라 먼저 떼어 둡니다`,
-     c.rNow.risk>30?`<b>주식·코인 비중을 줄이고 목적별 통장 ${nb}개에 나눠 담아요.</b> 위험한 투자 ${fmt(c.rNow.risk,0)}% → ${fmt(c.rAfter.risk,0)}%`:`<b>목적별 통장 ${nb}개에 나눠 담아요.</b> 어떤 돈이 어떤 목표용인지 한눈에 보여요`];
+   const lf2=Math.round(c.bucketSum-c.saveNow-cut),nms=c.buckets.filter(b=>b.pmt>0).map(b=>b.id==="bem"?"비상금 통장":(b.product||b.name).replace(/\s*\(.*\)/,""));
+   const rx=[c.rNow.em>=3?{k:"비상금",v:`${fmt(c.rNow.em,1)}달치`,t:"비상금은 이미 충분해요",d:"한 달 생활비 기준이에요"}:c.emPmt>0?{k:"비상금",v:`월 ${fmt(c.emPmt)}만 원`,t:"비상금 통장에 따로 모아요",d:`1년 뒤 생활비 ${fmt(c.rAfter.em,1)}달치가 돼요`}:{k:"비상금",v:`${fmt(c.rNow.em,1)} → ${fmt(c.rAfter.em,1)}달치`,t:"투자 일부를 비상금으로 옮겨요",d:"급할 때 투자를 깨지 않아도 돼요"},
+     {k:"매달 모으는 돈",v:`${fmt(c.saveNow)}만 → ${fmt(c.bucketSum)}만 원`,t:cut>.05?`지출을 월 ${fmt(cut)}만 원 줄여요`:"월급날 먼저 떼어 둬요",d:lf2>=1?`그냥 남던 ${fmt(lf2)}만 원도 함께 모아요`:"쓰고 남은 돈이 아니라 먼저 모아요"},
+     c.rNow.risk>30?{k:"투자 위험",v:`${fmt(c.rNow.risk,0)}% → ${fmt(c.rAfter.risk,0)}%`,t:"주식·코인 비중을 줄여요",d:`목적별 통장 ${nb}개에 나눠 담아요`}:{k:"통장 나누기",v:`${nb}개 통장`,t:"목표마다 통장을 나눠요",d:nms.slice(0,4).join(" · ")+(nms.length>4?" 외":"")}];
    $("#dAI").innerHTML=`<div class="dai-l"><span class="dai-tag">AI 재무건강 점수</span>${gx2("ai",s0,s1)}<p class="gx-cap">${s1>s0?`설계안대로 하면<br>AI 점수가 ${s1-s0}점 올라요`:s1===s0?"설계안을 실행해도<br>점수는 지금과 같아요":"설계안 금액을<br>다시 확인해 주세요"}</p><p class="dai-cap">비상금·저축·빚·투자 위험을 각 25점씩 매긴 100점 만점 점수예요</p></div>
    <div class="dai-r"><h4>${nm}님은 지금 100점 중 <em>${s0}점</em>이에요</h4><p class="dai-sum">${weak.length?`<b>${weak.join("·")}</b> 점수가 모자라서 깎였어요. `:"네 가지 모두 기준을 지키고 있어요. "}${s1>s0?`아래 설계안대로 하면 <b>${s1}점</b>이 돼요.`:""}</p>
    ${tb}
-   <h5 class="dai-h">그래서 이렇게 바꿔요</h5><ol class="dai-rx">${rx.map(x=>`<li><span>${x}</span></li>`).join("")}</ol><div class="btns"><a class="btn sm" href="#s3">분석 자세히</a><a class="btn primary sm" href="#s4">설계안 보기</a></div></div>`;
+   <h5 class="dai-h">그래서 이렇게 바꿔요</h5><ol class="rx2">${rx.map((x,i)=>`<li><span class="rx2-k">${String(i+1).padStart(2,"0")} · ${x.k}</span><b class="rx2-v">${x.v}</b><p><strong>${x.t}</strong>${x.d}</p></li>`).join("")}</ol><div class="btns"><a class="btn sm" href="#s3">분석 자세히</a><a class="btn primary sm" href="#s4">설계안 보기</a></div></div>`;
    {const tg=gRows.filter(x=>x.amt>0),rd=tg.filter(x=>srcAt(x.g,c,P,0)>=x.amt).length,ok2=tg.filter(x=>x.r>=100).length,cutv=c.exNow-c.exPlan,u=(v,d,un)=>fmt(v,d)+un;
     const rows=[["월 지출",u(c.exNow,0,"만 원"),u(c.exPlan,0,"만 원"),cutv>.05?`월 ${fmt(cutv)}만 원 줄임`:"그대로",cutv>.05],
      ["월 저축",u(c.saveNow,0,"만 원"),u(c.bucketSum,0,"만 원"),c.bucketSum>c.saveNow?`월 ${fmt(c.bucketSum-c.saveNow)}만 원 더 모음`:"그대로",c.bucketSum>c.saveNow],
@@ -3548,7 +3620,7 @@ function updateCore(){
      ["목표",`준비 끝난 목표 ${rd}/${tg.length}개`,`기한 내 달성 ${ok2}/${tg.length}개`,"목표 금액이 있는 목표 기준",ok2>rd],
      ["AI 재무건강 점수",s0+"점",s1+"점",band(s1),s1>s0]];
     $("#nowPlan").innerHTML=`<colgroup><col style="width:20%"><col style="width:18%"><col style="width:44px"><col style="width:22%"><col></colgroup><thead><tr><th>항목</th><th>지금</th><th></th><th>설계 후</th><th>무엇이 바뀌나</th></tr></thead><tbody>${rows.map(r=>`<tr><th>${r[0]}</th><td class="n0">${r[1]}</td><td class="ar">→</td><td class="n1${r[4]?" up":""}">${r[2]}</td><td class="nt">${r[4]?`<span class="lchip gain">개선</span>`:""}${r[3]}</td></tr>`).join("")}</tbody>`}
-   $("#dScore").innerHTML=`<div class="ds-r"><span class="ds-tag">${nm}님 · AI 재무건강 점수</span><h4>지금은 <em>${band(s0)}</em>입니다</h4><p>${s1>s0?`설계안대로 실행하면 점수가 <b>${s0}점에서 ${s1}점</b>으로 오릅니다.`:`지금 점수는 <b>${s0}점</b>입니다.`} 무엇이 부족하고 어떻게 바꾸는지는 분석·평가에서 한눈에 볼 수 있어요.</p><div class="ds-btns"><a class="btn ds-p" href="#s2">내 정보로 점수 받기</a><a class="btn ds-g" href="#s3">AI 평가 자세히 보기</a></div></div><div class="ds-v">${gx2("ds",s0,s1)}<p class="gx-cap">${s1>s0?`설계안대로 하면<br>AI 점수가 ${s1-s0}점 올라요`:s1===s0?"설계안을 실행해도<br>점수는 지금과 같아요":"설계안 금액을<br>다시 확인해 주세요"}!</p></div>`;
+   $("#dScore").innerHTML=`<div class="ds-r"><span class="ds-tag">${nm}님 · AI 재무건강 점수</span><h4>지금은 <em>${band(s0)}</em>입니다</h4><p>${s1>s0?`설계안대로 실행하면 점수가 <b>${s0}점에서 ${s1}점</b>으로 오릅니다.`:`지금 점수는 <b>${s0}점</b>입니다.`} 무엇이 부족하고 어떻게 바꾸는지는 분석·평가에서 한눈에 볼 수 있어요.</p><div class="ds-btns"><a class="btn ds-p" href="#s2" data-start>내 정보로 점수 받기</a><a class="btn ds-g" href="#s3">AI 평가 자세히 보기</a></div></div><div class="ds-v">${gx2("ds",s0,s1)}<p class="gx-cap">${s1>s0?`설계안대로 하면<br>AI 점수가 ${s1-s0}점 올라요`:s1===s0?"설계안을 실행해도<br>점수는 지금과 같아요":"설계안 금액을<br>다시 확인해 주세요"}!</p></div>`;
   }
   {const ta=document.getElementById("anaPrompt");if(ta)ta.value=buildAnaPrompt(c)}
   $("#ovGoals").innerHTML=gRows.map(x=>`<div class="item" data-go="s4"><span class="pill ${x.s}">${esc(x.g.term)}</span><div><b>${esc(x.g.name)}</b><p>${x.amt>0?`${mlabel(n(x.g.months))} 후 목표 ${won(x.amt)} · 예상 ${won(x.v)} (${fmt(x.r,0)}%)`:`${mlabel(n(x.g.months))} 후 예상 적립액 ${won(x.v)}`}</p>${x.amt>0?`<div class="meter" style="margin-top:8px"><i class="${x.s}" style="width:${Math.min(100,x.r)}%"></i></div>`:""}</div></div>`).join("")||`<p class="note">2단계에서 목표를 추가하세요.</p>`;
@@ -3960,6 +4032,7 @@ document.addEventListener("change",e=>{const el=e.target;
   if(el.id==="gjGoal"){S.gjGoal=el.value;S.gj=null;save();update();return}
   if(el.dataset.chk){S.checks[el.dataset.chk]=el.checked;save();update()}
   if(el.dataset.con){S.consent[el.dataset.con]=el.checked;save();renderConsent()}});
+document.addEventListener("click",e=>{const a=e.target.closest("a[data-start]");if(!a||S.mode!=="example")return;S=blank();migrate(S);save();try{renderInputs()}catch(er){}update();toast("빈 양식이에요. 하나씩 채워 주세요")},true);
 document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
   if(b.dataset.del&&b.dataset.del.startsWith("saving.items.")){S.saving.items.splice(+b.dataset.del.split(".")[2],1);save();renderInputs();update();return}
   if(b.dataset.conall){CONSENT.forEach(([k])=>S.consent[k]=true);save();renderConsent();return}
@@ -4256,6 +4329,28 @@ scan();new MutationObserver(()=>{if(!t)t=setTimeout(scan,60)}).observe(document.
 
 /* v78 footer on basis page */
 (function(){const f=document.querySelector("#v-home .hfoot")||document.querySelector(".hfoot"),v=document.getElementById("v-basis");if(!f||!v||v.querySelector(".hfoot"))return;const c=f.cloneNode(true);c.classList.add("hfoot-bz");c.querySelectorAll("[id]").forEach(e=>e.removeAttribute("id"));v.appendChild(c)})();
+
+/* v81 mobile wizard for step 2 */
+(function(){const v=document.getElementById("v-s2");if(!v)return;const mq=matchMedia("(max-width:700px)");
+const cards=[...v.querySelectorAll(".card")],find=t=>cards.find(c=>{const h=c.querySelector(".ch h3");return h&&h.textContent.includes(t)});
+const steps=[["기본 정보","먼저 나에 대해 알려 주세요","이름과 나이, 투자 성향 정도면 충분해요"],["월 현금흐름","한 달에 돈이 어떻게 들어오고 나가나요?","월급, 매달 모으는 돈, 고정·변동 지출을 적어 주세요"],["지금 가진 돈","지금 가진 돈은 얼마인가요?","통장, 투자, 보증금에 들어 있는 금액이에요"],["부채","갚고 있는 빚이 있나요?","없으면 그냥 다음으로 넘어가도 돼요"],["재무목표","이루고 싶은 목표는 무엇인가요?","목표 금액과 기한, 어느 통장으로 모을지 골라 주세요"]].map(x=>Object.assign({el:find(x[0])},{t:x[1],d:x[2]})).filter(x=>x.el);
+const comp=find("입력 점검");if(comp)comp.classList.add("wz-comp");
+steps.forEach((x,i)=>x.el.setAttribute("data-wz",i));
+const head=document.createElement("div");head.className="wz-head";head.innerHTML='<div class="wz-prog">'+steps.map(()=>"<i></i>").join("")+'</div><span class="wz-step"></span><h2 class="wz-t"></h2><p class="wz-d"></p>';
+const vh=v.querySelector(".vhead");(vh?vh.nextSibling:v.firstChild)&&v.insertBefore(head,vh?vh.nextSibling:v.firstChild);
+const bar=document.createElement("div");bar.className="wz-bar";bar.innerHTML='<button type="button" class="wz-prev">이전</button><button type="button" class="wz-next">다음</button>';document.body.appendChild(bar);
+const pv=bar.querySelector(".wz-prev"),nx=bar.querySelector(".wz-next");let cur=0;try{cur=Math.min(steps.length-1,+sessionStorage.getItem("wz")||0)}catch(e){}
+function show(i,scroll){cur=Math.max(0,Math.min(steps.length-1,i));try{sessionStorage.setItem("wz",cur)}catch(e){}
+ steps.forEach((x,k)=>x.el.classList.toggle("wz-on",k===cur));head.querySelectorAll(".wz-prog i").forEach((e,k)=>e.classList.toggle("on",k<=cur));
+ head.querySelector(".wz-step").textContent=(cur+1)+" / "+steps.length;head.querySelector(".wz-t").textContent=steps[cur].t;head.querySelector(".wz-d").textContent=steps[cur].d;
+ const last=cur===steps.length-1;v.classList.toggle("wz-last",last);pv.hidden=cur===0;nx.textContent=last?"다 적었어요, 분석 보기":"다음";
+ if(scroll){const y=head.getBoundingClientRect().top+scrollY-80;scrollTo({top:Math.max(0,y),behavior:"auto"})}}
+function apply(){const on=mq.matches;v.classList.toggle("wz",on);document.body.classList.toggle("wz-show",on&&location.hash.replace("#","")==="s2");if(on)show(cur,false)}
+pv.addEventListener("click",()=>show(cur-1,true));
+nx.addEventListener("click",()=>{if(cur===steps.length-1){location.hash="s3";return}show(cur+1,true)});
+document.addEventListener("click",e=>{const g=e.target.closest("[data-goto]");if(!g||!mq.matches)return;const f=v.querySelector(`[data-p="${g.dataset.goto}"]`);if(!f)return;const c=f.closest("[data-wz]");if(c)show(+c.dataset.wz,false)},true);
+document.addEventListener("click",e=>{if(e.target.closest("a[data-start]")){cur=0;try{sessionStorage.setItem("wz",0)}catch(er){}}},true);
+addEventListener("hashchange",apply);mq.addEventListener?mq.addEventListener("change",apply):mq.addListener(apply);apply()})();
 </script>
 
 
