@@ -2625,6 +2625,26 @@ body.wpg .view .vhead.phead{margin-bottom:8px!important}
   .btn{font-size:14px}
 }
 
+/* v73 interactions */
+.x-prog{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#3182f6,#8b6cff,#19c3b1);pointer-events:none}
+.x-top{position:fixed;right:20px;bottom:22px;z-index:70;width:44px;height:44px;border-radius:50%;border:1px solid #e5e8eb;background:#fff;color:#191f28;display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.12);opacity:0;transform:translateY(12px) scale(.9);pointer-events:none;transition:opacity .25s,transform .3s cubic-bezier(.2,.7,.2,1)}
+.x-top.on{opacity:1;transform:none;pointer-events:auto}
+.x-top:hover{transform:translateY(-2px)}
+.x-toast{position:fixed;left:50%;bottom:28px;z-index:95;transform:translate(-50%,16px);opacity:0;pointer-events:none;background:rgba(25,31,40,.94);color:#fff;font-size:13.5px;font-weight:600;padding:11px 18px;border-radius:999px;display:flex;gap:8px;align-items:center;box-shadow:0 10px 30px rgba(0,0,0,.18);transition:opacity .25s,transform .35s cubic-bezier(.2,.7,.2,1);white-space:nowrap}
+.x-toast.on{opacity:1;transform:translate(-50%,0)}
+.x-toast i{width:18px;height:18px;border-radius:50%;background:#3182f6;display:grid;place-items:center;font-style:normal;font-size:11px}
+.x-scrolled .gnb{box-shadow:0 6px 24px rgba(0,0,0,.06)}
+.view.on{animation:xIn .45s cubic-bezier(.2,.7,.2,1)}
+@keyframes xIn{from{opacity:0}to{opacity:1}}
+button:not(:disabled):active{transform:scale(.97)}
+button{transition-property:transform,background,color,border-color,box-shadow,opacity;transition-duration:.12s}
+@media (hover:none){.view .card:active,.fp:active,.ma-h:active{transform:scale(.985);transition:transform .1s}}
+.x-spot{position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;background:radial-gradient(480px circle at var(--mx,50%) var(--my,50%),rgba(120,140,255,.16),rgba(25,195,177,.05) 40%,transparent 65%);opacity:0;transition:opacity .35s}
+.fp:hover .x-spot{opacity:1}
+@media(max-width:700px){.x-top{right:14px;bottom:16px;width:40px;height:40px}.x-toast{bottom:20px;font-size:13px}}
+@media (prefers-reduced-motion:reduce){.view.on{animation:none}.x-top,.x-toast{transition:none}}
+@media print{.x-prog,.x-top,.x-toast{display:none!important}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -4095,6 +4115,36 @@ renderInputs();update();route();
     if(a.dataset.mi){e.preventDefault();const [i,k]=a.dataset.mi.split(".").join("-").split("-").map(Number);const src=cols[i].querySelectorAll(".gm-i")[k];close();setTimeout(()=>src&&src.click(),60);return}
     close()});
   new MutationObserver(()=>{if(d.classList.contains("open")){const v=(location.hash||"#home").slice(1);inn.querySelectorAll(".ma").forEach(x=>{const on=x.dataset.mv===v;x.classList.toggle("cur",on);x.classList.toggle("op",on);x.querySelector(".ma-h").setAttribute("aria-expanded",on)})}}).observe(d,{attributes:true,attributeFilter:["class"]});
+})();
+
+/* v73 interactions */
+(function(){
+const RM=matchMedia("(prefers-reduced-motion: reduce)").matches,B=document.body;
+const pb=document.createElement("div");pb.className="x-prog";B.appendChild(pb);
+const tt=document.createElement("button");tt.className="x-top";tt.type="button";tt.setAttribute("aria-label","맨 위로");
+tt.innerHTML='<svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';B.appendChild(tt);
+tt.addEventListener("click",()=>scrollTo({top:0,behavior:RM?"auto":"smooth"}));
+let tk=0;function onS(){if(tk)return;tk=requestAnimationFrame(()=>{tk=0;const m=document.documentElement.scrollHeight-innerHeight,y=scrollY;pb.style.transform="scaleX("+(m>0?Math.min(1,y/m):0)+")";tt.classList.toggle("on",y>innerHeight*1.2);B.classList.toggle("x-scrolled",y>8)})}
+addEventListener("scroll",onS,{passive:true});addEventListener("resize",onS);addEventListener("hashchange",()=>setTimeout(onS,60));onS();
+/* autosave toast */
+const ts=document.createElement("div");ts.className="x-toast";ts.setAttribute("role","status");ts.innerHTML='<i>✓</i>입력한 내용이 저장됐어요';B.appendChild(ts);
+let lastIn=0,tT=0,hT=0;
+document.addEventListener("input",e=>{if(!e.target.closest||!e.target.closest("input,textarea,select"))return;lastIn=Date.now();clearTimeout(tT);clearTimeout(hT);tT=setTimeout(()=>{ts.classList.add("on");hT=setTimeout(()=>ts.classList.remove("on"),1600)},900)},true);
+/* spotlight on dark feature cards */
+if(matchMedia("(hover:hover)").matches&&!RM){document.querySelectorAll(".fp").forEach(c=>{const sp=document.createElement("span");sp.className="x-spot";c.prepend(sp);
+c.addEventListener("pointermove",e=>{const r=c.getBoundingClientRect();c.style.setProperty("--mx",(e.clientX-r.left)+"px");c.style.setProperty("--my",(e.clientY-r.top)+"px")})})}
+/* count-up numbers */
+if(RM||!("IntersectionObserver" in window))return;
+const SEL=".big,.kpi .v,.gxc b,.rm-big";
+function countUp(el){let tn=null;for(const c of el.childNodes){if(c.nodeType===3&&/\d/.test(c.nodeValue)){tn=c;break}}if(!tn)return;
+const txt=tn.nodeValue,m=txt.match(/-?\d[\d,]*(\.\d+)?/);if(!m)return;const raw=m[0],tgt=parseFloat(raw.replace(/,/g,""));if(!isFinite(tgt)||Math.abs(tgt)<3)return;
+const dec=m[1]?m[1].length-1:0,cm=raw.includes(","),pre=txt.slice(0,m.index),post=txt.slice(m.index+raw.length);
+const f=v=>{let s=v.toFixed(dec);if(cm){const p=s.split(".");p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,",");s=p.join(".")}return pre+s+post};
+const t0=performance.now(),D=950;let last=f(0);tn.nodeValue=last;
+(function st(now){if(!tn.isConnected||tn.nodeValue!==last)return;const k=Math.min(1,Math.max(0,(now-t0)/D)),e=1-Math.pow(1-k,3);last=k<1?f(tgt*e):txt;tn.nodeValue=last;if(k<1)requestAnimationFrame(st)})(t0)}
+const io=new IntersectionObserver(es=>es.forEach(x=>{const el=x.target;if(x.isIntersecting){if(!el.__cu){el.__cu=1;if(Date.now()-lastIn>2500)countUp(el)}}else if(x.boundingClientRect.top>0)el.__cu=0}),{rootMargin:"0px 0px -10% 0px"});
+let sT=0;function scan(){sT=0;document.querySelectorAll(SEL).forEach(el=>{if(!el.__io){el.__io=1;io.observe(el)}})}
+scan();new MutationObserver(()=>{if(!sT)sT=setTimeout(scan,120)}).observe(B,{childList:true,subtree:true});
 })();
 </script>
 
