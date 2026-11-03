@@ -2896,6 +2896,163 @@ button{transition-property:transform,background,color,border-color,box-shadow,op
  #v-s2.wz .wz-main .card .unitwrap .in:not(.frow .in){padding-right:52px!important}
 }
 
+/* v85 boxed rows/fields for every input step (desktop) */
+@media (min-width:901px){
+ #v-s2.wz .wz-main .list{display:flex!important;flex-direction:column;gap:10px}
+ #v-s2.wz .wz-main .row.edit,#v-s2.wz .wz-main .row.edit3:not(.head){display:grid!important;grid-template-columns:minmax(0,1fr) 200px 32px!important;align-items:center;gap:8px!important;border:1px solid #d1d6db!important;border-radius:10px!important;background:#fff;padding:4px 6px 4px 16px!important;min-height:60px;box-sizing:border-box;transition:border-color .15s,box-shadow .15s}
+ #v-s2.wz .wz-main .row.edit:has(.lbl){grid-template-columns:minmax(0,1fr) 200px!important;padding-right:6px!important}
+ #v-s2.wz .wz-main .row.edit:focus-within,#v-s2.wz .wz-main .row.edit3:focus-within{border-color:#3182f6!important;box-shadow:0 0 0 3px rgba(49,130,246,.12)}
+ #v-s2.wz .wz-main .card .row .in:not(.frow .in):not(.x),#v-s2.wz .wz-main .card .field .in:not(.frow .in):not(.x){border:0!important;box-shadow:none!important;background:transparent!important;min-height:44px!important;padding:0 4px!important;border-radius:6px!important}
+ #v-s2.wz .wz-main .card .row .unitwrap .in:not(.frow .in):not(.x),#v-s2.wz .wz-main .card .field .unitwrap .in:not(.frow .in):not(.x){padding-right:40px!important;text-align:right}
+ #v-s2.wz .wz-main .row .in.ghost{font-weight:600!important;color:#191f28}
+ #v-s2.wz .wz-main .row .lbl{display:flex;flex-direction:column;gap:2px;font-size:15px;font-weight:600;color:#191f28}
+ #v-s2.wz .wz-main .row .lbl small{font-size:12.5px;font-weight:400;color:#8b95a1}
+ #v-s2.wz .wz-main .row .del{width:32px;height:32px;border-radius:8px;color:#8b95a1}
+ #v-s2.wz .wz-main .row .del:hover{background:#f2f4f6;color:#191f28}
+ #v-s2.wz .wz-main .sublabel{margin:18px 0 8px!important;font-size:14px;font-weight:700;color:#4e5968}
+ #v-s2.wz .wz-main .field:not(.gsrc){display:flex;flex-direction:column;gap:0;border:1px solid #d1d6db;border-radius:10px;background:#fff;padding:9px 12px 2px 16px;min-height:66px;box-sizing:border-box;transition:border-color .15s,box-shadow .15s}
+ #v-s2.wz .wz-main .field:not(.gsrc):focus-within{border-color:#3182f6;box-shadow:0 0 0 3px rgba(49,130,246,.12)}
+ #v-s2.wz .wz-main .field:not(.gsrc)>label{font-size:12.5px!important;font-weight:600!important;color:#6b7684!important;margin:0!important}
+ #v-s2.wz .wz-main .field:not(.gsrc) .in{min-height:36px!important;text-align:left!important}
+ #v-s2.wz .wz-main .field:not(.gsrc) .unitwrap .in{text-align:left!important}
+ #v-s2.wz .wz-main .nums{gap:10px!important}
+ #v-s2.wz .goalcard{background:#fff!important;border:1px solid #e5e8eb!important;padding:22px!important;display:flex;flex-direction:column;gap:12px}
+ #v-s2.wz .goalcard .top2{gap:10px!important}
+ #v-s2.wz #cfNote{margin-top:16px!important}
+}
+
+/* v85 step 6 boxed fields (desktop) */
+@media (min-width:901px){
+ #monList{display:grid!important;grid-template-columns:1fr 1fr;gap:10px!important;margin-top:6px}
+ #monList .row{display:flex!important;flex-direction:column;align-items:stretch!important;gap:0!important;border:1px solid #d1d6db!important;border-radius:10px;background:#fff;padding:10px 12px 2px 16px!important;min-height:68px;box-sizing:border-box;transition:border-color .15s,box-shadow .15s}
+ #monList .row:focus-within{border-color:#3182f6!important;box-shadow:0 0 0 3px rgba(49,130,246,.12)}
+ #monList .row .lbl{font-size:12.5px!important;font-weight:600!important;color:#6b7684!important}
+ html:not(.dark) #monList .row .in{border:0!important;box-shadow:none!important;background:transparent!important;min-height:38px!important;height:38px;padding:0 44px 0 0!important;text-align:left!important;font-size:17px!important;font-weight:700!important;color:#191f28}
+ html:not(.dark) #monList .row select.in{padding-right:0!important;cursor:pointer}
+ #monList .row .unitwrap span{right:4px!important}
+ #monthList .row.mrow:not(.head){border:1px solid #e5e8eb!important;border-radius:10px;padding:10px 12px 10px 16px!important;margin-top:8px;background:#fff;transition:border-color .15s,box-shadow .15s}
+ #monthList .row.mrow:not(.head):focus-within{border-color:#3182f6!important;box-shadow:0 0 0 3px rgba(49,130,246,.12)}
+ #monthList .row.mrow.head{border:0!important;padding:0 12px 4px 16px!important}
+ html:not(.dark) #monthList .in{border:1px solid #d1d6db!important;border-radius:8px!important;height:42px}
+}
+
+@media (min-width:901px){
+ #v-s2.wz .wz-main #assetList .row.edit3:not(.head){grid-template-columns:minmax(0,1fr) 200px 32px!important;border:1px solid #d1d6db!important;padding:4px 6px 4px 16px!important;align-items:center!important;gap:8px!important;min-height:60px}
+ #v-s2.wz .wz-main #assetList .row.edit3:not(.head):focus-within{border-color:#3182f6!important}
+ #monList .row:last-child:nth-child(odd){grid-column:1/-1}
+}
+
+/* v85 Kia-style summary card next to the wizard */
+.ws-sum{display:none}
+@media (min-width:901px){
+ #v-s2.wz .ws-sum{display:block;margin-top:12px;border:1px solid #e5e8eb;border-radius:16px;padding:22px 24px;background:#fff}
+ .ws-sum h4{margin:0 0 12px;font-size:15px;font-weight:700;color:#191f28;letter-spacing:-.02em}
+ .ws-sum dl{margin:0;display:grid;grid-template-columns:92px minmax(0,1fr);row-gap:12px;column-gap:10px}
+ .ws-sum dt{font-size:13.5px;color:#8b95a1}
+ .ws-sum dd{margin:0;font-size:14.5px;font-weight:600;color:#191f28;text-align:right;font-variant-numeric:tabular-nums}
+ .ws-sum dd.no{color:#b0b8c1;font-weight:500}
+ .ws-sum .ws-left{margin-top:14px;padding-top:14px;border-top:1px solid #f2f4f6;display:flex;justify-content:space-between;align-items:baseline}
+ .ws-sum .ws-left span{font-size:13.5px;color:#4e5968}
+ .ws-sum .ws-left b{font-size:18px;font-weight:800;color:#3182f6;font-variant-numeric:tabular-nums}
+ .ws-sum .ws-left b.neg{color:#f04452}
+}
+
+@media (min-width:901px){#v-s2.wz .ws-l small{display:none}#v-s2.wz .ws-l button{padding:11px 0}#v-s2.wz .ws-card{padding:22px 24px 18px}#v-s2.wz .ws-sum dl{row-gap:9px}}
+
+/* v85 same boxed fields on mobile */
+@media (max-width:900px){
+ #v-s2.wz .frow{display:flex!important;flex-direction:column;gap:2px!important;padding:10px 16px 6px!important;border:1px solid #d1d6db;border-radius:10px;background:#fff;transition:border-color .15s,box-shadow .15s;min-height:66px;box-sizing:border-box}
+ #v-s2.wz .frow:focus-within{border-color:#3182f6;box-shadow:0 0 0 3px rgba(49,130,246,.12)}
+ #v-s2.wz .frow .fl b{font-size:12.5px;font-weight:600;color:#6b7684}
+ #v-s2.wz .frow .fl small{display:none}
+ #v-s2.wz .frow .in{border:0!important;min-height:30px!important;height:30px;font-size:16px!important;font-weight:500!important;padding:0!important}
+ #v-s2.wz .frow:has(button){grid-column:1/-1}
+ #v-s2.wz .frow:has(button) .fi{display:flex;gap:8px;flex-wrap:wrap;padding:4px 0 6px}
+ #v-s2.wz .frow:has(button) .fi button{min-width:96px;height:38px}
+ #v-s2.wz .frow:last-child{grid-column:1/-1}
+ #v-s2.wz .frow{align-items:stretch!important;text-align:left}
+ #v-s2.wz .frow .fl{display:flex!important;flex-direction:row!important;justify-content:flex-start}
+ #v-s2.wz .frow .fi{width:auto!important;height:auto!important;background:none!important;box-shadow:none!important;border-radius:0!important;color:inherit!important;font-weight:inherit!important;display:block!important;padding:0!important}
+ #v-s2.wz .frow .unitwrap{width:100%}
+ #v-s2.wz .frow:has(button){flex-direction:row!important;align-items:center!important;justify-content:space-between;padding:10px 12px 10px 16px!important}
+ #v-s2.wz .frow:has(button) .fi{display:flex!important;flex-wrap:nowrap;gap:6px;padding:0!important}
+ #v-s2.wz .frow:has(button) .fi button{min-width:92px;height:40px;border-radius:10px}
+ #v-s2.wz .wz-main .card .in:not(.frow .in){border:1px solid #d1d6db!important;border-radius:10px!important;padding:0 14px!important;min-height:52px!important;font-size:16px!important;font-weight:500!important;background:#fff!important}
+ #v-s2.wz .wz-main .card .in:not(.frow .in):focus{border-color:#3182f6!important;box-shadow:0 0 0 3px rgba(49,130,246,.12)!important}
+ #v-s2.wz #assetList .row.edit3{grid-template-columns:minmax(0,1fr) 112px 28px!important;align-items:center;gap:10px!important}
+ #v-s2.wz .frow:has(button) .fi>*{display:flex!important;flex-direction:row!important;flex-wrap:nowrap;gap:6px;width:auto}
+ #v-s2.wz .frow:has(button) .fi>* button{flex:none}
+ #v-s2.wz .wz-main .card .unitwrap .in:not(.frow .in){padding-right:52px!important}
+ #v-s2.wz .wz-main .list{display:flex!important;flex-direction:column;gap:10px}
+ #v-s2.wz .wz-main .row.edit,#v-s2.wz .wz-main .row.edit3:not(.head){display:grid!important;grid-template-columns:minmax(0,1fr) 112px 32px!important;align-items:center;gap:8px!important;border:1px solid #d1d6db!important;border-radius:10px!important;background:#fff;padding:4px 4px 4px 14px!important;min-height:60px;box-sizing:border-box;transition:border-color .15s,box-shadow .15s}
+ #v-s2.wz .wz-main .row.edit:has(.lbl){grid-template-columns:minmax(0,1fr) 112px!important;padding-right:6px!important}
+ #v-s2.wz .wz-main .row.edit:focus-within,#v-s2.wz .wz-main .row.edit3:focus-within{border-color:#3182f6!important;box-shadow:0 0 0 3px rgba(49,130,246,.12)}
+ #v-s2.wz .wz-main .card .row .in:not(.frow .in):not(.x),#v-s2.wz .wz-main .card .field .in:not(.frow .in):not(.x){border:0!important;box-shadow:none!important;background:transparent!important;min-height:44px!important;padding:0 4px!important;border-radius:6px!important}
+ #v-s2.wz .wz-main .card .row .unitwrap .in:not(.frow .in):not(.x),#v-s2.wz .wz-main .card .field .unitwrap .in:not(.frow .in):not(.x){padding-right:40px!important;text-align:right}
+ #v-s2.wz .wz-main .row .in.ghost{font-weight:600!important;color:#191f28}
+ #v-s2.wz .wz-main .row .lbl{display:flex;flex-direction:column;gap:2px;font-size:15px;font-weight:600;color:#191f28}
+ #v-s2.wz .wz-main .row .lbl small{font-size:12.5px;font-weight:400;color:#8b95a1}
+ #v-s2.wz .wz-main .row .del{width:32px;height:32px;border-radius:8px;color:#8b95a1}
+ #v-s2.wz .wz-main .row .del:hover{background:#f2f4f6;color:#191f28}
+ #v-s2.wz .wz-main .sublabel{margin:18px 0 8px!important;font-size:14px;font-weight:700;color:#4e5968}
+ #v-s2.wz .wz-main .field:not(.gsrc){display:flex;flex-direction:column;gap:0;border:1px solid #d1d6db;border-radius:10px;background:#fff;padding:9px 12px 2px 16px;min-height:66px;box-sizing:border-box;transition:border-color .15s,box-shadow .15s}
+ #v-s2.wz .wz-main .field:not(.gsrc):focus-within{border-color:#3182f6;box-shadow:0 0 0 3px rgba(49,130,246,.12)}
+ #v-s2.wz .wz-main .field:not(.gsrc)>label{font-size:12.5px!important;font-weight:600!important;color:#6b7684!important;margin:0!important}
+ #v-s2.wz .wz-main .field:not(.gsrc) .in{min-height:36px!important;text-align:left!important}
+ #v-s2.wz .wz-main .field:not(.gsrc) .unitwrap .in{text-align:left!important}
+ #v-s2.wz .wz-main .nums{gap:10px!important}
+ #v-s2.wz .goalcard{background:#fff!important;border:1px solid #e5e8eb!important;padding:22px!important;display:flex;flex-direction:column;gap:12px}
+ #v-s2.wz .goalcard .top2{gap:10px!important}
+ #v-s2.wz #cfNote{margin-top:16px!important}
+ #monList{display:grid!important;grid-template-columns:1fr 1fr;gap:10px!important;margin-top:6px}
+ #monList .row{display:flex!important;flex-direction:column;align-items:stretch!important;gap:0!important;border:1px solid #d1d6db!important;border-radius:10px;background:#fff;padding:10px 12px 2px 16px!important;min-height:68px;box-sizing:border-box;transition:border-color .15s,box-shadow .15s}
+ #monList .row:focus-within{border-color:#3182f6!important;box-shadow:0 0 0 3px rgba(49,130,246,.12)}
+ #monList .row .lbl{font-size:12.5px!important;font-weight:600!important;color:#6b7684!important}
+ html:not(.dark) #monList .row .in{border:0!important;box-shadow:none!important;background:transparent!important;min-height:38px!important;height:38px;padding:0 44px 0 0!important;text-align:left!important;font-size:17px!important;font-weight:700!important;color:#191f28}
+ html:not(.dark) #monList .row select.in{padding-right:0!important;cursor:pointer}
+ #monList .row .unitwrap span{right:4px!important}
+ #monthList .row.mrow:not(.head){border:1px solid #e5e8eb!important;border-radius:10px;padding:10px 12px 10px 16px!important;margin-top:8px;background:#fff;transition:border-color .15s,box-shadow .15s}
+ #monthList .row.mrow:not(.head):focus-within{border-color:#3182f6!important;box-shadow:0 0 0 3px rgba(49,130,246,.12)}
+ #monthList .row.mrow.head{border:0!important;padding:0 12px 4px 16px!important}
+ html:not(.dark) #monthList .in{border:1px solid #d1d6db!important;border-radius:8px!important;height:42px}
+ #v-s2.wz .wz-main #assetList .row.edit3:not(.head){grid-template-columns:minmax(0,1fr) 112px 32px!important;border:1px solid #d1d6db!important;padding:4px 4px 4px 14px!important;align-items:center!important;gap:8px!important;min-height:60px}
+ #v-s2.wz .wz-main #assetList .row.edit3:not(.head):focus-within{border-color:#3182f6!important}
+ #monList .row:last-child:nth-child(odd){grid-column:1/-1}
+ #v-s2.wz .wz-main .card{border:0!important;background:none!important;box-shadow:none!important;padding:0!important}
+ #v-s2.wz .wz-main .card:before,#v-s2.wz .wz-main .card:after,#v-s2.wz .wz-main .card .x-spot{display:none!important}
+ #v-s2.wz .fform{display:flex!important;flex-direction:column;gap:10px!important}
+ #v-s2.wz .frow:has(button){flex-direction:column!important;align-items:stretch!important;gap:8px!important}
+ #v-s2.wz .frow:has(button) .fi>*{flex-wrap:wrap!important}
+ #v-s2.wz .frow:has(button) .fi>* button{flex:1 1 0!important;min-width:0!important}
+ #v-s2.wz .wz-main .row .lbl{font-size:14px}
+ #v-s2.wz .wz-main .row .lbl small{font-size:11.5px}
+ #v-s2.wz .wz-main .nums{grid-template-columns:1fr 1fr!important}
+ #v-s2.wz .goalcard{padding:16px!important}
+ #v-s2.wz .goalcard .top2 .in{border:1px solid #d1d6db!important;border-radius:10px!important;min-height:48px!important;padding:0 12px!important;background:#fff!important}
+ #monList{grid-template-columns:1fr!important}
+ #monthList .row.mrow:not(.head){padding:12px 14px!important}
+}
+
+@media (max-width:900px){
+ #v-s2.wz .wz-main #assetList .row.edit3:not(.head),#v-s2.wz .wz-main .row.edit3:not(.head){grid-template-columns:minmax(0,1fr) 112px 32px!important;row-gap:0!important;min-height:58px;align-items:center!important}
+ #v-s2.wz .wz-main .row.edit3>:first-child,#v-s2.wz .wz-main .row.edit>:first-child{grid-column:auto!important}
+ #v-s2.wz .wz-main .row.edit3>:nth-child(2){justify-self:stretch!important}
+}
+
+/* v85 step-1 flow cards, recruiting-board style */
+#v-s1 .r1-flow ol.r1-steps{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important;list-style:none;margin:8px 0 0;padding:0;counter-reset:none}
+#v-s1 .r1-flow ol.r1-steps li{margin:0!important;padding:0!important;border:0!important;background:none!important;min-width:0}
+#v-s1 .r1-flow ol.r1-steps li:before,#v-s1 .r1-flow ol.r1-steps li:after{display:none!important}
+#v-s1 .r1-flow ol.r1-steps a{position:relative;display:flex!important;flex-direction:column;align-items:flex-start;gap:0;min-height:208px;height:100%;box-sizing:border-box;padding:28px 26px 24px!important;border-radius:14px!important;background:#f6f7f9!important;border:1px solid transparent!important;box-shadow:none!important;text-decoration:none;color:#191f28;transition:background .2s,border-color .2s,box-shadow .25s,transform .25s}
+#v-s1 .r1-flow ol.r1-steps a:hover{background:#fff!important;border-color:#1b2a4a!important;box-shadow:0 14px 30px rgba(17,24,39,.10)!important;transform:translateY(-2px)}
+#v-s1 .r1-flow ol.r1-steps b{order:1;font-size:20px!important;font-weight:700!important;letter-spacing:-.03em;line-height:1.4;color:#191f28!important}
+#v-s1 .r1-flow ol.r1-steps span{order:2;margin-top:auto;display:inline-block;width:auto!important;height:auto!important;padding:5px 10px!important;border-radius:4px!important;background:#e8eef9!important;color:#1b3a7a!important;font-size:13.5px!important;font-weight:700!important;line-height:1.3;border:0!important;box-shadow:none!important}
+#v-s1 .r1-flow ol.r1-steps b{margin-bottom:16px}#v-s1 .r1-flow ol.r1-steps small{order:3;margin-top:14px;font-size:14px!important;color:#6b7684!important;line-height:1.55}
+#v-s1 .r1-flow ol.r1-steps li.on a{background:#fff!important;border-color:#1b2a4a!important}
+#v-s1 .r1-flow ol.r1-steps li.on span{background:#191f28!important;color:#fff!important}
+#v-s1 .r1-flow ol.r1-steps .r1-go{position:absolute!important;right:22px;top:26px;left:auto!important;bottom:auto!important}
+@media (max-width:900px){#v-s1 .r1-flow ol.r1-steps{grid-template-columns:1fr 1fr!important;gap:10px!important}#v-s1 .r1-flow ol.r1-steps a{min-height:150px;padding:18px 16px 16px!important}#v-s1 .r1-flow ol.r1-steps b{font-size:16px!important;padding-right:22px}#v-s1 .r1-flow ol.r1-steps small{font-size:12.5px!important;margin-top:10px}#v-s1 .r1-flow ol.r1-steps span{font-size:12px!important}#v-s1 .r1-flow ol.r1-steps .r1-go{right:14px;top:18px}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -3063,12 +3220,12 @@ button{transition-property:transform,background,color,border-color,box-shadow,op
   <div class="card r1-flow">
     <div class="ch"><div><h3>상담은 이렇게 진행돼요</h3><p class="sub">지금은 6단계 중 첫 번째, 약속을 정하는 단계입니다</p></div></div>
     <ol class="r1-steps">
-      <li class="on"><a href="#s1"><span>01</span><b>약속 정하기</b><small>도와드릴 범위와 역할을 정해요</small><i class="r1-go" aria-hidden="true"></i></a></li>
-      <li><a href="#s2"><span>02</span><b>내 정보 알려 주기</b><small>소득·지출·자산·목표를 적어요</small><i class="r1-go" aria-hidden="true"></i></a></li>
-      <li><a href="#s3"><span>03</span><b>지금 상태 진단</b><small>잘하는 점과 부족한 점을 봐요</small><i class="r1-go" aria-hidden="true"></i></a></li>
-      <li><a href="#s4"><span>04</span><b>설계안 받기</b><small>목표별로 돈을 나눠 담아요</small><i class="r1-go" aria-hidden="true"></i></a></li>
-      <li><a href="#s5"><span>05</span><b>실행하기</b><small>자동이체와 할 일을 챙겨요</small><i class="r1-go" aria-hidden="true"></i></a></li>
-      <li><a href="#s6"><span>06</span><b>정기 점검</b><small>상황이 바뀌면 다시 맞춰요</small><i class="r1-go" aria-hidden="true"></i></a></li>
+      <li class="on"><a href="#s1"><span>지금 단계</span><b>약속 정하기</b><small>도와드릴 범위와 역할을 정해요</small><i class="r1-go" aria-hidden="true"></i></a></li>
+      <li><a href="#s2"><span>2단계</span><b>내 정보 알려 주기</b><small>소득·지출·자산·목표를 적어요</small><i class="r1-go" aria-hidden="true"></i></a></li>
+      <li><a href="#s3"><span>3단계</span><b>지금 상태 진단</b><small>잘하는 점과 부족한 점을 봐요</small><i class="r1-go" aria-hidden="true"></i></a></li>
+      <li><a href="#s4"><span>4단계</span><b>설계안 받기</b><small>목표별로 돈을 나눠 담아요</small><i class="r1-go" aria-hidden="true"></i></a></li>
+      <li><a href="#s5"><span>5단계</span><b>실행하기</b><small>자동이체와 할 일을 챙겨요</small><i class="r1-go" aria-hidden="true"></i></a></li>
+      <li><a href="#s6"><span>6단계</span><b>정기 점검</b><small>상황이 바뀌면 다시 맞춰요</small><i class="r1-go" aria-hidden="true"></i></a></li>
     </ol>
   </div>
   <div class="grid g2">
@@ -3381,7 +3538,7 @@ function blank(){const s=example();Object.assign(s,{mode:"blank",
   goals:[{id:"g1",term:"단기",name:"비상예비자금",amt:0,months:6,src:["cash"]},{id:"g2",term:"중기",name:"중기 목표",amt:0,months:36,src:["b1","b2"]}],
   sells:[],mon:{actIncome:0,actFixed:0,actVar:0,actSave:0,cma:0,isaDev:0,drop:0,raise:0,elapsed:0,yearend:"false",housing:"false"},checks:{},consent:{},gj:null});
   s.buckets=s.buckets.map(b=>Object.assign({},b,{pmt:0,link:"",months:""}));return s}
-const KEY="plan6-studio-v2";
+window.__getS=()=>{try{return S}catch(e){return null}};const KEY="plan6-studio-v2";
 let S;try{S=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){S=null}
 if(!S||!S.profile)S=example();
 let save=function(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
@@ -4456,6 +4613,14 @@ const pv=bar.querySelector(".wz-prev"),nx=bar.querySelector(".wz-next");
 const SN=["기본 정보","한 달 돈 흐름","지금 가진 돈","갚고 있는 빚","이루고 싶은 목표"],SD=["이름·나이·투자 성향","월급·저축·지출","통장·투자·보증금","대출 잔액과 상환","금액·기한·모을 통장"];
 side.innerHTML='<div class="ws-card"><span class="ws-eye">내 정보 입력</span><b class="ws-t">5단계로 나눠 적어요</b><ol class="ws-l">'+steps.map((x,k)=>`<li data-k="${k}"><button type="button" data-wzgo="${k}"><i>${k+1}</i><span><b>${SN[k]||""}</b><small>${SD[k]||""}</small></span></button></li>`).join("")+'</ol><div class="ws-btns"><button type="button" class="ws-prev">이전</button><button type="button" class="ws-next">다음</button></div><p class="ws-note">적은 내용은 이 브라우저에 바로 저장돼요</p></div>';
 const sp=side.querySelector(".ws-prev"),sn=side.querySelector(".ws-next");
+const sum=document.createElement("div");sum.className="ws-sum";side.appendChild(sum);
+function rsum(){let d=null;try{d=window.__getS&&window.__getS()}catch(e){}if(!d)try{d=JSON.parse(localStorage.getItem("plan6-studio-v2"))}catch(e){}if(!d)return;
+ const N=x=>Number(x)||0,f=x=>Math.round(x).toLocaleString("ko-KR")+"만 원",tot=(a,k)=>(a||[]).reduce((t,x)=>t+N(x[k]),0);
+ const inc=N(d.income&&d.income.salary),ex=tot(d.expenses,"amt"),sv=d.saving&&d.saving.items&&d.saving.items.length?tot(d.saving.items,"amt"):N(d.saving&&d.saving.current);
+ const as=tot(d.assets,"amt"),db=tot(d.debts,"bal"),gl=(d.goals||[]).filter(g=>N(g.amt)>0).length,nm=d.profile&&d.profile.name&&d.profile.name!=="새 고객"?d.profile.name:"";
+ const row=(l,v,ok)=>`<dt>${l}</dt><dd class="${ok?"":"no"}">${ok?v:"아직 안 적었어요"}</dd>`;const left=inc-ex-sv;
+ sum.innerHTML=`<h4>지금까지 적은 내용</h4><dl>${row("이름",nm+" 님",nm)}${row("월급(세후)",f(inc),inc)}${row("한 달 지출",f(ex),ex)}${row("매달 모으는 돈",f(sv),sv)}${row("가진 돈",f(as),as)}${row("갚을 빚",db?f(db):"없음",1)}${row("목표",gl+"개",gl)}</dl>`+(inc?`<div class="ws-left"><span>쓰고 모으고 남는 돈</span><b class="${left<0?"neg":""}">${left<0?"−":""}${f(Math.abs(left))}</b></div>`:"")}
+let rt;["input","change","click"].forEach(t=>document.addEventListener(t,()=>{clearTimeout(rt);rt=setTimeout(rsum,350)}));rsum();
 side.addEventListener("click",e=>{const g=e.target.closest("[data-wzgo]");if(g)show(+g.dataset.wzgo,true)});
 sp.addEventListener("click",()=>pv.click());sn.addEventListener("click",()=>nx.click());let cur=0;try{cur=Math.min(steps.length-1,+sessionStorage.getItem("wz")||0)}catch(e){}
 function show(i,scroll){cur=Math.max(0,Math.min(steps.length-1,i));try{sessionStorage.setItem("wz",cur)}catch(e){}
