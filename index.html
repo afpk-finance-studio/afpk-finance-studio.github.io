@@ -3173,6 +3173,50 @@ html:not(.dark) #v-s4 .goalcard .top2 .in{padding:0 14px!important}
 html:not(.dark) #v-s4 .card .in:not(.goalcard .in){background:#fff!important;border:1px solid #d1d6db!important;border-radius:10px!important;box-shadow:none!important}
 html:not(.dark) #v-s4 .card .in:not(.goalcard .in):focus{border-color:#3182f6!important;box-shadow:0 0 0 3px rgba(49,130,246,.12)!important}
 
+/* v89 Kia-style header info card */
+.pside.kia{gap:16px!important}
+.pk-dl{margin:0;display:grid;grid-template-columns:78px minmax(0,1fr);row-gap:12px;column-gap:12px}
+.pk-dl dt{font-size:14px;color:#8b95a1}
+.pk-dl dd{margin:0;font-size:14.5px;font-weight:500;color:#191f28}
+.pside.kia .pbars{margin-top:2px}
+.pside.kia .pbars i{height:4px}
+.pside.kia .pnav{flex-direction:column-reverse;gap:8px}
+.pside.kia .pnav a{padding:15px 10px;border-radius:6px;font-size:15px}
+.pside.kia .pnav a:not(.nx){background:none;color:#6b7684;padding:4px;font-size:13.5px;text-decoration:underline;text-underline-offset:3px}
+body:not(.wpg) .pk-dl dt{color:rgba(255,255,255,.5)}
+body:not(.wpg) .pk-dl dd{color:#fff}
+body:not(.wpg) .pside.kia .pnav a:not(.nx){color:rgba(255,255,255,.6);background:none}
+@media (max-width:900px){.pk-dl{row-gap:8px;grid-template-columns:70px minmax(0,1fr)}.pk-dl dt{font-size:12.5px}.pk-dl dd{font-size:13.5px}.pside.kia .pnav a{padding:13px 8px;font-size:14px}}
+
+/* v89 execution checklist as a job-board list */
+#execList .check.kjob{display:flex!important;align-items:flex-start;gap:16px;padding:22px 8px!important;border-top:1px solid #e5e8eb!important;border-radius:0!important}
+#execList .check.kjob:first-child{border-top:1px solid #191f28!important}
+#execList .check.kjob:hover{background:#fafbfc}
+#execList .check.kjob input{margin-top:3px!important;flex:none}
+.kj-t{display:flex;flex-direction:column;gap:8px;min-width:0}
+.kj-t>b{font-size:16.5px;font-weight:700;color:#191f28;letter-spacing:-.02em;line-height:1.45}
+.kj-m{display:flex;flex-wrap:wrap;align-items:center;font-size:13.5px;color:#6b7684}
+.kj-m em{font-style:normal;font-weight:700;color:#4e5968;margin-right:10px}
+.kj-m em.hot{color:#e42939}
+.kj-m em.ok{color:#3182f6}
+.kj-m i{font-style:normal;padding:0 10px;position:relative}
+.kj-m i:before{content:"";position:absolute;left:0;top:50%;width:1px;height:11px;margin-top:-5.5px;background:#d1d6db}
+#execList .check.kjob.done .kj-t>b{color:#8b95a1}
+@media (max-width:700px){#execList .check.kjob{padding:16px 4px!important;gap:12px}.kj-t>b{font-size:14.5px}.kj-m{font-size:12.5px}}
+
+/* v89 Kia-style dark next-step card */
+.knext{position:relative;display:block;margin:56px 0 8px;padding:40px 44px;border-radius:14px;background:#4b5059;color:#fff!important;text-decoration:none;overflow:hidden;transition:background .25s}
+.knext:hover{background:#3e434b}
+.knext svg.kn-line{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
+.knext small{position:relative;display:block;font-size:13px;color:rgba(255,255,255,.6);font-weight:600;letter-spacing:.02em}
+.knext b{position:relative;display:block;margin-top:6px;font-size:26px;font-weight:800;letter-spacing:-.03em}
+.knext p{position:relative;margin:56px 90px 0 0;font-size:15px;line-height:1.7;color:rgba(255,255,255,.78);max-width:56ch}
+.knext i.kn-go{position:absolute;right:44px;bottom:40px;width:52px;height:52px;border-radius:50%;background:#fff;display:grid;place-items:center;transition:transform .25s}
+.knext:hover i.kn-go{transform:translate(3px,-3px)}
+.knext i.kn-go:before{content:"";width:12px;height:12px;border:solid #191f28;border-width:2px 2px 0 0;transform:translate(-1px,1px)}
+.knext i.kn-go:after{content:"";position:absolute;width:16px;height:2px;background:#191f28;transform:rotate(-45deg)}
+@media (max-width:700px){.knext{padding:26px 22px;margin-top:36px}.knext b{font-size:20px}.knext p{margin:34px 64px 0 0;font-size:13.5px}.knext i.kn-go{right:22px;bottom:24px;width:42px;height:42px}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -4225,7 +4269,8 @@ function execItems(c){const st0=startDate();const it=[];let k=0;
   let q=7;S.expenses.filter(e=>c.planAmt(e)<n(e.amt)).forEach(e=>it.push(["cut-"+e.id,`${e.name} ${fmt(n(e.amt))} → ${fmt(c.planAmt(e),1)}만 원${e.note?" · "+e.note:""}`,"1개월",addD(st0,q++)]));
   it.push(["review","3개월 후 첫 점검 · 6단계 월간 점검판 작성","3개월",addM(st0,3)]);return it}
 function renderExec(c){const it=execItems(c),d=it.filter(x=>S.checks[x[0]]).length;
-  $("#execList").innerHTML=it.map(([k,t,w,dt])=>`<label class="check${S.checks[k]?" done":""}" data-date="${ymd(dt)}"><input type="checkbox" data-chk="${k}"${S.checks[k]?" checked":""}><span>${esc(t)}</span><span class="when"><b>${dstr(dt)}</b>${w}</span></label>`).join("");
+  const t0=new Date();t0.setHours(0,0,0,0);const dd=dt=>{const x=new Date(dt);x.setHours(0,0,0,0);return Math.round((x-t0)/864e5)};
+  $("#execList").innerHTML=it.map(([k,t,w,dt])=>{const d=dd(dt),done=!!S.checks[k],tag=done?"완료":d<0?"지남":d===0?"오늘":"D-"+d;return `<label class="check kjob${done?" done":""}" data-date="${ymd(dt)}"><input type="checkbox" data-chk="${k}"${done?" checked":""}><span class="kj-t"><b>${esc(t)}</b><span class="kj-m"><em class="${done?"ok":d<=7?"hot":""}">${tag}</em><i>${dstr(dt)}</i><i>${w}</i></span></span></label>`}).join("");
   $("#execPill").className="pill "+(d===it.length?"good":"info");$("#execPill").textContent=`${d} / ${it.length}`;$("#execBar").style.width=(d/it.length*100)+"%"}
 let calY=null,calM=null,calSel=null;
 function calEvents(c,y,mo){const st0=startDate(),E=[];const inM=d=>d.getFullYear()===y&&d.getMonth()===mo;
@@ -4486,10 +4531,11 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"){$("#modal").classLi
 
 const BI={s1:'<circle cx="9" cy="8" r="3.2"/><circle cx="16.5" cy="9" r="2.5"/><path d="M3 20v-.5A5.5 5.5 0 018.5 14h1A5.5 5.5 0 0115 19.5v.5M15.5 14.2A4.5 4.5 0 0121 18.6v1.4"/>',s2:'<rect x="5" y="4" width="14" height="17" rx="2.5"/><path d="M9 3.5h6v3H9zM9 12h6M9 16h4"/>',s3:'<path d="M12 3v9h9"/><path d="M20.5 15A9 9 0 1112 3"/>',s4:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4"/>',s5:'<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4M9 15.5l2 2 4-4"/>',s6:'<path d="M21 12a9 9 0 01-15.5 6.3L3 16M3 12a9 9 0 0115.5-6.3L21 8M21 3v5h-5M3 21v-5h5"/>',basis:'<path d="M4 19V5a2 2 0 012-2h12v18H6a2 2 0 01-2-2zM8 7h6M8 11h6"/>'};
 const BC=new Proxy({},{get:()=>["rgba(49,130,246,.42)","rgba(116,185,255,.20)"]});
-const SS=["관계","목표","분석","설계","실행","점검"];const SN=["관계 정립","목표·자료 수집","분석·평가","설계안 수립","실행·캘린더","점검·리밸런싱"];
+const SS=["관계","목표","분석","설계","실행","점검"];const SN=["관계 정립","목표·자료 수집","분석·평가","설계안 수립","설계안 실행","점검·리밸런싱"];
 function buildBanners(){["s1","s2","s3","s4","s5","s6"].forEach(v=>{const h=document.querySelector("#v-"+v+" .vhead");if(!h||h.classList.contains("phead"))return;h.classList.add("phead");h.insertAdjacentHTML("afterbegin",`<div class="paur tk3" aria-hidden="true"><i class="o1"></i><i class="o2"></i><i class="o3"></i></div>`);
   const n=+v.slice(1),e=h.querySelector(".eyebrow");if(e)e.outerHTML=`<nav class="crumb" aria-label="현재 위치"><a href="#home">재무설계 6단계</a><i></i><span>${n}단계</span><i></i><b>${SN[n-1]}</b></nav>`;
-  h.insertAdjacentHTML("beforeend",`<div class="pside"><span class="pnum">${String(n).padStart(2,"0")}</span><div class="pbars" aria-hidden="true">${SN.map((t,k)=>`<i class="${k<n?"on":""}"></i>`).join("")}</div><small>6단계 중 ${n}단계</small><div class="pnav">${n>1?`<a href="#s${n-1}">이전 단계</a>`:`<a href="#home">개요</a>`}${n<6?`<a class="nx" href="#s${n+1}">다음 단계</a>`:`<a class="nx" href="#report">보고서 보기</a>`}</div></div>`)})}
+  const PI=[["상담 범위와 역할 약속","약속 5가지 확인","상담 동의"],["소득·지출·자산·목표 입력","숫자 적기","내 재무 정보"],["지금 상태 진단","결과 읽기","진단과 AI 점수"],["목표별 저축 계획 만들기","안 고르기","설계안"],["자동이체와 할 일 정하기","자동이체 걸기","실행 캘린더"],["매달·분기 점검","실제 금액 적기","리밸런싱 기준"]][n-1];
+  h.insertAdjacentHTML("beforeend",`<div class="pside kia"><dl class="pk-dl"><dt>단계</dt><dd>${n} / 6 · ${SN[n-1]}</dd><dt>하는 일</dt><dd>${PI[0]}</dd><dt>내가 할 일</dt><dd>${PI[1]}</dd><dt>결과물</dt><dd>${PI[2]}</dd></dl><div class="pbars" aria-hidden="true">${SN.map((t,k)=>`<i class="${k<n?"on":""}"></i>`).join("")}</div><div class="pnav">${n>1?`<a href="#s${n-1}">이전 단계</a>`:`<a href="#home">개요</a>`}${n<6?`<a class="nx" href="#s${n+1}">다음 단계 · ${SN[n]}</a>`:`<a class="nx" href="#report">보고서 보기</a>`}</div></div>`)})}
 buildBanners();
 let rafP=0,lastE=null;
 document.addEventListener("pointermove",e=>{lastE=e;if(rafP)return;rafP=requestAnimationFrame(()=>{rafP=0;const ev=lastE,el=ev.target&&ev.target.closest&&ev.target.closest(".card,.kpi,.node,.summary>div,.feat");
@@ -4777,6 +4823,13 @@ addEventListener("hashchange",apply);mq.addEventListener?mq.addEventListener("ch
 (function(){const d=document.getElementById("dSum");if(!d)return;if(!("IntersectionObserver" in window)){d.classList.add("go");return}
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){d.classList.add("go")}else if(e.boundingClientRect.top>0){d.classList.remove("go")}}),{threshold:.18});io.observe(d)})();
 </script>
+<script>
+(function(){const N={s1:["2단계로","내 정보 알려 주기","약속을 확인했다면, 이제 월급·지출·가진 돈·목표를 차례로 적어 주세요. 적은 숫자는 모든 화면에 바로 반영돼요.","#s2"],s3:["4단계로","설계안 받기","진단에서 찾은 부족한 점을 바탕으로, 목표별로 돈을 어떻게 나눠 담을지 설계안을 만들어 드려요.","#s4"],s4:["5단계로","실행하기","고른 설계안대로 자동이체 날짜와 할 일을 캘린더에 올려요. 의지에 기대지 않게 구조를 만듭니다.","#s5"],s5:["6단계로","정기 점검","매달 실제 쓴 돈을 적어 계획과 비교하고, 상황이 바뀌면 다시 맞춰요.","#s6"],s6:["마지막으로","보고서 보기","지금까지의 6단계를 한 권의 보고서로 정리했어요. 고객님이 할 일까지 단계별로 담았어요.","#report"]};
+const line='<svg class="kn-line" viewBox="0 0 600 260" preserveAspectRatio="none" aria-hidden="true"><path d="M0 150 C 60 150 90 92 160 92 L 600 92" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg>';
+Object.keys(N).forEach(v=>{const sec=document.getElementById("v-"+v);if(!sec||sec.querySelector(".knext"))return;const [a,b,c,h]=N[v];const el=document.createElement("a");el.className="knext";el.href=h;el.innerHTML=line+`<small>${a}</small><b>${b}</b><p>${c}</p><i class="kn-go" aria-hidden="true"></i>`;
+const f=sec.querySelector(".hfoot,.hfoot-bz");if(f)sec.insertBefore(el,f);else sec.appendChild(el)})})();
+</script>
+
 
 
 
