@@ -3170,8 +3170,8 @@ html:not(.dark) #v-s4 .goalcard .top2 .in{border:1px solid #d1d6db!important;bor
 #v-s4 #cutList .row.head{border:0!important}
 
 html:not(.dark) #v-s4 .goalcard .top2 .in{padding:0 14px!important}
-html:not(.dark) #v-s4 .card .in:not(.goalcard .in){background:#fff!important;border:1px solid #d1d6db!important;border-radius:10px!important;box-shadow:none!important}
-html:not(.dark) #v-s4 .card .in:not(.goalcard .in):focus{border-color:#3182f6!important;box-shadow:0 0 0 3px rgba(49,130,246,.12)!important}
+html:not(.dark) #v-s4 .card .in:not(.goalcard .in):not(.bkg-f .in){background:#fff!important;border:1px solid #d1d6db!important;border-radius:10px!important;box-shadow:none!important}
+html:not(.dark) #v-s4 .card .in:not(.goalcard .in):not(.bkg-f .in):focus{border-color:#3182f6!important;box-shadow:0 0 0 3px rgba(49,130,246,.12)!important}
 
 /* v89 Kia-style header info card */
 .pside.kia{gap:16px!important}
@@ -3216,6 +3216,30 @@ body:not(.wpg) .pside.kia .pnav a:not(.nx){color:rgba(255,255,255,.6);background
 .knext i.kn-go:before{content:"";width:12px;height:12px;border:solid #191f28;border-width:2px 2px 0 0;transform:translate(-1px,1px)}
 .knext i.kn-go:after{content:"";position:absolute;width:16px;height:2px;background:#191f28;transform:rotate(-45deg)}
 @media (max-width:700px){.knext{padding:26px 22px;margin-top:36px}.knext b{font-size:20px}.knext p{margin:34px 64px 0 0;font-size:13.5px}.knext i.kn-go{right:22px;bottom:24px;width:42px;height:42px}}
+
+/* v90 step 4 buckets like the step 2 form */
+#bucketList>.note{margin:0 0 8px}
+.bkg{padding:22px 0 24px;border-top:1px solid #eef0f3}
+.bkg:first-of-type{border-top:0;padding-top:6px}
+.bkg-h{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.bkg-h i{flex:none;width:10px;height:10px;border-radius:3px}
+.bkg-h b{font-size:16.5px;font-weight:700;color:#191f28;letter-spacing:-.02em;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bkg-h span{margin-left:auto;font-size:14px;font-weight:600;color:#4e5968;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bkg-h .del{flex:none;width:30px;height:30px;border-radius:8px;color:#8b95a1}
+.bkg-h .del:hover{background:#f2f4f6;color:#191f28}
+.bkg-f{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+#v-s4 .bkg-f .field{display:flex;flex-direction:column;border:1px solid #d1d6db;border-radius:10px;background:#fff;padding:9px 12px 2px 16px;min-height:66px;box-sizing:border-box;transition:border-color .15s,box-shadow .15s;min-width:0}
+#v-s4 .bkg-f .field:focus-within{border-color:#3182f6;box-shadow:0 0 0 3px rgba(49,130,246,.12)}
+#v-s4 .bkg-f .field>label{font-size:12.5px!important;font-weight:600!important;color:#6b7684!important;margin:0!important}
+html:not(.dark) #v-s4 .bkg-f .field .in{border:0!important;box-shadow:none!important;background:transparent!important;min-height:36px!important;height:36px;padding:0 40px 0 0!important;font-size:16px!important;font-weight:500!important;text-align:left!important;border-radius:0!important}
+html:not(.dark) #v-s4 .bkg-f .field select.in{padding-right:0!important;cursor:pointer}
+#v-s4 .bkg-f .field .unitwrap span{right:4px!important}
+.bk-side{position:sticky;top:96px;min-width:0;border:1px solid #e5e8eb;border-radius:16px;padding:22px 24px;background:#fff}
+.bk-side h4{margin:0 0 12px;font-size:15px;font-weight:700;color:#191f28;letter-spacing:-.02em}
+@media (max-width:900px){.bkg-f{grid-template-columns:1fr 1fr}.bk-side{position:static}}
+@media (max-width:480px){.bkg-f{grid-template-columns:1fr 1fr;gap:8px}#v-s4 .bkg-f .field{padding:8px 10px 2px 12px}.bkg-h b{font-size:15px}.bkg-h span{font-size:12.5px}}
+
+html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
 
 @media print{
   @page{size:A4;margin:14mm 12mm}
@@ -3562,8 +3586,8 @@ body:not(.wpg) .pside.kia .pnav a:not(.nx){color:rgba(255,255,255,.6);background
   <div class="card">
     <div class="ch"><div><h3>4-Bucket 월 적립 배분</h3><p class="sub">목적별 계좌 · 연결 자산을 고르면 그 잔액에서 이어서 적립합니다</p></div><button class="btn sm" type="button" id="addBucket">+ 계좌 추가</button></div>
     <div class="grid g3" style="align-items:start">
-      <div class="span2" id="bucketList" style="display:flex;flex-direction:column;gap:10px;min-width:0"></div>
-      <div style="min-width:0"><div class="chart-box" style="height:220px"><canvas id="cBucket"></canvas></div><div id="bucketNote" style="margin-top:12px"></div></div>
+      <div class="span2" id="bucketList" style="display:flex;flex-direction:column;gap:0;min-width:0"></div>
+      <div class="bk-side"><h4>월 적립 한눈에</h4><div class="chart-box" style="height:200px"><canvas id="cBucket"></canvas></div><div id="bucketNote" style="margin-top:12px"></div></div>
     </div>
   </div>
   <div class="card">
@@ -3888,7 +3912,7 @@ function renderInputs(){migrate(S);
   const assetOpts=S.assets.filter(a=>a.type!=="liquid"&&a.type!=="use").map(a=>[a.id,a.name]);
   $("#sellList").innerHTML=(S.sells.map((s,i)=>`<div class="row edit">${si(`sells.${i}.asset`,s.asset,assetOpts.length?assetOpts:[["","투자 자산 없음"]],"정리할 자산")}${ni(`sells.${i}.amt`,s.amt,"정리 금액")}<button class="del" type="button" data-del="sells.${i}" aria-label="삭제">×</button></div>`).join(""))+`<div class="row edit" style="grid-template-columns:minmax(0,1fr) 120px 30px"><span class="lbl">남은 투자자산 기대수익률</span>${ni("restRate",S.restRate,"기대수익률","%")}<span></span></div><button class="addrow" type="button" id="addSell">+ 정리할 자산 추가</button>`;
   const linkOpts=[["","없음"]].concat(S.assets.filter(a=>["safe","risk","retire"].includes(a.type)).map(a=>[a.id,a.name]));
-  const cB=calc("balanced");$("#bucketList").innerHTML=(cB.auto?`<p class="note">월 적립을 비워 두면 저축 재원 월 ${fmt(cB.bucketSum)}만 원을 아래 계좌에 자동으로 나눠 담아요${cB.emPmt>0?` (비상금 통장 ${fmt(cB.emPmt)}만 원 포함)`:""}. 금액을 직접 넣으면 그 금액을 따릅니다.</p>`:"")+S.buckets.map((b,i)=>`<div class="goalcard"><div class="top2 bk"><i style="width:12px;height:12px;border-radius:4px;background:var(--c${i%6+1})"></i>${ti(`buckets.${i}.name`,b.name,"바구니","ghost")}${ti(`buckets.${i}.product`,b.product,"상품")}<button class="del" type="button" data-del="buckets.${i}" aria-label="삭제">×</button></div><div class="nums bk4">${fld("월 적립 (균형안)",cB.auto?ni(`buckets.${i}.pmt`,"","월 적립","만","자동 "+fmt((cB.buckets[i]||{}).pmt||0)):ni(`buckets.${i}.pmt`,b.pmt,"월 적립"))}${fld("기대수익률",ni(`buckets.${i}.rate`,b.rate,"수익률","%"))}${fld("연결 자산",si(`buckets.${i}.link`,b.link,linkOpts,"연결 자산"))}${fld("남은 납입",ni(`buckets.${i}.months`,b.months,"남은 납입","개월"))}</div></div>`).join("");
+  const cB=calc("balanced");$("#bucketList").innerHTML=(cB.auto?`<p class="note">월 적립을 비워 두면 저축 재원 월 ${fmt(cB.bucketSum)}만 원을 아래 계좌에 자동으로 나눠 담아요${cB.emPmt>0?` (비상금 통장 ${fmt(cB.emPmt)}만 원 포함)`:""}. 금액을 직접 넣으면 그 금액을 따릅니다.</p>`:"")+S.buckets.map((b,i)=>`<div class="bkg"><div class="bkg-h"><i style="background:var(--c${i%6+1})"></i><b>${i+1}. ${esc(b.name||"이름 없는 계좌")}</b><span>${cB.auto?"자동 "+fmt((cB.buckets[i]||{}).pmt||0):fmt(n(b.pmt))}만 원 / 월</span><button class="del" type="button" data-del="buckets.${i}" aria-label="삭제">×</button></div><div class="bkg-f">${fld("계좌 이름",ti(`buckets.${i}.name`,b.name,"바구니","","예: 비상금"))}${fld("상품",ti(`buckets.${i}.product`,b.product,"상품","","예: CMA 파킹통장"))}${fld("월 적립 (균형안)",cB.auto?ni(`buckets.${i}.pmt`,"","월 적립","만","자동 "+fmt((cB.buckets[i]||{}).pmt||0)):ni(`buckets.${i}.pmt`,b.pmt,"월 적립"))}${fld("기대수익률",ni(`buckets.${i}.rate`,b.rate,"수익률","%"))}${fld("연결 자산",si(`buckets.${i}.link`,b.link,linkOpts,"연결 자산"))}${fld("남은 납입",ni(`buckets.${i}.months`,b.months,"남은 납입","개월"))}</div></div>`).join("");
   $("#payday").value=S.exec.payday;$("#moveday").value=S.exec.moveday;$("#startday").value=S.exec.start||ymd(new Date());
   const m=S.mon,r2="grid-template-columns:minmax(0,1fr) 120px";
   $("#monthList").innerHTML=`<div class="row head mrow"><span>항목</span><span style="text-align:right">계획</span><span style="text-align:right">실제</span><span style="text-align:right">판정</span></div>`+[["actIncome","세후 소득"],["actFixed","고정지출"],["actVar","변동지출"],["actSave","저축·투자"]].map(([k,l])=>`<div class="row mrow"><span class="lbl">${l}<small data-o="md-${k}"></small></span><span class="val" data-o="mp-${k}"></span>${ni("mon."+k,m[k],l)}<span style="text-align:right" data-o="ms-${k}"></span></div>`).join("");
