@@ -2542,6 +2542,50 @@ body.wpg .view .vhead.phead{margin-bottom:8px!important}
 .cg-all{background:#fff;color:#191f28;border:1px solid #e5e8eb}.cg-all:hover{background:#f2f4f6}
 @media (max-width:700px){.con-go{flex-direction:column;align-items:stretch;text-align:left}.cg-btn,.cg-all{justify-content:center}}
 
+/* v70 mobile drawer */
+@media (max-width:900px){
+  .mdraw{background:#0b0b0e}
+  .md-in{inset:0;width:auto;padding:calc(env(safe-area-inset-top,0px) + 6px) 0 calc(env(safe-area-inset-bottom,0px) + 24px);gap:0;transform:translateY(-8px);opacity:0;transition:transform .3s cubic-bezier(.16,1,.3,1),opacity .25s}
+  .mdraw.open .md-in{transform:none;opacity:1}
+  .md-h2{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 20px;background:#0b0b0e;border-bottom:1px solid rgba(255,255,255,.08)}
+  .md-h2 .logo{color:#fff}
+  .md-h2 button{width:40px;height:40px;border:0;background:transparent;color:#fff;display:grid;place-items:center;margin-right:-8px}
+  .md-h2 button svg{width:24px;height:24px}
+  .md-acc{display:flex;flex-direction:column;padding:8px 20px 0}
+  .ma{border-bottom:1px solid rgba(255,255,255,.08)}
+  .ma-h{width:100%;display:flex;align-items:center;gap:14px;padding:18px 2px;background:none;border:0;color:#fff;text-align:left;font:inherit}
+  .ma-n{flex:none;min-width:34px;height:26px;border:1px solid rgba(255,255,255,.16);border-radius:8px;display:grid;place-items:center;font-size:12.5px;font-weight:600;color:rgba(255,255,255,.7)}
+  .ma-n:empty{display:none}
+  .ma-t{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+  .ma-t b{font-size:18px;font-weight:700;letter-spacing:-.02em}
+  .ma-t small{font-size:12.5px;color:rgba(255,255,255,.45)}
+  .ma-h i{flex:none;width:9px;height:9px;border-right:1.8px solid rgba(255,255,255,.55);border-bottom:1.8px solid rgba(255,255,255,.55);transform:translateY(-3px) rotate(45deg);transition:transform .25s}
+  .ma.op .ma-h i{transform:translateY(2px) rotate(-135deg)}
+  .ma.cur .ma-t b{color:#8fb8ff}.ma.cur .ma-n{border-color:#8fb8ff;color:#8fb8ff}
+  .ma-p{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s cubic-bezier(.16,1,.3,1)}
+  .ma.op .ma-p{grid-template-rows:1fr}
+  .ma-pi{overflow:hidden;display:flex;flex-direction:column}
+  .ma-pi a{display:block;padding:12px 2px 12px 50px;color:rgba(255,255,255,.72);font-size:15.5px;text-decoration:none}
+  .ma-pi a:last-child{margin-bottom:12px}
+  .ma-pi a:active{color:#fff}
+  .ma-pi a.ma-go{color:#8fb8ff;font-weight:600}
+}
+
+.hf-legal{margin-top:36px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:8px;max-width:920px}
+.hf-legal b{font-size:13px;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:2px}
+.hf-legal p{margin:0;font-size:12.5px;line-height:1.75;color:rgba(255,255,255,.42);word-break:keep-all}
+@media (max-width:700px){
+  .dtr{grid-template-columns:minmax(0,1fr) 64px 72px!important;gap:10px!important;padding:14px 16px!important;align-items:center}
+  .dtr .dtn{grid-column:auto!important}
+  .dth span:first-child{display:block!important;visibility:hidden}
+  .dth span{text-align:right}
+  .dtn small,.dtv em,.dpt{display:none!important}
+  .dtn b{font-size:15.5px}
+  .dtv{display:block!important;text-align:right}
+  .dtv>b{font-size:17px}
+  .dai-sum{font-size:14px}
+}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -2679,7 +2723,7 @@ body.wpg .view .vhead.phead{margin-bottom:8px!important}
     <div class="wv-meta"><span id="wvClock"></span><span class="wv-mid">재무목표<i></i><b id="wvCnt"></b></span><span class="wv-src">Data : 소득 | 지출 | 자산 | 부채</span></div>
     <div class="wv-box" id="wvBox"><canvas id="wvCv" aria-hidden="true"></canvas></div>
   </section>
-  <div class="dash-head"><span class="feat-eye">AI SCORE</span><h2>AI가 매긴<br>재무건강 점수</h2><p class="dash-lead">예시 고객의 지금 점수와 설계안대로 실행했을 때의 점수입니다. 내 정보를 넣으면 3단계 분석·평가에서 내 점수와 진단을 볼 수 있습니다</p></div>
+  <div class="dash-head"><span class="feat-eye">AI SCORE</span><h2>AI가 매긴<br>재무건강 점수</h2><p class="dash-lead">지금 점수와 설계안대로 실행했을 때의 점수입니다. 내 정보를 넣으면 여기와 3단계 분석·평가가 내 점수로 바뀝니다</p></div>
   <div class="ds-wrap"><div class="ds-glow" aria-hidden="true"><i></i><i></i><i></i></div><div class="card dscore" id="dScore"></div></div>
   <section class="jb" id="jc" aria-labelledby="jcT"><div class="jb-orbs" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="jb-mark" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -2690,8 +2734,14 @@ body.wpg .view .vhead.phead{margin-bottom:8px!important}
     <div class="hf-cols">
       <div><b>재무설계 6단계</b><a href="#s1">관계 정립</a><a href="#s2">목표·자료 수집</a><a href="#s3">분석·평가</a><a href="#s4">설계안 수립</a><a href="#s5">설계안 실행</a><a href="#s6">점검·리밸런싱</a></div>
       <div><b>자료</b><a href="#report">재무설계 보고서</a><a href="#basis">산출 근거·관련 법령</a><a href="#s2">새 고객 입력</a></div>
-      <div class="hf-note"><b>유의사항</b><span>회원가입 없이 바로 쓸 수 있어요</span><span>입력한 값은 내 브라우저에만 저장돼요</span><span>예시 고객 김민준은 가상 인물이에요</span><span>예상 수익률은 가정값이며 수익을 보장하지 않아요</span><span>최종 결정은 고객과 재무설계사가 해요</span></div>
+      
     </div>
+    <div class="hf-legal"><b>유의사항</b>
+      <p>threekong은 AFPK 재무설계 6단계에 따라 개인의 재무 상태를 정리하고 설계안을 만들어 보는 재무설계 도구이며, 특정 금융투자상품의 매매나 투자를 권유하거나 투자자문을 제공하는 서비스가 아닙니다.</p>
+      <p>AI 재무건강 점수와 진단, 처방은 입력한 정보를 공개된 계산 규칙으로 산출한 참고 자료입니다. 실제 금융기관의 신용평가나 심사 결과와 관련이 없으며, 정확성이나 완전성을 보장하지 않습니다.</p>
+      <p>화면의 예상 수익률과 미래 금액은 가정에 따른 예시이며 실제 수익을 보장하지 않습니다. 금융투자상품은 원금 손실이 발생할 수 있고, 투자에 대한 최종 판단과 그 결과의 책임은 이용자 본인에게 있습니다.</p>
+      <p>세법, 금리, 상품 조건(청년도약계좌, ISA, 연금저축, 주택청약 등)은 바뀔 수 있으니 가입 전에 해당 금융회사와 관련 법령을 꼭 확인하세요.</p>
+      <p>입력한 정보는 서버로 보내지 않고 이용자의 브라우저에만 저장됩니다. 예시 고객 김민준은 가상의 인물입니다.</p></div>
     <p class="hf-copy">© 2026 threekong. All rights reserved.</p>
   </footer>
   <div class="ov-cta"><div><b>내 숫자로 직접 해 보세요</b><p>소득·지출·자산·목표를 입력하면 진단, AI 평가, 설계안이 모두 내 기준으로 다시 계산됩니다</p></div><div class="btns"><a class="btn primary" href="#s2">내 정보 입력 바로 가기</a><a class="btn" href="#s3">분석·평가 결과 보기</a></div></div>
@@ -3206,7 +3256,7 @@ const o=(k,h)=>document.querySelectorAll(`[data-o="${k}"]`).forEach(el=>el.inner
 let horizon=72,cfMode="now",svMode="now";
 function kpi(k,v,unit,sub,status,tip){return `<div class="kpi" tabindex="0"><div class="k">${k}${status?`<span class="pill ${status}">${SL[status]}</span>`:""}</div><div class="v">${v}<small>${unit}</small></div><div class="d">${sub}</div>${tip?`<div class="tip">${tip}</div>`:""}</div>`}
 let HOMEONLY=0,EXS=null;const inHome=el=>!!(el&&el.closest&&el.closest("#v-home"));
-function update(){updateCore();if(S.mode==="example")return;const real=S,D=document,q1=D.querySelector,qa=D.querySelectorAll,gi=D.getElementById,sv=save;
+function update(){updateCore();if(S.mode==="example")return;if(S.profile&&S.profile.name&&S.profile.name!=="새 고객"&&n(S.income.salary)>0){$("#btnBlank").hidden=true;$("#btnExample2").hidden=false;return}const real=S,D=document,q1=D.querySelector,qa=D.querySelectorAll,gi=D.getElementById,sv=save;
   EXS=EXS||example();S=EXS;HOMEONLY=1;
   D.querySelector=function(x){const r=q1.call(D,x);return inHome(r)?r:D.createElement("div")};
   D.querySelectorAll=function(x){return [...qa.call(D,x)].filter(inHome)};
@@ -3216,7 +3266,7 @@ function update(){updateCore();if(S.mode==="example")return;const real=S,D=docum
 function updateCore(){
   const c=calc(),p=S.profile;
   const H=Math.max(120,...S.goals.map(g=>n(g.months)));const P=project(c,H);
-  $("#modeLabel").textContent=S.mode==="example"?"가상 고객 예시":"직접 입력한 고객";$("#btnBlank").hidden=S.mode!=="example";$("#btnExample2").hidden=S.mode==="example";
+  $("#modeLabel").textContent=S.mode==="example"?"가상 고객 예시":"내 정보";$("#btnBlank").hidden=S.mode!=="example";$("#btnExample2").hidden=S.mode==="example";
   {const th=`${esc(p.name||"고객")}님의 돈이<br><em>모이는 구조</em>를 설계합니다`,te=$("#homeTitle");if(te.dataset.h!==th){te.dataset.h=th;te.innerHTML=th;if(!update.typed){update.typed=1;typeIt(te,62)}}}
   $("#sideClient").textContent=`${p.name||"고객"}${p.age?" · "+p.age+"세":""}`;
   const finNow=c.A.liquid+c.A.safe+c.A.risk+c.A.retire;
@@ -3320,7 +3370,7 @@ function updateCore(){
      ["투자 위험","모은 돈 중 주식·코인 몫","30% 이하면 25점",c.rNow.risk,c.rAfter.risk,v=>v>0?fmt(v,0)+"%":"없음"]];
    const weak=IT.filter((_,k)=>p0[k]<25).map(r=>r[0]);
    const pb=(v,cl)=>`<span class="dpt ${cl}"><i style="width:${v/25*100}%"></i></span>`;
-   const tb=`<div class="dai-tb" role="table"><div class="dtr dth" role="row"><span>점수 항목</span><span>지금</span><span>설계안 실행 후</span></div>${IT.map((r,k)=>`<div class="dtr" role="row"><span class="dtn"><b>${r[0]}</b><small>${r[1]} · ${r[2]}</small></span><span class="dtv"><em>${r[5](r[3])}</em><b>${p0[k]}<small>/25점</small></b>${pb(p0[k],"a")}</span><span class="dtv"><em>${r[5](r[4])}</em><b class="${p1[k]>p0[k]?"up":""}">${p1[k]}<small>/25점</small></b>${pb(p1[k],"b")}</span></div>`).join("")}<div class="dtr dtt" role="row"><span class="dtn"><b>합계</b><small>100점 만점</small></span><span class="dtv"><b>${s0}<small>점</small></b></span><span class="dtv"><b class="${s1>s0?"up":""}">${s1}<small>점</small></b></span></div></div>`;
+   const tb=`<div class="dai-tb" role="table"><div class="dtr dth" role="row"><span>점수 항목</span><span>지금</span><span>실행 후</span></div>${IT.map((r,k)=>`<div class="dtr" role="row"><span class="dtn"><b>${r[0]}</b><small>${r[1]} · ${r[2]}</small></span><span class="dtv"><em>${r[5](r[3])}</em><b>${p0[k]}<small>/25점</small></b>${pb(p0[k],"a")}</span><span class="dtv"><em>${r[5](r[4])}</em><b class="${p1[k]>p0[k]?"up":""}">${p1[k]}<small>/25점</small></b>${pb(p1[k],"b")}</span></div>`).join("")}<div class="dtr dtt" role="row"><span class="dtn"><b>합계</b><small>100점 만점</small></span><span class="dtv"><b>${s0}<small>점</small></b></span><span class="dtv"><b class="${s1>s0?"up":""}">${s1}<small>점</small></b></span></div></div>`;
    const nb=c.buckets.filter(b=>b.pmt>0).length;
    const rx=[c.rNow.em>=3?`<b>비상금은 이미 충분해요.</b> 생활비 ${fmt(c.rNow.em,1)}달치가 있어요`:c.emPmt>0?`<b>매달 ${fmt(c.emPmt)}만 원씩 비상금 통장에 모아요.</b> 1년 안에 생활비 ${fmt(c.rAfter.em,1)}달치가 돼요`:`<b>투자 일부를 정리해 비상금을 만들어요.</b> 생활비 ${fmt(c.rNow.em,1)}달치 → ${fmt(c.rAfter.em,1)}달치`,
      cut>.05?`<b>지출을 월 ${fmt(cut)}만 원 줄여 저축으로 돌려요.</b> 매달 모으는 돈 ${fmt(c.saveNow)}만 → ${fmt(c.bucketSum)}만 원`:`<b>매달 ${fmt(c.bucketSum)}만 원을 월급날 다음 날 먼저 모아요.</b> 쓰고 남은 돈이 아니라 먼저 떼어 둡니다`,
@@ -3992,6 +4042,21 @@ renderInputs();update();route();
 
 // v66 banner beans follow the pointer
 (function(){const b=document.getElementById("jc");if(!b)return;b.addEventListener("pointermove",e=>{const r=b.getBoundingClientRect();b.style.setProperty("--bx",((e.clientX-r.left)/r.width*100).toFixed(1)+"%");b.style.setProperty("--by",((e.clientY-r.top)/r.height*100).toFixed(1)+"%")});b.addEventListener("pointerleave",()=>{b.style.removeProperty("--bx");b.style.removeProperty("--by")})})();
+
+// v70 mobile drawer: full screen accordion
+(function(){const $=q=>document.querySelector(q);const d=$("#mDraw"),inn=d&&d.querySelector(".md-in"),mega=document.querySelector(".gmega");if(!inn||!mega)return;
+  const logo=document.querySelector(".logo");const desc={};d.querySelectorAll(".md-list a").forEach(a=>desc[a.getAttribute("href")]=[a.querySelector(".md-n").textContent,a.querySelector("small").textContent]);
+  const cols=[...mega.querySelectorAll(".gm-col")];
+  inn.innerHTML=`<div class="md-h2">${logo?logo.outerHTML:""}<button type="button" id="mClose2" aria-label="메뉴 닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><nav class="md-acc">${cols.map((c,i)=>{const t=c.querySelector(".gm-t"),h=t.getAttribute("href"),it=[...c.querySelectorAll(".gm-i")],dd=desc[h]||["",""];
+    return `<div class="ma" data-mv="${h.slice(1)}"><button type="button" class="ma-h" aria-expanded="false"><span class="ma-n">${dd[0]}</span><span class="ma-t"><b>${t.textContent}</b><small>${dd[1]}</small></span><i aria-hidden="true"></i></button><div class="ma-p"><div class="ma-pi"><a href="${h}" class="ma-go">${t.textContent} 처음으로</a>${it.map((x,k)=>`<a href="${h}" data-mi="${i}-${k}">${x.textContent}</a>`).join("")}</div></div></div>`}).join("")}</nav>`;
+  const close=()=>{d.classList.remove("open");d.setAttribute("aria-hidden","true");document.documentElement.style.overflow="";const b=$("#mBurger");b&&b.setAttribute("aria-expanded","false")};
+  $("#mClose2").addEventListener("click",close);
+  inn.addEventListener("click",e=>{const h=e.target.closest(".ma-h");if(h){const m=h.parentElement,o=!m.classList.contains("op");inn.querySelectorAll(".ma.op").forEach(x=>{x.classList.remove("op");x.querySelector(".ma-h").setAttribute("aria-expanded","false")});if(o){m.classList.add("op");h.setAttribute("aria-expanded","true")}return}
+    const a=e.target.closest("a");if(!a)return;if(a.closest(".md-h2")){close();return}
+    if(a.dataset.mi){e.preventDefault();const [i,k]=a.dataset.mi.split(".").join("-").split("-").map(Number);const src=cols[i].querySelectorAll(".gm-i")[k];close();setTimeout(()=>src&&src.click(),60);return}
+    close()});
+  new MutationObserver(()=>{if(d.classList.contains("open")){const v=(location.hash||"#home").slice(1);inn.querySelectorAll(".ma").forEach(x=>{const on=x.dataset.mv===v;x.classList.toggle("cur",on);x.classList.toggle("op",on);x.querySelector(".ma-h").setAttribute("aria-expanded",on)})}}).observe(d,{attributes:true,attributeFilter:["class"]});
+})();
 </script>
 
 
