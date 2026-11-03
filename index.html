@@ -2757,7 +2757,7 @@ button{transition-property:transform,background,color,border-color,box-shadow,op
 
 /* v81 mobile step-by-step input */
 .wz-head,.wz-bar{display:none}
-@media (max-width:700px){
+@media all{
  #v-s2.wz>#liveSum,#v-s2.wz>.card.wz-comp{display:none!important}
  #v-s2.wz [data-wz]:not(.wz-on){display:none!important}
  #v-s2.wz.wz-last>.card.wz-comp{display:block!important;order:9}
@@ -2783,7 +2783,51 @@ button{transition-property:transform,background,color,border-color,box-shadow,op
 }
 @media print{.wz-bar{display:none!important}}
 
-@media (max-width:700px){#v-s2.wz .pside{display:none!important}#v-s2.wz .vhead{padding-bottom:4px!important;min-height:0!important}body.wz-show .x-toast{bottom:92px}}
+@media all{#v-s2.wz .pside{display:none!important}#v-s2.wz .vhead{padding-bottom:4px!important;min-height:0!important}body.wz-show .x-toast{bottom:92px}}
+
+/* v82 wizard on desktop too */
+#v-s2.wz{overflow-x:clip}
+#v-s2.wz>.grid.g2{display:flex!important;flex-direction:column;gap:16px}
+#v-s2.wz>.grid.g2>div{width:100%}
+#v-s2.wz>.wz-head,#v-s2.wz>.grid,#v-s2.wz>.card{width:100%;max-width:760px;margin-left:auto;margin-right:auto;box-sizing:border-box}
+@media (min-width:701px){
+ #v-s2.wz .wz-head{gap:14px;padding:12px 0 4px}
+ .wz-t{font-size:30px!important}
+ .wz-d{font-size:16px!important}
+ .wz-step{font-size:14px!important}
+ #v-s2.wz [data-wz].wz-on{padding:28px 30px!important}
+ .wz-bar{padding:16px calc(50% - 380px) 22px!important}
+ .wz-bar button{height:56px}
+ .wz-prev{flex:0 0 120px!important}
+ #v-s2.wz{padding-bottom:110px}
+ body.wz-show .x-toast{bottom:100px}
+}
+
+/* v83 goal source list + Toss-style wizard fields */
+.gsrc label{display:flex;flex-direction:column;gap:4px;font-size:15px!important;font-weight:700!important;color:#191f28!important}
+.gsrc .gsrc-h{font-size:13px!important;font-weight:400;color:#8b95a1}
+.srcl{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.srcrow{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:14px 16px;border-radius:14px;border:1px solid #e5e8eb;background:#fff;cursor:pointer;font:inherit;transition:border-color .15s,background .15s}
+.srcrow:hover{border-color:#c9d6e8}
+.srcrow .ck{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid #d1d6db;position:relative;transition:all .15s}
+.srcrow.on{border-color:#3182f6;background:#f4f8ff}
+.srcrow.on .ck{background:#3182f6;border-color:#3182f6}
+.srcrow.on .ck:after{content:"";position:absolute;left:6px;top:2.5px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.srcrow span{display:flex;flex-direction:column;gap:2px;min-width:0}
+.srcrow b{font-size:15px;font-weight:600;color:#191f28;letter-spacing:-.01em}
+.srcrow small{font-size:13px;color:#8b95a1}
+#v-s2.wz [data-wz].wz-on{background:transparent!important;border:0!important;box-shadow:none!important;padding:4px 0 0!important}
+#v-s2.wz .in{background:transparent!important;border:0!important;border-bottom:2px solid #e5e8eb!important;border-radius:0!important;box-shadow:none!important;font-size:18px!important;font-weight:600!important;color:#191f28;padding-left:2px!important;min-height:50px;transition:border-color .2s}
+#v-s2.wz .in:focus{border-bottom-color:#3182f6!important;outline:none}
+#v-s2.wz #assetList .row.head,#v-s2.wz #assetList select{display:none!important}
+#v-s2.wz #assetList .row.edit3{grid-template-columns:minmax(0,1fr) minmax(0,150px) 28px!important;gap:14px!important;align-items:end;border:0!important;padding:6px 0!important}
+#v-s2.wz .goalcard{background:#f9fafb!important;border:0!important;border-radius:20px!important;padding:20px!important}
+#v-s2.wz .goalcard .in{background:transparent!important}
+#v-s2.wz .addrow,#v-s2.wz #addDebt,#v-s2.wz #addGoal{border-radius:12px}
+
+#v-s2.wz #goalList{grid-template-columns:minmax(0,1fr)!important}
+#v-s2.wz [data-wz] .ch .sub{display:none}
+#v-s2.wz [data-wz] .ch{justify-content:flex-end}
 
 @media print{
   @page{size:A4;margin:14mm 12mm}
@@ -3445,8 +3489,8 @@ function renderInputs(){migrate(S);
   $("#varList").innerHTML=ix.filter(([e])=>e.group!=="fixed").map(([e,i])=>exRow(e,i)).join("")+`<button class="addrow" type="button" data-add="variable">+ 변동지출 추가</button>`;
   $("#assetList").innerHTML=`<div class="row edit3 head"><span>어디에</span><span>종류</span><span style="text-align:right">지금 금액</span><span></span></div>`+S.assets.map((a,i)=>`<div class="row edit3">${ti(`assets.${i}.name`,a.name,"자산명","ghost","자산 이름 (예: 청약통장)")}${si(`assets.${i}.type`,a.type,Object.entries(TYPES),"구분")}${ni(`assets.${i}.amt`,a.amt,a.name)}<button class="del" type="button" data-del="assets.${i}" aria-label="삭제">×</button></div>`).join("")+`<button class="addrow" type="button" id="addAsset">+ 자산 추가</button>`;
   $("#debtList").innerHTML=(S.debts.length?S.debts.map((d,i)=>`<div class="goalcard"><div class="top2" style="grid-template-columns:minmax(0,1fr) 30px">${ti(`debts.${i}.name`,d.name,"부채명","ghost","부채 이름 (예: 학자금대출)")}<button class="del" type="button" data-del="debts.${i}" aria-label="삭제">×</button></div><div class="nums" style="grid-template-columns:repeat(4,minmax(0,1fr))">${fld("잔액",ni(`debts.${i}.bal`,d.bal,"잔액"))}${fld("월 상환",(d.pay===""||d.pay==null||n(d.pay)===0)?ni(`debts.${i}.pay`,"","월 상환","만",payOf(d)?"자동 "+fmt(payOf(d),1):"모르면 비워 두세요"):ni(`debts.${i}.pay`,d.pay,"월 상환"))}${fld("금리",ni(`debts.${i}.rate`,d.rate,"금리","%"))}${fld("잔여",ni(`debts.${i}.months`,d.months,"잔여","개월"))}</div></div>`).join(""):`<p class="note">부채가 없습니다.</p>`)+`<button class="btn sm" type="button" id="addDebt" style="align-self:flex-start">+ 부채 추가</button>`;
-  const cG=calc("balanced"),em0=cG.buckets.find(b=>b.id==="bem");const srcOpts=[["cash","비상금 통장"+(em0?` · 월 ${fmt(em0.pmt)}만`:` · 지금 ${fmt(cG.B.liquid)}만`)]].concat(S.buckets.map((b,i)=>{const p=(cG.buckets[i]||{}).pmt||0;return [b.id,((b.product||b.name||"").split(" (")[0])+(p>0?` · 월 ${fmt(p,p%1?1:0)}만`:"")]})).concat([["rest",`지금 있는 투자금 · ${fmt(cG.restAmt)}만`]]);
-  $("#goalList").innerHTML=S.goals.map((g,i)=>`<div class="goalcard"><div class="top2">${si(`goals.${i}.term`,g.term,[["단기","단기"],["중기","중기"],["장기","장기"],["은퇴","은퇴"]],"구분")}${ti(`goals.${i}.name`,g.name,"목표","","목표 이름 (예: 결혼자금)")}<button class="del" type="button" data-del="goals.${i}" aria-label="삭제">×</button></div><div class="nums">${fld("목표 금액",ni(`goals.${i}.amt`,g.amt,"목표 금액"))}${fld("기한",ni(`goals.${i}.months`,g.months,"기한","개월"))}</div><div class="field"><label>이 목표, 어느 통장으로 모을까요? <small class="gsrc-h">고른 통장에 쌓이는 돈으로 목표를 채워요 · 여러 개 가능</small></label><div class="chips">${srcOpts.map(([v,l])=>`<button type="button" class="chipbtn${(g.src||[]).includes(v)?" on":""}" data-src="${i}" data-v="${v}">${esc(l)}</button>`).join("")}</div></div><div class="gplan" id="gplan${i}"></div></div>`).join("");
+  const cG=calc("balanced"),em0=cG.buckets.find(b=>b.id==="bem");const srcAll=[["cash","비상금 통장",em0?`매달 ${fmt(em0.pmt)}만 원씩 쌓여요 · 지금 ${fmt(cG.B.liquid)}만 원`:`지금 ${fmt(cG.B.liquid)}만 원 있어요`,1]].concat(S.buckets.map((b,i)=>{const p=(cG.buckets.find(x=>x.id===b.id)||{}).pmt||0;return [b.id,(b.product||b.name||"").split(" (")[0],p>0?`매달 ${fmt(p,p%1?1:0)}만 원씩 모아요`:"아직 모으는 돈이 없어요",p>0]})).concat([["rest","지금 가진 투자금",`주식·펀드 등 ${fmt(cG.restAmt)}만 원`,cG.restAmt>0]]);
+  $("#goalList").innerHTML=S.goals.map((g,i)=>`<div class="goalcard"><div class="top2">${si(`goals.${i}.term`,g.term,[["단기","단기"],["중기","중기"],["장기","장기"],["은퇴","은퇴"]],"구분")}${ti(`goals.${i}.name`,g.name,"목표","","목표 이름 (예: 결혼자금)")}<button class="del" type="button" data-del="goals.${i}" aria-label="삭제">×</button></div><div class="nums">${fld("목표 금액",ni(`goals.${i}.amt`,g.amt,"목표 금액"))}${fld("기한",ni(`goals.${i}.months`,g.months,"기한","개월"))}</div><div class="field gsrc"><label>이 목표는 어떤 통장의 돈으로 채울까요?<small class="gsrc-h">고른 통장에 모이는 돈을 이 목표에 써요. 여러 개 골라도 돼요</small></label><div class="srcl">${srcAll.filter(o=>o[3]||(g.src||[]).includes(o[0])).map(([v,l,d])=>`<button type="button" class="srcrow${(g.src||[]).includes(v)?" on":""}" data-src="${i}" data-v="${v}" aria-pressed="${(g.src||[]).includes(v)}"><i class="ck" aria-hidden="true"></i><span><b>${esc(l)}</b><small>${d}</small></span></button>`).join("")}</div></div><div class="gplan" id="gplan${i}"></div></div>`).join("");
   // step4
   $("#cutList").innerHTML=`<div class="row edit3 head"><span>항목</span><span style="text-align:right">현재</span><span style="text-align:right">목표</span><span></span></div>`+S.expenses.map((e,i)=>`<div class="row edit3"><span class="lbl">${esc(e.name)}<small>${esc(e.note||"")}</small></span><span class="val">${fmt(n(e.amt))}</span>${(()=>{const au=e.target===""||e.target==null||(n(e.target)===0&&n(e.amt)>0);return ni(`expenses.${i}.target`,au?"":e.target,e.name+" 목표","만",au?"자동 "+fmt(tgtOf(e)):"")})()}<span class="val" data-o="d-${e.id}" style="font-size:12.5px"></span></div>`).join("");
   const assetOpts=S.assets.filter(a=>a.type!=="liquid"&&a.type!=="use").map(a=>[a.id,a.name]);
@@ -4331,7 +4375,7 @@ scan();new MutationObserver(()=>{if(!t)t=setTimeout(scan,60)}).observe(document.
 (function(){const f=document.querySelector("#v-home .hfoot")||document.querySelector(".hfoot"),v=document.getElementById("v-basis");if(!f||!v||v.querySelector(".hfoot"))return;const c=f.cloneNode(true);c.classList.add("hfoot-bz");c.querySelectorAll("[id]").forEach(e=>e.removeAttribute("id"));v.appendChild(c)})();
 
 /* v81 mobile wizard for step 2 */
-(function(){const v=document.getElementById("v-s2");if(!v)return;const mq=matchMedia("(max-width:700px)");
+(function(){const v=document.getElementById("v-s2");if(!v)return;const mq=matchMedia("all");
 const cards=[...v.querySelectorAll(".card")],find=t=>cards.find(c=>{const h=c.querySelector(".ch h3");return h&&h.textContent.includes(t)});
 const steps=[["기본 정보","먼저 나에 대해 알려 주세요","이름과 나이, 투자 성향 정도면 충분해요"],["월 현금흐름","한 달에 돈이 어떻게 들어오고 나가나요?","월급, 매달 모으는 돈, 고정·변동 지출을 적어 주세요"],["지금 가진 돈","지금 가진 돈은 얼마인가요?","통장, 투자, 보증금에 들어 있는 금액이에요"],["부채","갚고 있는 빚이 있나요?","없으면 그냥 다음으로 넘어가도 돼요"],["재무목표","이루고 싶은 목표는 무엇인가요?","목표 금액과 기한, 어느 통장으로 모을지 골라 주세요"]].map(x=>Object.assign({el:find(x[0])},{t:x[1],d:x[2]})).filter(x=>x.el);
 const comp=find("입력 점검");if(comp)comp.classList.add("wz-comp");
