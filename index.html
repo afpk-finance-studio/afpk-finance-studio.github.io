@@ -2758,7 +2758,7 @@ button{transition-property:transform,background,color,border-color,box-shadow,op
 /* v81 mobile step-by-step input */
 .wz-head,.wz-bar{display:none}
 @media all{
- #v-s2.wz>#liveSum,#v-s2.wz>.card.wz-comp{display:none!important}
+ #v-s2.wz .wz-main>#liveSum,#v-s2.wz .wz-main>.card.wz-comp{display:none!important}
  #v-s2.wz [data-wz]:not(.wz-on){display:none!important}
  #v-s2.wz.wz-last>.card.wz-comp{display:block!important;order:9}
  #v-s2.wz [data-wz] .ch h3{display:none}
@@ -2787,9 +2787,9 @@ button{transition-property:transform,background,color,border-color,box-shadow,op
 
 /* v82 wizard on desktop too */
 #v-s2.wz{overflow-x:clip}
-#v-s2.wz>.grid.g2{display:flex!important;flex-direction:column;gap:16px}
-#v-s2.wz>.grid.g2>div{width:100%}
-#v-s2.wz>.wz-head,#v-s2.wz>.grid,#v-s2.wz>.card{width:100%;max-width:760px;margin-left:auto;margin-right:auto;box-sizing:border-box}
+#v-s2.wz .wz-main>.grid.g2{display:flex!important;flex-direction:column;gap:16px}
+#v-s2.wz .wz-main>.grid.g2>div{width:100%}
+#v-s2.wz .wz-main>.wz-head,#v-s2.wz .wz-main>.grid,#v-s2.wz .wz-main>.card{width:100%;max-width:760px;margin-left:auto;margin-right:auto;box-sizing:border-box}
 @media (min-width:701px){
  #v-s2.wz .wz-head{gap:14px;padding:12px 0 4px}
  .wz-t{font-size:30px!important}
@@ -2828,6 +2828,73 @@ button{transition-property:transform,background,color,border-color,box-shadow,op
 #v-s2.wz #goalList{grid-template-columns:minmax(0,1fr)!important}
 #v-s2.wz [data-wz] .ch .sub{display:none}
 #v-s2.wz [data-wz] .ch{justify-content:flex-end}
+
+/* v84 desktop: recruiting-site style layout */
+.wz-wrap{display:flex;flex-direction:column;gap:inherit;min-width:0}
+.wz-main{display:flex;flex-direction:column;gap:16px;min-width:0}
+.wz-side{display:none}
+@media (min-width:901px){
+ #v-s2.wz .wz-wrap{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:48px;align-items:start;margin-top:8px}
+ #v-s2.wz .wz-main>*{max-width:none!important;margin-left:0!important;margin-right:0!important}
+ #v-s2.wz .wz-side{display:block;position:sticky;top:96px}
+ body.wz-show .wz-bar{display:none!important}
+ #v-s2.wz{padding-bottom:64px!important}
+ .ws-card{border:1px solid #e5e8eb;border-radius:16px;padding:26px 24px 22px;background:#fff}
+ .ws-eye{font-size:13px;font-weight:600;color:#8b95a1}
+ .ws-t{display:block;margin:4px 0 18px;font-size:19px;font-weight:700;letter-spacing:-.03em;color:#191f28}
+ .ws-l{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+ .ws-l li{border-top:1px solid #f2f4f6}
+ .ws-l li:first-child{border-top:0}
+ .ws-l button{display:flex;align-items:center;gap:14px;width:100%;padding:14px 0;background:none;border:0;text-align:left;cursor:pointer;font:inherit}
+ .ws-l i{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:13px;font-weight:700;background:#f2f4f6;color:#8b95a1;transition:all .2s}
+ .ws-l span{display:flex;flex-direction:column;gap:2px}
+ .ws-l b{font-size:15.5px;font-weight:600;color:#8b95a1;letter-spacing:-.02em;transition:color .2s}
+ .ws-l small{font-size:12.5px;color:#b0b8c1}
+ .ws-l li.on i{background:#191f28;color:#fff}
+ .ws-l li.on b{color:#191f28;font-weight:700}
+ .ws-l li.on small{color:#6b7684}
+ .ws-l li.done i{background:#e8f3ff;color:#3182f6}
+ .ws-l li.done b{color:#4e5968}
+ .ws-btns{display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px;margin-top:18px}
+ .ws-btns button{height:52px;border-radius:12px;border:0;font:inherit;font-size:15.5px;font-weight:700;cursor:pointer}
+ .ws-prev{background:#f2f4f6;color:#4e5968}
+ .ws-prev[hidden]{display:none}.ws-prev[hidden]+.ws-next{grid-column:1/-1}
+ .ws-next{background:#191f28;color:#fff}
+ .ws-next:hover{background:#333d4b}
+ .ws-note{margin:12px 0 0;font-size:12.5px;color:#8b95a1;text-align:center}
+ #v-s2.wz .wz-head{padding-top:0!important}
+ #v-s2.wz .wz-prog{display:none}
+ /* boxed fields with label inside (desktop) */
+ #v-s2.wz .fform{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important}
+ #v-s2.wz .frow{display:flex!important;flex-direction:column;gap:2px!important;padding:10px 16px 6px!important;border:1px solid #d1d6db;border-radius:10px;background:#fff;transition:border-color .15s,box-shadow .15s;min-height:66px;box-sizing:border-box}
+ #v-s2.wz .frow:focus-within{border-color:#3182f6;box-shadow:0 0 0 3px rgba(49,130,246,.12)}
+ #v-s2.wz .frow .fl b{font-size:12.5px;font-weight:600;color:#6b7684}
+ #v-s2.wz .frow .fl small{display:none}
+ #v-s2.wz .frow .in{border:0!important;min-height:30px!important;height:30px;font-size:16px!important;font-weight:500!important;padding:0!important}
+ #v-s2.wz .frow:has(button){grid-column:1/-1}
+ #v-s2.wz .frow:has(button) .fi{display:flex;gap:8px;flex-wrap:wrap;padding:4px 0 6px}
+ #v-s2.wz .frow:has(button) .fi button{min-width:96px;height:38px}
+ #v-s2.wz .frow:last-child{grid-column:1/-1}
+}
+
+@media (min-width:901px){
+ #v-s2.wz .frow{align-items:stretch!important;text-align:left}
+ #v-s2.wz .frow .fl{display:flex!important;flex-direction:row!important;justify-content:flex-start}
+ #v-s2.wz .frow .fi{width:auto!important;height:auto!important;background:none!important;box-shadow:none!important;border-radius:0!important;color:inherit!important;font-weight:inherit!important;display:block!important;padding:0!important}
+ #v-s2.wz .frow .unitwrap{width:100%}
+ #v-s2.wz .frow:has(button){flex-direction:row!important;align-items:center!important;justify-content:space-between;padding:10px 12px 10px 16px!important}
+ #v-s2.wz .frow:has(button) .fi{display:flex!important;flex-wrap:nowrap;gap:6px;padding:0!important}
+ #v-s2.wz .frow:has(button) .fi button{min-width:92px;height:40px;border-radius:10px}
+ #v-s2.wz .wz-main .card .in:not(.frow .in){border:1px solid #d1d6db!important;border-radius:10px!important;padding:0 14px!important;min-height:52px!important;font-size:16px!important;font-weight:500!important;background:#fff!important}
+ #v-s2.wz .wz-main .card .in:not(.frow .in):focus{border-color:#3182f6!important;box-shadow:0 0 0 3px rgba(49,130,246,.12)!important}
+ #v-s2.wz #assetList .row.edit3{grid-template-columns:minmax(0,1fr) 200px 28px!important;align-items:center;gap:10px!important}
+}
+
+@media (min-width:901px){
+ #v-s2.wz .frow:has(button) .fi>*{display:flex!important;flex-direction:row!important;flex-wrap:nowrap;gap:6px;width:auto}
+ #v-s2.wz .frow:has(button) .fi>* button{flex:none}
+ #v-s2.wz .wz-main .card .unitwrap .in:not(.frow .in){padding-right:52px!important}
+}
 
 @media print{
   @page{size:A4;margin:14mm 12mm}
@@ -4375,19 +4442,26 @@ scan();new MutationObserver(()=>{if(!t)t=setTimeout(scan,60)}).observe(document.
 (function(){const f=document.querySelector("#v-home .hfoot")||document.querySelector(".hfoot"),v=document.getElementById("v-basis");if(!f||!v||v.querySelector(".hfoot"))return;const c=f.cloneNode(true);c.classList.add("hfoot-bz");c.querySelectorAll("[id]").forEach(e=>e.removeAttribute("id"));v.appendChild(c)})();
 
 /* v81 mobile wizard for step 2 */
-(function(){const v=document.getElementById("v-s2");if(!v)return;const mq=matchMedia("all");
+(function(){const v=document.getElementById("v-s2");if(!v)return;
+const vh0=v.querySelector(".vhead"),wrap=document.createElement("div");wrap.className="wz-wrap";const main=document.createElement("div");main.className="wz-main";const side=document.createElement("aside");side.className="wz-side";
+[...v.children].filter(e=>e!==vh0).forEach(e=>main.appendChild(e));wrap.appendChild(main);wrap.appendChild(side);v.appendChild(wrap);const mq=matchMedia("all");
 const cards=[...v.querySelectorAll(".card")],find=t=>cards.find(c=>{const h=c.querySelector(".ch h3");return h&&h.textContent.includes(t)});
 const steps=[["기본 정보","먼저 나에 대해 알려 주세요","이름과 나이, 투자 성향 정도면 충분해요"],["월 현금흐름","한 달에 돈이 어떻게 들어오고 나가나요?","월급, 매달 모으는 돈, 고정·변동 지출을 적어 주세요"],["지금 가진 돈","지금 가진 돈은 얼마인가요?","통장, 투자, 보증금에 들어 있는 금액이에요"],["부채","갚고 있는 빚이 있나요?","없으면 그냥 다음으로 넘어가도 돼요"],["재무목표","이루고 싶은 목표는 무엇인가요?","목표 금액과 기한, 어느 통장으로 모을지 골라 주세요"]].map(x=>Object.assign({el:find(x[0])},{t:x[1],d:x[2]})).filter(x=>x.el);
 const comp=find("입력 점검");if(comp)comp.classList.add("wz-comp");
 steps.forEach((x,i)=>x.el.setAttribute("data-wz",i));
 const head=document.createElement("div");head.className="wz-head";head.innerHTML='<div class="wz-prog">'+steps.map(()=>"<i></i>").join("")+'</div><span class="wz-step"></span><h2 class="wz-t"></h2><p class="wz-d"></p>';
-const vh=v.querySelector(".vhead");(vh?vh.nextSibling:v.firstChild)&&v.insertBefore(head,vh?vh.nextSibling:v.firstChild);
+main.insertBefore(head,main.firstChild);
 const bar=document.createElement("div");bar.className="wz-bar";bar.innerHTML='<button type="button" class="wz-prev">이전</button><button type="button" class="wz-next">다음</button>';document.body.appendChild(bar);
-const pv=bar.querySelector(".wz-prev"),nx=bar.querySelector(".wz-next");let cur=0;try{cur=Math.min(steps.length-1,+sessionStorage.getItem("wz")||0)}catch(e){}
+const pv=bar.querySelector(".wz-prev"),nx=bar.querySelector(".wz-next");
+const SN=["기본 정보","한 달 돈 흐름","지금 가진 돈","갚고 있는 빚","이루고 싶은 목표"],SD=["이름·나이·투자 성향","월급·저축·지출","통장·투자·보증금","대출 잔액과 상환","금액·기한·모을 통장"];
+side.innerHTML='<div class="ws-card"><span class="ws-eye">내 정보 입력</span><b class="ws-t">5단계로 나눠 적어요</b><ol class="ws-l">'+steps.map((x,k)=>`<li data-k="${k}"><button type="button" data-wzgo="${k}"><i>${k+1}</i><span><b>${SN[k]||""}</b><small>${SD[k]||""}</small></span></button></li>`).join("")+'</ol><div class="ws-btns"><button type="button" class="ws-prev">이전</button><button type="button" class="ws-next">다음</button></div><p class="ws-note">적은 내용은 이 브라우저에 바로 저장돼요</p></div>';
+const sp=side.querySelector(".ws-prev"),sn=side.querySelector(".ws-next");
+side.addEventListener("click",e=>{const g=e.target.closest("[data-wzgo]");if(g)show(+g.dataset.wzgo,true)});
+sp.addEventListener("click",()=>pv.click());sn.addEventListener("click",()=>nx.click());let cur=0;try{cur=Math.min(steps.length-1,+sessionStorage.getItem("wz")||0)}catch(e){}
 function show(i,scroll){cur=Math.max(0,Math.min(steps.length-1,i));try{sessionStorage.setItem("wz",cur)}catch(e){}
  steps.forEach((x,k)=>x.el.classList.toggle("wz-on",k===cur));head.querySelectorAll(".wz-prog i").forEach((e,k)=>e.classList.toggle("on",k<=cur));
  head.querySelector(".wz-step").textContent=(cur+1)+" / "+steps.length;head.querySelector(".wz-t").textContent=steps[cur].t;head.querySelector(".wz-d").textContent=steps[cur].d;
- const last=cur===steps.length-1;v.classList.toggle("wz-last",last);pv.hidden=cur===0;nx.textContent=last?"다 적었어요, 분석 보기":"다음";
+ const last=cur===steps.length-1;v.classList.toggle("wz-last",last);pv.hidden=cur===0;nx.textContent=last?"다 적었어요, 분석 보기":"다음";side.querySelectorAll(".ws-l li").forEach((li,k)=>{li.classList.toggle("on",k===cur);li.classList.toggle("done",k<cur)});sp.hidden=cur===0;sn.textContent=last?"분석 보기 →":"다음";
  if(scroll){const y=head.getBoundingClientRect().top+scrollY-80;scrollTo({top:Math.max(0,y),behavior:"auto"})}}
 function apply(){const on=mq.matches;v.classList.toggle("wz",on);document.body.classList.toggle("wz-show",on&&location.hash.replace("#","")==="s2");if(on)show(cur,false)}
 pv.addEventListener("click",()=>show(cur-1,true));
