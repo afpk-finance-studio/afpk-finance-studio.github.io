@@ -2532,6 +2532,16 @@ body.wpg .view .vhead.phead{margin-bottom:8px!important}
 .sublabel small{font-weight:500;color:#8b95a1;margin-left:6px}
 [data-p].flash{box-shadow:0 0 0 3px rgba(49,130,246,.35)!important}
 
+/* v69 consent start */
+#consentList .check.done span{text-decoration:none!important;color:#333d4b!important;opacity:1!important}
+.con-go{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:18px;padding:18px 20px;border-radius:16px;background:#f9fafb}
+.con-go p{margin:0;font-size:14.5px;color:#4e5968;line-height:1.6}.con-go p b{color:#191f28}
+.cg-btn,.cg-all{flex:none;display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border-radius:14px;font-size:15.5px;font-weight:800;text-decoration:none;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.cg-btn{background:#191f28;color:#fff}.cg-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(25,31,40,.22)}
+.cg-btn i{font-style:normal;transition:transform .2s}.cg-btn:hover i{transform:translateX(3px)}
+.cg-all{background:#fff;color:#191f28;border:1px solid #e5e8eb}.cg-all:hover{background:#f2f4f6}
+@media (max-width:700px){.con-go{flex-direction:column;align-items:stretch;text-align:left}.cg-btn,.cg-all{justify-content:center}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -2732,6 +2742,7 @@ body.wpg .view .vhead.phead{margin-bottom:8px!important}
   <div class="card">
     <div class="ch"><div><h3>시작 전에 함께 확인해요</h3><p class="sub">읽어 보시고 동의하는 항목을 눌러 체크해 주세요</p></div><span class="pill info" id="consentPill"></span></div>
     <div id="consentList"></div>
+    <div class="con-go" id="consentGo"></div>
   </div>
 </section>
 
@@ -3152,7 +3163,7 @@ const si=(p,v,opts,label)=>`<select class="in" data-p="${p}" id="f-${p.replace(/
 const fld=(l,h)=>`<div class="field"><label>${l}</label>${h}</div>`;
 function migrate(s){if(!s.saving)s.saving={current:0,note:""};
   if(!Array.isArray(s.saving.items))s.saving.items=n(s.saving.current)>0?[{id:uid(),name:s.saving.note||"현재 저축",amt:n(s.saving.current)}]:[];
-  if(s.mode!=="example"){[["liquid","입출금·CMA 통장"],["safe","예금·적금"],["risk","주식·펀드·코인"],["retire","연금저축·IRP"],["use","전월세 보증금"]].forEach(([t,nm])=>{if(!s.assets.some(a=>a.type===t))s.assets.push({id:uid(),name:nm,type:t,amt:0})});
+  if(s.mode!=="example"&&!s.initRows){s.initRows=true;[["liquid","입출금·CMA 통장"],["safe","예금·적금"],["risk","주식·펀드·코인"],["retire","연금저축·IRP"],["use","전월세 보증금"]].forEach(([t,nm])=>{if(!s.assets.some(a=>a.type===t))s.assets.push({id:uid(),name:nm,type:t,amt:0})});
     if(!s.saving.items.length)s.saving.items=[{id:uid(),name:"적금",amt:0},{id:uid(),name:"주택청약",amt:0},{id:uid(),name:"ISA·펀드",amt:0}]}
   return s}
 function payOf(d){const p=d.pay;if(p!==""&&p!=null&&n(p)>0)return n(p);const b=n(d.bal),mo=n(d.months),r=n(d.rate)/1200;if(b<=0||mo<=0)return 0;return Math.round((r?b*r/(1-Math.pow(1+r,-mo)):b/mo)*10)/10}
@@ -3187,7 +3198,8 @@ const CONSENT=[["d","제가 알려 드린 정보로 상담과 계산을 진행�
 let lastIssues=[],lastBeh=[],lastTax=[];
 function renderConsent(){const items=CONSENT;
   $("#consentList").innerHTML=items.map(([k,t])=>`<label class="check${S.consent[k]?" done":""}"><input type="checkbox" data-con="${k}"${S.consent[k]?" checked":""}><span>${t}</span><span class="when"></span></label>`).join("");
-  const d=items.filter(([k])=>S.consent[k]).length;$("#consentPill").className="pill "+(d===items.length?"good":"info");$("#consentPill").textContent=`${d} / ${items.length} 확인`}
+  const d=items.filter(([k])=>S.consent[k]).length;$("#consentPill").className="pill "+(d===items.length?"good":"info");$("#consentPill").textContent=`${d} / ${items.length} 확인`;
+  const g=document.getElementById("consentGo");if(g)g.innerHTML=d===items.length?`<p><b>모두 확인했어요.</b> 이제 내 소득·지출·가진 돈·목표를 적으러 가요.</p><a class="cg-btn" href="#s2">시작하기 <i aria-hidden="true">→</i></a>`:`<p>${items.length-d}개 남았어요. 모두 확인하면 시작할 수 있어요.</p><button class="cg-all" type="button" data-conall="1">모두 동의하기</button>`}
 
 /* ---------- live update ---------- */
 const o=(k,h)=>document.querySelectorAll(`[data-o="${k}"]`).forEach(el=>el.innerHTML=h);
@@ -3741,6 +3753,7 @@ document.addEventListener("change",e=>{const el=e.target;
   if(el.dataset.con){S.consent[el.dataset.con]=el.checked;save();renderConsent()}});
 document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
   if(b.dataset.del&&b.dataset.del.startsWith("saving.items.")){S.saving.items.splice(+b.dataset.del.split(".")[2],1);save();renderInputs();update();return}
+  if(b.dataset.conall){CONSENT.forEach(([k])=>S.consent[k]=true);save();renderConsent();return}
   if(b.dataset.addsv){S.saving.items.push({id:uid(),name:"",amt:0});save();renderInputs();update();return}
   if(b.dataset.goto){const f=document.querySelector(`[data-p="${b.dataset.goto}"]`);if(f){f.scrollIntoView({behavior:"smooth",block:"center"});setTimeout(()=>f.focus({preventScroll:true}),400)}return}
   if(b.dataset.del){const [k,i]=b.dataset.del.split(".");const r=S[k].splice(+i,1)[0];if(k==="assets"){S.sells=S.sells.filter(s=>s.asset!==r.id);S.buckets.forEach(x=>{if(x.link===r.id)x.link=""})}if(k==="buckets")S.goals.forEach(g=>g.src=(g.src||[]).filter(s=>s!==r.id));save();renderInputs();update();return}
