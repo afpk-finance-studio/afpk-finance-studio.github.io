@@ -3617,6 +3617,45 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
  #nowPlan th,#nowPlan td{display:block;padding:0!important;border:0!important;text-align:left!important;width:auto!important}
  #nowPlan tbody th{grid-column:1/-1;font-size:13px;color:#6b7684}#nowPlan td:last-child{grid-column:1/-1;font-size:12.5px;color:#8b95a1}}
 
+/* v91 partner-exact radii and notes */
+#v-s3 .ppan{border-radius:16px!important;padding:32px!important;border-color:#e3e6ea!important;box-shadow:none!important}
+#v-s3 .pnote{border-radius:8px!important;padding:24px 26px!important}
+#v-s3 .pnote.b{background:#f3f6fd}#v-s3 .pnote.r{background:#faf4f4}#v-s3 .pnote.v{background:#f6f4fd}
+#v-s3 .pnote .pt{height:34px!important;padding:0 16px!important;font-size:15px!important;font-weight:500!important}
+#v-s3 .pnote p{font-size:16px!important;line-height:1.65!important;color:#333d4b!important;font-weight:500;margin-top:12px!important}
+#v-s3 .pnote b+p{font-size:14px!important;color:#6b7684!important;font-weight:400;margin-top:4px!important}
+#v-s3 .pp-r{position:relative;padding:4px 0 0 28px;margin-left:-4px;box-shadow:-28px 0 30px -30px rgba(2,32,71,.18)}
+#v-s3 .pd-h b{font-size:16px!important}
+#v-s3 .tz-goals .tz-g{border-radius:8px!important}
+#v-s3 .dbd{border-radius:16px!important}
+#v-s3 .dbc,#v-s3 .mc{border-radius:10px!important}
+#v-s3 .db-todo{border-radius:6px!important}
+#v-s3 .db-tagrow{border-radius:8px!important}
+#v-s3 .ppan .deval .card.de{border-radius:10px!important}
+#v-s3 .ppan.dai *{--r:10px}
+#v-s3 .dai .dai-item,#v-s3 .dai table,#v-s3 .dai [class*="dai-"]{border-radius:10px}
+@media (max-width:1100px){#v-s3 .pp-r{padding:0;margin:0;box-shadow:none}}
+@media (max-width:700px){#v-s3 .ppan{padding:18px 16px!important;border-radius:14px!important}#v-s3 .pnote{padding:18px!important}#v-s3 .pnote p{font-size:14.5px!important}#v-s3 .pnote .pt{height:30px!important;font-size:13.5px!important;padding:0 13px!important}}
+
+/* v91 toss-like goal list */
+#v-s3 .tg-list{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column}
+#v-s3 .tg-list li{padding:20px 0;border-top:1px solid #f2f4f6}
+#v-s3 .tg-list li:first-child{border-top:0;padding-top:6px}
+#v-s3 .tg-top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+#v-s3 .tg-top small{display:block;font-size:13px;color:#8b95a1;margin-bottom:4px}
+#v-s3 .tg-top b{font-size:17px;font-weight:700;color:#191f28;letter-spacing:-.02em}
+#v-s3 .tg-r{text-align:right;flex:none}
+#v-s3 .tg-r strong{display:block;font-size:17px;font-weight:700;color:#191f28;font-variant-numeric:tabular-nums}
+#v-s3 .tg-r em{font-style:normal;font-size:13.5px;font-weight:600}
+#v-s3 .tg-r em.b{color:#3182f6}#v-s3 .tg-r em.r{color:#f04452}
+#v-s3 .tg-bar{position:relative;height:8px;border-radius:4px;background:#f2f4f6;margin-top:14px;overflow:hidden}
+#v-s3 .tg-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px}
+#v-s3 .tg-bar i.p{background:#b4cffa}#v-s3 .tg-bar i.n{background:#3182f6}
+#v-s3 .tg-bar.late i.p{background:#fbc4c9}#v-s3 .tg-bar.late i.n{background:#f04452}
+#v-s3 .tg-list p{margin:10px 0 0;font-size:13.5px;color:#6b7684}
+#v-s3 .tg-list p b{color:#333d4b;font-weight:600}
+@media (max-width:700px){#v-s3 .tg-top b,#v-s3 .tg-r strong{font-size:15.5px}#v-s3 .tg-list li{padding:16px 0}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -3900,7 +3939,7 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
       <div class="pnote b"><span class="pt">달성률</span><p>기한까지 계획대로 모았을 때 목표 금액의 몇 %가 모이는지예요. 100%를 넘으면 기한 안에 다 채워요.</p></div>
       <div class="pnote r"><span class="pt">부족</span><p>100%가 안 되면 매달 조금 더 넣거나, 기한을 조금 늘려야 해요.</p></div>
     </div>
-    <div class="pp-r"><div class="pd-h"><b>목표별 준비 현황</b><small>회색은 지금 모은 돈, 파란색은 계획대로 모았을 때</small></div><div class="dgoal" id="dGoal"></div></div>
+    <div class="pp-r"><div class="pd-h"><b>목표별 준비 현황</b><small>진한 색은 지금 모은 돈, 연한 색은 계획대로 모았을 때</small></div><div class="dgoal" id="dGoal"></div></div>
   </div>
   <div class="pch"><span class="pp">재무 진단</span><h3>재무설계 기준 4가지로 본 <em>재무 진단</em></h3><p>바늘이 파란 구간에 있으면 양호해요</p></div>
   <div class="ppan"><div class="deval" id="dEval"></div></div>
@@ -4463,11 +4502,10 @@ function updateCore(){
      mc("굴리는 돈",`${fmt(fin)}만 원`,riskP>=40?`고위험 자산이 <em class="r">${pct(riskP,0)}</em>로 몰려 있어요`:"한쪽에 몰리지 않고 나뉘어 있어요",fab,"s4");}
    $("#pdName").textContent=`${S.profile.name||"고객"}님 돈 현황`;}
    {const sd=startDate(),ymd=m=>{const d=new Date(sd);d.setMonth(d.getMonth()+m);return d.getFullYear()+"."+String(d.getMonth()+1).padStart(2,"0")};
-    $("#dGoal").innerHTML=`<div class="tz-st tz-goals">`+gRows.map(x=>{const g=x.g,now=srcAt(g,c,P,0),amt=x.amt,cl=amt<=0?"c2":x.r>=100?"c1":x.r>=80?"amber":"red";
-     const icon=`<span class="tz-i ${cl}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4h11l-2 4 2 4H5"/></svg></span>`;
-     if(amt<=0)return `<div class="tz-g">${icon}<div class="tz-gm"><small>${esc(g.term)} · ${esc(g.name)}</small><b>${won(x.v)}</b><p>목표 금액 없이 꾸준히 쌓는 목표예요. ${ymd(n(g.months))}까지 설계안대로 모으면 이만큼 모여요.</p></div><div class="tz-gr"><em class="b">지속</em><small>${mlabel(n(g.months))} 뒤 예상</small></div></div>`;
-     const pn=Math.min(100,now/amt*100),pp=Math.min(100,x.r);
-     return `<div class="tz-g">${icon}<div class="tz-gm"><small>${esc(g.term)} · ${esc(g.name)} · ${ymd(n(g.months))}까지</small><b>${won(amt)}</b><div class="tz-gbar"><i class="p" style="width:${pp}%"></i><i class="n" style="width:${pn}%"></i></div><p>지금 모은 돈 ${won(Math.round(Math.min(now,amt)))} · 계획대로 모으면 ${won(Math.round(amt*x.r/100))}. ${x.r>=100?"기한 안에 다 채울 수 있어요.":`기한까지 <b>${won(Math.round(amt-amt*x.r/100))}</b>이 모자라요.`}</p></div><div class="tz-gr"><em class="${x.r>=100?"b":x.r>=80?"a":"r"}">${x.r>=100?"↑":"↓"}${fmt(Math.min(999,x.r),0)}%</em><small>${x.r>=100?"달성 가능":x.r>=80?"조금 부족":"부족"}</small></div></div>`}).join("")+`</div>`}
+    $("#dGoal").innerHTML=`<ul class="tg-list">`+gRows.map(x=>{const g=x.g,now=Math.max(0,srcAt(g,c,P,0)),amt=x.amt,mo=n(g.months),d=new Date(sd);d.setMonth(d.getMonth()+mo);const dl=`${d.getFullYear()}년 ${d.getMonth()+1}월까지`;
+     if(amt<=0)return `<li><div class="tg-top"><div><small>${esc(g.term)} · ${dl}</small><b>${esc(g.name)}</b></div><div class="tg-r"><strong>${won(Math.round(x.v))}</strong><em class="b">꾸준히 모으는 중</em></div></div><p>목표 금액 없이 쌓는 돈이에요. 설계안대로 모으면 기한에 이만큼 모여요.</p></li>`;
+     const pp=Math.min(100,x.r),pn=Math.min(100,now/amt*100),ok=x.r>=100,gap=Math.round(amt-amt*x.r/100);
+     return `<li><div class="tg-top"><div><small>${esc(g.term)} · ${dl}</small><b>${esc(g.name)}</b></div><div class="tg-r"><strong>${won(amt)}</strong><em class="${ok?"b":"r"}">${ok?(pn>=100?"이미 다 모았어요":"기한 안에 다 모여요"):`${won(gap)} 부족해요`}</em></div></div><div class="tg-bar${ok?"":" late"}"><i class="p" style="width:${pp.toFixed(1)}%"></i><i class="n" style="width:${pn.toFixed(1)}%"></i></div><p>지금 <b>${won(Math.round(Math.min(now,amt)))}</b> 모았어요 · 계획대로면 기한에 <b>${won(Math.round(amt*x.r/100))}</b></p></li>`}).join("")+`</ul>`}
 {const inc=c.sal+c.bonus,un=Math.round(Math.max(0,inc-c.exNow-c.saveNow)),sr=inc?c.saveNow/inc*100:0,nmS=esc(S.profile.name||"고객"),sd0=startDate(),ym=m=>{const d=new Date(sd0);d.setMonth(d.getMonth()+m);return d.getFullYear()+"년 "+(d.getMonth()+1)+"월"};
    const L={good:"양호",warn:"주의",bad:"개선 필요"},row=(s,t,d)=>`<div class="pnote ${s==="good"?"b":"r"}"><span class="pt">${L[s]}</span><b>${t}</b><p>${d}</p></div>`;
    const rs=[row(sr>=50?"good":sr>=30?"warn":"bad",`번 돈의 ${fmt(sr,0)}%를 모으고 있어요`,`월 ${fmt(inc)}만 원 중 ${fmt(c.saveNow)}만 원`),
