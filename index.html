@@ -3441,6 +3441,98 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
 #v-s3 .persona .quote{font-size:17px!important;line-height:1.5!important}
 @media (max-width:700px){#v-s3 .tz h4{font-size:17px!important}#v-s3 .kgrid .kpi .v{font-size:22px!important}#v-s3 .persona .quote{font-size:15px!important}}
 
+/* v89 partner-style dashboard (step 3) */
+#v-s3 .dash-wrap{display:block}
+#v-s3 .pch{margin:72px 0 22px;padding:0;border:0}
+#v-s3 .pch:first-child{margin-top:8px}
+#v-s3 .pch .pp{display:inline-flex;align-items:center;height:38px;padding:0 18px;border:1px solid #dfe2e7;border-radius:999px;background:#fff;font-size:15px;font-weight:600;color:#333d4b}
+#v-s3 .pch h3{margin:18px 0 0;font-size:clamp(22px,2.2vw,30px);font-weight:800;letter-spacing:-.04em;line-height:1.35;color:#191f28;text-wrap:balance}
+#v-s3 .pch h3 em{font-style:normal;color:#3d6af2}
+#v-s3 .pch p{margin:8px 0 0;font-size:15px;color:#6b7684}
+#v-s3 .ppan{background:#fff;border:1px solid #e5e8eb;border-radius:28px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.02)}
+#v-s3 .pp-2{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,9fr);gap:28px;align-items:start}
+#v-s3 .pp-l{display:flex;flex-direction:column;gap:12px}
+#v-s3 .pnote{border-radius:18px;padding:20px 22px;background:#f4f7ff}
+#v-s3 .pnote.r{background:#fdf4f4}#v-s3 .pnote.v{background:#f6f3ff}
+#v-s3 .pnote .pt{display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:999px;font-size:13.5px;font-weight:600;background:#e3ebff;color:#3d6af2}
+#v-s3 .pnote.r .pt{background:#fbe3e3;color:#e0454f}#v-s3 .pnote.v .pt{background:#ebe4ff;color:#7653e6}
+#v-s3 .pnote b{display:block;margin-top:12px;font-size:16px;font-weight:700;color:#191f28;letter-spacing:-.02em}
+#v-s3 .pnote p{margin:8px 0 0;font-size:14.5px;line-height:1.6;color:#4e5968}
+#v-s3 .pnote b+p{margin-top:4px;font-size:13.5px;color:#6b7684}
+#v-s3 .pnote.persona small{display:block;margin-top:10px;font-size:13px;color:#6b7684}
+#v-s3 .pnote.persona .quote{margin-top:10px;font-size:16px;font-weight:700;line-height:1.55;color:#191f28;letter-spacing:-.02em}
+#v-s3 .pnote.persona .quote small{display:none}
+#v-s3 .pnote.persona .tags{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
+#v-s3 .pnote.persona .tag{background:#fff;color:#4e5968;border:0;font-size:12.5px;padding:5px 10px;border-radius:8px}
+#v-s3 .pnote.persona .tag.blue{background:#3d6af2;color:#fff}
+#v-s3 .pd-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+#v-s3 .pd-h b{font-size:17px;font-weight:700;color:#191f28;letter-spacing:-.02em}
+#v-s3 .pd-h small{font-size:12.5px;color:#8b95a1}
+#v-s3 .pd-hr{height:1px;background:#eef0f3;margin:20px 0}
+#v-s3 .pd-t{margin:0 0 12px;font-size:15px;font-weight:700;color:#191f28}
+#v-s3 .pd-empty{color:#8b95a1;font-size:14px}
+#v-s3 .ptag-row{display:flex;flex-wrap:wrap;gap:12px 22px}
+#v-s3 .ptg{display:inline-flex;align-items:center;gap:10px}
+#v-s3 .ptg i{font-style:normal;display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;font-size:12.5px;background:#e8eeff;color:#3d6af2}
+#v-s3 .ptg i.r{background:#fde8e8;color:#e0454f}
+#v-s3 .ptg b{font-size:19px;font-weight:800;letter-spacing:-.03em;color:#191f28}
+#v-s3 .pg-rows{display:flex;flex-direction:column}
+#v-s3 .pg{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,2fr) auto;gap:18px;align-items:center;padding:14px 0;border-top:1px solid #f2f4f6}
+#v-s3 .pg:first-child{border-top:0}
+#v-s3 .pg-t b{display:block;font-size:14.5px;font-weight:700;color:#191f28}
+#v-s3 .pg-t small{font-size:12.5px;color:#8b95a1}
+#v-s3 #dSum .pg-bar{height:8px!important;margin:0}
+#v-s3 #dSum .pg-bar i{display:block;height:100%;background:#3d6af2}
+#v-s3 #dSum .pg.late .pg-bar i{background:#f06872}
+#v-s3 #dSum .pg-bar u{position:absolute;top:-5px;width:2px;height:18px;background:#191f28;border-radius:2px}
+#v-s3 #dSum .pg-bar{position:relative}
+#v-s3 .pg em{font-style:normal;font-size:13.5px;color:#4e5968;white-space:nowrap}
+#v-s3 .pg.ok em b{color:#3d6af2}#v-s3 .pg.late em b{color:#e0454f}
+/* KPI tag row */
+#v-s3 #heroKpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 20px;margin:0 0 20px;padding-bottom:20px;border-bottom:1px solid #eef0f3}
+#v-s3 #heroKpis .kpi{background:none!important;border:0!important;box-shadow:none!important;padding:0!important;min-height:0!important;border-radius:0!important;display:flex;flex-direction:column;gap:6px}
+#v-s3 #heroKpis .kpi .k{display:inline-flex;align-self:flex-start;align-items:center;gap:0;height:26px;padding:0 10px;border-radius:999px;background:#e8eeff;color:#3d6af2!important;font-size:12.5px!important;font-weight:600}
+#v-s3 #heroKpis .kpi:has(.pill.bad) .k,#v-s3 #heroKpis .kpi:has(.pill.warn) .k{background:#fde8e8;color:#e0454f!important}
+#v-s3 #heroKpis .kpi .k .pill{display:none}
+#v-s3 #heroKpis .kpi .v{font-size:22px!important;font-weight:800;letter-spacing:-.03em;margin:0!important;line-height:1.2}
+#v-s3 #heroKpis .kpi .v small{font-size:14px!important}
+#v-s3 #heroKpis .kpi .d{font-size:12.5px!important;color:#8b95a1!important;margin:0!important}
+#v-s3 #heroKpis .go-ar{display:none}
+/* mini dashboard cards */
+#v-s3 #dMe{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important;margin:0!important}
+#v-s3 .mc{border:1px solid #eef0f3;border-radius:18px;padding:18px 18px 14px;background:#fff;cursor:pointer;transition:box-shadow .2s,transform .2s}
+#v-s3 .mc:hover{box-shadow:0 8px 24px rgba(2,32,71,.07);transform:translateY(-2px)}
+#v-s3 .mc-h{font-size:13.5px;font-weight:600;color:#4e5968;display:flex;align-items:center;gap:4px}
+#v-s3 .mc-h span{color:#b0b8c1;font-size:16px;line-height:1}
+#v-s3 .mc-v{display:block;margin-top:8px;font-size:22px;font-weight:800;letter-spacing:-.03em;color:#191f28;font-variant-numeric:tabular-nums}
+#v-s3 .mc-s{margin:4px 0 0;font-size:12.5px;color:#6b7684}
+#v-s3 .mc-s em{font-style:normal;font-weight:700}#v-s3 .mc-s em.g{color:#0e9f6e}#v-s3 .mc-s em.r{color:#e0454f}
+#v-s3 .mc-bars{display:flex;align-items:flex-end;gap:10px;height:120px;margin-top:16px;padding-bottom:20px;position:relative;border-bottom:1px solid #f2f4f6}
+#v-s3 .mb{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;position:relative;min-width:0}
+#v-s3 .mb i{display:block;width:100%;max-width:34px;border-radius:6px 6px 2px 2px;background:#e9ebef;transform-origin:bottom;animation:mbUp .9s cubic-bezier(.2,.7,.2,1) both}
+#v-s3 .mb.on i{background:#3d6af2}#v-s3 .mb.neg i{background:#f7c5c9}#v-s3 .mb.warn i{background:#f06872}
+#v-s3 .mb span{font-size:11px;color:#8b95a1;margin-bottom:4px;font-variant-numeric:tabular-nums}
+#v-s3 .mb.on span{color:#3d6af2;font-weight:700}#v-s3 .mb.warn span{color:#e0454f;font-weight:700}
+#v-s3 .mb small{position:absolute;bottom:-20px;font-size:11.5px;color:#8b95a1;white-space:nowrap}
+@keyframes mbUp{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+/* goals as dashboard cards */
+#v-s3 .dgoal{display:block!important;margin:0!important}
+#v-s3 .tz-goals{background:none!important;padding:0!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px!important;border-radius:0!important}
+#v-s3 .tz-goals .tz-g{border:1px solid #eef0f3!important;box-shadow:none!important;border-radius:18px!important;padding:18px!important;background:#fff!important;margin:0!important;opacity:1!important;transform:none!important}
+/* eval + ai inside panels */
+#v-s3 .ppan .deval{margin:0}
+#v-s3 .ppan .deval .card.de{background:#f9fafb!important;border:0!important;box-shadow:none!important}
+#v-s3 .ppan.dai{margin:0}
+#v-s3 .pnote.persona .quote{color:#191f28!important}#v-s3 .pnote.persona .tag{color:#4e5968!important;background:#fff!important}#v-s3 .pnote.persona .tag.blue{background:#3d6af2!important;color:#fff!important}#v-s3 .pnote.persona small{color:#6b7684!important}
+#v-s3 .pnote.persona .pt{display:inline-flex!important;width:auto!important;margin:0!important;font-size:13.5px!important;letter-spacing:0!important}#v-s3 #dSum .pnote{padding:15px 20px}#v-s3 #dSum .pnote b{margin-top:8px}
+#v-s3 .tz-goals{grid-template-columns:minmax(0,1fr)!important}
+#v-s3 .tz-goals .tz-g{padding:16px 20px!important}
+@media (max-width:1100px){#v-s3 .pp-2{grid-template-columns:minmax(0,1fr)}#v-s3 .pp-l{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}}
+@media (max-width:900px){#v-s3 #dMe{grid-template-columns:minmax(0,1fr)!important}#v-s3 #heroKpis{grid-template-columns:repeat(2,minmax(0,1fr))}#v-s3 .tz-goals{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:700px){#v-s3 .pch{margin:48px 0 16px}#v-s3 .pch .pp{height:32px;font-size:13.5px;padding:0 14px}#v-s3 .pch h3{font-size:21px!important;margin-top:12px}#v-s3 .pch p{font-size:13.5px}
+ #v-s3 .ppan{padding:18px 16px;border-radius:20px}#v-s3 .pp-l{display:flex}#v-s3 .pnote{padding:16px}#v-s3 .pg{grid-template-columns:minmax(0,1fr);gap:8px}#v-s3 .ptg b{font-size:16px}#v-s3 #heroKpis .kpi .v{font-size:19px!important}}
+@media (prefers-reduced-motion:reduce){#v-s3 .mb i{animation:none}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -3701,24 +3793,33 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
 <section class="view" id="v-s3">
   <div class="vhead"><div class="eyebrow">3단계 · 지금 내 상태 진단</div><h1>재무상태 분석과 평가</h1><p>현재 위치와 목표 사이의 거리를 숫자와 그래프로 확인하고, 4단계에서 무엇을 바꿀지 찾습니다.</p></div>
   <div class="dash-wrap">
-  <div class="card s3sum" id="dSum"></div>
-  <div class="dch"><span>01</span><div><h3>지금 내 상태</h3><p>현재 내 돈이 어떻게 들어오고, 나가고, 얼마나 쌓여 있는지입니다</p></div></div>
-  <div class="hero">
-    <div class="card persona">
-      <div class="pid"><div class="avatar" id="pAvatar">김</div><div><h2 id="pName">김민준 · 만 28세</h2><p id="pMeta"></p></div></div>
-      <div class="quote" id="pQuote"></div>
-      <div class="tags" id="pTags"></div>
+  <div class="pch"><span class="pp">결론</span><h3 id="dSumH"></h3><p id="dSumP"></p></div>
+  <div class="ppan pp-2" id="dSum"></div>
+  <div class="pch"><span class="pp">지금 내 상태</span><h3>한 달 돈 흐름으로 보는 <em>지금 내 상태</em></h3></div>
+  <div class="ppan pp-2">
+    <div class="pp-l">
+      <div class="pnote b persona"><span class="pt" id="pName">김민준 · 만 28세</span><span id="pAvatar" hidden></span><small id="pMeta"></small><div class="quote" id="pQuote"></div><div class="tags" id="pTags"></div></div>
+      <div class="pnote r"><span class="pt">남는 돈</span><p>한 달 동안 쓰고 남는 돈이에요. 이 돈을 어디에 모을지 정하는 게 설계의 시작이에요.</p></div>
+      <div class="pnote v"><span class="pt">순자산</span><p>가진 돈 전부에서 갚아야 할 빚을 뺀, 진짜 내 몫이에요.</p></div>
     </div>
-    <div class="kgrid" id="heroKpis"></div>
+    <div class="pp-r"><div class="pd-h"><b id="pdName">돈 현황</b><small>2단계에 적은 내용 기준</small></div>
+      <div class="kgrid" id="heroKpis"></div>
+      <div class="dme" id="dMe"></div>
+    </div>
   </div>
-  <div class="dme" id="dMe"></div>
-  <div class="dch"><span>02</span><div><h3>이루고 싶은 목표</h3><p>목표마다 지금까지 모은 돈(회색)과, 설계안대로 매달 모았을 때 기한까지 모이는 돈(파란색)을 보여 드려요</p></div></div>
-  <div class="dgoal" id="dGoal"></div>
-  <div class="dch"><span>03</span><div><h3>진단 · 기준과 비교하면</h3><p>재무설계에서 쓰는 4가지 기준으로 지금 상태를 평가했습니다. 바늘이 파란 구간에 있으면 양호합니다</p></div></div>
-  <div class="deval" id="dEval"></div>
-  <div class="dch"><span>04</span><div><h3>AI 종합 평가</h3><p>위의 숫자를 근거로 AI가 내린 평가와 처방입니다</p></div></div>
-  <div class="card dai" id="dAI"></div>
-  <div class="dch"><span>05</span><div><h3>설계안 · 이렇게 바꾸면</h3><p>설계안대로 실행했을 때 저축과 자산이 어떻게 달라지고, 목표가 언제 채워지는지입니다</p></div></div>
+  <div class="pch"><span class="pp">재무목표</span><h3>계획대로 모으면 얼마나 채워질까요, <em>재무목표</em></h3></div>
+  <div class="ppan pp-2">
+    <div class="pp-l">
+      <div class="pnote b"><span class="pt">달성률</span><p>기한까지 계획대로 모았을 때 목표 금액의 몇 %가 모이는지예요. 100%를 넘으면 기한 안에 다 채워요.</p></div>
+      <div class="pnote r"><span class="pt">부족</span><p>100%가 안 되면 매달 조금 더 넣거나, 기한을 조금 늘려야 해요.</p></div>
+    </div>
+    <div class="pp-r"><div class="pd-h"><b>목표별 준비 현황</b><small>회색은 지금 모은 돈, 파란색은 계획대로 모았을 때</small></div><div class="dgoal" id="dGoal"></div></div>
+  </div>
+  <div class="pch"><span class="pp">재무 진단</span><h3>재무설계 기준 4가지로 본 <em>재무 진단</em></h3><p>바늘이 파란 구간에 있으면 양호해요</p></div>
+  <div class="ppan"><div class="deval" id="dEval"></div></div>
+  <div class="pch"><span class="pp">AI 평가</span><h3>숫자를 근거로 매긴 <em>AI 재무건강 점수</em></h3></div>
+  <div class="ppan dai" id="dAI"></div>
+  <div class="pch"><span class="pp">설계안</span><h3>설계안대로 바꾸면 달라지는 <em>내 돈의 미래</em></h3></div>
   <div class="summary" id="summary"></div>
 
   <div class="card glow">
@@ -3744,7 +3845,7 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
     <div class="card"><div class="ch"><div><h3>재무목표 달성 전망</h3><p class="sub">선택한 설계안을 실행할 때 목표 시점의 예상 재원</p></div><a class="btn sm" href="#s4">설계안</a></div><div class="items" id="ovGoals"></div></div>
     <div class="card"><div class="ch"><div><h3>지금 먼저 할 일</h3><p class="sub">진단 결과에서 우선순위가 높은 순서</p></div><a class="btn sm" href="#s5">캘린더</a></div><div class="items" id="ovActions"></div></div>
   </div>
-  <div class="dch" id="dDetail"><span>06</span><div><h3>자세한 분석</h3><p>위 결과가 나온 근거를 그래프와 표로 자세히 봅니다</p></div></div>
+  <div class="pch" id="dDetail"><span class="pp">자세한 분석</span><h3>결과가 나온 근거를 보는 <em>자세한 분석</em></h3></div>
   </div>
   <div class="grid g4" id="ratioKpis" style="gap:12px;display:none"></div>
   <div class="grid g2">
@@ -4266,9 +4367,14 @@ function updateCore(){
    if(noDay.length)ins.push(`<li class="info"><em>확인</em><div><b>날짜를 안 적은 고정지출 ${noDay.length}개</b><small>${noDay.map(e=>esc(e.name)).join(", ")} · <a href="#s2" data-j="s2" data-t="월 현금흐름">2단계에서 날짜 적기</a></small></div></li>`);
    const nextE=ev.filter(e=>e.k!=="save").map(e=>{const t=new Date();let x=new Date(t.getFullYear(),t.getMonth(),e.d);if(x<new Date(t.getFullYear(),t.getMonth(),t.getDate()))x=new Date(t.getFullYear(),t.getMonth()+1,e.d);return {e,dd:Math.round((x-new Date(t.getFullYear(),t.getMonth(),t.getDate()))/864e5)}}).sort((a,b)=>a.dd-b.dd)[0];
    const noti=nextE?`<div class="tz-noti">${ico("cal","grey")}<div><small>${nextE.dd===0?"오늘":nextE.dd+"일 뒤"}</small><b>${nextE.dd===0?"오늘은":nextE.dd===1?"내일은":`${nextE.e.d}일은`} <span>${esc(nextE.e.nm.replace(/ \(.*\)/,""))}</span>이 나가는 날이에요</b></div></div>`:`<div class="tz-noti">${ico("cal","grey")}<div><small>매월 ${pd}일</small><b><span>월급</span>이 들어오는 날이에요</b></div></div>`;
-   $("#dMe").innerHTML=blk(`매달 ${fmt(inc)}만 원이 들어와요`,"들어온 돈이 고정지출·변동지출·저축으로 어떻게 나뉘는지 보여 드려요. <br>가장 큰 항목을 밝게 표시했어요.",`<div class="tz-stack">${fRows}</div>`)+
-    blk(`가진 돈에서 빚을 빼면 ${fmt(net)}만 원이에요`,`${c.debtBal<=0?"빚 없이":"빚은 가진 돈의 "+pct(dr,0)+"이에요."} 보증금처럼 쓰고 있는 돈도 자산에 넣었어요. <br>가운데가 실제 내 몫인 순자산이에요.`,`<div class="tz-stack">${abRows}</div>`)+
-    blk(`굴리는 돈은 ${fmt(fin)}만 원이에요`,`${riskP>=40?`값이 크게 오르내리는 고위험 자산이 ${pct(riskP,0)}로 한쪽에 몰려 있어요.`:"한쪽에 크게 몰리지 않고 나뉘어 있어요."} <br>보증금처럼 쓰고 있는 돈은 빼고 계산했어요.`,`<div class="tz-stack">${faRows}</div>`,"");}
+   {const mc=(t,v,sub,bars,go)=>{const mx=Math.max(1,...bars.map(x=>Math.abs(x[0])));return `<div class="mc"${go?` data-go="${go}"`:""}><div class="mc-h">${t}<span>›</span></div><b class="mc-v">${v}</b><p class="mc-s">${sub}</p><div class="mc-bars">${bars.map(x=>`<div class="mb ${x[2]||""}"><span>${fmt(x[0],x[0]%1?1:0)}</span><i style="height:${Math.max(3,Math.abs(x[0])/mx*100).toFixed(1)}%"></i><small>${x[1]}</small></div>`).join("")}</div></div>`};
+    const fb=flow.map((x,i)=>[x[0],x[1],i===2?"on":i===3&&un>=1?"warn":""]);
+    const ab=[[c.totalA,"자산",""],[c.debtBal,"부채","neg"],[net,"순자산","on"]];
+    const fab=fa.map((x,i)=>[x[0],x[1],i===2&&riskP>=40?"warn":i===amax?"on":""]);
+    $("#dMe").innerHTML=mc("한 달 들어오는 돈",`${fmt(inc)}만 원`,`그중 <em class="g">${fmt(c.saveNow)}만 원</em>을 모으고 있어요`,fb,"s2")+
+     mc("가진 돈에서 빚을 빼면",`${fmt(net)}만 원`,c.debtBal>0?`빚은 가진 돈의 <em class="r">${pct(dr,0)}</em>예요`:"갚을 빚이 없어요",ab,"s2")+
+     mc("굴리는 돈",`${fmt(fin)}만 원`,riskP>=40?`고위험 자산이 <em class="r">${pct(riskP,0)}</em>로 몰려 있어요`:"한쪽에 몰리지 않고 나뉘어 있어요",fab,"s4");}
+   $("#pdName").textContent=`${S.profile.name||"고객"}님 돈 현황`;}
    {const sd=startDate(),ymd=m=>{const d=new Date(sd);d.setMonth(d.getMonth()+m);return d.getFullYear()+"."+String(d.getMonth()+1).padStart(2,"0")};
     $("#dGoal").innerHTML=`<div class="tz-st tz-goals">`+gRows.map(x=>{const g=x.g,now=srcAt(g,c,P,0),amt=x.amt,cl=amt<=0?"c2":x.r>=100?"c1":x.r>=80?"amber":"red";
      const icon=`<span class="tz-i ${cl}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4h11l-2 4 2 4H5"/></svg></span>`;
@@ -4276,17 +4382,19 @@ function updateCore(){
      const pn=Math.min(100,now/amt*100),pp=Math.min(100,x.r);
      return `<div class="tz-g">${icon}<div class="tz-gm"><small>${esc(g.term)} · ${esc(g.name)} · ${ymd(n(g.months))}까지</small><b>${won(amt)}</b><div class="tz-gbar"><i class="p" style="width:${pp}%"></i><i class="n" style="width:${pn}%"></i></div><p>지금 모은 돈 ${won(Math.round(Math.min(now,amt)))} · 계획대로 모으면 ${won(Math.round(amt*x.r/100))}. ${x.r>=100?"기한 안에 다 채울 수 있어요.":`기한까지 <b>${won(Math.round(amt-amt*x.r/100))}</b>이 모자라요.`}</p></div><div class="tz-gr"><em class="${x.r>=100?"b":x.r>=80?"a":"r"}">${x.r>=100?"↑":"↓"}${fmt(Math.min(999,x.r),0)}%</em><small>${x.r>=100?"달성 가능":x.r>=80?"조금 부족":"부족"}</small></div></div>`}).join("")+`</div>`}
 {const inc=c.sal+c.bonus,un=Math.round(Math.max(0,inc-c.exNow-c.saveNow)),sr=inc?c.saveNow/inc*100:0,nmS=esc(S.profile.name||"고객"),sd0=startDate(),ym=m=>{const d=new Date(sd0);d.setMonth(d.getMonth()+m);return d.getFullYear()+"년 "+(d.getMonth()+1)+"월"};
-   const L={good:"양호",warn:"주의",bad:"개선 필요"},row=(s,t,d)=>`<li class="${s}"><div><b>${t}</b><small>${d}</small></div><em>${L[s]}</em></li>`;
+   const L={good:"양호",warn:"주의",bad:"개선 필요"},row=(s,t,d)=>`<div class="pnote ${s==="good"?"b":"r"}"><span class="pt">${L[s]}</span><b>${t}</b><p>${d}</p></div>`;
    const rs=[row(sr>=50?"good":sr>=30?"warn":"bad",`번 돈의 ${fmt(sr,0)}%를 모으고 있어요`,`월 ${fmt(inc)}만 원 중 ${fmt(c.saveNow)}만 원`),
      row(c.rNow.em>=3?"good":"warn",`비상금은 생활비 ${fmt(c.rNow.em,1)}달치예요`,c.rNow.em>=3?"갑자기 돈이 필요해도 버틸 수 있어요":"3달치는 있어야 적금·투자를 깨지 않아요")];
    if(un>=1)rs.push(row("warn",`매달 ${fmt(un)}만 원이 그냥 남아요`,"이름표가 없으면 쉽게 써 버리는 돈이에요"));
    rs.push(c.debtBal>0?row(c.rNow.debt<=20?"good":"warn",`빚 ${fmt(c.debtBal)}만 원을 갚고 있어요`,`월급의 ${fmt(c.rNow.debt,0)}%가 상환에 나가요`):row("good","갚을 빚이 없어요","번 돈을 모두 나를 위해 쓸 수 있어요"));
    if(c.rNow.risk>30)rs.push(row("warn",`모은 돈의 ${fmt(c.rNow.risk,0)}%가 주식·코인이에요`,"시장이 흔들리면 목표 자금이 크게 줄 수 있어요"));
-   const GR=gRows.filter(x=>x.amt>0),gs=GR.map(x=>{const g=x.g,mo=n(g.months),r=x.reach,inf=r==null||r===Infinity,ok=!inf&&r<=mo,diff=inf?0:mo-r,mx=Math.max(mo,inf?mo*1.5:r,1),pr=inf?100:r/mx*100,pd=mo/mx*100;
-     return `<div class="sg ${ok?"ok":"late"}"><div class="sg-top"><b>${esc(g.name)}</b><span>${won(x.amt)}</span></div><div class="sg-when">${inf?"기한 안에 어려워요":r===0?"이미 다 모였어요":ym(r)}</div><div class="sg-tl"><i style="width:${pr.toFixed(1)}%"></i><u style="left:${pd.toFixed(1)}%"><s>기한 ${ym(mo).replace("년 ",".").replace("월","")}</s></u></div><p class="sg-st">${inf?"지금 계획으로는 모으기 어려워요":r===0?"목표 금액을 이미 갖고 있어요":ok?(diff>0?`기한보다 <b>${diff}달 빨리</b> 모여요`:"기한에 <b>딱 맞춰</b> 모여요"):`기한보다 <b>${-diff}달 늦게</b> 모여요`}</p></div>`}).join("");
-   const bad=GR.filter(x=>!(x.reach!=null&&x.reach!==Infinity&&x.reach<=n(x.g.months))).length;
-   $("#dSum").innerHTML=`<div class="s3s-h"><span class="s3s-eye">결론부터 말씀드릴게요</span><h3>${nmS}님은 ${sr>=50?"저축을 잘하고 있어요":"저축을 조금 늘려야 해요"}${c.rNow.em<3?",<br>다만 비상금이 부족해요":""}</h3><p>${GR.length?(bad?`목표 ${GR.length}개 중 ${bad}개는 지금 계획으로 기한을 맞추기 어려워요.`:`설계안대로 모으면 목표 ${GR.length}개를 모두 기한 안에 이룰 수 있어요.`):"목표를 넣으면 언제 모을 수 있는지 알려 드려요."}</p></div>
-    <div class="s3s-g"><section><h4>지금 내 돈 관리</h4><ul class="s3s-l">${rs.join("")}</ul></section><section><h4>목표는 언제 다 모이나요</h4>${gs?`<div class="sg-w">${gs}</div><p class="s3s-note">설계안대로 매달 모았을 때 기준이에요</p>`:`<p class="s3s-note">2단계에서 목표를 넣으면 여기에 나와요</p>`}</section></div>`}
+   const GR=gRows.filter(x=>x.amt>0),G2=GR.map(x=>{const g=x.g,mo=n(g.months),r=x.reach,inf=r==null||r===Infinity,ok=!inf&&r<=mo,diff=inf?0:mo-r,mx=Math.max(mo,inf?mo*1.5:r,1);return {x,g,mo,r,inf,ok,diff,pr:inf?100:r/mx*100,pd:mo/mx*100}});
+   const tags=G2.map(o=>`<span class="ptg"><i class="${o.ok?"b":"r"}">${esc(o.g.name)}</i><b>${o.inf?"어려워요":o.r===0?"다 모였어요":ym(o.r)}</b></span>`).join("");
+   const gs=G2.map(o=>`<div class="pg ${o.ok?"ok":"late"}"><div class="pg-t"><b>${esc(o.g.name)}</b><small>${won(o.x.amt)} · 기한 ${ym(o.mo)}</small></div><div class="sg-tl pg-bar"><i style="width:${o.pr.toFixed(1)}%"></i><u style="left:${o.pd.toFixed(1)}%"></u></div><em>${o.inf?"지금 계획으로는 어려워요":o.r===0?"이미 다 모였어요":o.ok?(o.diff>0?`기한보다 <b>${o.diff}달 빨리</b>`:"기한에 <b>딱 맞춰</b>"):`기한보다 <b>${-o.diff}달 늦게</b>`}</em></div>`).join("");
+   const bad=G2.filter(o=>!o.ok).length;
+   $("#dSumH").innerHTML=`${nmS}님은 ${sr>=50?"저축을 잘하고 있어요":"저축을 조금 늘려야 해요"}${c.rNow.em<3?", 다만 <em>비상금이 부족해요</em>":""}`;
+   $("#dSumP").textContent=GR.length?(bad?`목표 ${GR.length}개 중 ${bad}개는 지금 계획으로 기한을 맞추기 어려워요.`:`설계안대로 모으면 목표 ${GR.length}개를 모두 기한 안에 이룰 수 있어요.`):"목표를 넣으면 언제 모을 수 있는지 알려 드려요.";
+   $("#dSum").innerHTML=`<div class="pp-l">${rs.join("")}</div><div class="pp-r"><div class="pd-h"><b>목표 달성 시점</b><small>설계안대로 매달 모았을 때</small></div>${G2.length?`<div class="ptag-row">${tags}</div><div class="pd-hr"></div><h5 class="pd-t">목표별 진행</h5><div class="pg-rows">${gs}</div>`:`<p class="pd-empty">2단계에서 목표를 넣으면 여기에 나와요</p>`}</div>`}
    const st=(v,g,w,lo)=>lo?(v<=g?"good":v<=w?"warn":"bad"):(v>=g?"good":v>=w?"warn":"bad"),SL={good:"양호",warn:"주의",bad:"위험"};
    const R=[["비상예비자금","em",c.rNow.em,c.rAfter.em,"개월",12,3,1.5,0,"3~6개월",v=>`급할 때 바로 쓸 수 있는 돈이 생활비 <b>${fmt(v,1)}개월분</b>입니다. 3개월분은 있어야 실직·병원비 같은 일에도 투자자산을 깨지 않습니다.`],
      ["저축성향률","save",c.rNow.save,c.rAfter.save,"%",80,50,30,0,"50% 이상",v=>`소득의 <b>${fmt(v,1)}%</b>를 저축하고 있습니다. 목표를 기한 안에 이루려면 절반 이상 저축이 권장됩니다.`],
