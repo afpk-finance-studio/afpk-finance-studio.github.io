@@ -3377,6 +3377,40 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
 @media (min-width:1181px){#v-s3 .tz:not(.wide) .tz-st{padding:36px 16px}#v-s3 .tz:not(.wide) h4{font-size:22px}#v-s3 .tz:not(.wide)>p br{display:none}#v-s3 .tz:not(.wide)>p{font-size:14.5px;min-height:3.4em}#v-s3 .tz:not(.wide) h4{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#v-s3 .tz:not(.wide) .tz-c{padding:14px 16px;gap:12px}#v-s3 .tz:not(.wide) .tz-i{width:44px;height:44px;border-radius:15px}#v-s3 .tz:not(.wide) .tz-t b{font-size:17px}#v-s3 .tz:not(.wide) .tz-c em{font-size:19px}}
 @media (max-width:700px){#v-s3 .tz h4{font-size:21px}#v-s3 .tz>p{font-size:14px;margin-bottom:16px}#v-s3 .tz>p br{display:none}.tz-st{border-radius:26px;padding:26px 14px}.tz-c{padding:12px 14px;gap:12px;border-radius:20px}.tz-i{width:42px;height:42px;border-radius:14px}.tz-i svg{width:20px;height:20px}.tz-t b{font-size:16px}.tz-t b span{font-size:13px}.tz-c em{font-size:17px}.tz-noti{padding:14px 16px;border-radius:22px}.tz-noti b{font-size:16px}.tz-cal{padding:16px;border-radius:22px}.tz-goals{padding:20px 12px}.tz-g{grid-template-columns:auto minmax(0,1fr);padding:16px;gap:12px;border-radius:22px}.tz-gr{grid-column:2;text-align:left;display:flex;gap:8px;align-items:baseline}.tz-gr em{font-size:22px}.tz-gm>b{font-size:20px}}
 
+/* v86 Toss terms */
+.r1-agree .ra-head{border-bottom:0!important;padding-bottom:8px!important;align-items:flex-start!important}
+.r1-agree .ra-head h3{font-size:28px!important;line-height:1.4!important;letter-spacing:-.04em!important;color:#191f28}
+.r1-agree .ra-head p{font-size:15px!important;color:#6b7684!important;margin-top:10px!important}
+.r1-agree .ra-all{background:#f2f4f6;border:0!important;border-radius:18px;padding:22px 22px!important;margin:22px 0 10px}
+.r1-agree .ra-all span{font-size:18px!important;font-weight:800!important;display:flex;flex-direction:column;gap:3px}
+.r1-agree .ra-all span small{font-size:13px;font-weight:500;color:#8b95a1;letter-spacing:0}
+.r1-agree .ra-all input,.r1-agree .ra-ck input{border-radius:50%!important;border:0!important;background:#e5e8eb!important;width:28px!important;height:28px!important;transition:background .2s}
+.r1-agree .ra-ck input{width:24px!important;height:24px!important;background:transparent!important}
+.r1-agree .ra-all input::after,.r1-agree .ra-ck input::after{content:"";width:6px;height:12px;border:solid #fff;border-width:0 2.4px 2.4px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.r1-agree .ra-ck input::after{border-color:#d1d6db}
+.r1-agree .ra-all input:checked,.r1-agree .ra-ck input:checked{background:#3182f6!important}
+.r1-agree .ra-ck input:checked::after{border-color:#fff}
+.r1-agree .ra-item{padding:0 4px!important}
+.r1-agree .ra-row{display:flex;align-items:center;gap:12px;padding:15px 0}
+.r1-agree .ra-ck{flex:1;min-width:0;gap:14px!important}
+.r1-agree .ra-ck span{font-size:16px!important;color:#333d4b!important;line-height:1.45}
+.r1-agree .ra-ck em{font-weight:700!important;color:#3182f6!important;margin-right:6px!important}
+.ra-more{flex:none;display:flex;align-items:center;gap:4px;background:none;border:0;padding:6px 4px;font:inherit;font-size:14px;color:#8b95a1;cursor:pointer;border-radius:8px}
+.ra-more:hover{color:#4e5968;background:#f2f4f6}
+.ra-more i{width:7px;height:7px;border:solid currentColor;border-width:0 1.8px 1.8px 0;transform:rotate(-45deg);margin-left:2px;transition:transform .25s}
+.ra-more.open i{transform:rotate(45deg) translateY(-2px)}
+.r1-agree .ra-box{margin:0 0 12px 38px!important;border-radius:16px!important;background:#f9fafb!important}
+.ra-done:empty{display:none}
+.ra-done{display:flex;flex-direction:column;gap:2px;margin-top:18px;padding:16px 20px;border-radius:16px;background:#e8f3ff}
+.ra-done b{font-size:15.5px;color:#1b64da}.ra-done small{font-size:13px;color:#4e78c4}
+.r1-agree .con-go{display:none}
+.r1-agree .ra-card{border:0!important;background:#f9fafb;border-radius:20px!important}
+.r1-agree .ra-btn{border-radius:16px!important;background:#3182f6!important;height:58px!important;font-weight:700!important}
+.r1-agree .ra-btn:hover{background:#1b64da!important}
+.r1-agree .ra-btn.off{background:#f2f4f6!important;color:#8b95a1!important}
+@media (max-width:900px){.r1-agree .con-go{display:flex}.r1-agree #raBtn{display:none}.r1-agree .cg-btn,.r1-agree .cg-all{background:#3182f6!important;color:#fff!important;border:0!important;border-radius:14px!important}}
+@media (max-width:700px){.r1-agree .ra-head h3{font-size:22px!important}.r1-agree .ra-all{padding:18px!important}.r1-agree .ra-all span{font-size:16px!important}.r1-agree .ra-ck span{font-size:15px!important}.r1-agree .ra-box{margin-left:0!important}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -3582,8 +3616,9 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
   </div>
   <div class="r1-agree">
     <div class="ra-main">
-      <div class="ra-head"><div><h3>시작 전에 함께 확인해요</h3><p>항목마다 아래 회색 상자의 설명을 읽고 체크해 주세요</p></div><span class="pill info" id="consentPill"></span></div>
-      <label class="ra-all"><input type="checkbox" id="conAll"><span><b>[전체]</b> 아래 상담 약속을 모두 읽었고, 모두 동의합니다</span></label>
+      <div class="ra-head"><div><h3>상담을 시작하기 전에<br>아래 내용에 동의해 주세요</h3><p>한 번 동의하면 상담하는 동안 계속 유지돼요. 내용이 궁금하면 '보기'를 눌러 주세요.</p></div><span class="pill info" id="consentPill"></span></div>
+      <div class="ra-done" id="raDone"></div>
+      <label class="ra-all"><input type="checkbox" id="conAll"><span>네, 모두 동의할게요<small>상담 진행, 예상 수익률 안내, 직접 결정, 정보 보호, 정기 점검</small></span></label>
       <div id="consentList"></div>
       <div class="con-go" id="consentGo"></div>
     </div>
@@ -4068,7 +4103,7 @@ const CONSENT=[["d","제가 알려 드린 정보로 상담과 계산을 진행�
 let lastIssues=[],lastBeh=[],lastTax=[];
 function renderConsent(){const items=CONSENT,L=$("#consentList");if(!L)return;
   if(!L.dataset.built){L.dataset.built="1";
-    L.innerHTML=items.map(([k,t])=>`<div class="ra-item"><label class="ra-ck"><input type="checkbox" data-con="${k}"><span><em>[필수]</em> ${t}</span></label><div class="ra-box" data-box="${k}"></div></div>`).join("");
+    L.innerHTML=items.map(([k,t])=>`<div class="ra-item"><div class="ra-row"><label class="ra-ck"><input type="checkbox" data-con="${k}"><span><em>필수</em>${t}</span></label><button type="button" class="ra-more" data-more="${k}" aria-expanded="false">보기<i aria-hidden="true"></i></button></div><div class="ra-box" data-box="${k}" hidden></div></div>`).join("");
     const box=k=>L.querySelector(`[data-box="${k}"]`),mv=(k,h,sel)=>{const b=box(k);b.insertAdjacentHTML("beforeend",h);if(sel)document.querySelectorAll(sel).forEach(e=>b.appendChild(e))};
     mv("d","<h4>이 상담에서 해 드리는 것</h4><p>알려 주신 소득·지출·가진 돈·빚·목표만으로 아래 일을 해 드려요. 정보는 이 브라우저에만 저장되고, 언제든 고치거나 지울 수 있어요.</p>",".r1-do .r1-list");
     mv("r","<h4>예상 수익률에 대해</h4><p>설계안의 미래 금액은 예금 연 3%, 주식형 상품 연 5~7%처럼 정해 둔 가정으로 계산한 값이에요. 실제 수익은 시장에 따라 더 높거나 낮을 수 있고, 원금 손실이 날 수도 있어요.</p><p>그래서 숫자는 '이 정도 모을 수 있겠다'를 가늠하는 참고용이고, 수익을 약속하는 것이 아니에요.</p>",null);
@@ -4076,12 +4111,17 @@ function renderConsent(){const items=CONSENT,L=$("#consentList");if(!L)return;
     mv("p","<h4>해 드리지 않는 것</h4><p>고객님께 불리할 수 있는 일은 처음부터 하지 않아요. 적어 주신 정보는 서버로 보내지 않고, 재무설계 외의 목적으로 쓰지 않아요.</p>",".r1-dont .r1-list");
     mv("c","<h4>점검은 이렇게 해요</h4><p><b>매달</b> 급여일에 실제 쓴 돈과 모은 돈을 6단계 점검판에 적어 계획과 비교해요.</p><p><b>3개월마다</b> 투자 비중이 계획에서 많이 벗어났는지 보고, 필요하면 다시 맞춰요.</p><p><b>큰 변화가 생기면</b> 이직, 결혼, 이사, 큰 지출처럼 상황이 바뀌면 처음부터 다시 설계해요.</p>",null);
     document.querySelectorAll("#v-s1 .r1-old").forEach(e=>e.hidden=true)}
+  {let st=null;try{st=JSON.parse(localStorage.getItem("threekong-consent")||"null")}catch(e){}if(!S.consent)S.consent={};
+   if(st&&st.c)items.forEach(([k])=>{if(!(k in S.consent)&&st.c[k])S.consent[k]=true});
+   const allNow=items.every(([k])=>S.consent[k]);let at=st&&st.at||"";if(allNow&&!at){const t=new Date();at=`${t.getFullYear()}년 ${t.getMonth()+1}월 ${t.getDate()}일`}if(!allNow)at="";
+   try{localStorage.setItem("threekong-consent",JSON.stringify({c:S.consent,at}))}catch(e){}
+   const ag=document.querySelector(".r1-agree");if(ag)ag.classList.toggle("all",allNow);const dn=$("#raDone");if(dn)dn.innerHTML=allNow?`<b>모두 동의했어요</b><small>${at} 동의 · 다시 들어와도 동의한 상태가 유지돼요</small>`:"";}
   items.forEach(([k])=>{const i=L.querySelector(`[data-con="${k}"]`);if(!i)return;i.checked=!!S.consent[k];i.closest(".ra-item").classList.toggle("done",!!S.consent[k])});
   const d=items.filter(([k])=>S.consent[k]).length,all=d===items.length;const ca=$("#conAll");if(ca)ca.checked=all;
   $("#consentPill").className="pill "+(all?"good":"info");$("#consentPill").textContent=`${d} / ${items.length} 확인`;
   const nm=(S.profile&&S.profile.name&&S.profile.name!=="새 고객")?S.profile.name+" 님":"고객님";
   const ri=$("#raInfo");if(ri)ri.innerHTML=[["고객",esc(nm)],["진행","재무설계 6단계"],["비용","무료 · 상품 판매 없음"],["점검","매달 · 3개월마다"],["결정","고객님이 직접"],["확인",`${d} / ${items.length}`]].map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join("");
-  const rb=$("#raBtn");if(rb)rb.innerHTML=all?`<a class="ra-btn" href="#s2" data-start>시작하기</a>`:`<span class="ra-btn off">${items.length-d}개 더 확인하면 시작할 수 있어요</span>`;
+  const rb=$("#raBtn");if(rb)rb.innerHTML=all?`<a class="ra-btn" href="#s2" data-start>동의하고 시작하기</a>`:`<span class="ra-btn off">${items.length-d}개 더 동의하면 시작할 수 있어요</span>`;
   const g=document.getElementById("consentGo");if(g)g.innerHTML=all?`<p><b>모두 확인했어요.</b> 이제 내 소득·지출·가진 돈·목표를 적으러 가요.</p><a class="cg-btn" href="#s2" data-start>시작하기 <i aria-hidden="true">→</i></a>`:`<p>${items.length-d}개 남았어요. 모두 확인하면 시작할 수 있어요.</p><button class="cg-all" type="button" data-conall="1">모두 동의하기</button>`}
 
 /* ---------- live update ---------- */
@@ -4683,6 +4723,7 @@ document.addEventListener("change",e=>{const el=e.target;
 document.addEventListener("click",e=>{const a=e.target.closest("a[data-start]");if(!a||S.mode!=="example")return;S=blank();migrate(S);save();try{renderInputs()}catch(er){}update();toast("빈 양식이에요. 하나씩 채워 주세요")},true);
 document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
   if(b.dataset.del&&b.dataset.del.startsWith("saving.items.")){S.saving.items.splice(+b.dataset.del.split(".")[2],1);save();renderInputs();update();return}
+  if(b.dataset.more){const k=b.dataset.more,bx=document.querySelector(`[data-box="${k}"]`);if(bx){bx.hidden=!bx.hidden;b.setAttribute("aria-expanded",String(!bx.hidden));b.classList.toggle("open",!bx.hidden)}return}
   if(b.dataset.conall){CONSENT.forEach(([k])=>S.consent[k]=true);save();renderConsent();return}
   if(b.dataset.addsv){S.saving.items.push({id:uid(),name:"",amt:0});save();renderInputs();update();return}
   if(b.dataset.goto){const f=document.querySelector(`[data-p="${b.dataset.goto}"]`);if(f){f.scrollIntoView({behavior:"smooth",block:"center"});setTimeout(()=>f.focus({preventScroll:true}),400)}return}
