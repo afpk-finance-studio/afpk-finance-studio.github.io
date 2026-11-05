@@ -3443,12 +3443,12 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
 
 /* v89 partner-style dashboard (step 3) */
 #v-s3 .dash-wrap{display:block}
-#v-s3 .pch{margin:72px 0 22px;padding:0;border:0}
-#v-s3 .pch:first-child{margin-top:8px}
-#v-s3 .pch .pp{display:inline-flex;align-items:center;height:38px;padding:0 18px;border:1px solid #dfe2e7;border-radius:999px;background:#fff;font-size:15px;font-weight:600;color:#333d4b}
-#v-s3 .pch h3{margin:18px 0 0;font-size:clamp(22px,2.2vw,30px);font-weight:800;letter-spacing:-.04em;line-height:1.35;color:#191f28;text-wrap:balance}
-#v-s3 .pch h3 em{font-style:normal;color:#3d6af2}
-#v-s3 .pch p{margin:8px 0 0;font-size:15px;color:#6b7684}
+:is(#v-s3,#v-s4,#v-s6) .pch{margin:72px 0 22px;padding:0;border:0}
+:is(#v-s3,#v-s4,#v-s6) .pch:first-child{margin-top:8px}
+:is(#v-s3,#v-s4,#v-s6) .pch .pp{display:inline-flex;align-items:center;height:38px;padding:0 18px;border:1px solid #dfe2e7;border-radius:999px;background:#fff;font-size:15px;font-weight:600;color:#333d4b}
+:is(#v-s3,#v-s4,#v-s6) .pch h3{margin:18px 0 0;font-size:clamp(22px,2.2vw,30px);font-weight:800;letter-spacing:-.04em;line-height:1.35;color:#191f28;text-wrap:balance}
+:is(#v-s3,#v-s4,#v-s6) .pch h3 em{font-style:normal;color:#3d6af2}
+:is(#v-s3,#v-s4,#v-s6) .pch p{margin:8px 0 0;font-size:15px;color:#6b7684}
 #v-s3 .ppan{background:#fff;border:1px solid #e5e8eb;border-radius:28px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.02)}
 #v-s3 .pp-2{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,9fr);gap:28px;align-items:start}
 #v-s3 .pp-l{display:flex;flex-direction:column;gap:12px}
@@ -3529,7 +3529,7 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
 #v-s3 .tz-goals .tz-g{padding:16px 20px!important}
 @media (max-width:1100px){#v-s3 .pp-2{grid-template-columns:minmax(0,1fr)}#v-s3 .pp-l{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}}
 @media (max-width:900px){#v-s3 #dMe{grid-template-columns:minmax(0,1fr)!important}#v-s3 #heroKpis{grid-template-columns:repeat(2,minmax(0,1fr))}#v-s3 .tz-goals{grid-template-columns:minmax(0,1fr)}}
-@media (max-width:700px){#v-s3 .pch{margin:48px 0 16px}#v-s3 .pch .pp{height:32px;font-size:13.5px;padding:0 14px}#v-s3 .pch h3{font-size:21px!important;margin-top:12px}#v-s3 .pch p{font-size:13.5px}
+@media (max-width:700px){:is(#v-s3,#v-s4,#v-s6) .pch{margin:48px 0 16px}:is(#v-s3,#v-s4,#v-s6) .pch .pp{height:32px;font-size:13.5px;padding:0 14px}:is(#v-s3,#v-s4,#v-s6) .pch h3{font-size:21px!important;margin-top:12px}:is(#v-s3,#v-s4,#v-s6) .pch p{font-size:13.5px}
  #v-s3 .ppan{padding:18px 16px;border-radius:20px}#v-s3 .pp-l{display:flex}#v-s3 .pnote{padding:16px}#v-s3 .pg{grid-template-columns:minmax(0,1fr);gap:8px}#v-s3 .ptg b{font-size:16px}#v-s3 #heroKpis .kpi .v{font-size:19px!important}}
 @media (prefers-reduced-motion:reduce){#v-s3 .mb i{animation:none}}
 
@@ -3689,6 +3689,21 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
 #v-s3 .db-debt{border-top:1px solid #f2f4f6;margin-top:4px;padding-top:10px}#v-s3 .db-debt b{color:#e0454f}
 @media (max-width:700px){#v-s3 .db-t5{grid-template-columns:18px minmax(0,1fr) 70px 34px;gap:8px}#v-s3 .db-t5 .db-tb{display:none}}
 
+/* v93 dashboard frames on steps 3/4/6 */
+:is(#v-s3,#v-s4,#v-s6) .pch:first-of-type{margin-top:40px}
+:is(#v-s3,#v-s4,#v-s6) .dbx{background:#f7f8fa;border:1px solid #eceef1;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px}
+:is(#v-s3,#v-s4,#v-s6) .dbx>*{margin:0!important}
+:is(#v-s3,#v-s4,#v-s6) .dbx .grid{gap:14px!important}
+:is(#v-s3,#v-s4,#v-s6) .dbx .card{background:#fff!important;border:1px solid #eceef1!important;border-radius:10px!important;box-shadow:none!important;padding:22px!important}
+:is(#v-s3,#v-s4,#v-s6) .dbx .card:hover{transform:none!important;box-shadow:none!important}
+:is(#v-s3,#v-s4,#v-s6) .dbx .card .ch h3{font-size:16px!important;font-weight:700!important;letter-spacing:-.02em;color:#191f28}
+:is(#v-s3,#v-s4,#v-s6) .dbx .card .ch .sub{font-size:12.5px!important;color:#8b95a1!important}
+:is(#v-s3,#v-s4,#v-s6) .dbx .card .ch h3 .ico{display:none}
+:is(#v-s3,#v-s4,#v-s6) .dbx .kpi,:is(#v-s3,#v-s4,#v-s6) .dbx .summary>div{border-radius:10px!important}
+:is(#v-s3,#v-s4,#v-s6) .dbx .bk-side{border-radius:10px!important;box-shadow:-28px 0 30px -30px rgba(2,32,71,.18)!important}
+:is(#v-s3,#v-s4,#v-s6) .dbx .pill{border-radius:999px}
+@media (max-width:700px){:is(#v-s3,#v-s4,#v-s6) .dbx{margin:0 -4px;padding:12px;border-radius:14px;gap:10px}:is(#v-s3,#v-s4,#v-s6) .dbx .card{padding:16px!important}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -3740,7 +3755,7 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
 <header class="gnb" id="gnb"><div class="gnb-in">
   <a class="logo" href="#home"><svg class="kmark" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="10.2" cy="21.4" rx="6.6" ry="7.4" transform="rotate(-18 10.2 21.4)" fill="#19c3b1"/><ellipse cx="21.8" cy="21.4" rx="6.6" ry="7.4" transform="rotate(18 21.8 21.4)" fill="#8b6cff"/><ellipse cx="16" cy="11.6" rx="7.4" ry="7.8" fill="#3182f6"/><circle cx="13.3" cy="11.2" r="1.35" fill="#fff"/><circle cx="18.7" cy="11.2" r="1.35" fill="#fff"/><path d="M14.4 14.2q1.6 1.4 3.2 0" stroke="#fff" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>threekong</a>
   <nav class="gmenu" aria-label="주 메뉴"><div class="gi"><a class="gl" href="#home" data-v="home">개요</a><div class="gdd"><a href="#home" data-j="home" data-t="#dMe">지금 내 상태</a><a href="#home" data-j="home" data-t="#dScore">AI 재무건강 점수</a><a href="#home" data-j="home" data-t=".ov-cta">내 정보로 시작하기</a></div></div><div class="gi"><a class="gl" href="#s1" data-v="s1">관계 정립</a><div class="gdd"><a href="#s1" data-j="s1" data-t="재무목표">상담 목표</a><a href="#s1" data-j="s1" data-t="분석 범위">분석 범위</a><a href="#s1" data-j="s1" data-t="서비스 제공 범위">서비스 제공 범위</a><a href="#s1" data-j="s1" data-t="상담 합의 확인">상담 합의 확인</a></div></div><div class="gi"><a class="gl" href="#s2" data-v="s2">목표·자료 수집</a><div class="gdd"><a href="#s2" data-j="s2" data-t="기본 정보">기본 정보</a><a href="#s2" data-j="s2" data-t="월 현금흐름">월 수입과 지출</a><a href="#s2" data-j="s2" data-t="자산">자산</a><a href="#s2" data-j="s2" data-t="부채">부채</a><a href="#s2" data-j="s2" data-t="우선순위별 재무목표">재무 목표</a></div></div><div class="gi"><a class="gl" href="#s3" data-v="s3">분석·평가</a><div class="gdd"><a href="#s3" data-j="s3" data-t="#dGoal">재무 목표</a><a href="#s3" data-j="s3" data-t="#dEval">재무 진단</a><a href="#s3" data-j="s3" data-t="#dAI">AI 종합 평가</a><a href="#s3" data-j="s3" data-t="#summary">설계안 효과</a><a href="#s3" data-j="s3" data-t="소득은 어디로 가고 있나">소득 흐름</a><a href="#s3" data-j="s3" data-t="자산부채 구조">자산부채 구조</a><a href="#s3" data-j="s3" data-t="목표 갭 분석">목표 갭 분석</a><a href="#s3" data-j="s3" data-t="행동재무학 진단">행동재무학 진단</a><a href="#s3" data-j="s3" data-t="AI 진단">AI 진단</a><a href="#s3" data-j="s3" data-t="다른 AI에게 분석 맡기기">AI 분석 프롬프트</a></div></div><div class="gi"><a class="gl" href="#s4" data-v="s4">설계안 수립</a><div class="gdd"><a href="#s4" data-j="s4" data-t="지출 구조 개선">지출 구조 개선</a><a href="#s4" data-j="s4" data-t="자산 재배치">자산 재배치</a><a href="#s4" data-j="s4" data-t="매달 모으는 돈, 통장별로 나누기">통장별 나누기</a><a href="#s4" data-j="s4" data-t="자산 성장 경로">자산 성장 경로</a><a href="#s4" data-j="s4" data-t="목표 달성 검증">목표 달성 검증</a><a href="#s4" data-j="s4" data-t="세제 혜택 추정">세제 혜택</a></div></div><div class="gi"><a class="gl" href="#s5" data-v="s5">설계안 실행</a><div class="gdd"><a href="#s5" data-j="s5" data-t="자동화 흐름도">자동이체 흐름</a><a href="#s5" data-j="s5" data-t="실행 체크리스트 · 실행 캘린더">체크리스트 · 캘린더</a></div></div><div class="gi"><a class="gl" href="#s6" data-v="s6">점검·리밸런싱</a><div class="gdd"><a href="#s6" data-j="s6" data-t="월간 점검판">월간 점검판</a><a href="#s6" data-j="s6" data-t="트리거 기반">리밸런싱 기준</a><a href="#s6" data-j="s6" data-t="상황이 달라졌다면">상황 변화 대응</a></div></div><div class="gi"><a class="gl" href="#report" data-v="report">보고서</a></div><div class="gi"><a class="gl" href="#basis" data-v="basis">산출 근거</a></div></nav>
-  <div class="gtools"><button type="button" class="gt gpill" data-proxy="btnPrompt">AI 프롬프트</button></div>
+  <div class="gtools"><button type="button" class="gt gpill" data-proxy="btnExample">예시 고객 보기</button></div>
 </div>
 <div class="gmega"><div class="gm-in"><div class="gm-col"><a class="gm-t" href="#home">개요</a><a class="gm-i" href="#home" data-j="home" data-t=".feat-sec">기능 소개</a><a class="gm-i" href="#home" data-j="home" data-t=".wv-sec">목표 지도</a><a class="gm-i" href="#home" data-j="home" data-t="#dScore">AI 점수</a><a class="gm-i" href="#home" data-j="home" data-t=".ov-cta">시작하기</a></div><div class="gm-col"><a class="gm-t" href="#s1">관계 정립</a><a class="gm-i" href="#s1" data-j="s1" data-t="재무목표">상담 목표</a><a class="gm-i" href="#s1" data-j="s1" data-t="분석 범위">분석 범위</a><a class="gm-i" href="#s1" data-j="s1" data-t="서비스 제공 범위">서비스 범위</a><a class="gm-i" href="#s1" data-j="s1" data-t="상담 합의 확인">상담 합의</a></div><div class="gm-col"><a class="gm-t" href="#s2">목표·자료 수집</a><a class="gm-i" href="#s2" data-j="s2" data-t="기본 정보">기본 정보</a><a class="gm-i" href="#s2" data-j="s2" data-t="월 현금흐름">수입과 지출</a><a class="gm-i" href="#s2" data-j="s2" data-t="자산">자산·부채</a><a class="gm-i" href="#s2" data-j="s2" data-t="우선순위별 재무목표">재무 목표</a><button type="button" class="gm-i gm-b" data-proxy="btnExample">예시 불러오기</button><button type="button" class="gm-i gm-b" data-proxy="btnBlank2">새 고객</button></div><div class="gm-col"><a class="gm-t" href="#s3">분석·평가</a><a class="gm-i" href="#s3" data-j="s3" data-t="#dMe">지금 내 상태</a><a class="gm-i" href="#s3" data-j="s3" data-t="#dGoal">재무 목표</a><a class="gm-i" href="#s3" data-j="s3" data-t="#dEval">재무 진단</a><a class="gm-i" href="#s3" data-j="s3" data-t="#dAI">AI 평가</a><a class="gm-i" href="#s3" data-j="s3" data-t="#summary">설계안 효과</a><a class="gm-i" href="#s3" data-j="s3" data-t="내 돈 습관 진단">돈 습관</a><a class="gm-i" href="#s3" data-j="s3" data-t="다른 AI에게 분석 맡기기">AI 프롬프트</a></div><div class="gm-col"><a class="gm-t" href="#s4">설계안 수립</a><a class="gm-i" href="#s4" data-j="s4" data-t="지금과 설계 후">전후 비교</a><a class="gm-i" href="#s4" data-j="s4" data-t="지출 구조 개선">지출 개선</a><a class="gm-i" href="#s4" data-j="s4" data-t="자산 재배치">자산 재배치</a><a class="gm-i" href="#s4" data-j="s4" data-t="매달 모으는 돈, 통장별로 나누기">통장별 나누기</a><a class="gm-i" href="#s4" data-j="s4" data-t="자산 성장 경로">성장 경로</a><a class="gm-i" href="#s4" data-j="s4" data-t="세제 혜택 추정">세제 혜택</a></div><div class="gm-col"><a class="gm-t" href="#s5">설계안 실행</a><a class="gm-i" href="#s5" data-j="s5" data-t="자동화 흐름도">자동이체</a><a class="gm-i" href="#s5" data-j="s5" data-t="실행 체크리스트 · 실행 캘린더">체크리스트</a><a class="gm-i" href="#s5" data-j="s5" data-t="실행 체크리스트 · 실행 캘린더">캘린더</a></div><div class="gm-col"><a class="gm-t" href="#s6">점검·리밸런싱</a><a class="gm-i" href="#s6" data-j="s6" data-t="월간 점검판">월간 점검</a><a class="gm-i" href="#s6" data-j="s6" data-t="트리거 기반">리밸런싱</a><a class="gm-i" href="#s6" data-j="s6" data-t="상황이 달라졌다면">상황 변화</a></div><div class="gm-col"><a class="gm-t" href="#report">보고서</a><a class="gm-i" href="#report">PDF 인쇄</a></div><div class="gm-col"><a class="gm-t" href="#basis">산출 근거</a><a class="gm-i" href="#basis">관련 법령</a></div></div></div>
 </header>
@@ -3979,6 +3994,7 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
   <div class="pch"><span class="pp">AI 평가</span><h3>숫자를 근거로 매긴 <em>AI 재무건강 점수</em></h3></div>
   <div class="ppan dai" id="dAI"></div>
   <div class="pch"><span class="pp">설계안</span><h3>설계안대로 바꾸면 달라지는 <em>내 돈의 미래</em></h3></div>
+  <div class="dbx">
   <div class="summary" id="summary"></div>
 
   <div class="card glow">
@@ -4004,8 +4020,11 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
     <div class="card"><div class="ch"><div><h3>재무목표 달성 전망</h3><p class="sub">선택한 설계안을 실행할 때 목표 시점의 예상 재원</p></div><a class="btn sm" href="#s4">설계안</a></div><div class="items" id="ovGoals"></div></div>
     <div class="card"><div class="ch"><div><h3>지금 먼저 할 일</h3><p class="sub">진단 결과에서 우선순위가 높은 순서</p></div><a class="btn sm" href="#s5">캘린더</a></div><div class="items" id="ovActions"></div></div>
   </div>
+  </div>
+
   <div class="pch" id="dDetail"><span class="pp">자세한 분석</span><h3>결과가 나온 근거를 보는 <em>자세한 분석</em></h3></div>
   </div>
+  <div class="dbx">
   <div class="grid g4" id="ratioKpis" style="gap:12px;display:none"></div>
   <div class="grid g2">
     <div class="card"><div class="ch"><div><h3>소득은 어디로 가고 있나</h3><p class="sub">세후 소득 대비 비중 · 조각에 마우스를 올려 보세요</p></div><div class="seg" id="cfSeg"><button type="button" data-k="now" class="on">현재</button><button type="button" data-k="plan">설계안</button></div></div><div class="donutwrap"><div class="chart-box" style="height:250px"><canvas id="cCash"></canvas></div><div class="nleg" id="legCash"></div></div></div>
@@ -4025,14 +4044,21 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
     <div class="ana-grid"><ol class="ana-steps"><li><b>복사하기</b><span>버튼 하나면 내 소득·지출·자산·부채와 재무비율이 담긴 질문이 복사돼요</span></li><li><b>붙여 넣기</b><span>평소 쓰는 AI 대화창에 그대로 붙여 넣으면 돼요</span></li><li><b>비교하기</b><span>AI의 답과 4단계 설계안을 나란히 놓고, 다른 부분이 있는지 살펴보세요</span></li><li class="note"><b>설계안은 threekong이 직접 계산해요</b><span>2단계에 적은 숫자로 4단계의 안정안·균형안·가속안을 바로 만들어요. AI에게는 해석과 검토만 맡기면 돼요</span></li></ol>
     <textarea class="prompt" id="anaPrompt" readonly aria-label="분석 프롬프트"></textarea></div>
   </div>
+  </div>
 </section>
 
 <!-- STEP 4 -->
 <section class="view" id="v-s4">
   <div class="vhead"><div class="eyebrow">4단계 · 앞으로의 설계안 고르기</div><h1>재무설계안 수립과 제시</h1><p>하나의 정답 대신 세 가지 안을 비교합니다. 카드를 누르면 모든 화면이 그 안으로 다시 계산됩니다.</p></div>
+  <div class="pch"><span class="pp">설계안 고르기</span><h3>세 가지 안 중에서 고르는 <em>나의 설계안</em></h3><p>안을 누르면 아래 숫자가 모두 그 안 기준으로 바뀌어요</p></div>
+  <div class="dbx">
   <div class="grid g3" id="scenCards"></div>
   <div class="card npc"><div class="ch"><div><h3>지금과 설계 후, 이렇게 달라집니다</h3><p class="sub">위에서 고른 설계안대로 실행했을 때 바뀌는 숫자입니다</p></div></div><div class="tbl-wrap"><table class="np" id="nowPlan"><colgroup><col style="width:20%"><col style="width:18%"><col style="width:44px"><col style="width:22%"><col></colgroup></table></div></div>
   <div class="grid g4" id="planKpis" style="gap:12px"></div>
+  </div>
+
+  <div class="pch"><span class="pp">지출·자산 조정</span><h3>줄일 지출과 정리할 자산으로 <em>저축할 돈 마련하기</em></h3></div>
+  <div class="dbx">
   <div class="grid g2">
     <div class="card">
       <div class="ch"><div><h3>지출 구조 개선</h3><p class="sub">균형안 기준 목표 금액 · 다른 안은 절감 폭이 달라집니다</p></div><span class="pill good" id="cutPill"></span></div>
@@ -4045,6 +4071,10 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
       <div id="sellNote" style="margin-top:14px"></div>
     </div>
   </div>
+  </div>
+
+  <div class="pch"><span class="pp">통장별 나누기</span><h3>매달 모으는 돈을 <em>쓰임새별 통장에 나눠요</em></h3></div>
+  <div class="dbx">
   <div class="card">
     <div class="ch"><div><h3>매달 모으는 돈, 통장별로 나누기</h3><p class="sub">쓰고 남은 돈을 한 통장에 몰아 두지 않고, 쓰임새별 통장에 나눠 넣는 계획이에요.</p></div><button class="btn sm" type="button" id="addBucket">+ 계좌 추가</button></div>
     <div class="grid g3" style="align-items:start">
@@ -4053,10 +4083,18 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
       <div class="bk-side"><h4>매달 어디에 얼마나</h4><div class="chart-box" style="height:200px"><canvas id="cBucket"></canvas></div><div id="bucketNote" style="margin-top:12px"></div></div>
     </div>
   </div>
+  </div>
+
+  <div class="pch"><span class="pp">자산 성장</span><h3>설계안대로 모으면 <em>이렇게 쌓여요</em></h3></div>
+  <div class="dbx">
   <div class="card">
     <div class="ch"><div><h3>자산 성장 경로</h3><p class="sub">점선은 목표 금액 · 그래프 위에서 월별 금액을 확인하세요</p></div><div class="seg" id="hSeg"><button type="button" data-h="36">3년</button><button type="button" data-h="72" class="on">6년</button><button type="button" data-h="120">10년</button></div></div>
     <div class="chart-box" style="height:320px"><canvas id="cProj"></canvas></div>
   </div>
+  </div>
+
+  <div class="pch"><span class="pp">목표·세금</span><h3>목표 달성 검증과 <em>세금 혜택</em></h3></div>
+  <div class="dbx">
   <div class="grid g2">
     <div class="card"><div class="ch"><div><h3>목표 달성 검증</h3><p class="sub">월복리 · 매월 말 납입 기준</p></div></div><div class="tbl-wrap"><table id="goalCheck"></table></div><p class="sub" style="font-size:12.5px;color:var(--ink-3);margin-top:10px">목표마다 재원을 따로 계산합니다. 같은 계좌를 쓰는 목표는 먼저 오는 목표에서 쓴 만큼 나중 목표의 재원이 줄어듭니다.</p></div>
     <div class="card"><div class="ch"><div><h3>세제 혜택 추정</h3><p class="sub">입력한 연봉과 월 적립액 · 2026년 현행 세법</p></div></div><div class="items" id="taxBox"></div></div>
@@ -4065,6 +4103,8 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
     <div class="card"><div class="ch"><div><h3>예상 마일스톤</h3><p class="sub">설계안 실행 후 일어날 일</p></div></div><div class="items" id="milestones"></div></div>
     <div class="card"><div class="ch"><div><h3>실행 전후 비교</h3><p class="sub">설계안 실행 직후 재무비율</p></div></div><div class="tbl-wrap"><table id="beforeAfter"></table></div></div>
   </div>
+  </div>
+
 </section>
 
 
@@ -4095,16 +4135,23 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
 <!-- STEP 6 -->
 <section class="view" id="v-s6">
   <div class="vhead"><div class="eyebrow">6단계 · 매달 점검하고 고치기</div><h1>점검과 리밸런싱</h1><p>계획과 실제가 달라지는 순간을 포착하고, 어느 단계로 돌아가 무엇을 고칠지 안내합니다.</p></div>
+  <div class="pch"><span class="pp">월간 점검</span><h3>매달 한 번, <em>계획대로 가고 있는지 점검해요</em></h3></div>
+  <div class="dbx">
   <div class="grid g2">
     <div class="card"><div class="ch"><div><h3>월간 점검판</h3><p class="sub">회색 칸을 눌러 이번 달 실제 금액을 바꾸면 계획과 바로 비교합니다</p></div></div><div class="mpre"><button type="button" data-mp='{"actVar":130}'>변동지출 초과</button><button type="button" data-mp='{"actFixed":135}'>고정지출 증가</button><button type="button" data-mp='{"actSave":90}'>저축 덜 함</button><button type="button" data-mp='{"actIncome":360}'>성과급 받음</button><button type="button" data-mp='{"actIncome":310,"actFixed":114,"actVar":95,"actSave":131}'>계획대로</button></div><div class="list" id="monthList"></div><div id="monthNote" style="margin-top:14px"></div></div>
     <div class="card"><div class="ch"><div><h3>현재 상황</h3><p class="sub">버튼을 누르거나 칸의 숫자를 바꾸면, 아래 매트릭스가 대응이 필요한 항목을 바로 알려 줍니다</p></div></div><div class="mpre"><button type="button" data-mp='{"drop":20}'>주가 20% 하락</button><button type="button" data-mp='{"isaDev":12}'>ISA 비중 12%p 벗어남</button><button type="button" data-mp='{"raise":10}'>월급 10% 인상</button><button type="button" data-mp='{"cma":500}'>비상금 500만 사용</button><button type="button" data-mp='{"yearend":"true"}'>연말정산 환급</button><button type="button" data-mp='{"housing":"true"}'>전세 만기</button><button type="button" data-mp='{"elapsed":12}'>1년 지남</button><button type="button" data-mp='{"cma":1000,"isaDev":4,"drop":0,"raise":0,"elapsed":0,"yearend":"false","housing":"false"}'>처음 상태로</button></div><div class="list" id="monList"></div></div>
   </div>
+  </div>
+  <div class="pch"><span class="pp">리밸런싱</span><h3>상황이 바뀌면 <em>이렇게 다시 맞춰요</em></h3><p>주가가 떨어지거나 월급이 오르면 어느 단계로 돌아가 무엇을 고칠지 보여 줘요</p></div>
+  <div class="dbx">
   <div class="card"><div class="ch"><div><h3>트리거 기반 리밸런싱 매트릭스</h3><p class="sub">주황색은 지금 조건이 충족되어 대응이 필요한 항목입니다</p></div><span class="pill" id="trigPill"></span></div><div id="trigList"></div></div>
   <div class="card">
     <div class="ch"><div><h3>상황이 달라졌다면?</h3><p class="sub">카드를 누르면 무엇이 바뀌고, 어떤 숫자에 영향을 주고, 어느 단계에서 다시 설계할지 보여 줍니다</p></div></div>
     <div class="grid g3" id="events"></div>
     <div id="eventDetail" style="margin-top:16px"></div>
   </div>
+  </div>
+
 </section>
 
 <!-- BASIS -->
