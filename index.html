@@ -4260,7 +4260,7 @@ const css=k=>getComputedStyle(document.documentElement).getPropertyValue(k).trim
 
 /* ---------- core calc ---------- */
 function tgtOf(e){const a=n(e.amt),t=e.target;if(t===""||t==null||(n(t)===0&&a>0))return e.group==="fixed"?a:Math.round(a*9)/10;return n(t)}
-const svKind=nm=>/청약/.test(nm)?"h":/ISA/i.test(nm)?"i":/연금|IRP/i.test(nm)?"p":"o";
+const svKind=nm=>/비상|파킹|CMA|입출금/i.test(nm)?"e":/청약/.test(nm)?"h":/ISA/i.test(nm)?"i":/연금|IRP/i.test(nm)?"p":"o";
 const svRate=nm=>/미래적금|도약/.test(nm)?5.5:/예금/.test(nm)?3:/적금/.test(nm)?3.5:3.5;
 function syncBuckets(s){if(!s||s.mode==="example"||!s.saving||!Array.isArray(s.saving.items)||!Array.isArray(s.buckets))return;
   if(s.buckets.some(b=>n(b.pmt)>0))return;
@@ -4293,10 +4293,10 @@ function calc(sk){syncBuckets(S);if(S.saving&&Array.isArray(S.saving.items)&&S.s
   const auto=buckets.length>0&&buckets.every(b=>!(b.pmt>0));
   const emG=S.goals.find(g=>n(g.amt)>0&&(g.src||[]).length===1&&g.src[0]==="cash");
   const emNeed=Math.max(0,Math.max(3*exPlan,emG?n(emG.amt):0)-B.liquid),emMo=emG&&n(emG.months)>0?n(emG.months):12;let emPmt=0;
-  const svBase=buckets.map(()=>0);if(auto&&S.mode!=="example"&&S.saving&&Array.isArray(S.saving.items)){const fi=re=>buckets.findIndex(b=>re.test(b.product+" "+b.name));
-    S.saving.items.filter(x=>n(x.amt)>0).forEach(x=>{const k=svKind(String(x.name||""));let i=k==="h"?fi(/청약/):k==="i"?fi(/ISA/i):k==="p"?fi(/연금|IRP/i):buckets.findIndex(b=>b.id==="bi_"+x.id);if(i<0&&k==="o")i=buckets.findIndex(b=>b.id==="b1");if(i<0)i=gi;svBase[i]+=n(x.amt)})}
+  const svBase=buckets.map(()=>0);let emBase=0,emNm="";if(auto&&S.mode!=="example"&&S.saving&&Array.isArray(S.saving.items)){const fi=re=>buckets.findIndex(b=>re.test(b.product+" "+b.name));
+    S.saving.items.filter(x=>n(x.amt)>0).forEach(x=>{const k=svKind(String(x.name||""));if(k==="e"){emBase+=n(x.amt);emNm=emNm||String(x.name).trim();return}let i=k==="h"?fi(/청약/):k==="i"?fi(/ISA/i):k==="p"?fi(/연금|IRP/i):buckets.findIndex(b=>b.id==="bi_"+x.id);if(i<0&&k==="o")i=buckets.findIndex(b=>b.id==="b1");if(i<0)i=gi;svBase[i]+=n(x.amt)})}
   const svSum=svBase.reduce((a,x)=>a+x,0);
-  if(auto&&svSum>0){const pool=Math.max(0,capacity>0?capacity:saveNow),extra=Math.max(0,pool-svSum);if(emNeed>0)emPmt=Math.min(Math.round(extra*.6),Math.ceil(emNeed/emMo));let rest=extra-emPmt;
+  if(auto&&(svSum>0||emBase>0)){const pool=Math.max(0,capacity>0?capacity:saveNow),extra=Math.max(0,pool-svSum-emBase);let emX=emNeed>0?Math.min(Math.round(extra*.6),Math.max(0,Math.ceil(emNeed/emMo)-emBase)):0;emPmt=emBase+emX;let rest=extra-emX;
     buckets.forEach((b,i)=>{b.pmt=svBase[i]});
     if(rest>0){let ti=svBase[gi]>0?gi:buckets.findIndex((b,i)=>svBase[i]>0&&/적금|예금|저축/.test(b.product)&&!/미래|도약|청약/.test(b.product));if(ti<0)ti=buckets.findIndex((b,i)=>svBase[i]>0&&!/미래|도약|청약|연금|IRP/i.test(b.product));
       if(ti>=0)buckets[ti].pmt+=rest;else emPmt+=rest;rest=0}
@@ -4310,7 +4310,7 @@ function calc(sk){syncBuckets(S);if(S.saving&&Array.isArray(S.saving.items)&&S.s
     if(left>0)emPmt+=left;
     buckets.forEach(b=>b.auto=true)}
   else if(buckets.length){buckets[gi].pmt=Math.max(0,buckets[gi].pmt+(capacity-capBal));const left=capacity-sum(buckets,b=>b.pmt);if(emNeed>0&&left>0)emPmt=Math.min(left,Math.ceil(emNeed/emMo))}
-  if(emPmt>0)buckets.push({id:"bem",name:"비상금",product:"CMA 파킹통장",pmt:emPmt,rate:2.5,link:"",months:emNeed>0?Math.max(1,Math.ceil(emNeed/emPmt)):"",auto:true});
+  if(emPmt>0)buckets.push({id:"bem",name:"비상금",product:emNm||"CMA 파킹통장",pmt:emPmt,rate:2.5,link:"",months:emNeed>0?Math.max(1,Math.ceil(emNeed/emPmt)):"",auto:true});
   const emAdd=emPmt*Math.min(12,emNeed>0?Math.ceil(emNeed/emPmt):12);
   const bucketSum=sum(buckets,b=>b.pmt);
   const linked=new Set(S.buckets.map(b=>b.link).filter(Boolean));
