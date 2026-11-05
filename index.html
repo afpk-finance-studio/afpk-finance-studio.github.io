@@ -3646,8 +3646,7 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
   </div>
   <div class="r1-agree">
     <div class="ra-main">
-      <div class="ra-head"><div><h3>상담을 시작하기 전에<br>아래 내용에 동의해 주세요</h3><p>한 번 동의하면 상담하는 동안 계속 유지돼요. 내용이 궁금하면 '보기'를 눌러 주세요.</p></div><span class="pill info" id="consentPill"></span></div>
-      <div class="ra-done" id="raDone"></div>
+      <div class="ra-head"><div><h3>상담을 시작하기 전에<br>아래 내용에 동의해 주세요</h3></div><span class="pill info" id="consentPill"></span></div>
       <label class="ra-all"><input type="checkbox" id="conAll"><span>네, 모두 동의할게요<small>상담 진행, 예상 수익률 안내, 직접 결정, 정보 보호, 정기 점검</small></span></label>
       <div id="consentList"></div>
       <div class="con-go" id="consentGo"></div>
@@ -3677,7 +3676,7 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
       <div class="list" id="fixedList" style="margin-bottom:16px"></div>
       <div class="sublabel">변동지출</div>
       <div class="list" id="varList"></div>
-      <div class="sublabel" style="margin-top:16px">돈 나가는 날 <small class="gsrc-h">5단계 실행 캘린더에 표시돼요. 모르면 비워 둬도 돼요</small></div>
+      <div class="sublabel" style="margin-top:16px">돈 나가는 날</div>
       <div class="list" id="dayList"></div>
       <div class="note" id="cfNote" style="margin-top:14px"></div>
     </div>
@@ -5064,7 +5063,7 @@ main.insertBefore(head,main.firstChild);
 const bar=document.createElement("div");bar.className="wz-bar";bar.innerHTML='<button type="button" class="wz-prev">이전</button><button type="button" class="wz-next">다음</button>';document.body.appendChild(bar);
 const pv=bar.querySelector(".wz-prev"),nx=bar.querySelector(".wz-next");
 const SN=["기본 정보","한 달 돈 흐름","지금 가진 돈","갚고 있는 빚","이루고 싶은 목표"],SD=["이름·나이·투자 성향","월급·저축·지출","통장·투자·보증금","대출 잔액과 상환","금액·기한·모을 통장"];
-side.innerHTML='<div class="ws-card"><span class="ws-eye">내 정보 입력</span><b class="ws-t">5단계로 나눠 적어요</b><ol class="ws-l">'+steps.map((x,k)=>`<li data-k="${k}"><button type="button" data-wzgo="${k}"><i>${k+1}</i><span><b>${SN[k]||""}</b><small>${SD[k]||""}</small></span></button></li>`).join("")+'</ol><div class="ws-btns"><button type="button" class="ws-prev">이전</button><button type="button" class="ws-next">다음</button></div><p class="ws-note">적은 내용은 이 브라우저에 바로 저장돼요</p></div>';
+side.innerHTML='<div class="ws-card"><span class="ws-eye">내 정보 입력</span><b class="ws-t">5단계로 나눠 적어요</b><ol class="ws-l">'+steps.map((x,k)=>`<li data-k="${k}"><button type="button" data-wzgo="${k}"><i>${k+1}</i><span><b>${SN[k]||""}</b><small>${SD[k]||""}</small></span></button></li>`).join("")+'</ol><div class="ws-btns"><button type="button" class="ws-prev">이전</button><button type="button" class="ws-next">다음</button></div></div>';
 const sp=side.querySelector(".ws-prev"),sn=side.querySelector(".ws-next");
 const sum=document.createElement("div");sum.className="ws-sum";side.appendChild(sum);
 function rsum(){let d=null;try{d=window.__getS&&window.__getS()}catch(e){}if(!d)try{d=JSON.parse(localStorage.getItem("plan6-studio-v2"))}catch(e){}if(!d)return;
