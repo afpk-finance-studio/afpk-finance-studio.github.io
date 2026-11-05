@@ -3533,6 +3533,90 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
  #v-s3 .ppan{padding:18px 16px;border-radius:20px}#v-s3 .pp-l{display:flex}#v-s3 .pnote{padding:16px}#v-s3 .pg{grid-template-columns:minmax(0,1fr);gap:8px}#v-s3 .ptg b{font-size:16px}#v-s3 #heroKpis .kpi .v{font-size:19px!important}}
 @media (prefers-reduced-motion:reduce){#v-s3 .mb i{animation:none}}
 
+/* v90 clobe-style dashboard */
+#v-s3 .dbd{background:#f7f8fa;border:1px solid #eceef1;border-radius:24px;padding:28px 28px 32px;margin-top:8px}
+#v-s3 .db-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+#v-s3 .db-top h3{margin:0;font-size:20px;font-weight:800;letter-spacing:-.03em;color:#191f28}
+#v-s3 .db-top small{font-size:12.5px;color:#8b95a1}
+#v-s3 .db-tabs{display:flex;gap:20px;margin:16px 0 18px;border-bottom:1px solid #e5e8eb}
+#v-s3 .db-tabs button{appearance:none;background:none;border:0;padding:8px 2px 10px;font:inherit;font-size:15px;font-weight:600;color:#8b95a1;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer}
+#v-s3 .db-tabs button.on{color:#3d6af2;border-bottom-color:#3d6af2}
+#v-s3 .dbd .pv{display:none}#v-s3 .dbd.plan .pv{display:inline}#v-s3 .dbd.plan .nv{display:none}
+#v-s3 .db-grid{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);gap:14px;align-items:start}
+#v-s3 .db-main{display:flex;flex-direction:column;gap:14px;min-width:0}
+#v-s3 .dbc{background:#fff;border:1px solid #eceef1;border-radius:14px;padding:20px 22px;min-width:0}
+#v-s3 .db-big{background:linear-gradient(180deg,#f4f7ff 0,#fff 46%)}
+#v-s3 .dbc-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+#v-s3 .dbc-h b{font-size:15px;font-weight:700;color:#191f28}#v-s3 .dbc-h b span{color:#4e5968;margin-left:4px}
+#v-s3 .dbc-h small{font-size:12px;color:#8b95a1}
+#v-s3 .db-v{margin-top:14px;font-size:30px;font-weight:800;letter-spacing:-.035em;color:#191f28;font-variant-numeric:tabular-nums;line-height:1.2}
+#v-s3 .db-v.sm{font-size:26px;margin-top:6px}
+#v-s3 .db-s{margin:6px 0 0;font-size:13.5px;color:#4e5968}
+#v-s3 .db-s em{font-style:normal;font-weight:700}#v-s3 .db-s em.g{color:#0e9f6e}
+#v-s3 .db-lab{margin-top:14px;font-size:13px;color:#6b7684}
+#v-s3 .db-unit{text-align:right;font-size:11px;color:#b0b8c1;margin-top:10px}
+#v-s3 .db-bars{display:flex;align-items:flex-end;gap:10px;height:120px;padding-bottom:22px;position:relative}
+#v-s3 .db-b{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;position:relative;min-width:0}
+#v-s3 .db-b i{width:100%;max-width:38px;background:#eceef1;border-radius:3px 3px 0 0;transform-origin:bottom;animation:mbUp .9s cubic-bezier(.2,.7,.2,1) both}
+#v-s3 .db-b.on i{background:#2f8f5b}
+#v-s3 .db-b small{position:absolute;bottom:-20px;font-size:11px;color:#b0b8c1;white-space:nowrap}#v-s3 .db-b.on small{color:#2f8f5b;font-weight:700}
+#v-s3 .db-tagrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:22px;border:1px solid #eceef1;border-radius:12px;padding:12px 14px}
+#v-s3 .db-tg{display:inline-flex;align-items:center;gap:8px}
+#v-s3 .db-tg i{font-style:normal;display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;font-size:12px;background:#fde9ea;color:#e0454f}
+#v-s3 .db-tg i.b{background:#e8eeff;color:#3d6af2}#v-s3 .db-tg i.o{background:#fff1e3;color:#e07b1f}
+#v-s3 .db-tg b{font-size:14px;font-weight:700;color:#191f28}
+#v-s3 .db-more{margin-left:auto;appearance:none;background:#fff;border:1px solid #e5e8eb;border-radius:999px;padding:6px 14px;font:inherit;font-size:12.5px;color:#4e5968;cursor:pointer}
+#v-s3 .db-strip{padding:16px 22px}
+#v-s3 .db-kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:12px;border-top:1px solid #f2f4f6}
+#v-s3 .db-kv>div{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 16px 2px 0}
+#v-s3 .db-kv>div+div{padding-left:16px;border-left:1px solid #f2f4f6}
+#v-s3 .db-kv span{font-size:13px;color:#4e5968}#v-s3 .db-kv b{font-size:15px;font-weight:700;color:#191f28;white-space:nowrap}
+#v-s3 .db-kv [data-go]{cursor:pointer}
+#v-s3 .db-side{padding:20px 0 6px}
+#v-s3 .db-side h4{margin:0 22px 6px;font-size:16px;font-weight:700;color:#191f28;position:relative;display:inline-block}
+#v-s3 .db-side h4 i{position:absolute;right:-7px;top:0;width:5px;height:5px;border-radius:50%;background:#3d6af2}
+#v-s3 .db-side section{padding:14px 22px 16px;border-top:1px solid #f2f4f6}
+#v-s3 .db-side section:first-of-type{border-top:0}
+#v-s3 .dbs-h{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;color:#4e5968;margin-bottom:6px}
+#v-s3 .dbs-h a{color:#b0b8c1;text-decoration:none;font-size:14px}#v-s3 .dbs-h span{color:#8b95a1;margin-left:6px;margin-right:auto}
+#v-s3 .db-r{display:flex;align-items:center;gap:10px;padding:7px 0}
+#v-s3 .db-r .t{font-style:normal;display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:5px;font-size:12px;background:#f2f4f6;color:#6b7684;white-space:nowrap}
+#v-s3 .db-r .t.g{background:#e6f6ee;color:#0e9f6e}#v-s3 .db-r .t.r{background:#fde9ea;color:#e0454f}#v-s3 .db-r .t.b{background:#e8eeff;color:#3d6af2}
+#v-s3 .db-l{font-size:12.5px;color:#8b95a1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#v-s3 .db-r b{margin-left:auto;font-size:14px;font-weight:700;color:#191f28;white-space:nowrap;font-variant-numeric:tabular-nums}
+#v-s3 .db-todo{border:1px solid #eceef1;border-radius:8px;padding:11px 14px;font-size:13.5px;font-weight:600;color:#333d4b;margin-top:8px;cursor:pointer;transition:border-color .15s}
+#v-s3 .db-todo:hover{border-color:#3d6af2}
+#v-s3 .db-none{font-size:13px;color:#8b95a1;margin:4px 0 0}
+#v-s3 .db-row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
+#v-s3 .db-gl{margin-top:16px;display:flex;flex-direction:column;gap:12px}
+#v-s3 .db-g{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 48px;gap:12px;align-items:center}
+#v-s3 .db-gt b{display:block;font-size:13.5px;font-weight:600;color:#191f28;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#v-s3 .db-gt small{font-size:11.5px;color:#8b95a1}
+#v-s3 .db-gb{height:8px;border-radius:99px;background:#eef0f3;overflow:hidden}
+#v-s3 .db-gb i{display:block;height:100%;border-radius:99px;background:#3d6af2}
+#v-s3 .db-g.late .db-gb i{background:#f06872}
+#v-s3 .db-g em{font-style:normal;text-align:right;font-size:13.5px;font-weight:700;color:#3d6af2}#v-s3 .db-g.late em{color:#e0454f}
+#v-s3 .db-lg{display:flex;gap:14px;margin-top:16px;font-size:11.5px;color:#8b95a1}
+#v-s3 .db-lg i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px;vertical-align:0}
+#v-s3 .db-lg i.a,#v-s3 .db-sb i.a{background:#f4a3aa}#v-s3 .db-lg i.b,#v-s3 .db-sb i.b{background:#3d6af2}
+#v-s3 .db-sl{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+#v-s3 .db-sr{display:grid;grid-template-columns:64px minmax(0,1fr) 64px;gap:12px;align-items:center;font-size:13px;color:#4e5968}
+#v-s3 .db-sr b{text-align:right;font-weight:700;color:#191f28;font-size:13px;white-space:nowrap}
+#v-s3 .db-sb{display:flex;flex-direction:column;gap:3px}
+#v-s3 .db-sb i{display:block;height:5px;border-radius:99px}
+#v-s3 .db-grid{align-items:stretch}#v-s3 .db-big{flex:1;display:flex;flex-direction:column}#v-s3 .db-big .db-bars{flex:1;min-height:120px}
+@media (max-width:1000px){#v-s3 .db-grid,#v-s3 .db-row2{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:700px){#v-s3 .dbd{margin:0 -4px;padding:18px 14px 20px;border-radius:18px}#v-s3 .db-top h3{font-size:17px}
+ #v-s3 .dbc{padding:16px}#v-s3 .db-side{padding:16px 0 4px}#v-s3 .db-side h4{margin:0 16px 4px}#v-s3 .db-side section{padding:12px 16px 14px}
+ #v-s3 .db-v{font-size:25px}#v-s3 .db-v.sm{font-size:22px}#v-s3 .db-bars{gap:6px;height:100px}
+ #v-s3 .db-kv{grid-template-columns:minmax(0,1fr)}#v-s3 .db-kv>div,#v-s3 .db-kv>div+div{padding:10px 0 4px;border-left:0}#v-s3 .db-kv>div+div{border-top:1px solid #f2f4f6}
+ #v-s3 .db-more{margin-left:0}#v-s3 .db-tagrow{gap:8px 14px}#v-s3 .db-g{grid-template-columns:minmax(0,1fr) 44px}#v-s3 .db-g .db-gb{grid-column:1/-1;grid-row:2}}
+
+@media (max-width:700px){#nowPlan{display:block;width:100%!important;min-width:0!important}#nowPlan colgroup,#nowPlan thead{display:none}#nowPlan tbody{display:flex;flex-direction:column;gap:8px}
+ #nowPlan tr{display:grid;grid-template-columns:auto auto 1fr;align-items:baseline;gap:4px 10px;padding:12px 14px;border:1px solid #eef0f3;border-radius:12px}
+ #nowPlan th,#nowPlan td{display:block;padding:0!important;border:0!important;text-align:left!important;width:auto!important}
+ #nowPlan tbody th{grid-column:1/-1;font-size:13px;color:#6b7684}#nowPlan td:last-child{grid-column:1/-1;font-size:12.5px;color:#8b95a1}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -3793,6 +3877,8 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
 <section class="view" id="v-s3">
   <div class="vhead"><div class="eyebrow">3단계 · 지금 내 상태 진단</div><h1>재무상태 분석과 평가</h1><p>현재 위치와 목표 사이의 거리를 숫자와 그래프로 확인하고, 4단계에서 무엇을 바꿀지 찾습니다.</p></div>
   <div class="dash-wrap">
+  <div class="dbd" id="dDash"></div>
+  <div hidden aria-hidden="true">
   <div class="pch"><span class="pp">결론</span><h3 id="dSumH"></h3><p id="dSumP"></p></div>
   <div class="ppan pp-2" id="dSum"></div>
   <div class="pch"><span class="pp">지금 내 상태</span><h3>한 달 돈 흐름으로 보는 <em>지금 내 상태</em></h3></div>
@@ -3806,6 +3892,7 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
       <div class="kgrid" id="heroKpis"></div>
       <div class="dme" id="dMe"></div>
     </div>
+  </div>
   </div>
   <div class="pch"><span class="pp">재무목표</span><h3>계획대로 모으면 얼마나 채워질까요, <em>재무목표</em></h3></div>
   <div class="ppan pp-2">
@@ -4408,6 +4495,43 @@ function updateCore(){
    const pt=(em,sv,db,rk)=>[Math.round(Math.min(1,em/3)*25),Math.round(Math.min(1,sv/50)*25),Math.round(db<=20?25:Math.max(0,25*(1-(db-20)/20))),Math.round(rk<=30?25:Math.max(0,25*(1-(rk-30)/40)))];
    const sc=(em,sv,db,rk)=>pt(em,sv,db,rk).reduce((a,x)=>a+x,0);
    const s0=sc(c.rNow.em,c.rNow.save,c.rNow.debt,c.rNow.risk),s1=sc(c.rAfter.em,c.rAfter.save,c.rAfter.debt,c.rAfter.risk);
+   {const inc=c.sal+c.bonus,un=Math.max(0,inc-c.exNow-c.saveNow),unP=Math.max(0,inc-c.exPlan-c.bucketSum),nm=esc(S.profile.name||"고객"),dt=new Date(),D=`${dt.getFullYear()}.${String(dt.getMonth()+1).padStart(2,"0")}.${String(dt.getDate()).padStart(2,"0")}`;
+    const dv=(a,b)=>`<span class="nv">${a}</span><span class="pv">${b}</span>`,f1=v=>fmt(v,1),F72=finAt(72);
+    const yv=[...Array(7).keys()].map(k=>k?finAt(k*12):finNow),ymx=Math.max(1,...yv);
+    const bars=yv.map((v,k)=>`<div class="db-b${k===6?" on":""}"><i style="height:${Math.max(4,v/ymx*100).toFixed(1)}%" title="${won(Math.round(v))}"></i><small>${k?k+"년":"지금"}</small></div>`).join("");
+    const tg=(cl,t,v)=>`<span class="db-tg"><i class="${cl}">${t}</i><b>${v}</b></span>`;
+    const SLb=x=>x==="good"?"양호":"주의",stc=x=>x==="good"?"b":"r";
+    const evr=R.map(r=>{const a=st(r[2],r[6],r[7],r[8]),b=st(r[3],r[6],r[7],r[8]);return `<div class="db-r"><span class="nv"><i class="t ${stc(a)}">${SLb(a)}</i></span><span class="pv"><i class="t ${stc(b)}">${SLb(b)}</i></span><span class="db-l">${r[0]}</span><b>${dv(f1(r[2])+r[4],f1(r[3])+r[4])}</b></div>`}).join("");
+    const cut=c.exNow-c.exPlan,todo=[];if(c.rNow.em<3)todo.push(["비상금부터 채우기","s4"]);if(cut>0)todo.push([`지출 월 ${fmt(cut)}만 원 줄이기`,"s4"]);if(c.rNow.risk>30&&c.sellTotal>0)todo.push([`주식·코인 ${fmt(c.sellTotal)}만 원 정리`,"s4"]);if(c.bucketSum>0)todo.push([`월급 다음 날(${S.exec.moveday}일) 자동이체`,"s5"]);
+    const GR=gRows.filter(x=>x.amt>0),okN=GR.filter(x=>x.reach!=null&&x.reach!==Infinity&&x.reach<=n(x.g.months)).length,late=GR.filter(x=>!(x.reach!=null&&x.reach!==Infinity&&x.reach<=n(x.g.months)));
+    const sd0=startDate(),ym=m=>{const d=new Date(sd0);d.setMonth(d.getMonth()+m);return d.getFullYear()+"."+String(d.getMonth()+1).padStart(2,"0")};
+    const grow=GR.map(x=>{const mo=n(x.g.months),r=x.reach,inf=r==null||r===Infinity,ok=!inf&&r<=mo,p=Math.min(100,x.r||0);return `<div class="db-g ${ok?"ok":"late"}"><div class="db-gt"><b>${esc(x.g.name)}</b><small>${won(x.amt)} · 기한 ${ym(mo)}</small></div><div class="db-gb"><i style="width:${p.toFixed(1)}%"></i></div><em>${fmt(Math.min(999,x.r||0),0)}%</em></div>`}).join("");
+    const p0=pt(c.rNow.em,c.rNow.save,c.rNow.debt,c.rNow.risk),p1=pt(c.rAfter.em,c.rAfter.save,c.rAfter.debt,c.rAfter.risk);
+    const srow=["비상금","저축","빚","투자 위험"].map((t,i)=>`<div class="db-sr"><span>${t}</span><div class="db-sb"><i class="a" style="width:${p0[i]*4}%"></i><i class="b" style="width:${p1[i]*4}%"></i></div><b>${p0[i]} → ${p1[i]}</b></div>`).join("");
+    $("#dDash").innerHTML=`<div class="db-top"><h3>${D} ${nm}님 대시보드</h3><small>2단계에 적은 내용 기준이에요</small></div>
+     <div class="db-tabs" role="tablist"><button type="button" class="on" data-dbt="now">지금</button><button type="button" data-dbt="plan">설계안 실행 후</button></div>
+     <div class="db-grid"><div class="db-main">
+      <div class="dbc db-big"><div class="dbc-h"><b>모은 돈 <span>›</span></b><small>금융자산 · 보증금 제외</small></div>
+       <div class="db-v">${dv(won(Math.round(finNow)),won(Math.round(F72)))}</div>
+       <p class="db-s">${dv(`설계안대로 모으면 6년 뒤 <em class="g">${won(Math.round(F72))}</em>이 돼요`,`지금보다 <em class="g">${won(Math.round(F72-finNow))}</em> 늘어요 · 6년 뒤 기준`)}</p>
+       <div class="db-unit">단위: 만 원</div><div class="db-bars">${bars}</div>
+       <div class="db-tagrow">${tg("r","저축률",dv(fmt(c.rNow.save,0)+"%",fmt(c.rAfter.save,0)+"%"))}${tg("b","비상금",dv(f1(c.rNow.em)+"개월",f1(c.rAfter.em)+"개월"))}${tg("o","부채부담",dv(f1(c.rNow.debt)+"%",f1(c.rAfter.debt)+"%"))}<button type="button" class="db-more" data-jump="#dDetail">상세 보기</button></div></div>
+      <div class="dbc db-strip"><div class="dbc-h"><b>자산·부채 현황</b></div><div class="db-kv"><div data-go="s2"><span>총자산 ↗</span><b>${fmt(c.totalA)}만 원</b></div><div data-go="s2"><span>총부채 ↗</span><b>${fmt(c.debtBal)}만 원</b></div><div><span>순자산</span><b>${fmt(c.net)}만 원</b></div></div></div>
+     </div>
+     <div class="dbc db-side"><h4>주요 알림<i></i></h4>
+      <section><div class="dbs-h">월 현금흐름 <a href="#s2" data-j="s2" data-t="월 현금흐름">↗</a></div>
+       <div class="db-r"><i class="t g">수입</i><span class="db-l">월급+비정기</span><b>${fmt(inc)}만 원</b></div>
+       <div class="db-r"><i class="t r">지출</i><span class="db-l">고정+변동</span><b>${dv(fmt(c.exNow),fmt(c.exPlan))}만 원</b></div>
+       <div class="db-r"><i class="t b">저축</i><span class="db-l">매달 모으는 돈</span><b>${dv(fmt(c.saveNow),fmt(c.bucketSum))}만 원</b></div>
+       <div class="db-r"><i class="t">남는 돈</i><span class="db-l">이름표 없는 돈</span><b>${dv(fmt(un),fmt(unP))}만 원</b></div></section>
+      <section><div class="dbs-h">재무 진단 <a href="#v-s3" data-jump=".deval">↗</a></div>${evr}</section>
+      <section><div class="dbs-h">지금 할 일 <span>${todo.length}건</span></div>${todo.map(t=>`<div class="db-todo" data-go="${t[1]}">${t[0]}</div>`).join("")||`<p class="db-none">할 일이 없어요</p>`}</section>
+     </div></div>
+     <div class="db-row2">
+      <div class="dbc"><div class="dbc-h"><b>재무목표 <span>›</span></b><small>목표 ${GR.length}개</small></div><div class="db-lab">기한 안에 모이는 목표</div><div class="db-v sm">${okN} / ${GR.length}개</div><p class="db-s">${late.length?`${esc(late[0].g.name)}은 지금 계획으로 기한을 맞추기 어려워요`:"설계안대로 모으면 모두 기한 안에 모여요"}</p><div class="db-gl">${grow}</div></div>
+      <div class="dbc"><div class="dbc-h"><b>AI 재무건강 점수 <span>›</span></b><small>100점 만점</small></div><div class="db-lab">${dv("지금 점수","설계안 실행 후 점수")}</div><div class="db-v sm">${dv(s0+"점",s1+"점")}</div><p class="db-s">${s1>s0?`설계안대로 하면 <em class="g">${s1-s0}점</em> 올라요`:"지금 점수를 지키면 돼요"}</p><div class="db-lg"><span><i class="a"></i>지금</span><span><i class="b"></i>설계안 실행 후</span></div><div class="db-sl">${srow}</div></div>
+     </div>`;
+    const dd=$("#dDash");dd.classList.toggle("plan",window.__dbt==="plan");dd.querySelectorAll("[data-dbt]").forEach(b=>{b.classList.toggle("on",b.dataset.dbt===(window.__dbt||"now"));b.onclick=()=>{window.__dbt=b.dataset.dbt;dd.classList.toggle("plan",b.dataset.dbt==="plan");dd.querySelectorAll("[data-dbt]").forEach(x=>x.classList.toggle("on",x===b))}});}
    const ok=R.filter(r=>st(r[2],r[6],r[7],r[8])==="good"),ng=R.filter(r=>st(r[2],r[6],r[7],r[8])!=="good");
    window.__gx=window.__gx||{};const gx2=(id,a,b)=>{const L=395.8,arc=(v,g,cls,lab,extra)=>`<div class="gxa ${cls}"><svg viewBox="0 0 200 200" aria-hidden="true"><circle class="gxt" cx="100" cy="100" r="84" stroke-dasharray="${L} 528" transform="rotate(135 100 100)"/><circle class="gxp" cx="100" cy="100" r="84" stroke="url(#${g})" style="--len:${(L*Math.max(0,Math.min(100,v))/100).toFixed(1)}" transform="rotate(135 100 100)"/></svg><div class="gxc"><small>${lab}</small>${extra}<b>${v}<em>점</em></b></div></div>`;
     return `<div class="gx2${window.__gx[id]?" on":""}" data-gx="${id}" role="img" aria-label="AI 재무건강 점수 지금 ${a}점, 설계안 실행 후 ${b}점"><svg width="0" height="0" style="position:absolute"><defs><linearGradient id="gA${id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffb37a"/><stop offset="1" stop-color="#f04452"/></linearGradient><linearGradient id="gB${id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3182f6"/><stop offset="1" stop-color="#a24cf0"/></linearGradient></defs></svg>${arc(b,"gB"+id,"gx-b","설계안 실행 후",`${b>a?`<span class="gxd"><i></i>${b-a}점</span>`:`<span class="gxd z">${b===a?"지금과 같음":(b-a)+"점"}</span>`}`)}${arc(a,"gA"+id,"gx-a","지금","")}</div>`};
