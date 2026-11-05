@@ -3411,6 +3411,36 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
 @media (max-width:900px){.r1-agree .con-go{display:flex}.r1-agree #raBtn{display:none}.r1-agree .cg-btn,.r1-agree .cg-all{background:#3182f6!important;color:#fff!important;border:0!important;border-radius:14px!important}}
 @media (max-width:700px){.r1-agree .ra-head h3{font-size:22px!important}.r1-agree .ra-all{padding:18px!important}.r1-agree .ra-all span{font-size:16px!important}.r1-agree .ra-ck span{font-size:15px!important}.r1-agree .ra-box{margin-left:0!important}}
 
+.ev.bill{background:#ffeef0!important;color:#d6293e!important}
+/* v87 smaller step 3 */
+#v-s3 #dMe{gap:40px 18px!important}
+#v-s3 .tz h4{font-size:19px!important;margin-bottom:6px!important}
+#v-s3 .tz>p{font-size:13.5px!important;line-height:1.6!important;margin-bottom:14px!important;min-height:0!important}
+#v-s3 .tz-st{border-radius:24px;padding:22px 14px!important}
+#v-s3 .tz-stack{gap:8px;max-width:360px}
+#v-s3 .tz .tz-c{padding:10px 14px!important;gap:10px!important;border-radius:16px}
+#v-s3 .tz .tz-i{width:36px!important;height:36px!important;border-radius:12px!important}
+#v-s3 .tz .tz-i svg{width:18px;height:18px}
+#v-s3 .tz .tz-t small{font-size:11.5px}
+#v-s3 .tz .tz-t b{font-size:15px!important}
+#v-s3 .tz .tz-t b span{font-size:13px}
+#v-s3 .tz .tz-c em{font-size:16px!important}
+#v-s3 .tz-goals{gap:8px;padding:20px clamp(14px,4vw,64px)!important}
+#v-s3 .tz-g{padding:14px 18px;border-radius:18px;gap:14px}
+#v-s3 .tz-g .tz-i{width:38px;height:38px;border-radius:12px}#v-s3 .tz-g .tz-i svg{width:18px;height:18px}
+#v-s3 .tz-gm small{font-size:12px}#v-s3 .tz-gm>b{font-size:18px;margin:1px 0 6px}#v-s3 .tz-gm p{font-size:12.5px;margin-top:6px}
+#v-s3 .tz-gr em{font-size:22px}#v-s3 .tz-gr small{font-size:11.5px}
+#v-s3 .kgrid .kpi{min-height:118px!important;padding:16px 18px!important;border-radius:16px!important}
+#v-s3 .kgrid .kpi .k{font-size:13px!important}
+#v-s3 .kgrid .kpi .v{font-size:28px!important}
+#v-s3 .kgrid .kpi .v small{font-size:13px!important}
+#v-s3 .kgrid .kpi .d{font-size:11.5px!important;margin-top:3px}
+#v-s3 .card.persona{padding:22px!important;border-radius:18px!important;gap:12px!important}
+#v-s3 .persona .avatar{width:44px!important;height:44px!important;font-size:18px!important}
+#v-s3 .persona h2{font-size:14px!important}
+#v-s3 .persona .quote{font-size:17px!important;line-height:1.5!important}
+@media (max-width:700px){#v-s3 .tz h4{font-size:17px!important}#v-s3 .kgrid .kpi .v{font-size:22px!important}#v-s3 .persona .quote{font-size:15px!important}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -3647,7 +3677,7 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
       <div class="list" id="fixedList" style="margin-bottom:16px"></div>
       <div class="sublabel">변동지출</div>
       <div class="list" id="varList"></div>
-      <div class="sublabel" style="margin-top:16px">돈이 들어오고 나가는 날 <small class="gsrc-h">자동이체 날짜를 정할 때 써요. 모르면 비워 둬도 돼요</small></div>
+      <div class="sublabel" style="margin-top:16px">돈 나가는 날 <small class="gsrc-h">5단계 실행 캘린더에 표시돼요. 모르면 비워 둬도 돼요</small></div>
       <div class="list" id="dayList"></div>
       <div class="note" id="cfNote" style="margin-top:14px"></div>
     </div>
@@ -3795,7 +3825,7 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
       <div class="ch"><div><h3>실행 캘린더</h3><p class="sub">할 일·자동이체·점검 일정 · 날짜를 눌러 보세요</p></div>
         <div class="calhead"><button class="icon-btn" id="calPrev" type="button" aria-label="이전 달">‹</button><b id="calTitle"></b><button class="icon-btn" id="calNext" type="button" aria-label="다음 달">›</button><button class="btn sm" id="calToday" type="button">오늘</button></div></div>
       <div class="calgrid" id="calGrid"></div>
-      <div class="legend"><span><i style="background:var(--blue)"></i>실행 할 일</span><span><i style="background:var(--teal)"></i>급여·자동이체</span><span><i style="background:var(--orange)"></i>점검</span><span><i style="background:var(--green)"></i>목표·완납</span></div>
+      <div class="legend"><span><i style="background:var(--blue)"></i>실행 할 일</span><span><i style="background:var(--teal)"></i>급여·자동이체</span><span><i style="background:#f04452"></i>돈 나가는 날</span><span><i style="background:var(--orange)"></i>점검</span><span><i style="background:var(--green)"></i>목표·완납</span></div>
       <div class="calday" id="calDay"></div>
       <div class="btns" style="margin-top:12px"><button class="btn sm" type="button" id="btnIcs">휴대폰 캘린더에 추가 (.ics)</button></div>
     </div>
@@ -4071,13 +4101,13 @@ function migrate(s){if(!s.saving)s.saving={current:0,note:""};if(!s.days)s.days=
 function payOf(d){const p=d.pay;if(p!==""&&p!=null&&n(p)>0)return n(p);const b=n(d.bal),mo=n(d.months),r=n(d.rate)/1200;if(b<=0||mo<=0)return 0;return Math.round((r?b*r/(1-Math.pow(1+r,-mo)):b/mo)*10)/10}
 function renderInputs(){migrate(S);
   const p=S.profile;
-  $("#profileFields").innerHTML=`<div class="fform">`+[frow("이름","가명도 괜찮아요",ti("profile.name",p.name,"이름","","예: 김민준")),frow("만 나이","은퇴까지 기간 계산",ni("profile.age",p.age,"나이","세","예: 28")),frow("직업·경력","",ti("profile.job",p.job,"직업","","예: IT기업 사원 3년차")),frow("연봉","세전 총급여",ni("profile.annual",p.annual,"연봉","만","예: 4200")),frow("가구 구성","",ti("profile.household",p.household,"가구","","예: 1인 가구, 2년 뒤 결혼 예정")),frow("거주 형태","",ti("profile.housing",p.housing,"거주","","예: 전세 보증금 1억 2천")),frow("라이프사이클","",ti("profile.stage",p.stage,"라이프사이클","","예: 사회초년생")),frow("무주택 세대주","청약 소득공제 요건",pick("profile.homeless",p.homeless,["예","아니오"])),frow("투자 성향","위험자산 한도 기준",pick("profile.risk",p.risk,["안정형","안정추구형","위험중립형","적극투자형","공격투자형"])),frow("현재 고민","가장 걱정되는 한 가지",ti("profile.concern",p.concern,"고민","","예: 결혼자금을 언제까지 모을 수 있을지"))].join("")+`</div>`;
+  $("#profileFields").innerHTML=`<div class="fform">`+[frow("이름","가명도 괜찮아요",ti("profile.name",p.name,"이름","","예: 김민준")),frow("만 나이","은퇴까지 기간 계산",ni("profile.age",p.age,"나이","세","예: 28")),frow("직업·경력","",ti("profile.job",p.job,"직업","","예: IT기업 사원 3년차")),frow("연봉","세전 총급여",ni("profile.annual",p.annual,"연봉","만","예: 4200")),frow("월급 받는 날","매달 며칠에 들어오나요",ni("exec.payday",S.exec.payday,"월급 받는 날","일","예: 25")),frow("가구 구성","",ti("profile.household",p.household,"가구","","예: 1인 가구, 2년 뒤 결혼 예정")),frow("거주 형태","",ti("profile.housing",p.housing,"거주","","예: 전세 보증금 1억 2천")),frow("라이프사이클","",ti("profile.stage",p.stage,"라이프사이클","","예: 사회초년생")),frow("무주택 세대주","청약 소득공제 요건",pick("profile.homeless",p.homeless,["예","아니오"])),frow("투자 성향","위험자산 한도 기준",pick("profile.risk",p.risk,["안정형","안정추구형","위험중립형","적극투자형","공격투자형"])),frow("현재 고민","가장 걱정되는 한 가지",ti("profile.concern",p.concern,"고민","","예: 결혼자금을 언제까지 모을 수 있을지"))].join("")+`</div>`;
   $("#incomeList").innerHTML=`<div class="row edit" style="grid-template-columns:minmax(0,1fr) 130px"><span class="lbl">월 세후 근로소득<small>통장에 들어오는 월급 · 만 원 단위 (예: 250)</small></span>${ni("income.salary",S.income.salary,"세후 소득")}</div><div class="row edit" style="grid-template-columns:minmax(0,1fr) 130px"><span class="lbl">비정기 수입<small>성과급·상여 월 환산</small></span>${ni("income.bonus",S.income.bonus,"비정기 수입")}</div><div class="sublabel" style="margin-top:14px">지금 매달 모으는 돈 <small class="gsrc-h">적금·청약·ISA처럼 매달 넣는 곳을 나눠 적어요</small></div>${S.saving.items.map((x,i)=>`<div class="row edit">${ti(`saving.items.${i}.name`,x.name,"저축 이름","ghost","예: 주택청약")}${ni(`saving.items.${i}.amt`,x.amt,x.name||"저축")}<button class="del" type="button" data-del="saving.items.${i}" aria-label="삭제">×</button></div>`).join("")}<button class="addrow" type="button" data-addsv="1">+ 매달 모으는 곳 추가</button><div class="row total" style="margin-top:6px"><span class="lbl">매달 모으는 돈 합계</span><span class="val">${fmt(S.saving.items.reduce((t,x)=>t+n(x.amt),0))}만</span></div>`;
   const exRow=(e,i)=>`<div class="row edit">${ti(`expenses.${i}.name`,e.name,"항목","ghost","항목 이름 (예: 통신비)")}${ni(`expenses.${i}.amt`,e.amt,e.name)}<button class="del" type="button" data-del="expenses.${i}" aria-label="삭제">×</button></div>`;
   const ix=S.expenses.map((e,i)=>[e,i]);
   $("#fixedList").innerHTML=ix.filter(([e])=>e.group==="fixed").map(([e,i])=>exRow(e,i)).join("")+`<button class="addrow" type="button" data-add="fixed">+ 고정지출 추가</button>`;
   {const dr=(l,h,el)=>`<div class="row edit" style="grid-template-columns:minmax(0,1fr) 130px"><span class="lbl">${l}<small>${h}</small></span>${el}</div>`;
-   $("#dayList").innerHTML=dr("월급 들어오는 날","매달 며칠에 월급이 들어오나요",ni("exec.payday",S.exec.payday,"월급날","일","예: 25"))+dr("카드값 나가는 날","카드 결제일 · 변동지출을 카드로 쓴다고 보고 계산해요",ni("days.card",(S.days||{}).card,"카드 결제일","일","예: 14"))+ix.filter(([e])=>e.group==="fixed").map(([e,i])=>dr(esc(e.name||"고정지출")+" 나가는 날",fmt(n(e.amt))+"만 원",ni(`expenses.${i}.day`,e.day,e.name+" 나가는 날","일","예: 1"))).join("");}
+   $("#dayList").innerHTML=dr("카드값 나가는 날","카드 결제일 · 변동지출을 카드로 쓴다고 보고 계산해요",ni("days.card",(S.days||{}).card,"카드 결제일","일","예: 14"))+ix.filter(([e])=>e.group==="fixed").map(([e,i])=>dr(esc(e.name||"고정지출")+" 나가는 날",fmt(n(e.amt))+"만 원",ni(`expenses.${i}.day`,e.day,e.name+" 나가는 날","일","예: 1"))).join("");}
   $("#varList").innerHTML=ix.filter(([e])=>e.group!=="fixed").map(([e,i])=>exRow(e,i)).join("")+`<button class="addrow" type="button" data-add="variable">+ 변동지출 추가</button>`;
   $("#assetList").innerHTML=`<div class="row edit3 head"><span>어디에</span><span>종류</span><span style="text-align:right">지금 금액</span><span></span></div>`+S.assets.map((a,i)=>`<div class="row edit3">${ti(`assets.${i}.name`,a.name,"자산명","ghost","자산 이름 (예: 청약통장)")}${si(`assets.${i}.type`,a.type,Object.entries(TYPES),"구분")}${ni(`assets.${i}.amt`,a.amt,a.name)}<button class="del" type="button" data-del="assets.${i}" aria-label="삭제">×</button></div>`).join("")+`<button class="addrow" type="button" id="addAsset">+ 자산 추가</button>`;
   $("#debtList").innerHTML=(S.debts.length?S.debts.map((d,i)=>`<div class="goalcard"><div class="top2" style="grid-template-columns:minmax(0,1fr) 30px">${ti(`debts.${i}.name`,d.name,"부채명","ghost","부채 이름 (예: 학자금대출)")}<button class="del" type="button" data-del="debts.${i}" aria-label="삭제">×</button></div><div class="nums" style="grid-template-columns:repeat(4,minmax(0,1fr))">${fld("잔액",ni(`debts.${i}.bal`,d.bal,"잔액"))}${fld("월 상환",(d.pay===""||d.pay==null||n(d.pay)===0)?ni(`debts.${i}.pay`,"","월 상환","만",payOf(d)?"자동 "+fmt(payOf(d),1):"모르면 비워 두세요"):ni(`debts.${i}.pay`,d.pay,"월 상환"))}${fld("금리",ni(`debts.${i}.rate`,d.rate,"금리","%"))}${fld("잔여",ni(`debts.${i}.months`,d.months,"잔여","개월"))}</div></div>`).join(""):`<p class="note">부채가 없습니다.</p>`)+`<button class="btn sm" type="button" id="addDebt" style="align-self:flex-start">+ 부채 추가</button>`;
@@ -4239,8 +4269,7 @@ function updateCore(){
    const noti=nextE?`<div class="tz-noti">${ico("cal","grey")}<div><small>${nextE.dd===0?"오늘":nextE.dd+"일 뒤"}</small><b>${nextE.dd===0?"오늘은":nextE.dd===1?"내일은":`${nextE.e.d}일은`} <span>${esc(nextE.e.nm.replace(/ \(.*\)/,""))}</span>이 나가는 날이에요</b></div></div>`:`<div class="tz-noti">${ico("cal","grey")}<div><small>매월 ${pd}일</small><b><span>월급</span>이 들어오는 날이에요</b></div></div>`;
    $("#dMe").innerHTML=blk(`매달 ${fmt(inc)}만 원이 들어와요`,"들어온 돈이 고정지출·변동지출·저축으로 어떻게 나뉘는지 보여 드려요. <br>가장 큰 항목을 밝게 표시했어요.",`<div class="tz-stack">${fRows}</div>`)+
     blk(`가진 돈에서 빚을 빼면 ${fmt(net)}만 원이에요`,`${c.debtBal<=0?"빚 없이":"빚은 가진 돈의 "+pct(dr,0)+"이에요."} 보증금처럼 쓰고 있는 돈도 자산에 넣었어요. <br>가운데가 실제 내 몫인 순자산이에요.`,`<div class="tz-stack">${abRows}</div>`)+
-    blk(`굴리는 돈은 ${fmt(fin)}만 원이에요`,`${riskP>=40?`값이 크게 오르내리는 고위험 자산이 ${pct(riskP,0)}로 한쪽에 몰려 있어요.`:"한쪽에 크게 몰리지 않고 나뉘어 있어요."} <br>보증금처럼 쓰고 있는 돈은 빼고 계산했어요.`,`<div class="tz-stack">${faRows}</div>`,"")+
-    blk(`월급날은 매달 ${pd}일, 돈 나가는 날은 ${outs.length}번이에요`,`5단계 자동이체를 짜기 전에, 월급이 들어온 뒤 언제 얼마가 빠져나가는지 먼저 봐요. <br>아래 막대는 그날 돈이 나간 뒤 통장에 남은 돈이에요.`,`<div class="tz-pay"><div class="tz-pl">${noti}<ul class="tz-ins">${ins.join("")}</ul></div><div class="tz-cal"><div class="tz-cal-h"><b>월급날부터 한 달</b><small>다음 월급 전까지 남는 돈 ${fmt(Math.max(0,Math.round(bal)))}만 원</small></div><ul class="tz-tl">${tl}</ul></div></div>`,"wide");}
+    blk(`굴리는 돈은 ${fmt(fin)}만 원이에요`,`${riskP>=40?`값이 크게 오르내리는 고위험 자산이 ${pct(riskP,0)}로 한쪽에 몰려 있어요.`:"한쪽에 크게 몰리지 않고 나뉘어 있어요."} <br>보증금처럼 쓰고 있는 돈은 빼고 계산했어요.`,`<div class="tz-stack">${faRows}</div>`,"");}
    {const sd=startDate(),ymd=m=>{const d=new Date(sd);d.setMonth(d.getMonth()+m);return d.getFullYear()+"."+String(d.getMonth()+1).padStart(2,"0")};
     $("#dGoal").innerHTML=`<div class="tz-st tz-goals">`+gRows.map(x=>{const g=x.g,now=srcAt(g,c,P,0),amt=x.amt,cl=amt<=0?"c2":x.r>=100?"c1":x.r>=80?"amber":"red";
      const icon=`<span class="tz-i ${cl}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4h11l-2 4 2 4H5"/></svg></span>`;
@@ -4516,6 +4545,8 @@ function calEvents(c,y,mo){const st0=startDate(),E=[];const inM=d=>d.getFullYear
   if(first>=stM){const mi=(y-st0.getFullYear())*12+mo-st0.getMonth();
     const pd=addM(first,0,n(S.exec.payday)||25),md=addM(first,0,n(S.exec.moveday)||26);
     if(pd>=st0&&c.sal)E.push({d:pd,kind:"pay",ch:`급여 ${fmt(c.sal)}만`,t:`급여 ${fmt(c.sal)}만 원 입금`,sub:"급여 통장 · 세후 근로소득"});
+    S.expenses.filter(e=>e.group==="fixed"&&n(e.amt)>0&&n(e.day)>=1&&n(e.day)<=31).forEach(e=>{const d=addM(first,0,Math.min(n(e.day),new Date(y,mo+1,0).getDate()));if(d>=st0)E.push({d,kind:"bill",ch:`${e.name.split(/[ ·(]/)[0]} ${fmt(n(e.amt))}만`,t:`${e.name} ${fmt(n(e.amt))}만 원 출금`,sub:"고정지출 · 통장 잔액을 미리 확인하세요"})});
+    {const cd=n((S.days||{}).card);if(cd>=1&&cd<=31&&c.varNow>0){const d=addM(first,0,Math.min(cd,new Date(y,mo+1,0).getDate()));if(d>=st0)E.push({d,kind:"bill",ch:`카드값 ${fmt(c.varNow)}만`,t:`카드값 약 ${fmt(c.varNow)}만 원 결제`,sub:"지난달 변동지출 · 카드 결제일"})}}
     if(md>=st0&&c.bucketSum>0)E.push({d:md,kind:"pay",ch:`저축 ${fmt(c.bucketSum)}만`,t:`선저축 자동이체 ${fmt(c.bucketSum,1)}만 원`,sub:c.buckets.filter(b=>b.pmt>0).map(b=>`${b.name} ${fmt(b.pmt,1)}만`).join(" · ")});
     if(mi>3&&mi%3===0)E.push({d:addM(first,0,st0.getDate()),kind:"review",t:mi%12===0?"연간 전면 재점검":"분기 점검",sub:mi%12===0?"소득·목표·투자성향 변화를 반영해 설계안을 다시 세웁니다":"ISA 비중 이탈과 리밸런싱 트리거를 확인하고 점검판을 작성합니다"});
     if(mo===1){const t=tax(c);if(t.pensCredit>0)E.push({d:addM(first,0,28),kind:"review",t:"연말정산 환급금 재투자",sub:`연금저축 환급 약 ${fmt(t.pensCredit,1)}만 원을 ISA에 일시 투자`})}}
@@ -4525,7 +4556,7 @@ function calEvents(c,y,mo){const st0=startDate(),E=[];const inM=d=>d.getFullYear
   S.goals.forEach(g=>{const r=reachMonth(g,c,P);if(r!=null&&r!==Infinity&&r>0){const d=addM(st0,r);if(inM(d))E.push({d,kind:"goal",t:`목표 달성 · ${g.name}`,sub:`목표 ${won(n(g.amt))} 도달 예상`})}
     if(n(g.amt)>0&&n(g.months)>0){const d=addM(st0,n(g.months));if(inM(d)&&(r===Infinity||r>n(g.months)))E.push({d,kind:"review",t:`목표 기한 · ${g.name}`,sub:`예상 ${won(srcAt(g,c,P,n(g.months)))} / 목표 ${won(n(g.amt))}`})}});
   return E.sort((a,b)=>a.d-b.d||(a.kind==="task"?-1:1))}
-const KC={task:"var(--blue)",pay:"var(--teal)",review:"var(--orange)",goal:"var(--green)"};
+const KC={task:"var(--blue)",pay:"var(--teal)",review:"var(--orange)",goal:"var(--green)",bill:"#f04452"};
 function renderCal(c){if(calY==null){const t=new Date(),st0=startDate();const base=st0>t?st0:t;calY=base.getFullYear();calM=base.getMonth()}
   $("#calTitle").textContent=`${calY}년 ${calM+1}월`;
   const E=calEvents(c,calY,calM),by={};E.forEach(e=>{const k=ymd(e.d);(by[k]=by[k]||[]).push(e)});
