@@ -3705,6 +3705,9 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
 @media (max-width:700px){:is(#v-s3,#v-s4,#v-s6) .dbx{margin:0 -4px;padding:12px;border-radius:14px;gap:10px}:is(#v-s3,#v-s4,#v-s6) .dbx .card{padding:16px!important}}
 
 .rm-add{display:block;text-decoration:none;font-size:11.5px;color:#8b919b;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top .mex{height:32px;padding:0 12px;border:0;border-radius:999px;background:#191f28;color:#fff;font-size:12.5px;font-weight:700;white-space:nowrap;margin-right:4px;font-family:inherit}
+body.dkpg .top .mex{background:#fff;color:#191f28}
+@media (max-width:700px){.dbx{padding:10px;gap:10px;border-radius:14px}.dbx .card{padding:18px 16px}.top .mex{height:30px;padding:0 11px;font-size:12px}}
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -3764,7 +3767,7 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
 <header class="top">
   <a class="logo" href="#home"><svg class="kmark" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="10.2" cy="21.4" rx="6.6" ry="7.4" transform="rotate(-18 10.2 21.4)" fill="#19c3b1"/><ellipse cx="21.8" cy="21.4" rx="6.6" ry="7.4" transform="rotate(18 21.8 21.4)" fill="#8b6cff"/><ellipse cx="16" cy="11.6" rx="7.4" ry="7.8" fill="#3182f6"/><circle cx="13.3" cy="11.2" r="1.35" fill="#fff"/><circle cx="18.7" cy="11.2" r="1.35" fill="#fff"/><path d="M14.4 14.2q1.6 1.4 3.2 0" stroke="#fff" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>threekong</a>
   <div class="tools">
-    <button class="icon-btn" id="mPrompt" type="button" aria-label="AI 프롬프트"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/></svg></button>
+    <button class="mex" id="mExample" type="button">예시 고객 보기</button>
     <button class="icon-btn mburger" id="mBurger" type="button" aria-label="메뉴 열기" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
 </header>
@@ -5472,5 +5475,6 @@ document.addEventListener("click",e=>{const a=e.target.closest("[data-jump]");if
 
 
 
+<script>document.getElementById("mExample").addEventListener("click",()=>{const t=document.getElementById("btnExample");t&&t.click();setTimeout(()=>{try{window.__upd&&window.__upd()}catch(e){}},80)});</script>
 </body>
 </html>
