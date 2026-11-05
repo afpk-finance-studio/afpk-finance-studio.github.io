@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>PLAN6 재무설계 스튜디오</title>
-<meta name="description" content="표준 재무설계 6단계로 직장인의 재무를 진단·설계·점검하는 인터랙티브 재무관리 스튜디오">
+<title>threekong 재무설계</title>
+<meta name="description" content="표준 재무설계 6단계로 직장인의 재무를 진단·설계·점검하는 threekong 재무관리 서비스">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <script src="chart.umd.min.js"></script>
 <style>
@@ -4391,8 +4391,8 @@ function renderCal(c){if(calY==null){const t=new Date(),st0=startDate();const ba
   $("#calGrid").innerHTML=h;
   const sel=new Date(calSel+"T00:00:00"),se=by[calSel]||[];
   $("#calDay").innerHTML=`<h4>${dlong(sel)}</h4>`+(se.length?se.map(e=>`<label class="cal-ev"><i style="background:${KC[e.kind]}"></i><span><b>${esc(e.t)}</b><p>${esc(e.sub||"")}</p></span>${e.chk?`<input type="checkbox" data-chk="${e.chk}"${S.checks[e.chk]?" checked":""} aria-label="완료">`:""}</label>`).join(""):`<p class="note">이 날은 예정된 일정이 없습니다.</p>`)}
-function icsText(c){const st0=startDate(),D=d=>ymd(d).replace(/-/g,""),L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//plan6.studio//KO","CALSCALE:GREGORIAN","X-WR-CALNAME:재무설계 실행 일정"];let i=0;const q=t=>String(t).replace(/[\\,;]/g,m=>"\\"+m);
-  const add=(d,t,desc,rr)=>{L.push("BEGIN:VEVENT","UID:p6-"+(i++)+"-"+D(d)+"@plan6.studio","DTSTAMP:"+D(new Date())+"T000000Z","DTSTART;VALUE=DATE:"+D(d),"DTEND;VALUE=DATE:"+D(addD(d,1)),"SUMMARY:"+q(t),"DESCRIPTION:"+q(desc||""));if(rr)L.push(rr);L.push("END:VEVENT")};
+function icsText(c){const st0=startDate(),D=d=>ymd(d).replace(/-/g,""),L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//threekong//KO","CALSCALE:GREGORIAN","X-WR-CALNAME:재무설계 실행 일정"];let i=0;const q=t=>String(t).replace(/[\\,;]/g,m=>"\\"+m);
+  const add=(d,t,desc,rr)=>{L.push("BEGIN:VEVENT","UID:p6-"+(i++)+"-"+D(d)+"@threekong","DTSTAMP:"+D(new Date())+"T000000Z","DTSTART;VALUE=DATE:"+D(d),"DTEND;VALUE=DATE:"+D(addD(d,1)),"SUMMARY:"+q(t),"DESCRIPTION:"+q(desc||""));if(rr)L.push(rr);L.push("END:VEVENT")};
   execItems(c).forEach(([k,t,w,d])=>add(d,t,w+" 실행 과제"));
   if(c.bucketSum>0)add(nextDay(st0,n(S.exec.moveday)||26),`선저축 자동이체 ${fmt(c.bucketSum,1)}만 원`,c.buckets.filter(b=>b.pmt>0).map(b=>`${b.name} ${fmt(b.pmt,1)}만`).join(", "),"RRULE:FREQ=MONTHLY;COUNT=36");
   add(addM(st0,6),"분기 재무 점검","ISA 비중 이탈·트리거 확인, 월간 점검판 작성","RRULE:FREQ=MONTHLY;INTERVAL=3;COUNT=12");
@@ -4599,10 +4599,10 @@ document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)r
   else if(id==="calPrev"||id==="calNext"){calM+=id==="calNext"?1:-1;if(calM<0){calM=11;calY--}if(calM>11){calM=0;calY++}calSel=null;renderCal(calc());return}
   else if(id==="calToday"){const t=new Date();calY=t.getFullYear();calM=t.getMonth();calSel=ymd(t);renderCal(calc());return}
   else if(id==="doPrint"){flushCharts();setTimeout(()=>{try{window.print()}catch(e){toast("이 화면에서는 인쇄가 막혀 있습니다")}},300);return}
-  else if(id==="btnIcs"){try{const blob=new Blob([icsText(calc())],{type:"text/calendar"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="plan6-schedule.ics";document.body.appendChild(a);a.click();a.remove();toast("캘린더 파일을 저장했습니다")}catch(err){toast("이 환경에서는 파일 저장이 막혀 있습니다")}return}
+  else if(id==="btnIcs"){try{const blob=new Blob([icsText(calc())],{type:"text/calendar"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="threekong-schedule.ics";document.body.appendChild(a);a.click();a.remove();toast("캘린더 파일을 저장했습니다")}catch(err){toast("이 환경에서는 파일 저장이 막혀 있습니다")}return}
   else if(id==="btnBlank"||id==="btnBlank2"){S=blank();toast("빈 양식입니다. 2단계에서 입력하세요");location.hash="s2"}
   else if(id==="gjReset"){S.gj=null;save();renderJourney(calc());return}
-  else if(id==="btnExport"){try{const blob=new Blob([JSON.stringify(S,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="plan6-data.json";document.body.appendChild(a);a.click();a.remove();toast("파일로 저장했습니다")}catch(err){toast("이 환경에서는 파일 저장이 막혀 있습니다")}return}
+  else if(id==="btnExport"){try{const blob=new Blob([JSON.stringify(S,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="threekong-data.json";document.body.appendChild(a);a.click();a.remove();toast("파일로 저장했습니다")}catch(err){toast("이 환경에서는 파일 저장이 막혀 있습니다")}return}
   else if(id==="btnPrint"){location.hash="report";return}
   else if(id==="btnTheme"){const r=document.documentElement,cur=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");r.setAttribute("data-theme",cur==="dark"?"light":"dark");Object.values(charts).forEach(ch=>ch.destroy());for(const k in charts)delete charts[k];update();flushCharts();return}
   else if(id==="fab"){const d=$("#drawer");d.classList.toggle("on");b.setAttribute("aria-expanded",d.classList.contains("on"));renderCoach();return}
