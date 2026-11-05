@@ -3656,6 +3656,39 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
 #v-s3 .tg-list p b{color:#333d4b;font-weight:600}
 @media (max-width:700px){#v-s3 .tg-top b,#v-s3 .tg-r strong{font-size:15.5px}#v-s3 .tg-list li{padding:16px 0}}
 
+#v-s3 .db-ct{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-top:22px}
+#v-s3 .db-ct b{font-size:14px;font-weight:700;color:#333d4b}#v-s3 .db-ct small{font-size:12px;color:#8b95a1}
+#v-s3 .db-big .db-bars{flex:0 0 auto!important;height:200px!important;min-height:0!important;margin-top:12px}
+#v-s3 .db-b span{font-size:11.5px;color:#8b95a1;margin-bottom:5px;white-space:nowrap;font-variant-numeric:tabular-nums}
+#v-s3 .db-b.on span{color:#2f8f5b;font-weight:700}#v-s3 .db-b.now span{color:#333d4b;font-weight:700}
+#v-s3 .db-b.now i{background:#b0b8c1}
+#v-s3 .db-b i{max-height:calc(100% - 22px)}
+#v-s3 .db-big{justify-content:flex-start}
+@media (max-width:700px){#v-s3 .db-big .db-bars{height:160px!important}#v-s3 .db-b span{font-size:10px}#v-s3 .db-b small{font-size:10px}}
+
+#v-s3 .db-s em.r{color:#e0454f}
+#v-s3 .db-stk{display:flex;gap:3px;height:14px;margin-top:20px;border-radius:4px;overflow:hidden}
+#v-s3 .db-stk i{display:block;min-width:3px}
+#v-s3 .db-stl{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:12.5px;color:#6b7684}
+#v-s3 .db-stl i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px}
+#v-s3 .db-stl b{color:#191f28;font-weight:700}#v-s3 .db-stl small{color:#8b95a1}
+#v-s3 .dbd .pv .db-stk,#v-s3 .dbd .nv .db-stk{display:flex}
+#v-s3 .dbd.plan span.pv:has(.db-stk),#v-s3 .dbd:not(.plan) span.nv:has(.db-stk){display:block}
+#v-s3 .db-top5{display:flex;flex-direction:column;margin-top:8px}
+#v-s3 .db-t5{display:grid;grid-template-columns:20px minmax(0,1fr) minmax(0,1.3fr) 80px 40px;gap:12px;align-items:center;padding:9px 0;border-top:1px solid #f2f4f6}
+#v-s3 .db-t5:first-child{border-top:0}
+#v-s3 .db-rk{font-size:13px;font-weight:700;color:#3d6af2;text-align:center}
+#v-s3 .db-tn{font-size:14px;font-weight:600;color:#191f28;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#v-s3 .db-tn small{font-size:11.5px;color:#8b95a1;font-weight:400;margin-left:6px}
+#v-s3 .db-tb{height:6px;background:#f2f4f6;border-radius:3px;overflow:hidden}#v-s3 .db-tb i{display:block;height:100%;background:#8fb0ff;border-radius:3px}
+#v-s3 .db-t5 b{text-align:right;font-size:13.5px;font-weight:700;color:#191f28;white-space:nowrap}
+#v-s3 .db-t5 em{font-style:normal;text-align:right;font-size:12.5px;color:#8b95a1}
+#v-s3 .db-asr{margin-top:10px}#v-s3 .db-pc{font-size:12px;color:#8b95a1;margin-left:auto}#v-s3 .db-asr .db-pc+b{margin-left:14px;min-width:84px;text-align:right}#v-s3 .db-big .db-tagrow{margin-top:auto!important}#v-s3 .db-top5{margin-bottom:22px}
+#v-s3 .db-dot{display:inline-block;width:8px;height:8px;border-radius:2px;flex:none}
+#v-s3 .db-asr .db-l{font-size:13.5px;color:#4e5968}
+#v-s3 .db-debt{border-top:1px solid #f2f4f6;margin-top:4px;padding-top:10px}#v-s3 .db-debt b{color:#e0454f}
+@media (max-width:700px){#v-s3 .db-t5{grid-template-columns:18px minmax(0,1fr) 70px 34px;gap:8px}#v-s3 .db-t5 .db-tb{display:none}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -4536,7 +4569,8 @@ function updateCore(){
    {const inc=c.sal+c.bonus,un=Math.max(0,inc-c.exNow-c.saveNow),unP=Math.max(0,inc-c.exPlan-c.bucketSum),nm=esc(S.profile.name||"고객"),dt=new Date(),D=`${dt.getFullYear()}.${String(dt.getMonth()+1).padStart(2,"0")}.${String(dt.getDate()).padStart(2,"0")}`;
     const dv=(a,b)=>`<span class="nv">${a}</span><span class="pv">${b}</span>`,f1=v=>fmt(v,1),F72=finAt(72);
     const yv=[...Array(7).keys()].map(k=>k?finAt(k*12):finNow),ymx=Math.max(1,...yv);
-    const bars=yv.map((v,k)=>`<div class="db-b${k===6?" on":""}"><i style="height:${Math.max(4,v/ymx*100).toFixed(1)}%" title="${won(Math.round(v))}"></i><small>${k?k+"년":"지금"}</small></div>`).join("");
+    const sh=v=>v>=10000?(Math.round(v/1000)/10)+"억":fmt(Math.round(v))+"만";
+    const bars=yv.map((v,k)=>`<div class="db-b${k===6?" on":k===0?" now":""}"><span>${sh(v)}</span><i style="height:${Math.max(4,v/ymx*100).toFixed(1)}%" title="${won(Math.round(v))}"></i><small>${k?k+"년 뒤":"지금"}</small></div>`).join("");
     const tg=(cl,t,v)=>`<span class="db-tg"><i class="${cl}">${t}</i><b>${v}</b></span>`;
     const SLb=x=>x==="good"?"양호":"주의",stc=x=>x==="good"?"b":"r";
     const evr=R.map(r=>{const a=st(r[2],r[6],r[7],r[8]),b=st(r[3],r[6],r[7],r[8]);return `<div class="db-r"><span class="nv"><i class="t ${stc(a)}">${SLb(a)}</i></span><span class="pv"><i class="t ${stc(b)}">${SLb(b)}</i></span><span class="db-l">${r[0]}</span><b>${dv(f1(r[2])+r[4],f1(r[3])+r[4])}</b></div>`}).join("");
@@ -4546,13 +4580,19 @@ function updateCore(){
     const grow=GR.map(x=>{const mo=n(x.g.months),r=x.reach,inf=r==null||r===Infinity,ok=!inf&&r<=mo,p=Math.min(100,x.r||0);return `<div class="db-g ${ok?"ok":"late"}"><div class="db-gt"><b>${esc(x.g.name)}</b><small>${won(x.amt)} · 기한 ${ym(mo)}</small></div><div class="db-gb"><i style="width:${p.toFixed(1)}%"></i></div><em>${fmt(Math.min(999,x.r||0),0)}%</em></div>`}).join("");
     const p0=pt(c.rNow.em,c.rNow.save,c.rNow.debt,c.rNow.risk),p1=pt(c.rAfter.em,c.rAfter.save,c.rAfter.debt,c.rAfter.risk);
     const srow=["비상금","저축","빚","투자 위험"].map((t,i)=>`<div class="db-sr"><span>${t}</span><div class="db-sb"><i class="a" style="width:${p0[i]*4}%"></i><i class="b" style="width:${p1[i]*4}%"></i></div><b>${p0[i]} → ${p1[i]}</b></div>`).join("");
+    const stk=(arr,tot,nol)=>{tot=tot||1;return `<div class="db-stk">${arr.filter(x=>x[0]>0).map(x=>`<i style="flex:${x[0]};background:${x[2]}" title="${x[1]} ${fmt(x[0])}만"></i>`).join("")}</div>`+(nol?"":`<div class="db-stl">${arr.map(x=>`<span><i style="background:${x[2]}"></i>${x[1]} <b>${fmt(x[0],x[0]%1?1:0)}만</b> <small>${pct(x[0]/tot*100,0)}</small></span>`).join("")}</div>`)};
+    const ex=S.expenses.map(e=>({nm:e.name,a:n(e.amt),p:Math.round(n(c.planAmt?c.planAmt(e):e.amt)),g:e.group})).filter(e=>e.a>0).sort((x,y)=>y.a-x.a).slice(0,5),exm=Math.max(1,...ex.map(e=>e.a));
+    const top5=ex.map((e,i)=>`<div class="db-t5"><span class="db-rk">${i+1}</span><span class="db-tn">${esc(e.nm)}<small>${e.g==="fixed"?"고정":"변동"}</small></span><div class="db-tb"><i style="width:${(e.a/exm*100).toFixed(1)}%"></i></div><b>${dv(fmt(e.a)+"만 원",fmt(e.p)+"만 원")}</b><em>${pct(e.a/(inc||1)*100,0)}</em></div>`).join("")||`<p class="db-none">2단계에서 지출을 적으면 나와요</p>`;
+    const asx=[[c.A.liquid,"입출금·CMA","#3d6af2"],[c.A.safe,"예금·적금","#2f8f5b"],[c.A.risk,"주식·코인","#f06872"],[c.A.retire,"연금","#8b6cff"],[Math.max(0,c.totalA-finNow),"보증금 등","#d9dde3"]];
     $("#dDash").innerHTML=`<div class="db-top"><h3>${D} ${nm}님 대시보드</h3><small>2단계에 적은 내용 기준이에요</small></div>
      <div class="db-tabs" role="tablist"><button type="button" class="on" data-dbt="now">지금</button><button type="button" data-dbt="plan">설계안 실행 후</button></div>
      <div class="db-grid"><div class="db-main">
-      <div class="dbc db-big"><div class="dbc-h"><b>모은 돈 <span>›</span></b><small>금융자산 · 보증금 제외</small></div>
-       <div class="db-v">${dv(won(Math.round(finNow)),won(Math.round(F72)))}</div>
-       <p class="db-s">${dv(`설계안대로 모으면 6년 뒤 <em class="g">${won(Math.round(F72))}</em>이 돼요`,`지금보다 <em class="g">${won(Math.round(F72-finNow))}</em> 늘어요 · 6년 뒤 기준`)}</p>
-       <div class="db-unit">단위: 만 원</div><div class="db-bars">${bars}</div>
+      <div class="dbc db-big"><div class="dbc-h"><b>한 달 돈 흐름 <span>›</span></b><small>2단계에 적은 월 수입·지출 기준</small></div>
+       <div class="db-v">${fmt(inc)}만 원</div>
+       <p class="db-s">${dv(`그중 <em class="r">${fmt(c.exNow)}만 원</em>을 쓰고, <em class="g">${fmt(c.saveNow)}만 원</em>을 모아요`,`설계안대로 하면 <em class="r">${fmt(c.exPlan)}만 원</em>을 쓰고, <em class="g">${fmt(c.bucketSum)}만 원</em>을 모아요`)}</p>
+       ${dv(stk([[c.fixNow,"고정지출","#3d6af2"],[c.varNow,"변동지출","#8fb0ff"],[c.saveNow,"저축","#2f8f5b"],[un,"남는 돈","#d9dde3"]],inc),stk([[c.fixPlan,"고정지출","#3d6af2"],[c.varPlan,"변동지출","#8fb0ff"],[c.bucketSum,"저축","#2f8f5b"],[unP,"남는 돈","#d9dde3"]],inc))}
+       <div class="db-ct"><b>많이 쓰는 곳</b><small>월급 대비 비율</small></div>
+       <div class="db-top5">${top5}</div>
        <div class="db-tagrow">${tg("r","저축률",dv(fmt(c.rNow.save,0)+"%",fmt(c.rAfter.save,0)+"%"))}${tg("b","비상금",dv(f1(c.rNow.em)+"개월",f1(c.rAfter.em)+"개월"))}${tg("o","부채부담",dv(f1(c.rNow.debt)+"%",f1(c.rAfter.debt)+"%"))}<button type="button" class="db-more" data-jump="#dDetail">상세 보기</button></div></div>
       <div class="dbc db-strip"><div class="dbc-h"><b>자산·부채 현황</b></div><div class="db-kv"><div data-go="s2"><span>총자산 ↗</span><b>${fmt(c.totalA)}만 원</b></div><div data-go="s2"><span>총부채 ↗</span><b>${fmt(c.debtBal)}만 원</b></div><div><span>순자산</span><b>${fmt(c.net)}만 원</b></div></div></div>
      </div>
@@ -4567,7 +4607,7 @@ function updateCore(){
      </div></div>
      <div class="db-row2">
       <div class="dbc"><div class="dbc-h"><b>재무목표 <span>›</span></b><small>목표 ${GR.length}개</small></div><div class="db-lab">기한 안에 모이는 목표</div><div class="db-v sm">${okN} / ${GR.length}개</div><p class="db-s">${late.length?`${esc(late[0].g.name)}은 지금 계획으로 기한을 맞추기 어려워요`:"설계안대로 모으면 모두 기한 안에 모여요"}</p><div class="db-gl">${grow}</div></div>
-      <div class="dbc"><div class="dbc-h"><b>AI 재무건강 점수 <span>›</span></b><small>100점 만점</small></div><div class="db-lab">${dv("지금 점수","설계안 실행 후 점수")}</div><div class="db-v sm">${dv(s0+"점",s1+"점")}</div><p class="db-s">${s1>s0?`설계안대로 하면 <em class="g">${s1-s0}점</em> 올라요`:"지금 점수를 지키면 돼요"}</p><div class="db-lg"><span><i class="a"></i>지금</span><span><i class="b"></i>설계안 실행 후</span></div><div class="db-sl">${srow}</div></div>
+      <div class="dbc"><div class="dbc-h"><b>가진 돈 구성 <span>›</span></b><small>2단계 '지금 가진 돈' 기준</small></div><div class="db-lab">총자산</div><div class="db-v sm">${fmt(c.totalA)}만 원</div><p class="db-s">${finNow&&c.A.risk/finNow>.3?`보증금을 뺀 돈의 <em class="r">${pct(c.A.risk/finNow*100,0)}</em>가 주식·코인이에요`:`보증금을 뺀 굴리는 돈은 <em class="g">${fmt(finNow)}만 원</em>이에요`}</p>${stk(asx,c.totalA,1)}<div class="db-asr">${asx.map(x=>`<div class="db-r"><i class="db-dot" style="background:${x[2]}"></i><span class="db-l">${x[1]}</span><small class="db-pc">${pct(x[0]/(c.totalA||1)*100,0)}</small><b>${fmt(x[0])}만 원</b></div>`).join("")}${c.debtBal>0?`<div class="db-r db-debt"><i class="db-dot" style="background:#191f28"></i><span class="db-l">빚 (갚을 돈)</span><b>−${fmt(c.debtBal)}만 원</b></div>`:""}</div></div>
      </div>`;
     const dd=$("#dDash");dd.classList.toggle("plan",window.__dbt==="plan");dd.querySelectorAll("[data-dbt]").forEach(b=>{b.classList.toggle("on",b.dataset.dbt===(window.__dbt||"now"));b.onclick=()=>{window.__dbt=b.dataset.dbt;dd.classList.toggle("plan",b.dataset.dbt==="plan");dd.querySelectorAll("[data-dbt]").forEach(x=>x.classList.toggle("on",x===b))}});}
    const ok=R.filter(r=>st(r[2],r[6],r[7],r[8])==="good"),ng=R.filter(r=>st(r[2],r[6],r[7],r[8])!=="good");
