@@ -5677,10 +5677,10 @@ const sp=side.querySelector(".ws-prev"),sn=side.querySelector(".ws-next");
 const sum=document.createElement("div");sum.className="ws-sum";side.appendChild(sum);
 function rsum(){let d=null;try{d=window.__getS&&window.__getS()}catch(e){}if(!d)try{d=JSON.parse(localStorage.getItem("plan6-studio-v2"))}catch(e){}if(!d)return;
  const N=x=>Number(x)||0,f=x=>Math.round(x).toLocaleString("ko-KR")+"만 원",tot=(a,k)=>(a||[]).reduce((t,x)=>t+N(x[k]),0);
- const inc=N(d.income&&d.income.salary),ex=tot(d.expenses,"amt"),sv=d.saving&&d.saving.items&&d.saving.items.length?tot(d.saving.items,"amt"):N(d.saving&&d.saving.current);
+ const sal=N(d.income&&d.income.salary),bn=N(d.income&&d.income.bonus),inc=sal+bn,ex=tot(d.expenses,"amt"),sv=d.saving&&d.saving.items&&d.saving.items.length?tot(d.saving.items,"amt"):N(d.saving&&d.saving.current);
  const as=tot(d.assets,"amt"),db=tot(d.debts,"bal"),gl=(d.goals||[]).filter(g=>N(g.amt)>0).length,nm=d.profile&&d.profile.name&&d.profile.name!=="새 고객"?d.profile.name:"";
  const row=(l,v,ok)=>`<dt>${l}</dt><dd class="${ok?"":"no"}">${ok?v:"아직 안 적었어요"}</dd>`;const left=inc-ex-sv;
- sum.innerHTML=`<h4>지금까지 적은 내용</h4><dl>${row("이름",nm+" 님",nm)}${row("월급(세후)",f(inc),inc)}${row("한 달 지출",f(ex),ex)}${row("매달 모으는 돈",f(sv),sv)}${row("가진 돈",f(as),as)}${row("갚을 빚",db?f(db):"없음",1)}${row("목표",gl+"개",gl)}</dl>`+(inc?`<div class="ws-left"><span>쓰고 모으고 남는 돈</span><b class="${left<0?"neg":""}">${left<0?"−":""}${f(Math.abs(left))}</b></div>`:"")}
+ sum.innerHTML=`<h4>지금까지 적은 내용</h4><dl>${row("이름",nm+" 님",nm)}${row("월급(세후)",f(sal),sal)}${bn?row("비정기 수입(월평균)",f(bn),1):""}${row("한 달 지출",f(ex),ex)}${row("매달 모으는 돈",f(sv),sv)}${row("가진 돈",f(as),as)}${row("갚을 빚",db?f(db):"없음",1)}${row("목표",gl+"개",gl)}</dl>`+(inc?`<div class="ws-left"><span>쓰고 모으고 남는 돈</span><b class="${left<0?"neg":""}">${left<0?"−":""}${f(Math.abs(left))}</b></div>`:"")}
 let rt;["input","change","click"].forEach(t=>document.addEventListener(t,()=>{clearTimeout(rt);rt=setTimeout(rsum,350)}));rsum();
 side.addEventListener("click",e=>{const g=e.target.closest("[data-wzgo]");if(g)show(+g.dataset.wzgo,true)});
 sp.addEventListener("click",()=>pv.click());sn.addEventListener("click",()=>nx.click());let cur=0;try{cur=Math.min(steps.length-1,+sessionStorage.getItem("wz")||0)}catch(e){}
