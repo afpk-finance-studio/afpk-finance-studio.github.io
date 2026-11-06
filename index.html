@@ -3812,6 +3812,35 @@ body:has(.view.on:is(#v-s1,#v-s2,#v-s3,#v-s4,#v-s5,#v-s6)) .hfoot.hfoot-st{displ
   #v-home .hx-mini span{white-space:normal}
 }
 
+/* v107 step3 detail charts: Toss/Apple look */
+#v-s3 .card.ap{border:0!important;border-radius:16px!important;padding:28px 28px 24px!important;box-shadow:none}
+#v-s3 .card.ap .ch h3{font-size:19px;font-weight:700;letter-spacing:-.02em}
+#v-s3 .card.ap .ch .sub{font-size:14px;color:#8b95a1;margin-top:4px}
+#v-s3 .card.ap .seg{background:#f2f4f6;border-radius:10px;padding:3px}
+#v-s3 .card.ap .seg button{padding:7px 16px;border-radius:8px;font-size:13.5px;color:#6b7684}
+#v-s3 .card.ap .seg button.on{color:#191f28;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+#v-s3 .card.ap .donutwrap{margin-top:12px}
+#v-s3 .card.ap .nleg{display:flex!important;flex-direction:column;gap:0}
+#v-s3 .card.ap .nleg button{grid-template-columns:10px minmax(0,1fr) auto!important;gap:12px;padding:14px 4px!important;border-radius:0;border-bottom:1px solid #f2f4f6}
+#v-s3 .card.ap .nleg button:last-child{border-bottom:0}
+#v-s3 .card.ap .nleg button:hover,#v-s3 .card.ap .nleg button.on{background:none}
+#v-s3 .card.ap .nleg button:hover span{color:#3182f6}
+#v-s3 .card.ap .nleg i.dot{width:10px!important;height:10px!important;border-radius:3px}
+#v-s3 .card.ap .nleg button span{display:flex;align-items:baseline;gap:8px;font-size:15px;font-weight:600;color:#333d4b}
+#v-s3 .card.ap .nleg button small{display:inline;font-size:13px;color:#8b95a1;font-weight:500}
+#v-s3 .card.ap .nleg button b{font-size:16px;font-weight:700;color:#191f28}
+#v-s3 .card.ap .bswrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:center;margin-top:12px}
+#v-s3 .card.ap .bsl{display:flex;flex-direction:column;gap:18px}
+#v-s3 .bsg h5{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 4px;padding-bottom:10px;border-bottom:1px solid #e5e8eb;font-size:13px;font-weight:600;color:#6b7684}
+#v-s3 .bsg h5 b{font-size:18px;font-weight:700;color:#191f28;font-variant-numeric:tabular-nums}
+#v-s3 .bsg ul{list-style:none;margin:0;padding:0}
+#v-s3 .bsg li{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:12px;align-items:center;padding:8px 0;font-size:14px;color:#4e5968}
+#v-s3 .bsg li i{width:10px;height:10px;border-radius:3px}
+#v-s3 .bsg li b{font-weight:600;color:#191f28;font-variant-numeric:tabular-nums}
+@container (max-width:560px){#v-s3 .card.ap .bswrap{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:1180px){#v-s3 .card.ap .bswrap{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:700px){#v-s3 .card.ap{padding:20px 18px!important}#v-s3 .card.ap .ch h3{font-size:17px}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -4105,8 +4134,8 @@ body:has(.view.on:is(#v-s1,#v-s2,#v-s3,#v-s4,#v-s5,#v-s6)) .hfoot.hfoot-st{displ
   <div class="dbx">
   <div class="grid g4" id="ratioKpis" style="gap:12px;display:none"></div>
   <div class="grid g2">
-    <div class="card"><div class="ch"><div><h3>소득은 어디로 가고 있나</h3><p class="sub">세후 소득 대비 비중 · 조각에 마우스를 올려 보세요</p></div><div class="seg" id="cfSeg"><button type="button" data-k="now" class="on">현재</button><button type="button" data-k="plan">설계안</button></div></div><div class="donutwrap"><div class="chart-box" style="height:250px"><canvas id="cCash"></canvas></div><div class="nleg" id="legCash"></div></div></div>
-    <div class="card"><div class="ch"><div><h3>자산부채 구조</h3><p class="sub">자산 = 부채 + 순자산 · 막대 조각에 마우스를 올려 보세요</p></div></div><div class="chart-box" style="height:270px"><canvas id="cBS"></canvas></div><div class="lg2" id="legBS"></div></div>
+    <div class="card ap"><div class="ch"><div><h3>소득은 어디로 가고 있나</h3><p class="sub">한 달 소득이 어디에 얼마나 쓰이는지</p></div><div class="seg" id="cfSeg"><button type="button" data-k="now" class="on">현재</button><button type="button" data-k="plan">설계안</button></div></div><div class="donutwrap"><div class="chart-box" style="height:250px"><canvas id="cCash"></canvas></div><div class="nleg" id="legCash"></div></div></div>
+    <div class="card ap"><div class="ch"><div><h3>자산부채 구조</h3><p class="sub">가진 돈은 갚을 돈과 진짜 내 돈으로 나뉘어요</p></div></div><div class="bswrap"><div class="chart-box" style="height:250px"><canvas id="cBS"></canvas></div><div class="bsl" id="legBS"></div></div></div>
   </div>
   <div class="grid g2" style="display:none">
     <div class="card"><div class="ch"><div><h3>목표 갭 분석</h3><p class="sub">현재 준비액과 목표 금액의 차이</p></div></div><div class="tbl-wrap"><table id="gapTable"></table></div></div>
@@ -4492,10 +4521,10 @@ const NUMS={id:"nums",afterDatasetsDraw(ch){const ds=ch.data.datasets[0];if(!ds)
   m.data.forEach((el,i)=>{if(!ch.getDataVisibility(i)||(ds.data[i]||0)/tot<.05)return;const p=el.tooltipPosition();const base=ds._base||ds.backgroundColor,bg=Array.isArray(base)?base[i]:"#000";c.fillStyle=lum(bg)>.68?"#2a2a36":"#ffffff";c.fillText(String(i+1),p.x,p.y)});c.restore()}};
 const CENTER={id:"center",afterDraw(ch,a,o){if(!o||!o.text)return;const el=ch.getDatasetMeta(0).data[0];if(!el)return;const c=ch.ctx;c.save();c.textAlign="center";c.textBaseline="middle";c.fillStyle=css("--ink");c.font="800 19px "+css("--font");c.fillText(o.text,el.x,el.y-8);c.fillStyle=css("--ink-3");c.font="500 12px "+css("--font");c.fillText(o.sub||"",el.x,el.y+13);c.restore()}};
 function donut(id,labels,data,colors,center,tipFn,legId,legItems){colors=colors.map(c=>TC(c,document.getElementById(id)));
-  chart(id,{type:"doughnut",data:{labels,datasets:[{data,_base:colors,backgroundColor:segFill(colors),borderColor:"rgba(0,0,0,0)",borderWidth:0,borderRadius:0,hoverOffset:8,spacing:0}]},plugins:[NUMS,CENTER],
-    options:baseOpts({interaction:{mode:"nearest",intersect:true},cutout:"68%",layout:{padding:12},scales:{},onHover:(e,els)=>{if(legId)document.querySelectorAll("#"+legId+" button").forEach((b,i)=>b.classList.toggle("on",!!els[0]&&els[0].index===i))},
+  const flat=id==="cCash";chart(id,{type:"doughnut",data:{labels,datasets:[{data,_base:colors,backgroundColor:flat?colors:segFill(colors),borderColor:flat?"#ffffff":"rgba(0,0,0,0)",borderWidth:flat?3:0,borderRadius:0,hoverOffset:flat?4:8,spacing:0}]},plugins:flat?[CENTER]:[NUMS,CENTER],
+    options:baseOpts({interaction:{mode:"nearest",intersect:true},cutout:flat?"76%":"68%",layout:{padding:12},scales:{},onHover:(e,els)=>{if(legId)document.querySelectorAll("#"+legId+" button").forEach((b,i)=>b.classList.toggle("on",!!els[0]&&els[0].index===i))},
       plugins:Object.assign(baseOpts().plugins,{legend:{display:false},center,tooltip:Object.assign({},baseOpts().plugins.tooltip,{callbacks:{label:tipFn}})})})});
-  if(legId)$("#"+legId).innerHTML=legItems.map((x,i)=>`<button type="button" data-leg="${id}" data-i="${i}"><i style="background:linear-gradient(135deg,${mixW(colors[i],.38)},${colors[i]});color:${lum(colors[i])>.68?"#2a2a36":"#fff"}">${i+1}</i><span>${esc(x[0])}<small>${x[2]||""}</small></span><b>${x[1]}</b></button>`).join("")}
+  if(legId)$("#"+legId).innerHTML=legItems.map((x,i)=>`<button type="button" data-leg="${id}" data-i="${i}">${flat?`<i class="dot" style="background:${colors[i]}"></i>`:`<i style="background:linear-gradient(135deg,${mixW(colors[i],.38)},${colors[i]});color:${lum(colors[i])>.68?"#2a2a36":"#fff"}">${i+1}</i>`}<span>${esc(x[0])}<small>${x[2]||""}</small></span><b>${x[1]}</b></button>`).join("")}
 function legHover(btn,on){const ch=charts[btn.dataset.leg];if(!ch)return;const i=+btn.dataset.i;if(on){const el=ch.getDatasetMeta(0).data[i];if(!el)return;ch.setActiveElements([{datasetIndex:0,index:i}]);ch.tooltip.setActiveElements([{datasetIndex:0,index:i}],el.tooltipPosition())}else{ch.setActiveElements([]);ch.tooltip.setActiveElements([],{x:0,y:0})}ch.update()}
 const COLORS=()=>["--c1","--c2","--c3","--c4","--c5","--c6"].map(css);
 const BSC=()=>["--c1","--c3","--c4","--c2","--c5","--c6"].map(css);
@@ -4852,9 +4881,9 @@ function updateCore(){
   donut("cCash",cfData.map(x=>x[1]),cfData.map(x=>x[0]),cfCol,{text:fmt(cfT)+"만",sub:"월 소득"},ctx=>{const t=ctx.dataset.data.reduce((a,b)=>a+b,0);return ` ${ctx.label}: ${won(ctx.parsed)} (${pct(t?ctx.parsed/t*100:0)})`},"legCash",cfData.map(x=>[x[1],fmt(x[0],x[0]%1?1:0)+"만",pct(cfT?x[0]/cfT*100:0)]));
   chart("cBS",{type:"bar",data:{labels:["자산","부채 + 순자산"],datasets:[
     {label:"유동성",data:[c.A.liquid,0],backgroundColor:BSC()[0],stack:"s"},{label:"안정 투자",data:[c.A.safe,0],backgroundColor:BSC()[1],stack:"s"},{label:"고위험 투자",data:[c.A.risk,0],backgroundColor:BSC()[2],stack:"s"},{label:"노후",data:[c.A.retire,0],backgroundColor:BSC()[3],stack:"s"},{label:"사용 자산",data:[c.A.use,0],backgroundColor:col[4],stack:"s"},
-    {label:"부채",data:[0,c.debtBal],backgroundColor:"#f25f73",stack:"s"},{label:"순자산",data:[0,Math.max(0,c.net)],backgroundColor:"#1b4fd1",stack:"s"}].map(d=>Object.assign(d,{backgroundColor:d.label==="부채"?Object.assign(grad("rgba(255,182,198,.8)","rgba(226,40,66,.95)"),{_c:"#f25f73"}):barFill(d.backgroundColor),hoverBackgroundColor:d.label==="부채"?"rgba(240,68,82,.9)":d.backgroundColor,borderRadius:x=>{const D=x.chart.data.datasets;let top=-1;D.forEach((a,j)=>{if((+a.data[x.dataIndex]||0)>0&&x.chart.isDatasetVisible(j))top=j});return x.datasetIndex===top?{topLeft:10,topRight:10,bottomLeft:0,bottomRight:0}:0},borderSkipped:false,maxBarThickness:72,borderWidth:0}))},
-    options:baseOpts({interaction:{mode:"nearest",intersect:true},plugins:Object.assign(baseOpts().plugins,{legend:{display:false}}),scales:Object.assign(baseOpts().scales,{x:Object.assign(baseOpts().scales.x,{stacked:true}),y:Object.assign(baseOpts().scales.y,{stacked:true})})})});
-  {const sw=(c2,t)=>`<span><i style="background:${/gradient/.test(c2)?c2:`linear-gradient(180deg,${litE(c2)},${deepE(c2)})`}"></i>${t}</span>`;const bq=BSC();$("#legBS").innerHTML=`<div>${sw(bq[0],"유동성")+sw(bq[1],"안정 투자")+sw(bq[2],"고위험 투자")+sw(bq[3],"노후")+sw(bq[4],"사용 자산")}</div><div>${sw("linear-gradient(180deg,#ffb6c6,#e22842)","부채")+sw(`linear-gradient(180deg,${litE("#1b4fd1")},${deepE("#1b4fd1")})`,"순자산")}</div>`}
+    {label:"부채",data:[0,c.debtBal],backgroundColor:"#f25f73",stack:"s"},{label:"순자산",data:[0,Math.max(0,c.net)],backgroundColor:"#1b4fd1",stack:"s"}].map(d=>Object.assign(d,{backgroundColor:d.label==="부채"?"#f04452":d.backgroundColor,hoverBackgroundColor:d.label==="부채"?"#e42939":d.backgroundColor,borderRadius:x=>{const D=x.chart.data.datasets;let top=-1;D.forEach((a,j)=>{if((+a.data[x.dataIndex]||0)>0&&x.chart.isDatasetVisible(j))top=j});return x.datasetIndex===top?{topLeft:8,topRight:8,bottomLeft:0,bottomRight:0}:0},borderSkipped:false,maxBarThickness:64,borderWidth:2,borderColor:"#ffffff"}))},
+    options:baseOpts({interaction:{mode:"nearest",intersect:true},plugins:Object.assign(baseOpts().plugins,{legend:{display:false}}),scales:Object.assign(baseOpts().scales,{x:Object.assign(baseOpts().scales.x,{stacked:true}),y:Object.assign(baseOpts().scales.y,{stacked:true,grid:{color:"#f2f4f6"}})})})});
+  {const bq=BSC(),tA=c.A.liquid+c.A.safe+c.A.risk+c.A.retire+c.A.use,rw=(cl,t,v)=>`<li><i style="background:${cl}"></i><span>${t}</span><b>${fmt(v)}만</b></li>`;$("#legBS").innerHTML=`<div class="bsg"><h5>자산<b>${fmt(tA)}만</b></h5><ul>${rw(bq[0],"유동성",c.A.liquid)+rw(bq[1],"안정 투자",c.A.safe)+rw(bq[2],"고위험 투자",c.A.risk)+rw(bq[3],"노후",c.A.retire)+rw(bq[4],"사용 자산",c.A.use)}</ul></div><div class="bsg"><h5>부채 + 순자산<b>${fmt(c.debtBal+Math.max(0,c.net))}만</b></h5><ul>${rw("#f04452","부채",c.debtBal)+rw("#1b4fd1","순자산",Math.max(0,c.net))}</ul></div>`}
   $("#gapTable").innerHTML=`<thead><tr><th>목표</th><th class="r">현재</th><th class="r">목표</th><th class="r">차이</th><th>판정</th></tr></thead><tbody>${S.goals.map(g=>{const now=srcNow(g,c),amt=n(g.amt),r=amt>0?now/amt*100:null;const s=r==null?"mute":r>=100?"good":r>=50?"warn":"bad";return `<tr><td>${esc(g.name)}<br><span style="font-size:12px;color:var(--ink-3)">${esc(g.term)} · ${mlabel(n(g.months))}</span></td><td class="r">${fmt(now)}</td><td class="r">${amt?fmt(amt):"지속"}</td><td class="r">${amt?fmt(Math.max(0,amt-now)):"-"}</td><td><span class="pill ${s}">${r==null?"적립":fmt(r,0)+"%"}</span></td></tr>`}).join("")}</tbody>`;
   const gg=S.goals.filter(g=>n(g.amt)>0);
   chart("cGoal",{type:"bar",data:{labels:gg.map(g=>g.name),datasets:[{label:"현재 준비율",data:gg.map(g=>Math.min(150,srcNow(g,c)/n(g.amt)*100)),backgroundColor:"#e5e8eb",hoverBackgroundColor:"#e5e8eb",borderRadius:6,borderSkipped:false,maxBarThickness:20},{label:"목표 시점 예상",data:gg.map(g=>Math.min(150,srcAt(g,c,P,n(g.months))/n(g.amt)*100)),backgroundColor:grad("#a9d0ff","#3182f6",true),hoverBackgroundColor:grad("#a9d0ff","#3182f6",true),borderRadius:6,borderSkipped:false,maxBarThickness:20}]},
