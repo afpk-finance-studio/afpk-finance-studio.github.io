@@ -5347,8 +5347,10 @@ document.addEventListener("input",e=>{const el=e.target;
   if(el.id==="payday"||el.id==="moveday"){S.exec[el.id]=parseInt(el.value)||1;save();update();return}
   if(el.dataset.p==="exec.payday"){const v=parseInt(el.value)||25;S.exec.payday=v;S.exec.moveday=v>=31?1:v+1;save();update();return}
   if(!el.dataset.p)return;let v=el.value;if(el.type==="number")v=el.value===""?"":parseFloat(el.value);
+  if(typeof v==="number"&&v<0&&/^(income\.|expenses\.\d+\.(amt|target|day)|saving\.items\.\d+\.amt|assets\.\d+\.amt|debts\.\d+\.(bal|pay)|buckets\.\d+\.pmt|goals\.\d+\.amt|days\.)/.test(el.dataset.p)){v=-v;clearTimeout(window.__nt);window.__nt=setTimeout(()=>{el.value=v;toast("금액은 빼기(−) 없이 적어 주세요. "+fmt(v)+"(으)로 바꿨어요")},700)}
   if(typeof v==="number"&&v>=100000&&/^(income\.|expenses\.\d+\.(amt|target)|saving\.items\.\d+\.amt|debts\.\d+\.pay|buckets\.\d+\.pmt)/.test(el.dataset.p)){v=Math.round(v/1000)/10;clearTimeout(window.__wt);window.__wt=setTimeout(()=>{el.value=v;toast("원 단위로 적으신 것 같아 "+fmt(v)+"만 원으로 바꿨어요")},700)}setPath(el.dataset.p,v);
   if(/^buckets\.\d+\.pmt|^goals/.test(el.dataset.p))S.gj=null;
+  {const m=el.dataset.p.match(/^expenses\.(\d+)\.(name|amt|group)$/);if(m){const d=document.querySelector(`[data-p="expenses.${m[1]}.day"]`),e=S.expenses[+m[1]];const lb=d&&d.closest(".row")&&d.closest(".row").querySelector(".lbl");if(lb&&e){lb.firstChild.nodeValue=(e.name||"고정지출")+" 나가는 날";const sm=lb.querySelector("small");if(sm)sm.textContent=fmt(n(e.amt))+"만 원"}}}
   save();if(el.tagName==="SELECT"){renderInputs();update();return}
   clearTimeout(tmr);tmr=setTimeout(update,120)});
 document.addEventListener("change",e=>{const el=e.target;
