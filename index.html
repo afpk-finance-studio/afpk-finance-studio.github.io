@@ -3708,6 +3708,24 @@ html:not(.dark) #v-s4 .bkg-f .field>.in{padding-right:0!important}
 .top .mex{height:32px;padding:0 12px;border:0;border-radius:999px;background:#191f28;color:#fff;font-size:12.5px;font-weight:700;white-space:nowrap;margin-right:4px;font-family:inherit}
 body.dkpg .top .mex{background:#fff;color:#191f28}
 @media (max-width:700px){.dbx{padding:10px;gap:10px;border-radius:14px}.dbx .card{padding:18px 16px}.top .mex{height:30px;padding:0 11px;font-size:12px}}
+/* my plan breakdown (step 3) */
+.mp .mp-top{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:0!important}
+.mp-t{padding:22px 24px;display:flex;flex-direction:column;gap:6px}.mp-t+.mp-t{border-left:1px solid #eef0f3}
+.mp-t span{font-size:13.5px;color:#6b7684;font-weight:600}.mp-t b{font-size:24px;font-weight:800;color:#191f28;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.mp-t b i{font-style:normal;color:#b0b8c1;font-weight:600;margin:0 2px}.mp-t b em{font-style:normal}.mp-t b em.g{color:#3d6af2}.mp-t b em.w{color:#f04452}
+.mp-t small{font-size:13px;color:#8b95a1}
+.mp-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.mp-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:6px}.mp-h span{font-size:13px;color:#3d6af2;font-weight:700;white-space:nowrap}
+.mp-l{list-style:none;margin:0;padding:0}.mp-l li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #f2f4f6}.mp-l li:last-child{border-bottom:0}
+.mp-l li>div:first-child{min-width:0}.mp-l b{display:block;font-size:15px;font-weight:700;color:#191f28;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mp-l small{display:block;font-size:12.5px;color:#4e5968;margin-top:2px;line-height:1.45}
+.mp-v{display:flex;align-items:center;gap:10px;flex:none;font-size:13.5px;color:#8b95a1;font-variant-numeric:tabular-nums}.mp-v strong{color:#191f28;font-size:15px}
+.mp-v em{font-style:normal;font-size:12.5px;font-weight:700;min-width:58px;text-align:right}.mp-v em.g,.mp-v em.b{color:#3d6af2}.mp-v em.n{color:#8b95a1}
+.mp-s,.mp-e{margin:10px 0 0;font-size:13px;line-height:1.6;color:#6b7684;background:#f7f8fa;border-radius:8px;padding:10px 12px}
+.mp-act{display:flex;justify-content:flex-end;margin-top:18px}
+#v-s3 .mp .mp-a{font-weight:500;color:#8b95a1;font-size:14px}#v-s3 .mp .tg-r em.n{color:#8b95a1}#v-s3 .mp .mp-h2{margin-top:30px}#v-s3 .mp .pnote p b{display:inline!important;font-size:inherit!important;margin:0!important;color:#191f28;font-weight:700}
+#v-s3 .mp .tg-list li{padding:16px 0}.mp-btn{font-size:13.5px;font-weight:700;color:#fff;background:#191f28;border-radius:999px;padding:10px 16px;text-decoration:none}
+@media (max-width:700px){.mp .mp-top{grid-template-columns:1fr}.mp-t+.mp-t{border-left:0;border-top:1px solid #eef0f3}.mp-t{padding:16px}.mp-t b{font-size:21px}.mp-g{grid-template-columns:1fr}.mp-v span{display:flex;flex-direction:column;align-items:flex-end;line-height:1.3}.mp-act{justify-content:stretch}.mp-btn{flex:1;text-align:center}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -3997,6 +4015,8 @@ body.dkpg .top .mex{background:#fff;color:#191f28}
   <div class="ppan"><div class="deval" id="dEval"></div></div>
   <div class="pch"><span class="pp">AI 평가</span><h3>숫자를 근거로 매긴 <em>AI 재무건강 점수</em></h3></div>
   <div class="ppan dai" id="dAI"></div>
+  <div class="pch"><span class="pp">솔루션</span><h3>이렇게 바꾸면 돼요, <em>내 설계안</em></h3><p id="myPlanP"></p></div>
+  <div class="ppan pp-2 mp" id="myPlan"></div>
   <div class="pch"><span class="pp">설계안</span><h3>설계안대로 바꾸면 달라지는 <em>내 돈의 미래</em></h3></div>
   <div class="dbx">
   <div class="summary" id="summary"></div>
@@ -4489,6 +4509,32 @@ function updateCore(){
   <div><div class="lab">비상예비자금</div><div class="big">${fmt(c.rNow.em,1)}<small>개월</small></div><div class="delta">${c.rAfter.em>c.rNow.em?`실행 후 <span class="up">${fmt(c.rAfter.em,1)}개월</span>로 늘어나요 · 권장 3~6개월`:`권장 3~6개월`}</div></div>
   <div><div class="lab">6년 후 예상 금융자산</div><div class="big">${won(P72tot).replace(" 원","")}<small>원</small></div><div class="delta">현재 ${won(finNow)}에서 <span class="${P72tot>=finNow?"up":"down"}">${P72tot>=finNow?"+":"−"}${won(Math.abs(P72tot-finNow))}</span></div></div>`;
   addGo("#summary",["s4","s3","s4"]);
+  {const mp=$("#myPlan");if(mp){const f1=x=>fmt(x,Math.abs(x%1)>.05?1:0),inc=c.sal+c.bonus,leftNow=Math.max(0,inc-c.exNow-c.saveNow),leftPlan=Math.max(0,inc-c.exPlan-c.bucketSum);
+   const cut=S.expenses.filter(e=>n(e.amt)>0).map(e=>[e,n(e.amt),c.planAmt(e)]),dn=cut.filter(x=>x[1]-x[2]>.05),same=cut.filter(x=>!(x[1]-x[2]>.05));
+   const note=String((S.saving&&S.saving.note)||"").trim();
+   const nowOf=b=>b.base!=null?n(b.base):(note&&(b.product+" "+b.name).includes(note)?c.saveNow:0);
+   const bs=c.buckets.filter(b=>b.pmt>0).map(b=>[b,nowOf(b),b.pmt]);
+   const sells=S.sells.map(x=>{const a=S.assets.find(y=>y.id===x.asset);return a&&n(x.amt)>0?[a.name,n(x.amt)]:null}).filter(Boolean);
+   const tip=e=>{const t=String(e.note||"").trim();if(t)return t;const m=e.name||"";return /식비|배달|외식/.test(m)?"배달은 주 2회로, 장보기 목록 쓰기":/교통|유류|주유/.test(m)?"대중교통 정기권, 가까운 거리는 걷기":/여가|문화|친목|모임/.test(m)?"한 달 모임 예산을 먼저 정하기":/통신|구독|OTT/.test(m)?"알뜰폰으로 바꾸고 안 보는 구독 해지":/쇼핑|의류|미용/.test(m)?"사고 싶은 건 장바구니에 하루 두기":/커피|간식|카페/.test(m)?"카페는 주 2번만":"주간 예산 안에서 쓰기"};
+   const why=b=>{const t=(b.name||"")+" "+(b.product||"");return /비상|CMA|파킹|입출금/i.test(t)?"급할 때 바로 꺼내 쓰는 돈":/청약|주거|주택/.test(t)?"내 집 마련, 청약 순위를 쌓는 돈":/연금|IRP|노후/i.test(t)?"노후 자금, 연말정산 때 세금 환급":/ISA|절세|펀드|ETF|주식/i.test(t)?"오래 두고 불리는 돈, 세금 혜택":"몇 년 뒤 쓸 목돈"};
+   const cutT=Math.max(0,c.exNow-c.exPlan),addT=Math.max(0,c.bucketSum-c.saveNow),leftUse=Math.max(0,leftNow-leftPlan);
+   const li=(sm,nm,a,b,em,cl)=>`<li><div class="tg-top"><div><small>${sm}</small><b>${esc(nm)}</b></div><div class="tg-r"><strong>${a==null?"":`<span class="mp-a">${f1(a)}만 →</span> `}${f1(b)}만 원</strong><em class="${cl}">${em}</em></div></div></li>`;
+   $("#myPlanP").textContent=`지금 고른 안은 ${(SCEN[S.scenario]||SCEN.balanced).name}이에요. 4단계에서 금액을 바꿀 수 있어요.`;
+   const nameS=dn.map(x=>x[0].name.split(/[·/ ]/)[0]).slice(0,3).join("·");
+   mp.innerHTML=`<div class="pp-l">
+     <div class="pnote b"><span class="pt">지출 다이어트</span><p>${dn.length?`${esc(nameS)}${dn.length>3?" 등":""}을 줄여 매달 <b>${f1(cutT)}만 원</b>을 아껴요.`:"줄이는 지출 없이 지금 지출을 그대로 둬요."}</p></div>
+     <div class="pnote v"><span class="pt">저축 재원</span><p>기존 저축 ${f1(c.saveNow)}만${cutT>.05?` + 줄인 지출 ${f1(cutT)}만`:""}${leftUse>.05?` + 그냥 남던 돈 ${f1(leftUse)}만`:""} = 매달 <b>${f1(c.bucketSum)}만 원</b>을 모아요.</p></div>
+     ${sells.length?`<div class="pnote r"><span class="pt">자산 정리</span><p>${sells.map(x=>esc(x[0].split(/[ ·(]/)[0])+" "+f1(x[1])+"만").join(", ")} 원을 팔아 비상금 통장으로 옮겨요. 한 번만 하면 돼요.</p></div>`:""}
+   </div>
+   <div class="pp-r">
+     <div class="pd-h"><b>줄이는 지출</b><small>한 달 ${f1(c.exNow)}만 → ${f1(c.exPlan)}만 원</small></div>
+     ${dn.length?`<ul class="tg-list">${dn.map(([e,a,b])=>li(esc(tip(e)),e.name,a,b,"−"+f1(a-b)+"만 원","b")).join("")}</ul>`:`<p class="mp-e">줄이는 지출은 없어요.</p>`}
+     ${same.length?`<p class="mp-s">그대로 두는 지출 · ${same.map(x=>esc(x[0].name)+" "+f1(x[1])+"만").join(", ")}</p>`:""}
+     <div class="pd-h mp-h2"><b>늘리는 저축</b><small>한 달 ${f1(c.saveNow)}만 → ${f1(c.bucketSum)}만 원</small></div>
+     <ul class="tg-list">${bs.map(([b,a,v])=>li(a>0&&v-a>.05?`남는 돈 ${f1(v-a)}만 원을 여기에 더 넣어요`:why(b),b.product||b.name,a>0?a:null,v,a>0?(v-a>.05?"+"+f1(v-a)+"만 원":"그대로"):"새로 시작",a>0&&!(v-a>.05)?"n":"b")).join("")}</ul>
+     <div class="mp-act"><a class="mp-btn" href="#s4">4단계에서 금액 바꾸기</a></div>
+   </div>`}}
+
   ($("#fc1")||{}).innerHTML=`${fmt(c.saveNow)} → <span class="up">${fmt(c.bucketSum)}만</span>`;
   ($("#fc2")||{}).innerHTML=`${fmt(c.rNow.em,1)} → <span class="up">${fmt(c.rAfter.em,1)}개월</span>`;
   ($("#fc3")||{}).textContent=won(P72tot);
