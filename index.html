@@ -3753,6 +3753,32 @@ body.dkpg .top .mex{background:#fff;color:#191f28}
 #v-s3 .dai .btns .btn.primary{background:#191f28;border-color:#191f28;color:#fff}
 @media (max-width:1100px){#v-s3 .ppan.dai{grid-template-columns:minmax(0,1fr)}#v-s3 .dai .dai-r{padding:0;margin:0;box-shadow:none}#v-s3 .dai .dai-l{align-items:center}#v-s3 .dai .dai-tag{align-self:center}}
 
+/* v103 interactions: staggered list reveals, bar fills, row hover */
+@media (prefers-reduced-motion:no-preference){
+.io{opacity:0;transform:translateY(12px)}
+.io.io-in{opacity:1;transform:none;transition:opacity .55s ease var(--io-d,0s),transform .7s cubic-bezier(.2,.8,.2,1) var(--io-d,0s)}
+.io :is(.tg-bar i,.dpt i,.pg-bar i,.db-gb i,.dai-bar i){transform:scaleX(0);transform-origin:left center}
+.io.io-in :is(.tg-bar i,.dpt i,.pg-bar i,.db-gb i,.dai-bar i){transform:none;transition:transform 1s cubic-bezier(.2,.8,.2,1) calc(var(--io-d,0s) + .18s)}
+.db-stk.io{transform:none;clip-path:inset(0 100% 0 0)}
+.db-stk.io.io-in{clip-path:inset(0 0 0 0);transition:clip-path 1.1s cubic-bezier(.2,.8,.2,1) var(--io-d,0s),opacity .3s}
+.dbd .nv,.dbd .pv{animation:ioFade .4s ease}
+@keyframes ioFade{from{opacity:0}to{opacity:1}}
+}
+:is(#v-s3,#v-s4) .tg-list>li,.dai-tb .dtr:not(.dth):not(.dtt),.db-t5 .db-r{transition:background-color .2s,box-shadow .2s}
+:is(#v-s3,#v-s4) .tg-list>li:hover,.dai-tb .dtr:not(.dth):not(.dtt):hover{background:#f9fafb;box-shadow:0 0 0 10px #f9fafb;border-radius:2px}
+.db-t5 .db-r:hover{background:#f6f8fb;box-shadow:0 0 0 6px #f6f8fb;border-radius:2px}
+:is(#v-s3,#v-s4) .pnote{transition:transform .25s ease,box-shadow .25s ease}
+:is(#v-s3,#v-s4) .pnote:hover{transform:translateY(-2px);box-shadow:0 8px 20px -14px rgba(2,32,71,.25)}
+.rx2>li{transition:transform .25s ease,box-shadow .25s ease}.rx2>li:hover{transform:translateY(-3px);box-shadow:0 10px 24px -16px rgba(2,32,71,.28)}
+.db-todo{transition:border-color .2s,background-color .2s,transform .2s}.db-todo:hover{transform:translateX(3px)}
+input[type=range]{transition:filter .2s}input[type=range]:active{filter:brightness(1.05)}
+.pch .pp{transition:background-color .2s,border-color .2s}.pch:hover .pp{border-color:#c9d6f5}
+
+.hfoot.hfoot-st{display:none;position:relative;background:#000;box-shadow:0 0 0 100vmax #000;clip-path:inset(0 -100vmax -100vmax);margin-top:96px;padding:56px 0 48px;border-top:0}
+body:has(.view.on:is(#v-s1,#v-s2,#v-s3,#v-s4,#v-s5,#v-s6)) .hfoot.hfoot-st{display:grid}
+@media(max-width:900px){.hfoot.hfoot-st{margin-top:56px}}
+@media print{.hfoot.hfoot-st{display:none!important}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -4074,8 +4100,8 @@ body.dkpg .top .mex{background:#fff;color:#191f28}
   <div class="pch"><span class="pp">설계안 고르기</span><h3>세 가지 안 중에서 고르는 <em>나의 설계안</em></h3><p>안을 누르면 아래 숫자가 모두 그 안 기준으로 바뀌어요</p></div>
   <div class="dbx">
   <div class="grid g3" id="scenCards"></div>
-  <div class="card npc"><div class="ch"><div><h3>지금과 설계 후, 이렇게 달라집니다</h3><p class="sub">위에서 고른 설계안대로 실행했을 때 바뀌는 숫자입니다</p></div></div><div class="tbl-wrap"><table class="np" id="nowPlan"><colgroup><col style="width:20%"><col style="width:18%"><col style="width:44px"><col style="width:22%"><col></colgroup></table></div></div>
-  <div class="grid g4" id="planKpis" style="gap:12px"></div>
+  <div class="card npc" hidden><div class="ch"><div><h3>지금과 설계 후, 이렇게 달라집니다</h3><p class="sub">위에서 고른 설계안대로 실행했을 때 바뀌는 숫자입니다</p></div></div><div class="tbl-wrap"><table class="np" id="nowPlan"><colgroup><col style="width:20%"><col style="width:18%"><col style="width:44px"><col style="width:22%"><col></colgroup></table></div></div>
+  <div class="grid g4" id="planKpis" style="gap:12px" hidden></div>
   </div>
 
   <div class="pch"><span class="pp">솔루션</span><h3>이렇게 바꾸면 돼요, <em>내 설계안</em></h3><p id="myPlanP"></p></div>
@@ -4098,27 +4124,27 @@ body.dkpg .top .mex{background:#fff;color:#191f28}
     <div class="chart-box" style="height:280px;margin-top:16px"><canvas id="cJourney"></canvas></div>
   </div>
 
-  <div class="grid g2">
+  <div class="grid g2" hidden>
     <div class="card"><div class="ch"><div><h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>연도별 금융자산 전망</h3><p class="sub">막대에 마우스를 올리면 금액이 나옵니다</p></div></div><div class="chart-box" style="height:340px"><canvas id="cYear"></canvas></div></div>
     <div class="card"><div class="ch"><div><h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6.4 6.4"/></svg></span>월 저축 배분</h3><p class="sub">지금 저축하는 곳과 설계안대로 나눈 저축을 비교해 보세요</p></div><div class="seg" id="svSeg"><button type="button" data-sv="now" class="on">현재</button><button type="button" data-sv="plan">설계안</button></div></div><div class="donutwrap"><div class="chart-box" style="height:220px"><canvas id="cHomeB"></canvas></div><div class="nleg" id="legHomeB"></div></div></div>
   </div>
 
-  <div class="grid g2">
+  <div class="grid g2" hidden>
     <div class="card"><div class="ch"><div><h3>재무목표 달성 전망</h3><p class="sub">선택한 설계안을 실행할 때 목표 시점의 예상 재원</p></div><a class="btn sm" href="#s4">설계안</a></div><div class="items" id="ovGoals"></div></div>
     <div class="card"><div class="ch"><div><h3>지금 먼저 할 일</h3><p class="sub">진단 결과에서 우선순위가 높은 순서</p></div><a class="btn sm" href="#s5">캘린더</a></div><div class="items" id="ovActions"></div></div>
   </div>
   </div>
 
-  <div class="pch"><span class="pp">지출·자산 조정</span><h3>줄일 지출과 정리할 자산으로 <em>저축할 돈 마련하기</em></h3></div>
+  <div class="pch"><span class="pp">직접 바꿔 보기</span><h3>설계안 숫자는 여기서 정해요, <em>지출과 자산</em></h3><p>위 설계안은 아래 금액으로 계산했어요. 숫자를 바꾸면 페이지 전체가 바로 다시 계산돼요</p></div>
   <div class="dbx">
   <div class="grid g2">
     <div class="card">
-      <div class="ch"><div><h3>지출 구조 개선</h3><p class="sub">균형안 기준 목표 금액 · 다른 안은 절감 폭이 달라집니다</p></div><span class="pill good" id="cutPill"></span></div>
+      <div class="ch"><div><h3>한 달 지출, 얼마로 줄일까요?</h3><p class="sub">왼쪽 숫자는 지금 쓰는 돈, 칸 안의 숫자는 설계안에서 쓸 돈이에요</p></div><span class="pill good" id="cutPill"></span></div>
       <div class="list" id="cutList"></div>
       <div class="note" id="capNote" style="margin-top:14px"></div>
     </div>
     <div class="card">
-      <div class="ch"><div><h3>자산 재배치와 비상예비자금</h3><p class="sub">정리한 금액은 비상예비자금으로 옮겨 계산합니다</p></div></div>
+      <div class="ch"><div><h3>팔아서 비상금으로 옮길 자산</h3><p class="sub">주식·코인 중 일부를 팔아 비상금 통장에 넣어요. 금액을 바꾸면 비상금이 다시 계산돼요</p></div></div>
       <div class="list" id="sellList"></div>
       <div id="sellNote" style="margin-top:14px"></div>
     </div>
@@ -4153,7 +4179,7 @@ body.dkpg .top .mex{background:#fff;color:#191f28}
   </div>
   <div class="grid g2">
     <div class="card"><div class="ch"><div><h3>예상 마일스톤</h3><p class="sub">설계안 실행 후 일어날 일</p></div></div><div class="items" id="milestones"></div></div>
-    <div class="card"><div class="ch"><div><h3>실행 전후 비교</h3><p class="sub">설계안 실행 직후 재무비율</p></div></div><div class="tbl-wrap"><table id="beforeAfter"></table></div></div>
+    <div class="card" hidden><div class="ch"><div><h3>실행 전후 비교</h3><p class="sub">설계안 실행 직후 재무비율</p></div></div><div class="tbl-wrap"><table id="beforeAfter"></table></div></div>
   </div>
   </div>
 
@@ -4322,7 +4348,7 @@ function syncBuckets(s){if(!s||s.mode==="example"||!s.saving||!Array.isArray(s.s
   const want=oth.slice(b1?1:0).map(x=>"bi_"+x.id);
   s.buckets=s.buckets.filter(b=>!/^bi_/.test(b.id)||want.includes(b.id));
   oth.slice(b1?1:0).forEach(x=>{const id="bi_"+x.id;let b=s.buckets.find(y=>y.id===id);if(!b){b={id,name:"안전자산",product:"",pmt:0,rate:3.5,link:"",months:""};const k=s.buckets.findIndex(y=>y.id==="b1");s.buckets.splice(k>=0?k+1:0,0,b)}b.product=String(x.name).trim();b.rate=svRate(b.product)})}
-function calc(sk){syncBuckets(S);if(S.saving&&Array.isArray(S.saving.items)&&S.saving.items.length)S.saving.current=S.saving.items.reduce((t,x)=>t+n(x.amt),0);
+function calc(sk){syncBuckets(S);if(S.saving&&Array.isArray(S.saving.items)&&(S.saving.items.length||S.mode!=="example"))S.saving.current=S.saving.items.reduce((t,x)=>t+n(x.amt),0);
   sk=sk||S.scenario||"balanced";const sc=SCEN[sk]||SCEN.balanced;
   const sal=n(S.income.salary),bonus=n(S.income.bonus);
   const planAmt=e=>{const a=n(e.amt),t=tgtOf(e);if(t>=a)return t;return Math.max(0,a-(a-t)*sc.cut)};
@@ -4472,9 +4498,9 @@ function renderInputs(){migrate(S);
   const cG=calc("balanced"),em0=cG.buckets.find(b=>b.id==="bem");const srcAll=[["cash",em0&&em0.product&&em0.product!=="CMA 파킹통장"?`비상금 통장 · ${esc(em0.product)}`:"비상금 통장",em0?`매달 ${fmt(em0.pmt)}만 원씩 쌓여요 · 지금 ${fmt(cG.B.liquid)}만 원`:`지금 ${fmt(cG.B.liquid)}만 원 있어요`,1]].concat(S.buckets.map((b,i)=>{const p=(cG.buckets.find(x=>x.id===b.id)||{}).pmt||0;return [b.id,(b.product||b.name||"").split(" (")[0],p>0?`매달 ${fmt(p,p%1?1:0)}만 원씩 모아요`:"아직 모으는 돈이 없어요",p>0]})).concat([["rest","지금 가진 투자금",`주식·펀드 등 ${fmt(cG.restAmt)}만 원`,cG.restAmt>0]]);
   $("#goalList").innerHTML=S.goals.map((g,i)=>`<div class="goalcard"><div class="top2">${si(`goals.${i}.term`,g.term,[["단기","단기"],["중기","중기"],["장기","장기"],["은퇴","은퇴"]],"구분")}${ti(`goals.${i}.name`,g.name,"목표","","목표 이름 (예: 결혼자금)")}<button class="del" type="button" data-del="goals.${i}" aria-label="삭제">×</button></div><div class="nums">${fld("목표 금액",ni(`goals.${i}.amt`,g.amt,"목표 금액"))}${fld("기한",ni(`goals.${i}.months`,g.months,"기한","개월"))}</div><div class="field gsrc"><label>이 목표는 어떤 통장의 돈으로 채울까요?<small class="gsrc-h">고른 통장에 모이는 돈을 이 목표에 써요. 여러 개 골라도 돼요</small></label><div class="srcl">${srcAll.filter(o=>o[3]||(g.src||[]).includes(o[0])).map(([v,l,d])=>`<button type="button" class="srcrow${(g.src||[]).includes(v)?" on":""}" data-src="${i}" data-v="${v}" aria-pressed="${(g.src||[]).includes(v)}"><i class="ck" aria-hidden="true"></i><span><b>${esc(l)}</b><small>${d}</small></span></button>`).join("")}</div></div><div class="gplan" id="gplan${i}"></div></div>`).join("");
   // step4
-  $("#cutList").innerHTML=`<div class="row edit3 head"><span>항목</span><span style="text-align:right">현재</span><span style="text-align:right">목표</span><span></span></div>`+S.expenses.map((e,i)=>`<div class="row edit3"><span class="lbl">${esc(e.name)}<small>${esc(e.note||"")}</small></span><span class="val">${fmt(n(e.amt))}</span>${(()=>{const au=e.target===""||e.target==null||(n(e.target)===0&&n(e.amt)>0);return ni(`expenses.${i}.target`,au?"":e.target,e.name+" 목표","만",au?"자동 "+fmt(tgtOf(e)):"")})()}<span class="val" data-o="d-${e.id}" style="font-size:12.5px"></span></div>`).join("");
+  $("#cutList").innerHTML=`<div class="row edit3 head"><span>항목</span><span style="text-align:right">지금</span><span style="text-align:right">설계안</span><span></span></div>`+S.expenses.map((e,i)=>`<div class="row edit3"><span class="lbl">${esc(e.name)}<small>${esc(e.note||"")}</small></span><span class="val">${fmt(n(e.amt))}</span>${(()=>{const au=e.target===""||e.target==null||(n(e.target)===0&&n(e.amt)>0);return ni(`expenses.${i}.target`,au?"":e.target,e.name+" 목표","만",au?"자동 "+fmt(tgtOf(e)):"")})()}<span class="val" data-o="d-${e.id}" style="font-size:12.5px"></span></div>`).join("");
   const assetOpts=S.assets.filter(a=>a.type!=="liquid"&&a.type!=="use").map(a=>[a.id,a.name]);
-  $("#sellList").innerHTML=(S.sells.map((s,i)=>`<div class="row edit">${si(`sells.${i}.asset`,s.asset,assetOpts.length?assetOpts:[["","투자 자산 없음"]],"정리할 자산")}${ni(`sells.${i}.amt`,s.amt,"정리 금액")}<button class="del" type="button" data-del="sells.${i}" aria-label="삭제">×</button></div>`).join(""))+`<div class="row edit" style="grid-template-columns:minmax(0,1fr) 120px 30px"><span class="lbl">남은 투자자산 기대수익률</span>${ni("restRate",S.restRate,"기대수익률","%")}<span></span></div><button class="addrow" type="button" id="addSell">+ 정리할 자산 추가</button>`;
+  $("#sellList").innerHTML=(S.sells.map((s,i)=>`<div class="row edit">${si(`sells.${i}.asset`,s.asset,assetOpts.length?assetOpts:[["","투자 자산 없음"]],"정리할 자산")}${ni(`sells.${i}.amt`,s.amt,"정리 금액")}<button class="del" type="button" data-del="sells.${i}" aria-label="삭제">×</button></div>`).join(""))+`<div class="row edit" style="grid-template-columns:minmax(0,1fr) 120px 30px"><span class="lbl">팔지 않고 남긴 투자, 1년 예상 수익률</span>${ni("restRate",S.restRate,"기대수익률","%")}<span></span></div><button class="addrow" type="button" id="addSell">+ 팔 자산 추가</button>`;
   const linkOpts=[["","없음 (새로 시작)"]].concat(S.assets.filter(a=>["safe","risk","retire"].includes(a.type)).map(a=>[a.id,a.name]));
   const bkWhy=b=>{const t=(b.name||"")+" "+(b.product||"");return /비상|CMA|파킹/i.test(t)?"갑자기 돈이 필요할 때 바로 꺼내 쓰는 돈이에요. 수익보다 언제든 찾을 수 있는 게 중요해요.":/청약|주거|주택/.test(t)?"내 집 마련을 위한 돈이에요. 꾸준히 넣어야 청약 자격과 순위가 생겨요.":/연금|IRP|노후|세액공제/i.test(t)?"나이 들어 받을 노후 자금이에요. 넣은 만큼 연말정산 때 세금도 돌려받아요.":/ISA|절세|성장|ETF|펀드|주식/i.test(t)?"오래 두고 불리는 돈이에요. 수익에 붙는 세금을 아낄 수 있는 통장에 넣어요.":/도약|안전|예금|적금|미래/.test(t)?"원금을 지키면서 몇 년 뒤 쓸 목돈을 만드는 돈이에요.":"목표에 쓸 돈을 따로 모으는 통장이에요."};
   const cB=calc("balanced");$("#bucketList").innerHTML=(cB.auto?`<p class="note">월 적립을 비워 두면 저축 재원 월 ${fmt(cB.bucketSum)}만 원을 아래 계좌에 자동으로 나눠 담아요${cB.emPmt>0?` (비상금 통장 ${fmt(cB.emPmt)}만 원 포함)`:""}. 금액을 직접 넣으면 그 금액을 따릅니다.</p>`:"")+S.buckets.map((b,i)=>`<div class="bkg"><div class="bkg-h"><i style="background:var(--c${i%6+1})"></i><b>${i+1}. ${esc(b.name||"이름 없는 계좌")}</b><span>${cB.auto?"자동 "+fmt((cB.buckets[i]||{}).pmt||0):fmt(n(b.pmt))}만 원 / 월</span><button class="del" type="button" data-del="buckets.${i}" aria-label="삭제">×</button></div><p class="bkg-why">${bkWhy(b)}</p><div class="bkg-f">${fld("통장 이름 (쓰임새)",ti(`buckets.${i}.name`,b.name,"통장 이름","","예: 비상금"))}${fld("가입할 상품",ti(`buckets.${i}.product`,b.product,"상품","","예: CMA 파킹통장"))}${fld("매달 넣는 돈",cB.auto?ni(`buckets.${i}.pmt`,"","월 적립","만","자동 "+fmt((cB.buckets[i]||{}).pmt||0)):ni(`buckets.${i}.pmt`,b.pmt,"월 적립"))}${fld("1년 예상 수익률",ni(`buckets.${i}.rate`,b.rate,"수익률","%"))}${fld("이미 모은 돈 이어받기",si(`buckets.${i}.link`,b.link,linkOpts,"연결 자산"))}${fld("앞으로 넣을 기간",ni(`buckets.${i}.months`,b.months,"남은 납입","개월"))}</div></div>`).join("");
@@ -4550,8 +4576,8 @@ function updateCore(){
    $("#myPlanP").textContent=`지금 고른 안은 ${(SCEN[S.scenario]||SCEN.balanced).name}이에요. 아래에서 금액을 바꿀 수 있어요.`;
    const nameS=dn.map(x=>x[0].name.split(/[·/ ]/)[0]).slice(0,3).join("·");
    mp.innerHTML=`<div class="pp-l">
-     <div class="pnote b"><span class="pt">지출 다이어트</span><p>${dn.length?`${esc(nameS)}${dn.length>3?" 등":""}을 줄여 매달 <b>${f1(cutT)}만 원</b>을 아껴요.`:"줄이는 지출 없이 지금 지출을 그대로 둬요."}</p></div>
-     <div class="pnote v"><span class="pt">저축 재원</span><p>기존 저축 ${f1(c.saveNow)}만${cutT>.05?` + 줄인 지출 ${f1(cutT)}만`:""}${leftUse>.05?` + 그냥 남던 돈 ${f1(leftUse)}만`:""} = 매달 <b>${f1(c.bucketSum)}만 원</b>을 모아요.</p></div>
+     <div class="pnote b"><span class="pt">지출 다이어트</span><p>${dn.length?`${esc(nameS)}${dn.length>3?" 등":""} 지출을 줄여 매달 <b>${f1(cutT)}만 원</b>을 아껴요.`:"줄이는 지출 없이 지금 지출을 그대로 둬요."}</p></div>
+     <div class="pnote v"><span class="pt">저축 재원</span><p>${c.bucketSum+.05<c.saveNow?`지금 지출로는 매달 <b>${f1(c.bucketSum)}만 원</b>까지 모을 수 있어요. 지금 적은 저축 ${f1(c.saveNow)}만 원보다 적으니 지출을 먼저 줄여야 해요.`:`기존 저축 ${f1(c.saveNow)}만${cutT>.05?` + 줄인 지출 ${f1(cutT)}만`:""}${leftUse>.05?` + 그냥 남던 돈 ${f1(leftUse)}만`:""} = 매달 <b>${f1(c.bucketSum)}만 원</b>을 모아요.`}</p></div>
      ${sells.length?`<div class="pnote r"><span class="pt">자산 정리</span><p>${sells.map(x=>esc(x[0].split(/[ ·(]/)[0])+" "+f1(x[1])+"만").join(", ")} 원을 팔아 비상금 통장으로 옮겨요. 한 번만 하면 돼요.</p></div>`:""}
    </div>
    <div class="pp-r">
@@ -4810,9 +4836,9 @@ function updateCore(){
   $("#planKpis").innerHTML=kpi("월 지출 절감",fmt(cut),"만",`${fmt(c.exNow)} → ${fmt(c.exPlan)}만 원`,null,"현재 총지출과 선택한 안의 목표 지출의 차이입니다.")+kpi("월 저축 재원",fmt(c.bucketSum),"만",`저축성향률 ${pct(c.rNow.save,1)} → ${pct(c.rAfter.save,1)}`,null,"세후소득 + 비정기 수입 − 목표 지출. 이 금액을 4개 계좌에 나눕니다.")+kpi("비상예비자금",fmt(c.liqAfter),"만",`${fmt(c.rNow.em,1)} → ${fmt(c.rAfter.em,1)}개월분`,null,"기존 유동성 자산 + 정리한 투자자산 금액입니다.")+kpi("6년 후 금융자산",fmt(P72tot),"만","4개 계좌 + 잔여 투자 + 비상금",null,"보증금 같은 사용 자산은 빼고 계산한 6년 뒤 예상 금융자산입니다.");
   S.expenses.forEach(e=>{const d=c.planAmt(e)-n(e.amt);o("d-"+e.id,d===0?"":`<span style="color:var(--${d<0?"green":"red"})">${d>0?"+":"−"}${fmt(Math.abs(d),1)}</span>`)});
   $("#cutPill").textContent=cut>0?`월 ${fmt(cut,1)}만 원 절감`:"절감 없음";
-  $("#capNote").innerHTML=`저축 재원 = 세후소득 ${fmt(c.sal)} + 비정기 ${fmt(c.bonus)} − 목표 지출 ${fmt(c.exPlan,1)} = <b>${fmt(c.capacity,1)}만 원</b>${c.sk!=="balanced"?` · ${SCEN[c.sk].name}은 균형안과의 차이를 ISA 적립액에 반영합니다.`:""}`;
+  $("#capNote").innerHTML=`매달 모을 수 있는 돈 = 월급 ${fmt(c.sal)}만${c.bonus?` + 비정기 수입 ${fmt(c.bonus)}만`:""} − 설계안 지출 ${fmt(c.exPlan,1)}만 = <b>${fmt(c.capacity,1)}만 원</b>`;
   const emGoal=S.goals.find(g=>(g.src||[]).length===1&&g.src[0]==="cash");
-  $("#sellNote").innerHTML=`<div class="callout ${emGoal&&c.B.liquid<n(emGoal.amt)?"warn":"good"}">유동성 ${fmt(c.A.liquid)} + 정리 ${fmt(c.sellTotal)} = <b>${fmt(c.B.liquid)}만 원</b>${c.emAdd?` + 비상금 통장 1년 적립 ${fmt(c.emAdd)}만 원`:""} → 생활비 ${fmt(c.rAfter.em,1)}개월분.${emGoal?(c.liqAfter>=n(emGoal.amt)?` “${esc(emGoal.name)}” 목표를 달성합니다.`:` 목표까지 ${fmt(n(emGoal.amt)-c.liqAfter)}만 원 더 모아야 합니다.`):""} 남은 투자자산 ${fmt(c.restAmt)}만 원.</div>`;
+  $("#sellNote").innerHTML=`<div class="callout ${emGoal&&c.B.liquid<n(emGoal.amt)?"warn":"good"}">지금 바로 쓸 수 있는 돈 ${fmt(c.A.liquid)}만 + 판 돈 ${fmt(c.sellTotal)}만 = <b>${fmt(c.B.liquid)}만 원</b>${c.emAdd?` + 비상금 통장 1년 적립 ${fmt(c.emAdd)}만 원`:""} → 생활비 ${fmt(c.rAfter.em,1)}달치 비상금이 돼요.${emGoal?(c.liqAfter>=n(emGoal.amt)?` “${esc(emGoal.name)}” 목표를 채워요.`:` 목표까지 ${fmt(n(emGoal.amt)-c.liqAfter)}만 원 더 모아야 해요.`):""} 팔지 않고 남는 투자는 ${fmt(c.restAmt)}만 원이에요.</div>`;
   donut("cBucket",c.buckets.map(b=>b.name),c.buckets.map(b=>b.pmt),c.buckets.map((b,i)=>col[i%6]),{text:fmt(c.bucketSum,0)+"만",sub:"월 적립"},ctx=>{const b=c.buckets[ctx.dataIndex];return ` ${b.name}: 월 ${fmt(b.pmt,1)}만 · 연 ${fmt(b.rate,1)}%`});
   const capB=c.capacity-c.bucketSum,wr=c.bucketSum?c.buckets.reduce((t,b)=>t+b.pmt*b.rate,0)/c.bucketSum:0;
   $("#bucketNote").innerHTML=`<div class="list">${c.buckets.map((b,i)=>`<div class="row"><span class="lbl"><i style="display:inline-block;width:9px;height:9px;border-radius:3px;background:var(--c${i%6+1});margin-right:6px"></i>${esc(b.name)}</span><span class="val">${fmt(b.pmt,1)}만</span></div>`).join("")}<div class="row total"><span class="lbl">합계<small style="display:block;color:var(--muted,#8b95a1);font-weight:500;font-size:12px">평균 예상 수익률 연 ${fmt(wr,2)}%</small></span><span class="val">${fmt(c.bucketSum,1)}만</span></div></div>`+(Math.abs(capB)>.05?`<div class="callout ${capB>0?"warn":"bad"}" style="margin-top:10px">${capB>0?`저축 재원보다 ${fmt(capB,1)}만 원 적게 배분했습니다.`:`저축 재원보다 ${fmt(-capB,1)}만 원 많이 배분했습니다.`}</div>`:"");
@@ -5484,6 +5510,7 @@ scan();new MutationObserver(()=>{if(!t)t=setTimeout(scan,60)}).observe(document.
 
 /* v78 footer on basis page */
 (function(){const f=document.querySelector("#v-home .hfoot")||document.querySelector(".hfoot"),v=document.getElementById("v-basis");if(!f||!v||v.querySelector(".hfoot"))return;const c=f.cloneNode(true);c.classList.add("hfoot-bz");c.querySelectorAll("[id]").forEach(e=>e.removeAttribute("id"));v.appendChild(c)})();
+(function(){const f=document.querySelector("#v-home .hfoot"),s1=document.getElementById("v-s1");if(!f||!s1)return;const c=f.cloneNode(true);c.classList.add("hfoot-st");c.querySelectorAll("[id]").forEach(e=>e.removeAttribute("id"));s1.parentElement.appendChild(c)})();
 
 /* v81 mobile wizard for step 2 */
 (function(){const v=document.getElementById("v-s2");if(!v)return;
@@ -5550,5 +5577,14 @@ document.addEventListener("click",e=>{const a=e.target.closest("[data-jump]");if
 
 
 <script>document.getElementById("mExample").addEventListener("click",()=>{const t=document.getElementById("btnExample");t&&t.click();setTimeout(()=>{try{window.__upd&&window.__upd()}catch(e){}},80)});</script>
+<script>
+(function(){if(matchMedia("(prefers-reduced-motion: reduce)").matches||!("IntersectionObserver" in window))return;
+var SEL=":is(#v-s3,#v-s4,#v-s6) .tg-list>li,.dai-tb .dtr:not(.dth),.rx2>li,:is(#v-s3,#v-s4) .pnote,.db-t5 .db-r,.db-asr .db-r,.db-todo,#dSum .pg,#scenCards>*,#planKpis>*,.mp-t,.db-g,.db-kv>*";
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;ob.unobserve(el);el.classList.add("io-in");var d=parseFloat(el.style.getPropertyValue("--io-d"))||0;setTimeout(function(){el.classList.remove("io","io-in");el.style.removeProperty("--io-d")},1300+d)})},{threshold:.12,rootMargin:"0px 0px -6% 0px"});
+function scan(){document.querySelectorAll(SEL).forEach(function(el){if(el.__io)return;el.__io=1;var r=el.getBoundingClientRect();if(r.width>0&&r.top<innerHeight&&r.bottom>0)return;var p=el.parentElement,i=0;if(p){var k=Array.prototype.indexOf.call(p.children,el);i=Math.max(0,Math.min(k,8))}el.style.setProperty("--io-d",(i*60)+"ms");el.classList.add("io");ob.observe(el)})}
+var t;new MutationObserver(function(){clearTimeout(t);t=setTimeout(scan,80)}).observe(document.body,{childList:true,subtree:true});
+addEventListener("hashchange",function(){setTimeout(scan,60)});setTimeout(scan,300);
+})();
+</script>
 </body>
 </html>
