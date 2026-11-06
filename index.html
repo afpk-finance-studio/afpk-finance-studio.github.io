@@ -3205,8 +3205,8 @@ body:not(.wpg) .pside.kia .pnav a:not(.nx){color:rgba(255,255,255,.6);background
 @media (max-width:700px){#execList .check.kjob{padding:16px 4px!important;gap:12px}.kj-t>b{font-size:14.5px}.kj-m{font-size:12.5px}}
 
 /* v89 Kia-style dark next-step card */
-.knext{position:relative;display:block;margin:56px 0 8px;padding:40px 44px;border-radius:14px;background:#4b5059;color:#fff!important;text-decoration:none;overflow:hidden;transition:background .25s}
-.knext:hover{background:#3e434b}
+.knext{position:relative;display:block;margin:56px 0 8px;padding:40px 44px;border-radius:14px;background:#05141f;color:#fff!important;text-decoration:none;overflow:hidden;transition:background .25s}
+.knext:hover{background:#0d2232}
 .knext svg.kn-line{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
 .knext small{position:relative;display:block;font-size:13px;color:rgba(255,255,255,.6);font-weight:600;letter-spacing:.02em}
 .knext b{position:relative;display:block;margin-top:6px;font-size:26px;font-weight:800;letter-spacing:-.03em}
@@ -3774,7 +3774,7 @@ body.dkpg .top .mex{background:#fff;color:#191f28}
 input[type=range]{transition:filter .2s}input[type=range]:active{filter:brightness(1.05)}
 .pch .pp{transition:background-color .2s,border-color .2s}.pch:hover .pp{border-color:#c9d6f5}
 
-.hfoot.hfoot-st{display:none;position:relative;background:#fff;box-shadow:0 0 0 100vmax #fff;clip-path:inset(0 -100vmax -100vmax);margin-top:96px;padding:56px 0 48px;border-top:1px solid #e5e8eb;color:#191f28}
+.hfoot.hfoot-st{display:none;position:relative;background:transparent;box-shadow:none;clip-path:none;margin-top:96px;padding:56px 0 48px;border-top:1px solid #e5e8eb;color:#191f28}
 .hfoot-st .hf-cols b{color:#333d4b}.hfoot-st .hf-cols a,.hfoot-st .hf-cols span{color:#6b7684}.hfoot-st .hf-cols a:hover{color:#191f28}.hfoot-st .hf-copy{color:#8b95a1}.hfoot-st .hf-legal{border-top-color:#e5e8eb}.hfoot-st .hf-legal b{color:#4e5968}.hfoot-st .hf-legal p{color:#8b95a1}.hfoot-st .hf-logo{color:#191f28}
 body:has(.view.on:is(#v-s1,#v-s2,#v-s3,#v-s4,#v-s5,#v-s6)) .hfoot.hfoot-st{display:grid}
 @media(max-width:900px){.hfoot.hfoot-st{margin-top:56px}}
@@ -5586,7 +5586,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){d.clas
 </script>
 <script>
 (function(){const N={s1:["2단계로","내 정보 알려 주기","약속을 확인했다면, 이제 월급·지출·가진 돈·목표를 차례로 적어 주세요. 적은 숫자는 모든 화면에 바로 반영돼요.","#s2"],s3:["4단계로","설계안 받기","진단에서 찾은 부족한 점을 바탕으로, 목표별로 돈을 어떻게 나눠 담을지 설계안을 만들어 드려요.","#s4"],s4:["5단계로","실행하기","고른 설계안대로 자동이체 날짜와 할 일을 캘린더에 올려요. 의지에 기대지 않게 구조를 만듭니다.","#s5"],s5:["6단계로","정기 점검","매달 실제 쓴 돈을 적어 계획과 비교하고, 상황이 바뀌면 다시 맞춰요.","#s6"],s6:["마지막으로","보고서 보기","지금까지의 6단계를 한 권의 보고서로 정리했어요. 고객님이 할 일까지 단계별로 담았어요.","#report"]};
-const line='<svg class="kn-line" viewBox="0 0 600 260" preserveAspectRatio="none" aria-hidden="true"><path d="M0 150 C 60 150 90 92 160 92 L 600 92" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg>';
+const line='<svg class="kn-line" viewBox="0 0 600 260" preserveAspectRatio="none" aria-hidden="true"><path d="M0 150 C 60 150 90 92 160 92 L 600 92" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg>';
 Object.keys(N).forEach(v=>{const sec=document.getElementById("v-"+v);if(!sec||sec.querySelector(".knext"))return;const [a,b,c,h]=N[v];const el=document.createElement("a");el.className="knext";el.href=h;el.innerHTML=line+`<small>${a}</small><b>${b}</b><p>${c}</p><i class="kn-go" aria-hidden="true"></i>`;
 const f=sec.querySelector(".hfoot,.hfoot-bz");if(f)sec.insertBefore(el,f);else sec.appendChild(el)})})();
 </script>
