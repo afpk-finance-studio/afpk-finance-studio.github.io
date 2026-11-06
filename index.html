@@ -3726,6 +3726,17 @@ body.dkpg .top .mex{background:#fff;color:#191f28}
 :is(#v-s3,#v-s4) .mp .tg-list li{padding:16px 0}.mp-btn{font-size:13.5px;font-weight:700;color:#fff;background:#191f28;border-radius:999px;padding:10px 16px;text-decoration:none}
 @media (max-width:700px){.mp .mp-top{grid-template-columns:1fr}.mp-t+.mp-t{border-left:0;border-top:1px solid #eef0f3}.mp-t{padding:16px}.mp-t b{font-size:21px}.mp-g{grid-template-columns:1fr}.mp-v span{display:flex;flex-direction:column;align-items:flex-end;line-height:1.3}.mp-act{justify-content:stretch}.mp-btn{flex:1;text-align:center}}
 
+/* v101 AI score as partner panel */
+#v-s3 .dai2 .mp-a{font-weight:500;color:#8b95a1;font-size:14px}#v-s3 .dai2 .tg-r em.n{color:#8b95a1}#v-s3 .dai2 .mp-h2{margin-top:30px}
+#v-s3 .dai2 .tg-list li{padding:16px 0}#v-s3 .dai2 .pnote p b{display:inline!important;font-size:inherit!important;margin:0!important;color:#191f28;font-weight:700}
+#v-s3 .pnote.g{background:#f5f6f8}#v-s3 .pnote.g .pt{background:#e9ebef;color:#4e5968}
+#v-s3 .dai-bar{position:relative;height:6px;border-radius:3px;background:#f2f4f6;margin-top:12px;overflow:hidden}
+#v-s3 .dai-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px}#v-s3 .dai-bar i.b{background:#b4cffa}#v-s3 .dai-bar i.a{background:#3182f6;z-index:1}
+#v-s3 .dai2 .dai-tot{border-top:1px solid #e5e8eb!important}#v-s3 .dai2 .dai-tot b{font-size:16px}
+#v-s3 .dai2 p.dai-d{margin:4px 0 0!important;font-size:13.5px;color:#6b7684}
+#v-s3 .dai2 .mp-act{gap:8px;align-items:center}
+@media (max-width:700px){#v-s3 .dai2 .tg-top{flex-direction:column;align-items:stretch;gap:6px}#v-s3 .dai2 .tg-r{text-align:left;display:flex;justify-content:space-between;align-items:baseline;gap:8px}}
+
 @media print{
   @page{size:A4;margin:14mm 12mm}
   .side,.top,.btab,.fab,.drawer,.toast,.modal-bg,.noprint,.foot{display:none!important}
@@ -4014,7 +4025,7 @@ body.dkpg .top .mex{background:#fff;color:#191f28}
   <div class="pch"><span class="pp">재무 진단</span><h3>재무설계 기준 4가지로 본 <em>재무 진단</em></h3><p>바늘이 파란 구간에 있으면 양호해요</p></div>
   <div class="ppan"><div class="deval" id="dEval"></div></div>
   <div class="pch"><span class="pp">AI 평가</span><h3>숫자를 근거로 매긴 <em>AI 재무건강 점수</em></h3></div>
-  <div class="ppan dai" id="dAI"></div>
+  <div class="ppan pp-2 dai2" id="dAI"></div>
 
   <div class="pch" id="dDetail"><span class="pp">자세한 분석</span><h3>결과가 나온 근거를 보는 <em>자세한 분석</em></h3></div>
   </div>
@@ -4727,10 +4738,19 @@ function updateCore(){
    const rx=[c.rNow.em>=3?{k:"비상금",v:`${fmt(c.rNow.em,1)}달치`,t:"비상금은 이미 충분해요",d:"한 달 생활비 기준이에요"}:c.emPmt>0?{k:"비상금",v:`월 ${fmt(c.emPmt)}만 원`,t:"비상금 통장에 따로 모아요",d:`1년 뒤 생활비 ${fmt(c.rAfter.em,1)}달치가 돼요`}:{k:"비상금",v:`${fmt(c.rNow.em,1)} → ${fmt(c.rAfter.em,1)}달치`,t:"투자 일부를 비상금으로 옮겨요",d:"급할 때 투자를 깨지 않아도 돼요"},
      {k:"매달 모으는 돈",v:`${fmt(c.saveNow)}만 → ${fmt(c.bucketSum)}만 원`,t:cut>.05?`지출을 월 ${fmt(cut)}만 원 줄여요`:"월급날 먼저 떼어 둬요",d:lf2>=1?`그냥 남던 ${fmt(lf2)}만 원도 함께 모아요`:"쓰고 남은 돈이 아니라 먼저 모아요"},
      c.rNow.risk>30?{k:"투자 위험",v:`${fmt(c.rNow.risk,0)}% → ${fmt(c.rAfter.risk,0)}%`,t:"주식·코인 비중을 줄여요",d:`목적별 통장 ${nb}개에 나눠 담아요`}:{k:"통장 나누기",v:`${nb}개 통장`,t:"목표마다 통장을 나눠요",d:nms.slice(0,4).join(" · ")+(nms.length>4?" 외":"")}];
-   $("#dAI").innerHTML=`<div class="dai-l"><span class="dai-tag">AI 재무건강 점수</span>${gx2("ai",s0,s1)}<p class="gx-cap">${s1>s0?`설계안대로 하면<br>AI 점수가 ${s1-s0}점 올라요`:s1===s0?"설계안을 실행해도<br>점수는 지금과 같아요":"설계안 금액을<br>다시 확인해 주세요"}</p><p class="dai-cap">비상금·저축·빚·투자 위험을 각 25점씩 매긴 100점 만점 점수예요</p></div>
-   <div class="dai-r"><h4>${nm}님은 지금 100점 중 <em>${s0}점</em>이에요</h4><p class="dai-sum">${weak.length?`<b>${weak.join("·")}</b> 점수가 모자라서 깎였어요. `:"네 가지 모두 기준을 지키고 있어요. "}${s1>s0?`아래 설계안대로 하면 <b>${s1}점</b>이 돼요.`:""}</p>
-   ${tb}
-   <h5 class="dai-h">그래서 이렇게 바꿔요</h5><ol class="rx2">${rx.map((x,i)=>`<li><span class="rx2-k">${String(i+1).padStart(2,"0")} · ${x.k}</span><b class="rx2-v">${x.v}</b><p><strong>${x.t}</strong>${x.d}</p></li>`).join("")}</ol><div class="btns"><a class="btn sm" href="#s3" data-jump="#dDetail">분석 자세히</a><a class="btn primary sm" href="#s4">설계안 보기</a></div></div>`;
+   $("#dAI").innerHTML=`<div class="pp-l">
+     <div class="pnote b"><span class="pt">지금 점수</span><p>100점 중 <b>${s0}점</b>이에요. ${weak.length?`${weak.join("·")} 점수가 모자라요.`:"네 가지 모두 기준을 지키고 있어요."}</p></div>
+     <div class="pnote v"><span class="pt">설계안 실행 후</span><p>${s1>s0?`<b>${s1}점</b>이 돼요. 지금보다 ${s1-s0}점 올라요.`:s1===s0?`지금과 같은 <b>${s1}점</b>이에요.`:`<b>${s1}점</b>이에요. 설계안 금액을 다시 확인해 주세요.`}</p></div>
+     <div class="pnote g"><span class="pt">점수 매기는 법</span><p>비상금·저축·빚·투자 위험을 각각 25점씩, 100점 만점으로 매겨요. 참고용 점수예요.</p></div>
+   </div>
+   <div class="pp-r">
+     <div class="pd-h"><b>항목별 점수</b><small>지금 → 설계안 실행 후</small></div>
+     <ul class="tg-list">${IT.map((r,k)=>`<li><div class="tg-top"><div><small>${r[2]}</small><b>${r[0]}</b></div><div class="tg-r"><strong><span class="mp-a">${p0[k]}점 →</span> ${p1[k]}점</strong><em class="${p1[k]>p0[k]?"b":"n"}">${r[5](r[3])}${r[5](r[4])!==r[5](r[3])?" → "+r[5](r[4]):""}</em></div></div><div class="dai-bar"><i class="a" style="width:${p0[k]/25*100}%"></i><i class="b" style="width:${p1[k]/25*100}%"></i></div></li>`).join("")}
+     <li class="dai-tot"><div class="tg-top"><div><b>합계</b></div><div class="tg-r"><strong><span class="mp-a">${s0}점 →</span> ${s1}점</strong></div></div></li></ul>
+     <div class="pd-h mp-h2"><b>그래서 이렇게 바꿔요</b></div>
+     <ul class="tg-list">${rx.map((x,i)=>`<li><div class="tg-top"><div><small>${String(i+1).padStart(2,"0")} · ${x.k}</small><b>${x.t}</b><p class="dai-d">${x.d}</p></div><div class="tg-r"><strong>${x.v}</strong></div></div></li>`).join("")}</ul>
+     <div class="mp-act"><a class="btn sm" href="#s3" data-jump="#dDetail">분석 자세히</a><a class="mp-btn" href="#s4">설계안 보기</a></div>
+   </div>`;
    {const tg=gRows.filter(x=>x.amt>0),rd=tg.filter(x=>srcAt(x.g,c,P,0)>=x.amt).length,ok2=tg.filter(x=>x.r>=100).length,cutv=c.exNow-c.exPlan,u=(v,d,un)=>fmt(v,d)+un;
     const rows=[["월 지출",u(c.exNow,0,"만 원"),u(c.exPlan,0,"만 원"),cutv>.05?`월 ${fmt(cutv)}만 원 줄임`:"그대로",cutv>.05],
      ["월 저축",u(c.saveNow,0,"만 원"),u(c.bucketSum,0,"만 원"),c.bucketSum>c.saveNow?`월 ${fmt(c.bucketSum-c.saveNow)}만 원 더 모음`:"그대로",c.bucketSum>c.saveNow],
