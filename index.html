@@ -4501,7 +4501,7 @@ function calc(sk){syncBuckets(S);(S.expenses||[]).forEach(e=>{if(n(e.amt)<0)e.am
   const auto=buckets.length>0&&buckets.every(b=>!(b.pmt>0));
   const emG=S.goals.find(g=>n(g.amt)>0&&(g.src||[]).length===1&&g.src[0]==="cash");
   const emNeed=Math.max(0,Math.max(3*exPlan,emG?n(emG.amt):0)-B.liquid),emMo=emG&&n(emG.months)>0?n(emG.months):12;let emPmt=0;
-  const dbt=(S.debts||[]).filter(d=>n(d.bal)>0).sort((a,b)=>n(b.rate)-n(a.rate))[0],dRatio=sal>0?debtPay/sal*100:0,debtFirst=!!dbt&&auto&&(dRatio>=30||n(dbt.rate)>=5);let dPmt=0;
+  const dbt=(S.debts||[]).filter(d=>n(d.bal)>0).sort((a,b)=>n(b.rate)-n(a.rate))[0],dRatio=sal>0?debtPay/sal*100:0,debtFirst=!!dbt&&auto&&(dRatio>20||n(dbt.rate)>=5);let dPmt=0;
   const svBase=buckets.map(()=>0);let emBase=0,emNm="";if(auto&&S.mode!=="example"&&S.saving&&Array.isArray(S.saving.items)){const fi=re=>buckets.findIndex(b=>re.test(b.product+" "+b.name));
     S.saving.items.filter(x=>n(x.amt)>0).forEach(x=>{const k=svKind(String(x.name||""));if(k==="e"){emBase+=n(x.amt);emNm=emNm||String(x.name).trim();return}let i=k==="h"?fi(/청약/):k==="i"?fi(/ISA/i):k==="p"?fi(/연금|IRP/i):buckets.findIndex(b=>b.id==="bi_"+x.id);if(i<0&&k==="o")i=buckets.findIndex(b=>b.id==="b1");if(i<0)i=gi;svBase[i]+=n(x.amt)})}
   const svSum=svBase.reduce((a,x)=>a+x,0);
@@ -4726,7 +4726,7 @@ function updateCore(){
    mp.innerHTML=`<div class="pp-l">
      <div class="pnote b"><span class="pt">지출 다이어트</span><p>${dn.length?`${esc(nameS)}${dn.length>3?" 등":""} 지출을 줄여 매달 <b>${f1(cutT)}만 원</b>을 아껴요.`:"줄이는 지출 없이 지금 지출을 그대로 둬요."}</p></div>
      <div class="pnote v"><span class="pt">저축 재원</span><p>${Math.abs(c.saveNow+cutT+leftUse-c.bucketSum)>.5&&c.bucketSum+.05>=c.saveNow?(inc-c.exNow-c.saveNow<-.05?`지금은 버는 돈보다 쓰고 모으는 돈이 ${f1(c.exNow+c.saveNow-inc)}만 원 많아요. 줄인 지출 ${f1(cutT)}만 원으로 이 빈자리를 먼저 메우고, 저축 ${f1(c.saveNow)}만 원은 그대로 이어가요.`:`매달 <b>${f1(c.bucketSum)}만 원</b>을 모아요.`):c.bucketSum+.05<c.saveNow?`지금 지출로는 매달 <b>${f1(c.bucketSum)}만 원</b>까지 모을 수 있어요. 지금 적은 저축 ${f1(c.saveNow)}만 원보다 적으니 지출을 먼저 줄여야 해요.`:`기존 저축 ${f1(c.saveNow)}만${cutT>.05?` + 줄인 지출 ${f1(cutT)}만`:""}${leftUse>.05?` + 그냥 남던 돈 ${f1(leftUse)}만`:""} = 매달 <b>${f1(c.bucketSum)}만 원</b>을 모아요.`}</p></div>
-     ${DI.pmt>0?`<div class="pnote r"><span class="pt">빚 먼저 갚기</span><p>${DI.ratio>=30?`빚 갚는 돈이 월급의 ${f1(DI.ratio)}%로 많아요.`:`${esc(DI.d.name||"대출")} 이자가 ${f1(n(DI.d.rate))}%로 높아요.`} 남는 돈 중 <b>${f1(DI.pmt)}만 원</b>은 이자가 가장 비싼 ${esc(DI.d.name||"대출")}부터 더 갚아요.</p></div>`:""}
+     ${DI.pmt>0?`<div class="pnote r"><span class="pt">빚 먼저 갚기</span><p>${DI.ratio>20?`빚 갚는 돈이 월급의 ${f1(DI.ratio)}%로 안전 기준 20%를 넘어요.`:`${esc(DI.d.name||"대출")} 이자가 ${f1(n(DI.d.rate))}%로 높아요.`} 남는 돈 중 <b>${f1(DI.pmt)}만 원</b>은 이자가 가장 비싼 ${esc(DI.d.name||"대출")}부터 더 갚아요.</p></div>`:""}
      ${sells.length?`<div class="pnote r"><span class="pt">자산 정리</span><p>${sells.map(x=>esc(x[0].split(/[ ·(]/)[0])+" "+f1(x[1])+"만").join(", ")} 원을 팔아 비상금 통장으로 옮겨요. 한 번만 하면 돼요.</p></div>`:""}
    </div>
    <div class="pp-r">
