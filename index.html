@@ -4469,7 +4469,7 @@ function won(v){v=Math.round(v);const neg=v<0;v=Math.abs(v);let s;if(v>=10000){c
 const pct=(v,d=1)=>fmt(v,d)+"%";
 function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("on"),1800)}
 const OWNH=()=>/자가|내 집|아파트 소유|주택 소유/.test(String((S.profile||{}).housing||""))||(S.assets||[]).some(a=>a.type==="use"&&n(a.amt)>0&&/자가|아파트|주택|부동산|오피스텔|빌라/.test(a.name||"")&&!/보증금|전세|월세/.test(a.name||""));
-const aType=nm=>{nm=String(nm||"");return /자가|아파트|주택|부동산|오피스텔|빌라|토지|상가|보증금|전세|월세|집/.test(nm)?"use":/연금|IRP|퇴직/i.test(nm)?"retire":/주식|펀드|ETF|코인|비트|채권/i.test(nm)?"risk":/예금|적금|청약|발행어음/.test(nm)?"safe":/입출금|CMA|파킹|통장|현금|비상/i.test(nm)?"liquid":""};
+const aType=nm=>{nm=String(nm||"");return /자동차|차량|승용차|수입차|경차|중형차|대형차|SUV|오토바이/i.test(nm)?"use":/자가|아파트|주택(?!청약)|부동산|오피스텔|빌라|토지|상가|보증금|전세|월세|집/.test(nm)?"use":/연금|IRP|퇴직|노란우산|공제회/i.test(nm)?"retire":/주식|펀드|ETF|코인|비트|채권/i.test(nm)?"risk":/예금|적금|청약|발행어음|ISA/i.test(nm)?"safe":/입출금|CMA|파킹|통장|현금|비상/i.test(nm)?"liquid":""};
 const TYPES={liquid:"입출금·비상금",safe:"예금·적금",risk:"주식·코인",retire:"연금",use:"집·보증금"};
 const SCEN={stable:{name:"안정안",cut:.6,adj:-1,vol:"낮음",desc:"생활 변화 부담을 줄이고 원금 안정성을 우선합니다."},balanced:{name:"균형안",cut:1,adj:0,vol:"중간",desc:"보고서 제안안. 지출 절감과 통장별 나누기를 그대로 적용합니다."},aggressive:{name:"가속안",cut:1.35,adj:1,vol:"높음",desc:"지출을 더 줄이고 성장 자산 기대수익을 높여 목표를 앞당깁니다."}};
 const growthRe=/ISA|연금|ETF|펀드/i;
@@ -4489,8 +4489,8 @@ function syncBuckets(s){if(!s||s.mode==="example"||!s.saving||!Array.isArray(s.s
   const want=oth.slice(b1?1:0).map(x=>"bi_"+x.id);
   s.buckets=s.buckets.filter(b=>!/^bi_/.test(b.id)||want.includes(b.id));
   oth.slice(b1?1:0).forEach(x=>{const id="bi_"+x.id;let b=s.buckets.find(y=>y.id===id);if(!b){b={id,name:"안전자산",product:"",pmt:0,rate:3.5,link:"",months:""};const k=s.buckets.findIndex(y=>y.id==="b1");s.buckets.splice(k>=0?k+1:0,0,b)}b.product=String(x.name).trim();b.rate=svRate(b.product);if(/주식|ETF|코인|펀드|해외|비트/i.test(b.product)){b.name="투자";b.rate=6}else b.name="안전자산"})}
-let _gDef=[];
-const gSrc=g=>{const s0=g&&g.src||[];if(s0.length||S.mode==="example")return s0;if(/비상/.test(g.name||""))return ["cash"];return _gDef};
+let _gDef=[],_gDefNP=[];
+const gSrc=g=>{const s0=g&&g.src||[];if(s0.length||S.mode==="example")return s0;if(/비상/.test(g.name||""))return ["cash"];return /노후|은퇴|연금/.test(g.name||"")?_gDef:_gDefNP};
 function calc(sk){syncBuckets(S);(S.expenses||[]).forEach(e=>{if(n(e.amt)<0)e.amt=-n(e.amt);if(n(e.target)<0)e.target=-n(e.target);if(e.target!==""&&e.target!=null&&n(e.target)===0)e.target=""});(S.saving&&S.saving.items||[]).forEach(x=>{if(n(x.amt)<0)x.amt=-n(x.amt)});(S.assets||[]).forEach(a=>{if(n(a.amt)<0)a.amt=-n(a.amt)});if(n(S.income.bonus)<0)S.income.bonus=-n(S.income.bonus);if(S.saving&&Array.isArray(S.saving.items)&&(S.saving.items.length||S.mode!=="example"))S.saving.current=S.saving.items.reduce((t,x)=>t+n(x.amt),0);
   sk=sk||S.scenario||"balanced";const sc=SCEN[sk]||SCEN.balanced;
   const sal=n(S.income.salary),bonus=n(S.income.bonus);
@@ -4554,7 +4554,7 @@ function calc(sk){syncBuckets(S);(S.expenses||[]).forEach(e=>{if(n(e.amt)<0)e.am
   const bucketSum=sum(buckets,b=>b.pmt);
   const linked=new Set(S.buckets.map(b=>b.link).filter(Boolean));
   const restAmt=S.assets.filter(a=>["safe","risk","retire"].includes(a.type)&&!linked.has(a.id)).reduce((x,a)=>x+after[a.id],0)+autoSafe;
-  _gDef=buckets.filter(b=>b.pmt>0&&!b.debt&&(b.id!=="bem"||emNeed<=0)).map(b=>b.id).concat(restAmt>0?["rest"]:[]);
+  _gDef=buckets.filter(b=>b.pmt>0&&!b.debt&&(b.id!=="bem"||emNeed<=0)).map(b=>b.id).concat(restAmt>0?["rest"]:[]);_gDefNP=buckets.filter(b=>b.pmt>0&&!b.debt&&(b.id!=="bem"||emNeed<=0)&&!/연금|IRP|노란우산/i.test(b.product+" "+b.name)).map(b=>b.id).concat(restAmt>0?["rest"]:[]);if(!_gDefNP.length)_gDefNP=_gDef;
   const dpAfter=dPmt>0?Math.max(0,debtPay-payOf(dbt)):debtPay,R=(liq,ex,sv,risk,inv,dp)=>({em:ex>0?liq/ex:0,save:sal>0?sv/sal*100:0,debt:sal>0?(dp==null?debtPay:dp)/sal*100:0,risk:inv>0?risk/inv*100:0});
   return {dx:{emX,redir,goalAdd,svCut,autoSells,riskNow,cut:Math.round((1-AUTOCUT)*100),realU},dInfo:{d:dbt,ratio:dRatio,on:debtFirst,pmt:dPmt},liqAfter:B.liquid+emAdd,sellSafe:autoSafe,sellAll:sellTotal+autoSafe,auto,emPmt,emNeed,emAdd,sk,sc,sal,bonus,exNow,exPlan,fixNow,varNow,fixPlan,varPlan,saveNow,debtPay,debtBal,A,B,totalA,net,sellTotal,after,capacity,buckets,bucketSum,restAmt,planAmt,
     rNow:R(A.liquid,exNow,saveNow,A.risk,A.safe+A.risk+A.retire),rAfter:R(B.liquid+emAdd,exPlan,bucketSum,B.risk,B.safe+B.risk+B.retire+(bucketSum-dPmt)*12,dpAfter),rSold:B.safe+B.risk+B.retire>0?B.risk/(B.safe+B.risk+B.retire)*100:0,unalloc:sal-exNow-saveNow};
@@ -4568,8 +4568,9 @@ function project(c,H,scale){
   const rr=n(S.restRate)/100/12;let rb=c.restAmt;const rest=[rb];for(let m=1;m<=H;m++){rb*=1+rr;rest.push(rb)}
   return {series,rest};
 }
-function srcAt(g,c,P,m){let v=0;m=Math.max(0,Math.round(m));gSrc(g).forEach(k=>{if(k==="cash"){v+=c.B.liquid;const e=P.series.find(x=>x.id==="bem");if(e)v+=e.arr[Math.min(m,e.arr.length-1)]}else if(k==="rest")v+=P.rest[Math.min(m,P.rest.length-1)];else{const s=P.series.find(x=>x.id===k);if(s)v+=s.arr[Math.min(m,s.arr.length-1)]}});return v}
-function srcNow(g,c){let v=0;gSrc(g).forEach(k=>{if(k==="cash")v+=c.A.liquid;else if(k==="rest")v+=c.restAmt+c.sellTotal*0;else{const b=S.buckets.find(x=>x.id===k);if(b&&b.link){const a=S.assets.find(x=>x.id===b.link);if(a)v+=n(a.amt)}}});return v}
+function gRes(g){if(!g||S.mode==="example")return 0;const ks=gSrc(g);if(!ks.length)return 0;const gs=S.goals.filter(x=>n(x.amt)>0),i0=S.goals.indexOf(g);return sum(gs.filter(x=>x!==g&&(n(x.months)<n(g.months)||(n(x.months)===n(g.months)&&S.goals.indexOf(x)<i0))&&gSrc(x).some(k=>ks.includes(k))),x=>n(x.amt))}
+function srcAt(g,c,P,m){let v=0;m=Math.max(0,Math.round(m));gSrc(g).forEach(k=>{if(k==="cash"){v+=c.B.liquid;const e=P.series.find(x=>x.id==="bem");if(e)v+=e.arr[Math.min(m,e.arr.length-1)]}else if(k==="rest")v+=P.rest[Math.min(m,P.rest.length-1)];else{const s=P.series.find(x=>x.id===k);if(s)v+=s.arr[Math.min(m,s.arr.length-1)]}});return Math.max(0,v-gRes(g))}
+function srcNow(g,c){let v=0;gSrc(g).forEach(k=>{if(k==="cash")v+=c.A.liquid;else if(k==="rest")v+=c.restAmt+c.sellTotal*0;else{const b=S.buckets.find(x=>x.id===k);if(b&&b.link){const a=S.assets.find(x=>x.id===b.link);if(a)v+=n(a.amt)}}});return Math.max(0,v-gRes(g))}
 function reachMonth(g,c,P){const a=n(g.amt);if(a<=0)return null;for(let m=0;m<P.rest.length;m++)if(srcAt(g,c,P,m)>=a)return m;return Infinity}
 function st(kind,v){if(kind==="em")return v<3?"bad":v<=6?"good":"warn";if(kind==="save")return v<30?"bad":v<50?"warn":"good";if(kind==="debt")return v<=20?"good":v<=30?"warn":"bad";if(kind==="risk")return v<=30?"good":v<=50?"warn":"bad"}
 const SL={good:"적정",warn:"주의",bad:"위험"};
@@ -4759,6 +4760,7 @@ function updateCore(){
      <div class="pnote v"><span class="pt">저축 재원</span><p>${c.exPlan>inc+.05?`생활비를 줄여도 버는 돈보다 매달 <b>${f1(c.exPlan-inc)}만 원</b>이 더 나가요. 지금은 저축보다 월세·보험·대출 같은 고정지출을 먼저 다시 봐야 해요.`:Math.abs(c.saveNow+cutT+leftUse-c.bucketSum)>.5&&c.bucketSum+.05>=c.saveNow?(inc-c.exNow-c.saveNow<-.05?`지금은 버는 돈보다 쓰고 모으는 돈이 ${f1(c.exNow+c.saveNow-inc)}만 원 많아요. 줄인 지출 ${f1(cutT)}만 원으로 이 빈자리를 먼저 메우고, 저축 ${f1(c.saveNow)}만 원은 그대로 이어가요.`:`매달 <b>${f1(c.bucketSum)}만 원</b>을 모아요.`):c.bucketSum+.05<c.saveNow?`지금은 버는 돈보다 쓰고 모으는 돈이 ${f1(Math.max(0,c.exNow+c.saveNow-inc))}만 원 많아요. 생활비를 줄여도 매달 <b>${f1(c.bucketSum)}만 원</b>까지만 모을 수 있어서, 저축 ${f1(c.saveNow)}만 원을 ${f1(c.bucketSum)}만 원으로 낮춰요${((c.dx||{}).svCut||[]).some(x=>/주식|ETF|코인|펀드|해외|비트/i.test(x[0]))?". 주식·코인 적립부터 줄여요":""}.`:`기존 저축 ${f1(c.saveNow)}만${cutT>.05?` + 줄인 지출 ${f1(cutT)}만`:""}${leftUse>.05?` + 그냥 남던 돈 ${f1(leftUse)}만`:""} = 매달 <b>${f1(c.bucketSum)}만 원</b>을 모아요.`}</p></div>
      ${DI.pmt>0?`<div class="pnote r"><span class="pt">빚 먼저 갚기</span><p>${DI.ratio>20?`빚 갚는 돈이 월급의 ${f1(DI.ratio)}%로 안전 기준 20%를 넘어요.`:`${esc(DI.d.name||"대출")} 이자가 ${f1(n(DI.d.rate))}%로 높아요.`} 남는 돈 중 <b>${f1(DI.pmt)}만 원</b>은 이자가 가장 비싼 ${esc(DI.d.name||"대출")}부터 더 갚아요.</p></div>`:""}
      ${sells.length?`<div class="pnote r"><span class="pt">자산 정리</span><p>${sells.map(x=>esc(x[0].split(/[ ·(]/)[0])+" "+f1(x[1])+"만").join(", ")} 원을 팔아 ${c.sellTotal>0&&c.sellSafe>0?`${f1(c.sellTotal)}만 원은 비상금 통장으로, ${f1(c.sellSafe)}만 원은 예금으로`:c.sellTotal>0?"비상금 통장으로":"예금으로"} 옮겨요. 한 번만 하면 돼요.</p></div>`:""}
+     ${DX.realU&&(n(S.profile.age)>=55||/은퇴/.test(S.profile.stage||""))?(()=>{const age=n(S.profile.age),ret=/은퇴기|은퇴 \(|^은퇴/.test((S.profile.stage||"")+" "+(S.profile.job||""))||age>=65,yl=Math.max(0,60-age);return `<div class="pnote v"><span class="pt">은퇴 준비</span><p>${ret?`이미 은퇴하셨다면 월급 대신 연금이 수입이에요. 은퇴 뒤에는 매달 모으기보다 모아 둔 예금을 언제 얼마씩 꺼내 쓸지 순서를 정하는 게 먼저예요.${c.sal+c.bonus<c.exNow?` 지금은 연금보다 <b>${f1(c.exNow-c.sal-c.bonus)}만 원</b> 더 써서, 그만큼 예금이 줄어들어요.`:""}`:`${yl>0?`정년까지 약 <b>${yl}년</b> 남았어요. `:""}퇴직 뒤에는 월급이 끊겨요. 그 전에 대출을 끝내고, 국민연금을 받기 전까지 쓸 생활비를 따로 모아 두세요. 이 설계는 지금 월급이 계속된다고 보고 계산했어요.`}</p></div>`})():""}
    </div>
    <div class="pp-r">
      ${DX.realU?(()=>{const r=c.rNow,ok=(k,v)=>k==="em"?v>=3:k==="save"?v>=50:k==="debt"?v<=20:v<=30,allOk=ok("em",r.em)&&ok("save",r.save)&&ok("debt",r.debt)&&ok("risk",r.risk),rw=(no,k,lb,v,u,act)=>`<li class="dxr"><span class="dx-no">${no}</span><span class="dx-st ${ok(k,v)?"g":"w"}">${ok(k,v)?"양호":"주의"}</span><span class="dx-l">${lb}<em>${f1(v)}${u}</em></span><span class="dx-a">${act}</span></li>`,GA=DX.goalAdd||[];
