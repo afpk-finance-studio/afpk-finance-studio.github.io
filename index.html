@@ -2526,6 +2526,7 @@ body.wpg .view .vhead.phead{margin-bottom:8px!important}
 .dtt{background:#f9fafb}.dtt .dtv>b{font-size:19px}
 @media (max-width:700px){.dtr{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px 14px;padding:12px 14px}.dtr .dtn{grid-column:1/-1}.dth .dtn,.dth span:first-child{display:none}}
 .rm-fade{clip-path:inset(0 -100vmax)!important}
+.rm-fade{border-image:none!important;position:relative}.rm-fade:before{content:"";position:absolute;top:0;bottom:0;left:50%;width:100vw;margin-left:-50vw;background:linear-gradient(180deg,#000 0%,#0b0b0d 14%,#555556 38%,#969799 56%,#c6c8ca 72%,#e3e5e7 86%,#f2f4f6 100%);pointer-events:none}
 
 /* v68 */
 .cgo{margin-top:6px;padding:0!important;height:auto!important;color:#3182f6!important;font-weight:700}
@@ -4467,7 +4468,9 @@ const fmt=(v,d=0)=>{const r=Math.round(v*10**d)/10**d;return r.toLocaleString("k
 function won(v){v=Math.round(v);const neg=v<0;v=Math.abs(v);let s;if(v>=10000){const e=Math.floor(v/10000),m=v%10000;s=e+"억"+(m?" "+fmt(m)+"만":"")}else s=fmt(v)+"만";return (neg?"−":"")+s+" 원"}
 const pct=(v,d=1)=>fmt(v,d)+"%";
 function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("on"),1800)}
-const TYPES={liquid:"입출금·비상금",safe:"예금·적금",risk:"주식·코인",retire:"연금",use:"보증금 등"};
+const OWNH=()=>/자가|내 집|아파트 소유|주택 소유/.test(String((S.profile||{}).housing||""))||(S.assets||[]).some(a=>a.type==="use"&&n(a.amt)>0&&/자가|아파트|주택|부동산|오피스텔|빌라/.test(a.name||"")&&!/보증금|전세|월세/.test(a.name||""));
+const aType=nm=>{nm=String(nm||"");return /자가|아파트|주택|부동산|오피스텔|빌라|토지|상가|보증금|전세|월세|집/.test(nm)?"use":/연금|IRP|퇴직/i.test(nm)?"retire":/주식|펀드|ETF|코인|비트|채권/i.test(nm)?"risk":/예금|적금|청약|발행어음/.test(nm)?"safe":/입출금|CMA|파킹|통장|현금|비상/i.test(nm)?"liquid":""};
+const TYPES={liquid:"입출금·비상금",safe:"예금·적금",risk:"주식·코인",retire:"연금",use:"집·보증금"};
 const SCEN={stable:{name:"안정안",cut:.6,adj:-1,vol:"낮음",desc:"생활 변화 부담을 줄이고 원금 안정성을 우선합니다."},balanced:{name:"균형안",cut:1,adj:0,vol:"중간",desc:"보고서 제안안. 지출 절감과 통장별 나누기를 그대로 적용합니다."},aggressive:{name:"가속안",cut:1.35,adj:1,vol:"높음",desc:"지출을 더 줄이고 성장 자산 기대수익을 높여 목표를 앞당깁니다."}};
 const growthRe=/ISA|연금|ETF|펀드/i;
 const css=k=>getComputedStyle(document.documentElement).getPropertyValue(k).trim();
@@ -4571,7 +4574,7 @@ function reachMonth(g,c,P){const a=n(g.amt);if(a<=0)return null;for(let m=0;m<P.
 function st(kind,v){if(kind==="em")return v<3?"bad":v<=6?"good":"warn";if(kind==="save")return v<30?"bad":v<50?"warn":"good";if(kind==="debt")return v<=20?"good":v<=30?"warn":"bad";if(kind==="risk")return v<=30?"good":v<=50?"warn":"bad"}
 const SL={good:"적정",warn:"주의",bad:"위험"};
 function tax(c){const annual=n(S.profile.annual),own=b=>S.mode==="example"||b.pmt>0;const pens=c.buckets.filter(b=>own(b)&&/연금/.test(b.product+b.name));const pensYear=sum(pens,b=>b.pmt)*12;const pensRate=annual>0&&annual<=5500?16.5:13.2;const hous=c.buckets.filter(b=>own(b)&&/청약/.test(b.product));const housYear=sum(hous,b=>b.pmt)*12;const housOk=annual>0&&annual<=7000&&S.profile.homeless==="예";const isa=c.buckets.filter(b=>own(b)&&/ISA/i.test(b.product));
-  return {annual,pensYear,pensRate,pensCredit:Math.min(pensYear,600)*pensRate/100,housYear,housOk,housDed:housOk?Math.min(housYear,300)*.4:0,isaYear:sum(isa,b=>b.pmt)*12,hasPens:pens.length>0,hasHous:hous.length>0,hasIsa:isa.length>0}}
+  return {annual,pensYear,pensRate,pensCredit:(()=>{const irp=Math.min(pensYear,sum((S.saving&&S.saving.items)||[],x=>/IRP|퇴직연금/i.test(x.name||"")?n(x.amt):0)*12);return Math.min(Math.min(pensYear-irp,600)+irp,900)})()*pensRate/100,housYear,housOk,housDed:housOk?Math.min(housYear,300)*.4:0,isaYear:sum(isa,b=>b.pmt)*12,hasPens:pens.length>0,hasHous:hous.length>0,hasIsa:isa.length>0}}
 const mlabel=m=>m==null?"-":m===Infinity?"기간 내 미달":m===0?"즉시":m<12?m+"개월":Math.floor(m/12)+"년"+(m%12?" "+m%12+"개월":"");
 
 /* ---------- charts ---------- */
@@ -4654,7 +4657,7 @@ const si=(p,v,opts,label)=>`<select class="in" data-p="${p}" id="f-${p.replace(/
 const fld=(l,h)=>`<div class="field"><label>${l}</label>${h}</div>`;
 function migrate(s){if(!s.saving)s.saving={current:0,note:""};if(!s.days)s.days={card:s.mode==="blank"?"":14};if(!s.exec)s.exec={payday:25,moveday:26,start:""};
   if(!Array.isArray(s.saving.items))s.saving.items=n(s.saving.current)>0?[{id:uid(),name:s.saving.note||"현재 저축",amt:n(s.saving.current)}]:[];
-  if(s.mode!=="example"&&!s.initRows){s.initRows=true;[["liquid","입출금·CMA 통장"],["safe","예금·적금"],["risk","주식·펀드·코인"],["retire","연금저축·IRP"],["use","전월세 보증금"]].forEach(([t,nm])=>{if(!s.assets.some(a=>a.type===t))s.assets.push({id:uid(),name:nm,type:t,amt:0})});
+  if(s.mode!=="example"&&!s.initRows){s.initRows=true;[["liquid","입출금·CMA 통장"],["safe","예금·적금"],["risk","주식·펀드·코인"],["retire","연금저축·IRP"],["use","집 (전월세 보증금·자가)"]].forEach(([t,nm])=>{if(!s.assets.some(a=>a.type===t))s.assets.push({id:uid(),name:nm,type:t,amt:0})});
     if(!s.saving.items.length)s.saving.items=[{id:uid(),name:"적금",amt:0},{id:uid(),name:"주택청약",amt:0},{id:uid(),name:"ISA·펀드",amt:0}]}
   syncBuckets(s);return s}
 function payOf(d){const p=d.pay;if(p!==""&&p!=null&&n(p)>0)return n(p);const b=n(d.bal),mo=n(d.months),r=n(d.rate)/1200;if(b<=0||mo<=0)return 0;return Math.round((r?b*r/(1-Math.pow(1+r,-mo)):b/mo)*10)/10}
@@ -4913,13 +4916,13 @@ function updateCore(){
     const cut=c.exNow-c.exPlan,todo=[];if(c.rNow.em<3)todo.push(["비상금부터 채우기","s4"]);if(cut>0)todo.push([`지출 월 ${fmt(cut)}만 원 줄이기`,"s4"]);if(c.rNow.risk>30&&c.sellAll>0)todo.push([`주식·코인 ${fmt(c.sellAll)}만 원 정리`,"s4"]);if(c.bucketSum>0)todo.push([`월급 다음 날(${S.exec.moveday}일) 자동이체`,"s5"]);
     const GR=gRows.filter(x=>x.amt>0),okN=GR.filter(x=>x.reach!=null&&x.reach!==Infinity&&x.reach<=n(x.g.months)).length,late=GR.filter(x=>!(x.reach!=null&&x.reach!==Infinity&&x.reach<=n(x.g.months)));
     const sd0=startDate(),ym=m=>{const d=new Date(sd0);d.setMonth(d.getMonth()+m);return d.getFullYear()+"."+String(d.getMonth()+1).padStart(2,"0")};
-    const grow=GR.map(x=>{const mo=n(x.g.months),r=x.reach,inf=r==null||r===Infinity,ok=!inf&&r<=mo,p=Math.min(100,x.r||0);return `<div class="db-g ${ok?"ok":"late"}"><div class="db-gt"><b>${esc(x.g.name)}</b><small>${won(x.amt)} · 기한 ${ym(mo)}</small></div><div class="db-gb"><i style="width:${p.toFixed(1)}%"></i></div><em>${fmt(Math.min(999,x.r||0),0)}%</em></div>`}).join("");
+    const grow=GR.map(x=>{const mo=n(x.g.months),r=x.reach,inf=r==null||r===Infinity,ok=!inf&&r<=mo,p=Math.min(100,x.r||0);return `<div class="db-g ${ok?"ok":"late"}"><div class="db-gt"><b>${esc(x.g.name)}</b><small>${won(x.amt)} · 기한 ${ym(mo)}</small></div><div class="db-gb"><i style="width:${p.toFixed(1)}%"></i></div><em>${fmt(Math.min(100,x.r||0),0)}%</em></div>`}).join("");
     const p0=pt(c.rNow.em,c.rNow.save,c.rNow.debt,c.rNow.risk),p1=pt(c.rAfter.em,c.rAfter.save,c.rAfter.debt,c.rAfter.risk);
     const srow=["비상금","저축","빚","투자 위험"].map((t,i)=>`<div class="db-sr"><span>${t}</span><div class="db-sb"><i class="a" style="width:${p0[i]*4}%"></i><i class="b" style="width:${p1[i]*4}%"></i></div><b>${p0[i]} → ${p1[i]}</b></div>`).join("");
     const stk=(arr,tot,nol)=>{tot=tot||1;return `<div class="db-stk">${arr.filter(x=>x[0]>0).map(x=>`<i style="flex:${x[0]};background:${x[2]}" title="${x[1]} ${fmt(x[0])}만"></i>`).join("")}</div>`+(nol?"":`<div class="db-stl">${arr.map(x=>`<span><i style="background:${x[2]}"></i>${x[1]} <b>${fmt(x[0],x[0]%1?1:0)}만</b> <small>${pct(x[0]/tot*100,0)}</small></span>`).join("")}</div>`)};
     const ex=S.expenses.map(e=>({nm:e.name,a:n(e.amt),p:Math.round(n(c.planAmt?c.planAmt(e):e.amt)),g:e.group})).filter(e=>e.a>0).sort((x,y)=>y.a-x.a).slice(0,5),exm=Math.max(1,...ex.map(e=>e.a));
     const top5=ex.map((e,i)=>`<div class="db-t5"><span class="db-rk">${i+1}</span><span class="db-tn">${esc(e.nm)}<small>${e.g==="fixed"?"고정":"변동"}</small></span><div class="db-tb"><i style="width:${(e.a/exm*100).toFixed(1)}%"></i></div><b>${dv(fmt(e.a)+"만 원",fmt(e.p)+"만 원")}</b><em>${pct(e.a/(inc||1)*100,0)}</em></div>`).join("")||`<p class="db-none">2단계에서 지출을 적으면 나와요</p>`;
-    const asx=[[c.A.liquid,"입출금·CMA","#3d6af2"],[c.A.safe,"예금·적금","#2f8f5b"],[c.A.risk,"주식·코인","#f06872"],[c.A.retire,"연금","#8b6cff"],[Math.max(0,c.totalA-finNow),"보증금 등","#d9dde3"]];
+    const asx=[[c.A.liquid,"입출금·CMA","#3d6af2"],[c.A.safe,"예금·적금","#2f8f5b"],[c.A.risk,"주식·코인","#f06872"],[c.A.retire,"연금","#8b6cff"],[Math.max(0,c.totalA-finNow),OWNH()?"내 집":"전월세 보증금","#d9dde3"]];const asv=asx.filter(x=>x[0]>0),hn=OWNH()?"집":"보증금";
     $("#dDash").innerHTML=`<div class="db-top"><h3>${D} ${nm}님 대시보드</h3><small>2단계에 적은 내용 기준이에요</small><button type="button" class="db-rc" data-rc><span class="db-rc-i" aria-hidden="true"></span>내 돈 영수증 받기</button></div>
      <div class="db-tabs" role="tablist"><button type="button" class="on" data-dbt="now">지금</button><button type="button" data-dbt="plan">설계안 실행 후</button></div>
      <div class="db-grid"><div class="db-main">
@@ -4943,7 +4946,7 @@ function updateCore(){
      </div></div>
      <div class="db-row2">
       <div class="dbc"><div class="dbc-h"><b>재무목표 <span>›</span></b><small>목표 ${GR.length}개</small></div><div class="db-lab">기한 안에 모이는 목표</div><div class="db-v sm">${okN} / ${GR.length}개</div><p class="db-s">${late.length?`${esc(late[0].g.name)}은 지금 계획으로 기한을 맞추기 어려워요`:"설계안대로 모으면 모두 기한 안에 모여요"}</p><div class="db-gl">${grow}</div></div>
-      <div class="dbc"><div class="dbc-h"><b>가진 돈 구성 <span>›</span></b><small>2단계 '지금 가진 돈' 기준</small></div><div class="db-lab">총자산</div><div class="db-v sm">${fmt(c.totalA)}만 원</div><p class="db-s">${finNow&&c.A.risk/finNow>.3?`보증금을 뺀 돈의 <em class="r">${pct(c.A.risk/finNow*100,0)}</em>가 주식·코인이에요`:`보증금을 뺀 굴리는 돈은 <em class="g">${fmt(finNow)}만 원</em>이에요`}</p>${stk(asx,c.totalA,1)}<div class="db-asr">${asx.map(x=>`<div class="db-r"><i class="db-dot" style="background:${x[2]}"></i><span class="db-l">${x[1]}</span><small class="db-pc">${pct(x[0]/(c.totalA||1)*100,0)}</small><b>${fmt(x[0])}만 원</b></div>`).join("")}${c.debtBal>0?`<div class="db-r db-debt"><i class="db-dot" style="background:#191f28"></i><span class="db-l">빚 (갚을 돈)</span><b>−${fmt(c.debtBal)}만 원</b></div>`:""}</div></div>
+      <div class="dbc"><div class="dbc-h"><b>가진 돈 구성 <span>›</span></b><small>2단계 '지금 가진 돈' 기준</small></div><div class="db-lab">총자산</div><div class="db-v sm">${fmt(c.totalA)}만 원</div><p class="db-s">${finNow&&c.A.risk/finNow>.3?`${hn}을 뺀 돈의 <em class="r">${pct(c.A.risk/finNow*100,0)}</em>가 주식·코인이에요`:(c.totalA-finNow>0?`${hn}을 뺀 굴리는 돈은 <em class="g">${fmt(finNow)}만 원</em>이에요`:`바로 쓰거나 굴릴 수 있는 돈이에요`)}</p>${stk(asx,c.totalA,1)}<div class="db-asr">${asv.map(x=>`<div class="db-r"><i class="db-dot" style="background:${x[2]}"></i><span class="db-l">${x[1]}</span><small class="db-pc">${pct(x[0]/(c.totalA||1)*100,0)}</small><b>${fmt(x[0])}만 원</b></div>`).join("")}${c.debtBal>0?`<div class="db-r db-debt"><i class="db-dot" style="background:#191f28"></i><span class="db-l">빚 (갚을 돈)</span><b>−${fmt(c.debtBal)}만 원</b></div>`:""}</div></div>
      </div>`;
     const dd=$("#dDash");dd.classList.toggle("plan",window.__dbt==="plan");dd.querySelectorAll("[data-dbt]").forEach(b=>{b.classList.toggle("on",b.dataset.dbt===(window.__dbt||"now"));b.onclick=()=>{window.__dbt=b.dataset.dbt;dd.classList.toggle("plan",b.dataset.dbt==="plan");dd.querySelectorAll("[data-dbt]").forEach(x=>x.classList.toggle("on",x===b))}});}
    const ok=R.filter(r=>st(r[2],r[6],r[7],r[8])==="good"),ng=R.filter(r=>st(r[2],r[6],r[7],r[8])!=="good");
@@ -5232,7 +5235,7 @@ function triggers(c){const m=S.mon,em=c.B.liquid,EX=S.mode==="example",isa=c.buc
     {n:"대출 완납",cy:loan?`${n(loan.months)}개월 차`:"해당 시",c:loan?`${esc(loan.name)} 잔여 ${n(loan.months)}개월 상환 완료`:"부채 상환 완료",a:loan?`매달 갚던 ${fmt(payOf(loan))}만 원을 ${mn}${/[가-힣]/.test(mn.slice(-1))&&(mn.slice(-1).charCodeAt(0)-44032)%28&&(mn.slice(-1).charCodeAt(0)-44032)%28!==8?"으로":"로"} 돌려요 (월 저축 ${fmt(c.bucketSum,1)} → ${fmt(c.bucketSum+payOf(loan),1)}만 원)`:"갚던 돈을 저축으로 돌려요",f:!!loan&&n(loan.months)>0&&n(m.elapsed)>=n(loan.months)},
     {n:"비상금 복구",cy:"수시",c:`비상금이 ${fmt(refill)}만 원(지금의 70%) 아래로 감소`,a:`${mn} 납입을 잠시 줄이고 그 돈을 비상금 통장에 먼저 채워요`,f:em>0&&n(m.cma)<refill},
     {n:"연말정산",cy:"매년 2월",c:"연말정산 환급금 수령",a:pens?`연금 세액공제 환급금 약 ${fmt(t.pensCredit,1)}만 원을 ${mn}에 한 번에 넣어요`:`환급금은 ${DF?"빚 상환":"비상금이나 "+mn}에 한 번에 넣어요`,f:m.yearend==="true"},
-    {n:"주거·라이프",cy:"이벤트",c:"전세 만기·이사·청약 당첨",a:`${mn}에 모은 돈으로 보증금·계약금을 내고, 남은 돈은 다시 목표 통장으로 돌려요`,f:m.housing==="true"}]}
+    {n:"주거·라이프",cy:"이벤트",c:OWNH()?(S.debts.some(d=>n(d.bal)>0)?"이사·집 수리·대출 금리 변동":"이사·집 수리"):"전세 만기·이사·청약 당첨",a:OWNH()?`${mn}에 모은 돈으로 이사·수리 비용을 내고, ${S.debts.some(d=>n(d.bal)>0)?"대출 금리가 오르면 추가 상환을 먼저 늘려요":"남은 돈은 다시 목표 통장으로 돌려요"}`:`${mn}에 모은 돈으로 보증금·계약금을 내고, 남은 돈은 다시 목표 통장으로 돌려요`,f:m.housing==="true"}]}
   return [
     {n:"자산 이탈",cy:"분기",c:"ISA 주식 ETF 비중이 목표 대비 ±10%p 이상 이탈",a:"신규 납입금을 비중이 줄어든 자산에 집중 투입",f:Math.abs(n(m.isaDev))>=10},
     {n:"시장 폭락",cy:"수시",c:"S&P500·KOSPI 전고점 대비 20% 이상 하락",a:`비상예비자금의 20%(${fmt(em*.2)}만 원)를 ISA로 옮겨 지수 ETF 분할 매수`,f:n(m.drop)>=20},
@@ -5407,6 +5410,7 @@ document.addEventListener("input",e=>{const el=e.target;
   if(typeof v==="number"&&v<0&&/^(income\.|expenses\.\d+\.(amt|target|day)|saving\.items\.\d+\.amt|assets\.\d+\.amt|debts\.\d+\.(bal|pay)|buckets\.\d+\.pmt|goals\.\d+\.amt|days\.)/.test(el.dataset.p)){v=-v;clearTimeout(window.__nt);window.__nt=setTimeout(()=>{el.value=v;toast("금액은 빼기(−) 없이 적어 주세요. "+fmt(v)+"(으)로 바꿨어요")},700)}
   if(typeof v==="number"&&v>=100000&&/^(income\.|expenses\.\d+\.(amt|target)|saving\.items\.\d+\.amt|debts\.\d+\.pay|buckets\.\d+\.pmt)/.test(el.dataset.p)){v=Math.round(v/1000)/10;clearTimeout(window.__wt);window.__wt=setTimeout(()=>{el.value=v;toast("원 단위로 적으신 것 같아 "+fmt(v)+"만 원으로 바꿨어요")},700)}setPath(el.dataset.p,v);if(/^mon\./.test(el.dataset.p))S.mon._t=1;if(el.dataset.p==="income.bonusY")S.income.bonus=n(v)/12;
   if(/^buckets\.\d+\.pmt|^goals/.test(el.dataset.p))S.gj=null;
+  {const m=el.dataset.p.match(/^assets\.(\d+)\.name$/);if(m){const t=aType(v);if(t&&S.assets[+m[1]]){S.assets[+m[1]].type=t;const se=document.querySelector(`[data-p="assets.${m[1]}.type"]`);if(se)se.value=t}}}
   {const m=el.dataset.p.match(/^expenses\.(\d+)\.(name|amt|group)$/);if(m){const d=document.querySelector(`[data-p="expenses.${m[1]}.day"]`),e=S.expenses[+m[1]];const lb=d&&d.closest(".row")&&d.closest(".row").querySelector(".lbl");if(lb&&e){lb.firstChild.nodeValue=(e.name||"고정지출")+" 나가는 날";const sm=lb.querySelector("small");if(sm)sm.textContent=fmt(n(e.amt))+"만 원"}}}
   save();if(el.tagName==="SELECT"){renderInputs();update();return}
   clearTimeout(tmr);tmr=setTimeout(update,120)});
