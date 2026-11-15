@@ -4723,7 +4723,7 @@ const o=(k,h)=>document.querySelectorAll(`[data-o="${k}"]`).forEach(el=>el.inner
 let horizon=72,cfMode="now",svMode="now";
 function kpi(k,v,unit,sub,status,tip){return `<div class="kpi" tabindex="0"><div class="k">${k}${status?`<span class="pill ${status}">${SL[status]}</span>`:""}</div><div class="v">${v}<small>${unit}</small></div><div class="d">${sub}</div>${tip?`<div class="tip">${tip}</div>`:""}</div>`}
 let HOMEONLY=0,EXS=null;const inHome=el=>!!(el&&el.closest&&el.closest("#v-home"));
-function update(){updateCore();if(S.mode==="example")return;if(S.profile&&S.profile.name&&S.profile.name!=="새 고객"&&n(S.income.salary)>0){$("#btnBlank").hidden=true;$("#btnExample2").hidden=false;return}const real=S,D=document,q1=D.querySelector,qa=D.querySelectorAll,gi=D.getElementById,sv=save;
+function update(){updateCore();if(S.mode==="example")return;if(S.profile&&S.profile.name&&S.profile.name!=="새 고객"){$("#btnBlank").hidden=true;$("#btnExample2").hidden=false;return}const real=S,D=document,q1=D.querySelector,qa=D.querySelectorAll,gi=D.getElementById,sv=save;
   EXS=EXS||example();S=EXS;HOMEONLY=1;
   D.querySelector=function(x){const r=q1.call(D,x);return inHome(r)?r:D.createElement("div")};
   D.querySelectorAll=function(x){return [...qa.call(D,x)].filter(inHome)};
