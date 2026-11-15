@@ -4485,10 +4485,13 @@ function syncBuckets(s){if(!s||s.mode==="example"||!s.saving||!Array.isArray(s.s
   const want=oth.slice(b1?1:0).map(x=>"bi_"+x.id);
   s.buckets=s.buckets.filter(b=>!/^bi_/.test(b.id)||want.includes(b.id));
   oth.slice(b1?1:0).forEach(x=>{const id="bi_"+x.id;let b=s.buckets.find(y=>y.id===id);if(!b){b={id,name:"안전자산",product:"",pmt:0,rate:3.5,link:"",months:""};const k=s.buckets.findIndex(y=>y.id==="b1");s.buckets.splice(k>=0?k+1:0,0,b)}b.product=String(x.name).trim();b.rate=svRate(b.product);if(/주식|ETF|코인|펀드|해외|비트/i.test(b.product)){b.name="투자";b.rate=6}else b.name="안전자산"})}
+let _gDef=[];
+const gSrc=g=>{const s0=g&&g.src||[];if(s0.length||S.mode==="example")return s0;if(/비상/.test(g.name||""))return ["cash"];return _gDef};
 function calc(sk){syncBuckets(S);(S.expenses||[]).forEach(e=>{if(n(e.amt)<0)e.amt=-n(e.amt);if(n(e.target)<0)e.target=-n(e.target);if(e.target!==""&&e.target!=null&&n(e.target)===0)e.target=""});(S.saving&&S.saving.items||[]).forEach(x=>{if(n(x.amt)<0)x.amt=-n(x.amt)});(S.assets||[]).forEach(a=>{if(n(a.amt)<0)a.amt=-n(a.amt)});if(n(S.income.bonus)<0)S.income.bonus=-n(S.income.bonus);if(S.saving&&Array.isArray(S.saving.items)&&(S.saving.items.length||S.mode!=="example"))S.saving.current=S.saving.items.reduce((t,x)=>t+n(x.amt),0);
   sk=sk||S.scenario||"balanced";const sc=SCEN[sk]||SCEN.balanced;
   const sal=n(S.income.salary),bonus=n(S.income.bonus);
   const realU=S.mode!=="example",sr0=sal>0?n(S.saving.current)/sal*100:0;AUTOCUT=realU?(sr0<30?.8:sr0<50?.85:.9):.9;
+  if(realU&&sr0<30&&sal>0){const fS=sum(S.expenses.filter(e=>e.group==="fixed"),e=>e.amt),vS=sum(S.expenses.filter(e=>e.group!=="fixed"),e=>e.amt);if(vS>0)AUTOCUT=Math.min(.8,Math.max(.7,Math.floor((sal+bonus-fS-.3*sal)/vS*100)/100))}
   const planAmt=e=>{const a=n(e.amt),t=tgtOf(e);if(t>=a)return t;return Math.max(0,a-(a-t)*sc.cut)};
   const exNow=sum(S.expenses,e=>e.amt),exPlan=S.expenses.reduce((t,e)=>t+planAmt(e),0),exBal=S.expenses.reduce((t,e)=>t+tgtOf(e),0);
   const fx=S.expenses.filter(e=>e.group==="fixed"),vr=S.expenses.filter(e=>e.group!=="fixed");
@@ -4510,15 +4513,15 @@ function calc(sk){syncBuckets(S);(S.expenses||[]).forEach(e=>{if(n(e.amt)<0)e.am
   const gi=Math.max(0,S.buckets.findIndex(b=>/ISA/i.test(b.product)));
   const buckets=S.buckets.map((b,i)=>Object.assign({},b,{pmt:n(b.pmt),rate:n(b.rate)+(growthRe.test(b.product)?sc.adj:0)}));
   const auto=buckets.length>0&&buckets.every(b=>!(b.pmt>0));
-  const emG=S.goals.find(g=>n(g.amt)>0&&(g.src||[]).length===1&&g.src[0]==="cash");
+  const emG=S.goals.find(g=>n(g.amt)>0&&(gSrc(g).length===1&&gSrc(g)[0]==="cash"));
   const emNeed=Math.max(0,Math.max(3*exPlan,emG?n(emG.amt):0)-B.liquid),emMo=emG&&n(emG.months)>0?n(emG.months):12;let emPmt=0;
   const dbt=(S.debts||[]).filter(d=>n(d.bal)>0).sort((a,b)=>n(b.rate)-n(a.rate))[0],dRatio=sal>0?debtPay/sal*100:0,debtFirst=!!dbt&&auto&&(dRatio>20||n(dbt.rate)>=5);let dPmt=0;
   const svBase=buckets.map(()=>0);let emBase=0,emNm="";if(auto&&S.mode!=="example"&&S.saving&&Array.isArray(S.saving.items)){const fi=re=>buckets.findIndex(b=>re.test(b.product+" "+b.name));
     S.saving.items.filter(x=>n(x.amt)>0).forEach(x=>{const k=svKind(String(x.name||""));if(k==="e"){emBase+=n(x.amt);emNm=emNm||String(x.name).trim();return}let i=k==="h"?fi(/청약/):k==="i"?fi(/ISA/i):k==="p"?fi(/연금|IRP/i):buckets.findIndex(b=>b.id==="bi_"+x.id);if(i<0&&k==="o")i=buckets.findIndex(b=>b.id==="b1");if(i<0)i=gi;svBase[i]+=n(x.amt)})}
   const svSum=svBase.reduce((a,x)=>a+x,0),redir=[],goalAdd=[];let emX=0;
-  if(auto&&(svSum>0||emBase>0)){const pool=Math.max(0,capacity>0?capacity:saveNow),extra=Math.max(0,pool-svSum-emBase);emX=emNeed>0?Math.min(realU?extra:Math.round(extra*.6),Math.max(0,Math.ceil(emNeed/emMo)-emBase)):0;emPmt=emBase+emX;let rest=extra-emX;
+  if(auto&&(svSum>0||emBase>0||realU)){const pool=Math.max(0,capacity>0?capacity:saveNow),extra=Math.max(0,pool-svSum-emBase);emX=emNeed>0?Math.min(realU?extra:Math.round(extra*.6),Math.max(0,Math.ceil(emNeed/emMo)-emBase)):0;emPmt=emBase+emX;let rest=extra-emX;
     buckets.forEach((b,i)=>{b.pmt=svBase[i];b.base=svBase[i]});
-    if(realU&&(riskNow>30||(debtFirst&&dRatio>30))){let mv=0;buckets.forEach((b,i)=>{if(svBase[i]>0&&/^bi_/.test(b.id)&&/주식|ETF|코인|펀드|해외|비트/i.test(b.product)){mv+=svBase[i];redir.push([b.product,svBase[i]]);b.pmt=0}});rest+=mv}
+    if(realU&&(riskNow>30||(debtFirst&&dRatio>30))){let mv=0;buckets.forEach((b,i)=>{if(svBase[i]>0&&(/^bi_/.test(b.id)||b.id==="b1")&&/주식|ETF|코인|펀드|해외|비트/i.test(b.product)){mv+=svBase[i];redir.push([b.product,svBase[i]]);b.pmt=0}});rest+=mv}
     if(rest>0&&debtFirst){dPmt=rest;rest=0}
     if(rest>0&&riskNow>30&&!debtFirst){const si=buckets.findIndex((b,i)=>svBase[i]>0&&/적금|예금|저축/.test(b.product)&&!/미래|도약|청약/.test(b.product));if(si>=0){buckets[si].pmt+=rest}else emPmt+=rest;rest=0}
     if(rest>0&&realU){const gs=S.goals.filter(g=>n(g.amt)>0&&n(g.months)>0).map(g=>{const ix=(g.src||[]).map(id=>buckets.findIndex(b=>b.id===id)).filter(i=>i>=0);const cur=ix.reduce((t,i)=>t+buckets[i].pmt,0);return {g,ix,short:Math.max(0,n(g.amt)/n(g.months)-cur)}}).filter(x=>x.ix.length&&x.short>0);
@@ -4535,12 +4538,14 @@ function calc(sk){syncBuckets(S);(S.expenses||[]).forEach(e=>{if(n(e.amt)<0)e.am
     if(left>0)emPmt+=left;
     buckets.forEach(b=>b.auto=true)}
   else if(buckets.length){buckets[gi].pmt=Math.max(0,buckets[gi].pmt+(capacity-capBal));const left=capacity-sum(buckets,b=>b.pmt);if(emNeed>0&&left>0)emPmt=Math.min(left,Math.ceil(emNeed/emMo))}
-  if(emPmt>0)buckets.push({id:"bem",name:"비상금",product:emNm||"CMA 파킹통장",pmt:emPmt,base:emBase>0?emBase:undefined,rate:2.5,link:"",months:emNeed>0?Math.max(1,Math.ceil(emNeed/emPmt)):"",auto:true});
+  buckets.forEach(b=>{b.pmt=Math.round(n(b.pmt)*10)/10});emPmt=Math.round(emPmt*10)/10;dPmt=Math.round(dPmt*10)/10;
+  if(emPmt>0)buckets.push({id:"bem",name:realU&&emNeed<=0&&emBase<=0?"목표 모으기":"비상금",product:emNm||"CMA 파킹통장",pmt:emPmt,base:emBase>0?emBase:undefined,rate:2.5,link:"",months:emNeed>0?Math.max(1,Math.ceil(emNeed/emPmt)):"",auto:true});
   if(dPmt>0)buckets.push({id:"bdebt",name:"빚 먼저 갚기",product:(dbt.name||"대출")+" 추가 상환",pmt:dPmt,base:0,rate:n(dbt.rate),link:"",months:"",auto:true,debt:true});
   const emAdd=emPmt*Math.min(12,emNeed>0?Math.ceil(emNeed/emPmt):12);
   const bucketSum=sum(buckets,b=>b.pmt);
   const linked=new Set(S.buckets.map(b=>b.link).filter(Boolean));
   const restAmt=S.assets.filter(a=>["safe","risk","retire"].includes(a.type)&&!linked.has(a.id)).reduce((x,a)=>x+after[a.id],0);
+  _gDef=buckets.filter(b=>b.pmt>0&&!b.debt&&(b.id!=="bem"||emNeed<=0)).map(b=>b.id).concat(restAmt>0?["rest"]:[]);
   const dpAfter=dPmt>0?Math.max(0,debtPay-payOf(dbt)):debtPay,R=(liq,ex,sv,risk,inv,dp)=>({em:ex>0?liq/ex:0,save:sal>0?sv/sal*100:0,debt:sal>0?(dp==null?debtPay:dp)/sal*100:0,risk:inv>0?risk/inv*100:0});
   return {dx:{emX,redir,goalAdd,autoSells,riskNow,cut:Math.round((1-AUTOCUT)*100),realU},dInfo:{d:dbt,ratio:dRatio,on:debtFirst,pmt:dPmt},liqAfter:B.liquid+emAdd,auto,emPmt,emNeed,emAdd,sk,sc,sal,bonus,exNow,exPlan,fixNow,varNow,fixPlan,varPlan,saveNow,debtPay,debtBal,A,B,totalA,net,sellTotal,after,capacity,buckets,bucketSum,restAmt,planAmt,
     rNow:R(A.liquid,exNow,saveNow,A.risk,A.safe+A.risk+A.retire),rAfter:R(B.liquid+emAdd,exPlan,bucketSum,B.risk,B.safe+B.risk+B.retire+(bucketSum-dPmt)*12,dpAfter),rSold:B.safe+B.risk+B.retire>0?B.risk/(B.safe+B.risk+B.retire)*100:0,unalloc:sal-exNow-saveNow};
@@ -4548,13 +4553,14 @@ function calc(sk){syncBuckets(S);(S.expenses||[]).forEach(e=>{if(n(e.amt)<0)e.am
 function project(c,H,scale){
   const em=c.buckets.find(b=>b.id==="bem"),emLim=em&&em.months!==""?n(em.months):Infinity,ot=sum(c.buckets.filter(b=>b.id!=="bem"),b=>b.pmt);
   const series=c.buckets.map(b=>{const r=b.rate/100/12,lim=b.months===""||b.months==null?Infinity:n(b.months);const f=scale&&scale[b.id]!=null?scale[b.id]:1;
+    if(b.debt){const d=c.dInfo&&c.dInfo.d,dr=d?n(d.rate)/1200:0,reg=d?payOf(d):0;let db=d?n(d.bal):0,bal=0;const arr=[0];for(let m=1;m<=H;m++){const pay=b.pmt*f;if(db>0){db=db*(1+dr)-reg-pay;if(db<0){bal=-db;db=0}}else bal=bal*(1+.035/12)+pay+reg;arr.push(bal)}return {id:b.id,name:b.name,arr}}
     const sp=em&&b.id!=="bem"&&ot>0?em.pmt*b.pmt/ot:0;
     let bal=b.link&&c.after[b.link]!=null?c.after[b.link]:0;const arr=[bal];for(let m=1;m<=H;m++){bal=bal*(1+r)+(m<=lim?b.pmt*f:0)+(m>emLim?sp*f:0);arr.push(bal)}return {id:b.id,name:b.name,arr}});
   const rr=n(S.restRate)/100/12;let rb=c.restAmt;const rest=[rb];for(let m=1;m<=H;m++){rb*=1+rr;rest.push(rb)}
   return {series,rest};
 }
-function srcAt(g,c,P,m){let v=0;m=Math.max(0,Math.round(m));(g.src||[]).forEach(k=>{if(k==="cash"){v+=c.B.liquid;const e=P.series.find(x=>x.id==="bem");if(e)v+=e.arr[Math.min(m,e.arr.length-1)]}else if(k==="rest")v+=P.rest[Math.min(m,P.rest.length-1)];else{const s=P.series.find(x=>x.id===k);if(s)v+=s.arr[Math.min(m,s.arr.length-1)]}});return v}
-function srcNow(g,c){let v=0;(g.src||[]).forEach(k=>{if(k==="cash")v+=c.A.liquid;else if(k==="rest")v+=c.restAmt+c.sellTotal*0;else{const b=S.buckets.find(x=>x.id===k);if(b&&b.link){const a=S.assets.find(x=>x.id===b.link);if(a)v+=n(a.amt)}}});return v}
+function srcAt(g,c,P,m){let v=0;m=Math.max(0,Math.round(m));gSrc(g).forEach(k=>{if(k==="cash"){v+=c.B.liquid;const e=P.series.find(x=>x.id==="bem");if(e)v+=e.arr[Math.min(m,e.arr.length-1)]}else if(k==="rest")v+=P.rest[Math.min(m,P.rest.length-1)];else{const s=P.series.find(x=>x.id===k);if(s)v+=s.arr[Math.min(m,s.arr.length-1)]}});return v}
+function srcNow(g,c){let v=0;gSrc(g).forEach(k=>{if(k==="cash")v+=c.A.liquid;else if(k==="rest")v+=c.restAmt+c.sellTotal*0;else{const b=S.buckets.find(x=>x.id===k);if(b&&b.link){const a=S.assets.find(x=>x.id===b.link);if(a)v+=n(a.amt)}}});return v}
 function reachMonth(g,c,P){const a=n(g.amt);if(a<=0)return null;for(let m=0;m<P.rest.length;m++)if(srcAt(g,c,P,m)>=a)return m;return Infinity}
 function st(kind,v){if(kind==="em")return v<3?"bad":v<=6?"good":"warn";if(kind==="save")return v<30?"bad":v<50?"warn":"good";if(kind==="debt")return v<=20?"good":v<=30?"warn":"bad";if(kind==="risk")return v<=30?"good":v<=50?"warn":"bad"}
 const SL={good:"적정",warn:"주의",bad:"위험"};
@@ -4672,7 +4678,7 @@ function renderInputs(){migrate(S);
   const m=S.mon,r2="grid-template-columns:minmax(0,1fr) 120px";
   $("#monthList").innerHTML=`<div class="row head mrow"><span>항목</span><span style="text-align:right">계획</span><span style="text-align:right">실제</span><span style="text-align:right">판정</span></div>`+[["actIncome","세후 소득"],["actFixed","고정지출"],["actVar","변동지출"],["actSave","저축·투자"]].map(([k,l])=>`<div class="row mrow"><span class="lbl">${l}<small data-o="md-${k}"></small></span><span class="val" data-o="mp-${k}"></span>${ni("mon."+k,m[k],l)}<span style="text-align:right" data-o="ms-${k}"></span></div>`).join("");
   $("#monList").innerHTML=[["cma","비상예비자금 잔액","만"],["isaDev","ISA 주식 비중 이탈","%p"],["drop","주가지수 전고점 대비 하락","%"],["raise","월 실수령액 증가율","%"],["elapsed","설계안 실행 후 경과","개월"]].map(([k,l,u])=>`<div class="row" style="${r2}"><span class="lbl">${l}</span>${ni("mon."+k,m[k],l,u)}</div>`).join("")+`<div class="row" style="${r2}"><span class="lbl">연말정산 환급금 수령</span>${si("mon.yearend",m.yearend,[["false","아니오"],["true","예"]],"연말정산")}</div><div class="row" style="${r2}"><span class="lbl">전세 만기·청약 당첨</span>${si("mon.housing",m.housing,[["false","아니오"],["true","예"]],"주거 이벤트")}</div>`;
-  const gopts=S.goals.filter(g=>n(g.amt)>0&&!((g.src||[]).length===1&&g.src[0]==="cash"));
+  const gopts=S.goals.filter(g=>n(g.amt)>0&&!((gSrc(g).length===1&&gSrc(g)[0]==="cash")));
   $("#gjGoal").innerHTML=gopts.map(g=>`<option value="${g.id}"${g.id===S.gjGoal?" selected":""}>${esc(g.term)} · ${esc(g.name)}</option>`).join("")||`<option value="">목표 없음</option>`;
   if(!gopts.find(g=>g.id===S.gjGoal)&&gopts[0])S.gjGoal=gopts[0].id;
   renderConsent();
@@ -4748,10 +4754,10 @@ function updateCore(){
    <div class="pp-r">
      ${DX.realU?(()=>{const r=c.rNow,ok=(k,v)=>k==="em"?v>=3:k==="save"?v>=50:k==="debt"?v<=20:v<=30,allOk=ok("em",r.em)&&ok("save",r.save)&&ok("debt",r.debt)&&ok("risk",r.risk),rw=(no,k,lb,v,u,act)=>`<li class="dxr"><span class="dx-no">${no}</span><span class="dx-st ${ok(k,v)?"g":"w"}">${ok(k,v)?"양호":"주의"}</span><span class="dx-l">${lb}<em>${f1(v)}${u}</em></span><span class="dx-a">${act}</span></li>`,GA=DX.goalAdd||[];
        return `<div class="pd-h"><b>진단에 맞춘 설계</b><small>${allOk?"모두 양호해서 목표에 맞춰 모아요":"부족한 것부터 순서대로 채워요"}</small></div><ul class="dx-list">
-       ${rw(1,"em","비상예비자금",r.em,"개월",DX.emX>0?(r.em>=3?`비상금 목표까지 매달 ${f1(DX.emX)}만 원 더 모아요`:`남는 돈 ${f1(DX.emX)}만 원을 비상금 통장에 먼저 모아요`):r.em>=3?"충분해요. 그대로 둬요":"남는 돈이 없어 지출부터 줄여요")}
-       ${rw(2,"debt","부채부담률",r.debt,"%",DI.pmt>0?`${(DX.redir||[]).length?`주식에 넣던 ${f1(DX.redir.reduce((t,x)=>t+x[1],0))}만 원을 포함해 `:"남는 돈 "}${f1(DI.pmt)}만 원으로 ${esc(DI.d.name||"대출")}부터 더 갚아요`:r.debt>20?"새 대출은 받지 않고 지금 상환을 지켜요":"괜찮아요. 지금 상환을 이어가요")}
+       ${rw(1,"em","비상예비자금",r.em,"개월",DX.emX>0?(r.em>=3?`비상금 목표까지 매달 ${f1(DX.emX)}만 원 더 모아요`:`남는 돈 ${f1(DX.emX)}만 원을 비상금 통장에 먼저 모아요`):r.em>=3?"충분해요. 그대로 둬요":c.sellTotal>0&&c.rAfter.em>=3?`투자자산 ${f1(c.sellTotal)}만 원을 팔아 비상금으로 옮겨 ${f1(c.B.liquid/(c.exPlan||1))}개월분을 채워요`:c.emPmt>0?`매달 ${f1(c.emPmt)}만 원씩 비상금 통장에 모아요`:"지출을 줄여 남는 돈부터 비상금으로 모아요")}
+       ${rw(2,"debt","부채부담률",r.debt,"%",DI.pmt>0?`${(DX.redir||[]).length?`주식·코인에 넣던 ${f1(DX.redir.reduce((t,x)=>t+x[1],0))}만 원을 포함해 `:"남는 돈 "}${f1(DI.pmt)}만 원으로 ${esc(DI.d.name||"대출")}부터 더 갚아요`:r.debt>20?"새 대출은 받지 않고 지금 상환을 지켜요":"괜찮아요. 지금 상환을 이어가요")}
        ${rw(3,"save","저축성향률",r.save,"%",r.save<50?`생활비를 ${DX.cut}% 줄여 ${DI.pmt>0?"모으고 갚는 돈":"저축"} ${f1(c.saveNow)}만 → ${f1(c.bucketSum)}만 원`:"충분해요. 지금 저축을 이어가요")}
-       ${rw(4,"risk","고위험 자산 비중",r.risk,"%",(DX.autoSells||[]).length?`${DX.autoSells.map(x=>esc(x.name.split(/[ ·(]/)[0])).join("·")} ${f1(DX.autoSells.reduce((t,x)=>t+x.amt,0))}만 원을 팔아 비중을 30%로 낮춰요`:(DX.redir||[]).length&&r.risk>30?"주식·코인에 매달 넣던 돈은 잠시 멈춰요":"괜찮아요. 지금 투자를 그대로 둬요")}
+       ${rw(4,"risk","고위험 자산 비중",r.risk,"%",(DX.autoSells||[]).length?`${DX.autoSells.map(x=>esc(x.name.split(/[ ·(]/)[0])).join("·")} ${f1(DX.autoSells.reduce((t,x)=>t+x.amt,0))}만 원을 팔아 비중을 ${f1((c.B.safe+c.B.risk+c.B.retire)>0?c.B.risk/(c.B.safe+c.B.risk+c.B.retire)*100:0)}%로 낮춰요`:(DX.redir||[]).length&&r.risk>30?"주식·코인에 매달 넣던 돈은 잠시 멈춰요":"괜찮아요. 지금 투자를 그대로 둬요")}
        ${GA.length?`<li class="dxr"><span class="dx-no">5</span><span class="dx-st g">목표</span><span class="dx-l">재무목표<em>${GA.length}개</em></span><span class="dx-a">${GA.map(x=>`${esc(x[0])}에 ${f1(x[2])}만 원`).join(", ")} 더 모아요</span></li>`:""}
        </ul><p class="dx-ref">순서는 재무설계에서 쓰는 우선순위를 따라요. 먼저 비상자금으로 생활을 지키고, 비싼 빚을 줄인 뒤, 저축을 늘리고 투자 위험을 맞춰요. 그다음 남는 돈은 목표에 나눠요. (참고: Xiao &amp; Anderson, 1997 재무 욕구 위계 · Greninger 외, 1996 재무비율 기준)</p>`})():""}
      <div class="pd-h${DX.realU?" mp-h2":""}"><b>줄이는 지출</b><small>한 달 ${f1(c.exNow)}만 → ${f1(c.exPlan)}만 원</small></div>
@@ -4803,7 +4809,7 @@ function updateCore(){
   // goals overview
   const gRows=S.goals.map(g=>{const v=srcAt(g,c,P,n(g.months)),amt=n(g.amt),r=amt>0?v/amt*100:null;return {g,v,amt,r,s:r==null?"info":r>=100?"good":r>=80?"warn":"bad",reach:reachMonth(g,c,P)}});
   {const sd=startDate(),ymd=m=>{const d=new Date(sd);d.setMonth(d.getMonth()+m);return d.getFullYear()+"년 "+(d.getMonth()+1)+"월"},bk=Object.fromEntries(c.buckets.map(b=>[b.id,b]));
-   gRows.forEach((x,i)=>{const el=document.getElementById("gplan"+i);if(!el)return;const g=x.g,mo=n(g.months),src=g.src||[];
+   gRows.forEach((x,i)=>{const el=document.getElementById("gplan"+i);if(!el)return;const g=x.g,mo=n(g.months),src=gSrc(g);
     const pays=src.concat(src.includes("cash")&&bk.bem?["bem"]:[]).filter(k=>bk[k]&&bk[k].pmt>0).map(k=>[k==="bem"?"비상금 통장":bk[k].product||bk[k].name,bk[k].pmt]),mon=pays.reduce((a,p)=>a+p[1],0);
     const parts=[];if(src.includes("cash")&&c.B.liquid>0)parts.push(`지금 있는 비상금 ${fmt(c.B.liquid)}만 원`);if(src.includes("rest")&&c.restAmt>0)parts.push(`지금 있는 투자금 ${fmt(c.restAmt)}만 원`);
     const how=(pays.length?`매달 ${pays.map(p=>`${esc(p[0])} <b>${fmt(p[1],p[1]%1?1:0)}만</b>`).join(" + ")} 원을 ${parts.length?"모으고":"모아요"}`:"")+(parts.length?(pays.length?", ":"")+parts.join("·")+"을 함께 씁니다":pays.length?"":"");
@@ -5011,7 +5017,7 @@ function updateCore(){
   S.expenses.forEach(e=>{const d=c.planAmt(e)-n(e.amt);o("d-"+e.id,d===0?"":`<span style="color:var(--${d<0?"green":"red"})">${d>0?"+":"−"}${fmt(Math.abs(d),1)}</span>`)});
   $("#cutPill").textContent=cut>0?`월 ${fmt(cut,1)}만 원 절감`:"절감 없음";
   $("#capNote").innerHTML=`매달 모을 수 있는 돈 = 월급 ${fmt(c.sal)}만${c.bonus?` + 비정기 수입 ${fmt(c.bonus)}만`:""} − 설계안 지출 ${fmt(c.exPlan,1)}만 = <b>${fmt(c.capacity,1)}만 원</b>`;
-  const emGoal=S.goals.find(g=>(g.src||[]).length===1&&g.src[0]==="cash");
+  const emGoal=S.goals.find(g=>(gSrc(g).length===1&&gSrc(g)[0]==="cash"));
   $("#sellNote").innerHTML=`<div class="callout ${emGoal&&c.B.liquid<n(emGoal.amt)?"warn":"good"}">지금 바로 쓸 수 있는 돈 ${fmt(c.A.liquid)}만 + 판 돈 ${fmt(c.sellTotal)}만 = <b>${fmt(c.B.liquid)}만 원</b>${c.emAdd?` + 비상금 통장 1년 적립 ${fmt(c.emAdd)}만 원`:""} → 생활비 ${fmt(c.rAfter.em,1)}달치 비상금이 돼요.${emGoal?(c.liqAfter>=n(emGoal.amt)?` “${esc(emGoal.name)}” 목표를 채워요.`:` 목표까지 ${fmt(n(emGoal.amt)-c.liqAfter)}만 원 더 모아야 해요.`):""} 팔지 않고 남는 투자는 ${fmt(c.restAmt)}만 원이에요.</div>`;
   donut("cBucket",c.buckets.map(b=>b.name),c.buckets.map(b=>b.pmt),c.buckets.map((b,i)=>col[i%6]),{text:fmt(c.bucketSum,0)+"만",sub:"월 적립"},ctx=>{const b=c.buckets[ctx.dataIndex];return ` ${b.name}: 월 ${fmt(b.pmt,1)}만 · 연 ${fmt(b.rate,1)}%`});
   const capB=c.capacity-c.bucketSum,wr=c.bucketSum?c.buckets.reduce((t,b)=>t+b.pmt*b.rate,0)/c.bucketSum:0;
@@ -5029,7 +5035,7 @@ function updateCore(){
   const labels=[...Array(horizon+1).keys()].map(m=>m===0?"현재":m%12===0?(m/12)+"년":m+"개월");
   const ds=[{label:"기존 투자자산",data:P.rest.slice(0,horizon+1),backgroundColor:grad(hexA(css("--c5"),.45),hexA(css("--c5"),.08)),borderColor:css("--c5"),fill:"origin",stack:"a"}].concat(P.series.map((s,i)=>({label:s.name,data:s.arr.slice(0,horizon+1),backgroundColor:grad(toA(deepE(col[i%6]),.42),toA(litE(col[i%6]),.05)),borderColor:grad(litE(col[i%6]),deepE(col[i%6]),true),fill:"-1",stack:"a"})));
   ds.forEach(d=>Object.assign(d,{pointRadius:0,pointHoverRadius:0,borderWidth:2,tension:.3}));
-  gg.filter(g=>!((g.src||[]).length===1&&g.src[0]==="cash")&&n(g.months)<=horizon).forEach((g,i)=>ds.push({label:"목표 · "+g.name,data:labels.map((_,m)=>m===n(g.months)?n(g.amt):null),type:"line",borderColor:css("--ink"),backgroundColor:"#ffffff",pointRadius:labels.map((_,m)=>m===n(g.months)?7:0),pointHoverRadius:7,pointBorderWidth:3,pointBorderColor:srcAt(g,c,P,n(g.months))>=n(g.amt)?"#3182f6":"#f25f73",showLine:false,stack:"g"+i}));
+  gg.filter(g=>!((gSrc(g).length===1&&gSrc(g)[0]==="cash"))&&n(g.months)<=horizon).forEach((g,i)=>ds.push({label:"목표 · "+g.name,data:labels.map((_,m)=>m===n(g.months)?n(g.amt):null),type:"line",borderColor:css("--ink"),backgroundColor:"#ffffff",pointRadius:labels.map((_,m)=>m===n(g.months)?7:0),pointHoverRadius:7,pointBorderWidth:3,pointBorderColor:srcAt(g,c,P,n(g.months))>=n(g.amt)?"#3182f6":"#f25f73",showLine:false,stack:"g"+i}));
   chart("cProj",{type:"line",data:{labels,datasets:ds},options:baseOpts({scales:Object.assign(baseOpts().scales,{x:Object.assign(baseOpts().scales.x,{ticks:Object.assign(baseOpts().scales.x.ticks,{autoSkip:false,maxRotation:0,callback:(v,i)=>i%12===0?labels[i]:""})}),y:Object.assign(baseOpts().scales.y,{stacked:true})}),plugins:Object.assign(baseOpts().plugins,{tooltip:Object.assign({},baseOpts().plugins.tooltip,{filter:it=>it.raw!=null,callbacks:{label:ctx=>` ${ctx.dataset.label}: ${won(ctx.parsed.y)}`,footer:items=>{const t=items.filter(i=>!/^목표/.test(i.dataset.label)).reduce((a,i)=>a+i.parsed.y,0);return "합계 "+won(t)}}})})})});
   $("#goalCheck").innerHTML=`<thead><tr><th>목표</th><th class="r">목표</th><th class="r">예상</th><th class="r">도달</th><th>달성</th></tr></thead><tbody>${gRows.map(x=>`<tr><td>${esc(x.g.name)}<br><span style="font-size:12px;color:var(--ink-3)">${esc(x.g.term)} · ${mlabel(n(x.g.months))}</span></td><td class="r">${x.amt?fmt(x.amt):"지속"}</td><td class="r">${fmt(x.v)}</td><td class="r">${mlabel(x.reach)}</td><td>${x.r==null?'<span class="pill info">적립</span>':`<span class="pill ${x.s}">${fmt(x.r,0)}%</span>`}</td></tr>`).join("")}</tbody>`;
   const t=tax(c),tx=[];
@@ -5040,7 +5046,7 @@ function updateCore(){
   if(!tx.length)tx.push(["세제 혜택","지금 넣는 통장 중 세금 혜택 상품이 없어요. ISA·연금저축은 2단계에 적으면 계산돼요"]);
   lastTax=tx;$("#taxBox").innerHTML=tx.map(([a,b])=>`<div class="item"><span class="pill good">혜택</span><div><b>${a}</b><p>${b}</p></div></div>`).join("");
   const loan=S.debts[0],ms=[[c.emPmt>0?n((c.buckets.find(b=>b.id==="bem")||{}).months)||12:0,"비상예비자금 완성",`${fmt(c.liqAfter)}만 원 확보, ${fmt(c.rAfter.em,1)}개월분`]];
-  if(c.emPmt>0&&S.goals.some(g=>n(g.amt)>0&&(g.src||[]).length===1&&g.src[0]==="cash"))ms.shift();
+  if(c.emPmt>0&&S.goals.some(g=>n(g.amt)>0&&(gSrc(g).length===1&&gSrc(g)[0]==="cash")))ms.shift();
   if(loan&&n(loan.months))ms.push([n(loan.months),`${loan.name} 완납`,`월 ${fmt(payOf(loan))}만 원을 연금계좌로 전환`]);
   c.buckets.forEach(b=>{if(b.id!=="bem"&&b.months!==""&&n(b.months))ms.push([n(b.months),`${b.product} 납입 완료`,`이후 만기까지 복리 운용`])});
   gRows.forEach(x=>{if(x.reach!=null&&x.reach!==Infinity&&x.reach>0)ms.push([x.reach,`${x.g.name} 달성`,`목표 ${won(x.amt)}`])});
@@ -5056,7 +5062,7 @@ function updateCore(){
 function renderJourney(c){
   const g=S.goals.find(x=>x.id===S.gjGoal);const box=$("#gjStats");
   if(!g||!n(g.amt)){box.innerHTML='<p class="note">2단계에서 금액이 있는 목표를 추가하세요.</p>';return}
-  const srcB=c.buckets.filter(b=>(g.src||[]).includes(b.id));const base=sum(srcB,b=>b.pmt);
+  const srcB=c.buckets.filter(b=>gSrc(g).includes(b.id));const base=sum(srcB,b=>b.pmt);
   const maxv=Math.max(100,Math.ceil(Math.max(c.capacity,base*1.5,c.saveNow)/50)*50);$("#gjRange").max=maxv;$("#gjMax").textContent=maxv+"만";
   const val=Math.min(maxv,S.gj==null?base:S.gj);$("#gjRange").value=val;$("#gjRange").style.setProperty("--p",(val/maxv*100)+"%");$("#gjVal").textContent=fmt(val)+"만 원";
   const mo=Math.max(1,n(g.months)),amt=n(g.amt),H=Math.max(48,Math.round(mo*1.5));
@@ -5100,9 +5106,10 @@ function renderDiag(c){
   $("#behPlain").innerHTML=it.map(([st,a,b])=>{const q=P2[a];return q?`<div class="hb-i ${st}"><span class="lchip ${st==="good"?"gain":"loss"}">${st==="good"?"양호":"주의"}</span><b>${q[0]}</b><p>${q[2]}</p><a class="hb-fix" href="#${q[4]}"><span class="lchip gain">해결</span>${q[3]}</a><small>${q[1]}</small></div>`:`<div class="hb-i ${st}"><span class="pill ${st}">${SL[st]}</span><b>${a}</b><p>${b}</p></div>`}).join("")}
   lastBeh=it;$("#behDiag").innerHTML=it.map(([s,a,b])=>`<div class="item"><span class="pill ${s}">${SL[s]}</span><div><b>${a}</b><p>${b}</p></div></div>`).join("");
   const ai=[];
-  if(c.rNow.em<3)ai.push(["비상예비자금을 먼저 채웁니다",`근거: ${fmt(c.rNow.em,1)}개월 < 권장 3개월. 고위험 자산 ${fmt(c.sellTotal)}만 원 정리로 ${fmt(c.rAfter.em,1)}개월까지 올라갑니다.`]);
+  if(c.rNow.em<3)ai.push(["비상예비자금을 먼저 채웁니다",`근거: ${fmt(c.rNow.em,1)}개월 < 권장 3개월. ${c.sellTotal>0?`고위험 자산 ${fmt(c.sellTotal)}만 원 정리와 `:""}${c.emPmt>0?`매달 ${fmt(c.emPmt,1)}만 원 비상금 적립으로 `:""}${fmt(c.rAfter.em,1)}개월까지 올라갑니다.`]);
   if(c.exNow>c.exPlan)ai.push(["변동지출에 상한을 둡니다",`근거: 변동지출 ${fmt(c.varNow)} → ${fmt(c.varPlan,1)}만 원으로 줄이면 저축성향률이 ${pct(c.rNow.save,1)} → ${pct(c.rAfter.save,1)}가 됩니다.`]);
-  if(c.rNow.debt<=20&&c.debtPay)ai.push(["대출은 조기 상환하지 않습니다",`근거: 부채부담률 ${pct(c.rNow.debt,1)}로 안전하고 금리가 낮아, 여유 자금은 세제 혜택 계좌가 유리합니다.`]);
+  if(c.dInfo&&c.dInfo.on)ai.push(["이자가 높은 빚부터 갚습니다",`근거: ${esc(c.dInfo.d.name||"대출")} 금리 연 ${fmt(n(c.dInfo.d.rate),1)}%, 부채부담률 ${pct(c.rNow.debt,1)}. 남는 돈 매달 ${fmt(c.dInfo.pmt,1)}만 원을 추가 상환에 씁니다.`]);
+  else if(c.rNow.debt<=20&&c.debtPay)ai.push(["대출은 조기 상환하지 않습니다",`근거: 부채부담률 ${pct(c.rNow.debt,1)}로 안전하고 금리가 낮아, 여유 자금은 세제 혜택 계좌가 유리합니다.`]);
   const t=tax(c);if(t.hasPens)ai.push(["세제 혜택 계좌를 우선 채웁니다",`근거: 연금저축 연 ${fmt(t.pensYear)}만 원 납입 시 ${fmt(t.pensCredit,1)}만 원 환급, 수익률로 환산하면 즉시 ${t.pensRate}%입니다.`]);
   $("#aiDiag").innerHTML=ai.map(([a,b],i)=>`<div class="item"><span class="num-badge">${String(i+1).padStart(2,"0")}</span><div><b>${a}</b><p>${b}</p></div></div>`).join("")||'<p class="note">입력값이 늘면 행동 과제가 표시됩니다.</p>';
 }
@@ -5183,10 +5190,10 @@ function calEvents(c,y,mo){const st0=startDate(),E=[];const inM=d=>d.getFullYear
     S.expenses.filter(e=>e.group==="fixed"&&n(e.amt)>0&&n(e.day)>=1&&n(e.day)<=31).forEach(e=>{const d=addM(first,0,Math.min(n(e.day),new Date(y,mo+1,0).getDate()));if(d>=st0)E.push({d,kind:"bill",ch:`${e.name.split(/[ ·(]/)[0]} ${fmt(n(e.amt))}만`,t:`${e.name} ${fmt(n(e.amt))}만 원 출금`,sub:"고정지출 · 통장 잔액을 미리 확인하세요"})});
     {const cd=n((S.days||{}).card);if(cd>=1&&cd<=31&&c.varNow>0){const d=addM(first,0,Math.min(cd,new Date(y,mo+1,0).getDate()));if(d>=st0)E.push({d,kind:"bill",ch:`카드값 ${fmt(c.varNow)}만`,t:`카드값 약 ${fmt(c.varNow)}만 원 결제`,sub:"지난달 변동지출 · 카드 결제일"})}}
     if(md>=st0&&c.bucketSum>0)E.push({d:md,kind:"pay",ch:`저축 ${fmt(c.bucketSum)}만`,t:`선저축 자동이체 ${fmt(c.bucketSum,1)}만 원`,sub:c.buckets.filter(b=>b.pmt>0).map(b=>`${b.name} ${fmt(b.pmt,1)}만`).join(" · ")});
-    if(mi>3&&mi%3===0)E.push({d:addM(first,0,st0.getDate()),kind:"review",t:mi%12===0?"연간 전면 재점검":"분기 점검",sub:mi%12===0?"소득·목표·투자성향 변화를 반영해 설계안을 다시 세웁니다":"ISA 비중 이탈과 리밸런싱 트리거를 확인하고 점검판을 작성합니다"});
-    if(mo===1){const t=tax(c);if(t.pensCredit>0)E.push({d:addM(first,0,28),kind:"review",t:"연말정산 환급금 재투자",sub:`연금저축 환급 약 ${fmt(t.pensCredit,1)}만 원을 ISA에 일시 투자`})}}
+    if(mi>3&&mi%3===0)E.push({d:addM(first,0,st0.getDate()),kind:"review",t:mi%12===0?"연간 전면 재점검":"분기 점검",sub:mi%12===0?"소득·목표·투자성향 변화를 반영해 설계안을 다시 세웁니다":(S.mode==="example"?"ISA 비중 이탈과 리밸런싱 트리거를 확인하고 점검판을 작성합니다":"주식·코인 비중과 리밸런싱 조건을 확인하고 점검판을 작성합니다")});
+    if(mo===1){const t=tax(c);if(t.pensCredit>0)E.push({d:addM(first,0,28),kind:"review",t:"연말정산 환급금 재투자",sub:S.mode==="example"?`연금저축 환급 약 ${fmt(t.pensCredit,1)}만 원을 ISA에 일시 투자`:`연금 세액공제 환급 약 ${fmt(t.pensCredit,1)}만 원을 저축 통장에 한 번에 넣어요`})}}
   const P=project(c,Math.max(120,...S.goals.map(g=>n(g.months))));
-  S.debts.forEach(dbt=>{if(n(dbt.months)>0){const d=addM(st0,n(dbt.months));if(inM(d))E.push({d,kind:"goal",t:`${dbt.name} 완납`,sub:`월 ${fmt(payOf(dbt))}만 원을 연금계좌로 전환`})}});
+  S.debts.forEach(dbt=>{const on=c.dInfo&&c.dInfo.on&&c.dInfo.pmt>0&&c.dInfo.d===dbt;let mo=n(dbt.months);if(on){const r=n(dbt.rate)/1200,pay=payOf(dbt)+c.dInfo.pmt;let bal=n(dbt.bal),k=0;while(bal>0&&k<600){bal=bal*(1+r)-pay;k++}mo=k}if(mo>0&&n(dbt.bal)>0){const d=addM(st0,mo);if(inM(d))E.push({d,kind:"goal",t:`${dbt.name} 완납`,sub:S.mode==="example"?`월 ${fmt(payOf(dbt))}만 원을 연금계좌로 전환`:`갚던 ${fmt(payOf(dbt)+(on?c.dInfo.pmt:0),1)}만 원을 저축으로 돌려요`})}});
   c.buckets.forEach(b=>{if(b.months!==""&&n(b.months)>0){const d=addM(st0,n(b.months));if(inM(d))E.push({d,kind:"goal",t:`${b.product||b.name} 납입 완료`,sub:"이후 만기까지 복리 운용"})}});
   S.goals.forEach(g=>{const r=reachMonth(g,c,P);if(r!=null&&r!==Infinity&&r>0){const d=addM(st0,r);if(inM(d))E.push({d,kind:"goal",t:`목표 달성 · ${g.name}`,sub:`목표 ${won(n(g.amt))} 도달 예상`})}
     if(n(g.amt)>0&&n(g.months)>0){const d=addM(st0,n(g.months));if(inM(d)&&(r===Infinity||r>n(g.months)))E.push({d,kind:"review",t:`목표 기한 · ${g.name}`,sub:`예상 ${won(srcAt(g,c,P,n(g.months)))} / 목표 ${won(n(g.amt))}`})}});
@@ -5215,7 +5222,8 @@ function triggers(c){const m=S.mon,em=c.B.liquid,EX=S.mode==="example",isa=c.buc
     {n:"자산 이탈",cy:"분기",c:"주식·코인 비중이 30%를 10%p 넘게 벗어남",a:"새로 넣는 돈을 비중이 줄어든 쪽(예금·적금)에 먼저 넣어요",f:Math.abs(n(m.isaDev))>=10},
     {n:"시장 폭락",cy:"수시",c:"주가지수가 고점보다 20% 이상 하락",a:DF?"빚을 갚는 중이라 추가 투자는 하지 않고, 매달 넣는 금액만 그대로 유지해요":isa?`비상금은 건드리지 않고, ${esc(isa.product)}에 매달 넣는 돈으로 나눠 사요`:"비상금은 건드리지 않고, 하던 저축을 그대로 이어가요",f:n(m.drop)>=20},
     {n:"소득 상승",cy:"연간",c:"월 실수령액 10% 이상 증가",a:`늘어난 돈의 70%${ra>0?`(월 ${fmt(ra*.7,1)}만 원)`:""}를 ${DF?esc(c.dInfo.d.name||"대출")+" 추가 상환":mn}에 더 넣어요`,f:n(m.raise)>=10},
-    {n:"대출 완납",cy:loan?`${n(loan.months)}개월 차`:"해당 시",c:loan?`${esc(loan.name)} 잔여 ${n(loan.months)}개월 상환 완료`:"부채 상환 완료",a:loan?`매달 갚던 ${fmt(payOf(loan))}만 원을 ${mn}로 돌려요 (월 저축 ${fmt(c.bucketSum,1)} → ${fmt(c.bucketSum+payOf(loan),1)}만 원)`:"갚던 돈을 저축으로 돌려요",f:!!loan&&n(loan.months)>0&&n(m.elapsed)>=n(loan.months)},
+    DF?(()=>{const d=c.dInfo.d,r=n(d.rate)/1200,pay=payOf(d)+c.dInfo.pmt;let bal=n(d.bal),k=0;while(bal>0&&k<600){bal=bal*(1+r)-pay;k++}const mo=k||1;return {n:"대출 완납",cy:`약 ${mo}개월 차`,c:`${esc(d.name||"대출")} 추가 상환으로 다 갚음`,a:`추가 상환하던 ${fmt(c.dInfo.pmt,1)}만 원과 매달 갚던 ${fmt(payOf(d),1)}만 원을 ${mn}${/[가-힣]/.test(mn.slice(-1))&&(mn.slice(-1).charCodeAt(0)-44032)%28&&(mn.slice(-1).charCodeAt(0)-44032)%28!==8?"으로":"로"} 돌려요`,f:n(m.elapsed)>=mo}})():
+    {n:"대출 완납",cy:loan?`${n(loan.months)}개월 차`:"해당 시",c:loan?`${esc(loan.name)} 잔여 ${n(loan.months)}개월 상환 완료`:"부채 상환 완료",a:loan?`매달 갚던 ${fmt(payOf(loan))}만 원을 ${mn}${/[가-힣]/.test(mn.slice(-1))&&(mn.slice(-1).charCodeAt(0)-44032)%28&&(mn.slice(-1).charCodeAt(0)-44032)%28!==8?"으로":"로"} 돌려요 (월 저축 ${fmt(c.bucketSum,1)} → ${fmt(c.bucketSum+payOf(loan),1)}만 원)`:"갚던 돈을 저축으로 돌려요",f:!!loan&&n(loan.months)>0&&n(m.elapsed)>=n(loan.months)},
     {n:"비상금 복구",cy:"수시",c:`비상금이 ${fmt(refill)}만 원(지금의 70%) 아래로 감소`,a:`${mn} 납입을 잠시 줄이고 그 돈을 비상금 통장에 먼저 채워요`,f:em>0&&n(m.cma)<refill},
     {n:"연말정산",cy:"매년 2월",c:"연말정산 환급금 수령",a:pens?`연금 세액공제 환급금 약 ${fmt(t.pensCredit,1)}만 원을 ${mn}에 한 번에 넣어요`:`환급금은 ${DF?"빚 상환":"비상금이나 "+mn}에 한 번에 넣어요`,f:m.yearend==="true"},
     {n:"주거·라이프",cy:"이벤트",c:"전세 만기·이사·청약 당첨",a:`${mn}에 모은 돈으로 보증금·계약금을 내고, 남은 돈은 다시 목표 통장으로 돌려요`,f:m.housing==="true"}]}
@@ -5295,7 +5303,7 @@ function renderReport(c,P,gRows,acts){
   const stt=(k,v)=>`<span class="pill ${st(k,v)}">${SL[st(k,v)]}</span>`;
   const RN={em:"비상예비자금",save:"저축성향률",debt:"부채부담률",risk:"고위험 자산 비중"};
   const weak=["em","save","debt","risk"].filter(k=>st(k,c.rNow[k])==="bad");
-  const srcName=g=>(g.src||[]).map(k=>k==="cash"?"비상예비자금":k==="rest"?"기존 투자자산":((S.buckets.find(b=>b.id===k)||{}).name||"")).filter(Boolean).join(", ")||"-";
+  const srcName=g=>gSrc(g).map(k=>k==="cash"?"비상예비자금":k==="rest"?"기존 투자자산":((S.buckets.find(b=>b.id===k)||{}).name||"")).filter(Boolean).join(", ")||"-";
   const cuts=S.expenses.filter(e=>c.planAmt(e)<n(e.amt));
   const ROM=["Ⅰ","Ⅱ","Ⅲ","Ⅳ","Ⅴ","Ⅵ","Ⅶ","Ⅷ"];
   const cover=`<article class="paper rep-cover"><div class="cv-head">threekong <span>개인 재무설계 보고서</span></div>
@@ -5332,7 +5340,7 @@ function renderReport(c,P,gRows,acts){
     ${tbl(["설계안","월 지출","월 저축","저축성향률",(g2?esc(g2.name):"목표")+" 도달","변동성"],scRows,[1,2,3,4])}
     <h3>① 지출 구조 개선 · 월 ${fmt(c.exNow-c.exPlan,1)}만 원 절감</h3>${cuts.length?tbl(["항목","현재","목표","실행 방법"],cuts.map(e=>[esc(e.name),fmt(n(e.amt)),fmt(c.planAmt(e),1),esc(e.note||"")]),[1,2]):"<p>줄일 항목이 없습니다.</p>"}
     <h3>② 자산 재배치</h3><p>${(()=>{const L=S.sells.map(x=>{const a=S.assets.find(y=>y.id===x.asset);return a&&n(x.amt)>0?`${esc(a.name)} ${fmt(n(x.amt))}만 원`:""}).filter(Boolean).concat(((c.dx||{}).autoSells||[]).map(x=>`${esc(x.name)} ${fmt(x.amt)}만 원`));return L.length?L.join(", ")+" 정리 →":"정리할 자산은 없어요."})()} 비상예비자금 <b>${fmt(c.liqAfter)}만 원</b> (${fmt(c.rAfter.em,1)}개월분) 확보, 남은 투자자산 ${fmt(c.restAmt)}만 원.</p>
-    <h3>③ 매달 모으는 돈, 통장별로 나누기 · ${fmt(c.bucketSum,1)}만 원</h3>${tbl(["계좌","상품","월 적립","기대수익률","연결 목표"],c.buckets.filter(b=>S.mode==="example"||b.pmt>0||n(b.base)>0).map(b=>[esc(b.name),esc(b.product)+(b.pmt<=0&&n(b.base)>0?" (잠시 멈춤)":""),fmt(b.pmt,1),pct(b.rate,1),S.goals.filter(g=>(g.src||[]).includes(b.id)).map(g=>esc(g.name)).join(", ")||"-"]),[2,3])}
+    <h3>③ 매달 모으는 돈, 통장별로 나누기 · ${fmt(c.bucketSum,1)}만 원</h3>${tbl(["계좌","상품","월 적립","기대수익률","연결 목표"],c.buckets.filter(b=>S.mode==="example"||b.pmt>0||n(b.base)>0).map(b=>[esc(b.name),esc(b.product)+(b.pmt<=0&&n(b.base)>0?" (잠시 멈춤)":""),fmt(b.pmt,1),pct(b.rate,1),S.goals.filter(g=>gSrc(g).includes(b.id)).map(g=>esc(g.name)).join(", ")||"-"]),[2,3])}
     <h3>자산 성장 경로 (6년)</h3><div class="rep-chart" style="height:250px"><canvas id="rProj"></canvas></div>
     <h3>목표 달성 검증</h3>${tbl(["목표","목표 금액","기한 시점 예상","도달 시점","달성률"],gRows.map(x=>[esc(x.g.name),x.amt?fmt(x.amt):"지속",fmt(x.v),mlabel(x.reach),x.r==null?"적립":pct(x.r,0)]),[1,2,3,4])}
     <h3>세제 혜택</h3><ul style="margin:0;padding-left:18px">${lastTax.map(([a,b])=>`<li style="padding:3px 0"><b>${a}</b> · ${b}</li>`).join("")}</ul>
@@ -5408,7 +5416,7 @@ document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)r
   if(b.dataset.conall){CONSENT.forEach(([k])=>S.consent[k]=true);save();renderConsent();return}
   if(b.dataset.addsv){S.saving.items.push({id:uid(),name:"",amt:0});save();renderInputs();update();return}
   if(b.dataset.goto){const f=document.querySelector(`[data-p="${b.dataset.goto}"]`);if(f){f.scrollIntoView({behavior:"smooth",block:"center"});setTimeout(()=>f.focus({preventScroll:true}),400)}return}
-  if(b.dataset.del){const [k,i]=b.dataset.del.split(".");const r=S[k].splice(+i,1)[0];if(k==="assets"){S.sells=S.sells.filter(s=>s.asset!==r.id);S.buckets.forEach(x=>{if(x.link===r.id)x.link=""})}if(k==="buckets")S.goals.forEach(g=>g.src=(g.src||[]).filter(s=>s!==r.id));save();renderInputs();update();return}
+  if(b.dataset.del){const [k,i]=b.dataset.del.split(".");const r=S[k].splice(+i,1)[0];if(k==="assets"){S.sells=S.sells.filter(s=>s.asset!==r.id);S.buckets.forEach(x=>{if(x.link===r.id)x.link=""})}if(k==="buckets")S.goals.forEach(g=>g.src=gSrc(g).filter(s=>s!==r.id));save();renderInputs();update();return}
   if(b.dataset.add){S.expenses.push({id:uid(),group:b.dataset.add,name:b.dataset.add==="fixed"?"새 고정지출":"새 변동지출",amt:0,target:0});save();renderInputs();update();return}
   if(b.dataset.pick){setPath(b.dataset.pick,b.dataset.pv);save();renderInputs();update();return}
   if(b.dataset.src!=null){const g=S.goals[+b.dataset.src],set=new Set(g.src||[]);set.has(b.dataset.v)?set.delete(b.dataset.v):set.add(b.dataset.v);g.src=[...set];S.gj=null;save();renderInputs();update();return}
